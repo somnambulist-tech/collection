@@ -869,4 +869,63 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             $this->assertContains('foo bars: ', $value);
         }
     }
+
+    public function testEach()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->each(function (&$item, $key) {
+            $item = 'foo bars: ' . $item;
+        });
+
+        $this->assertCount(3, $ret);
+        foreach ($ret as $key => $value) {
+            $this->assertContains('foo bars: ', $value);
+        }
+    }
+
+    public function testSlice()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->slice(2);
+
+        $this->assertEquals(['bob' => 3], $ret->toArray());
+    }
+
+    public function testPop()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->pop();
+
+        $this->assertEquals(3, $ret);
+        $this->assertCount(2, $col);
+    }
+
+    public function testShift()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->shift();
+
+        $this->assertEquals(1, $ret);
+        $this->assertCount(2, $col);
+    }
 }

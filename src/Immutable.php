@@ -99,14 +99,6 @@ class Immutable extends Collection
     /**
      * @throws \RuntimeException
      */
-    public function ksort($type = null)
-    {
-        throw new \RuntimeException('Collection is immutable');
-    }
-
-    /**
-     * @throws \RuntimeException
-     */
     public function merge($array)
     {
         throw new \RuntimeException('Collection is immutable');
@@ -123,6 +115,14 @@ class Immutable extends Collection
     /**
      * @throws \RuntimeException
      */
+    public function pop()
+    {
+        throw new \RuntimeException('Collection is immutable');
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
     public function reverse()
     {
         throw new \RuntimeException('Collection is immutable');
@@ -131,7 +131,7 @@ class Immutable extends Collection
     /**
      * @throws \RuntimeException
      */
-    public function rsort($type = SORT_STRING)
+    public function shift()
     {
         throw new \RuntimeException('Collection is immutable');
     }
@@ -139,7 +139,7 @@ class Immutable extends Collection
     /**
      * @throws \RuntimeException
      */
-    public function sort($type = SORT_STRING)
+    public function sortByValue($type = SORT_STRING)
     {
         throw new \RuntimeException('Collection is immutable');
     }
@@ -147,7 +147,39 @@ class Immutable extends Collection
     /**
      * @throws \RuntimeException
      */
-    public function usort($callable)
+    public function sortByKey($type = null)
+    {
+        throw new \RuntimeException('Collection is immutable');
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
+    public function sortByValueReversed($type = SORT_STRING)
+    {
+        throw new \RuntimeException('Collection is immutable');
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
+    public function sortByKeyReversed($type = SORT_STRING)
+    {
+        throw new \RuntimeException('Collection is immutable');
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
+    public function sortUsing($callable)
+    {
+        throw new \RuntimeException('Collection is immutable');
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
+    public function sortKeepingKeysUsing($callable)
     {
         throw new \RuntimeException('Collection is immutable');
     }

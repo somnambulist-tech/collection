@@ -19,3 +19,17 @@ Install using composer, or checkout / pull the files from github.com.
 There is a single collection implementation with an extended version providing an immutable
 collection i.e.: once created you cannot change the collection. You can still change the
 contents if they are objects, but the number of items is fixed.
+
+### Using
+
+Instantiate with an array or other collection of items:
+
+    $collection = Collection::collect($items);
+    $collection->map()->filter()...
+    
+Freeze changes to a collection:
+
+    $locked = $collection->freeze()
+    
+    // raises exception
+    $locked->shift()

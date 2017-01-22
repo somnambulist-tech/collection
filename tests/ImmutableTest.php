@@ -84,14 +84,6 @@ class ImmutableTest extends \PHPUnit_Framework_TestCase
         $col->append(['bar' => 'baz']);
     }
 
-    public function testCannotKsort()
-    {
-        $col = new Immutable(['foo' => 'bar']);
-
-        $this->expectException(\RuntimeException::class);
-        $col->ksort();
-    }
-
     public function testCannotMerge()
     {
         $col = new Immutable(['foo' => 'bar']);
@@ -108,6 +100,14 @@ class ImmutableTest extends \PHPUnit_Framework_TestCase
         $col->pad(10, 'bar');
     }
 
+    public function testCannotPop()
+    {
+        $col = new Immutable(['foo' => 'bar']);
+
+        $this->expectException(\RuntimeException::class);
+        $col->pop();
+    }
+
     public function testCannotReverse()
     {
         $col = new Immutable(['foo' => 'bar']);
@@ -116,28 +116,60 @@ class ImmutableTest extends \PHPUnit_Framework_TestCase
         $col->reverse();
     }
 
-    public function testCannotRsort()
+    public function testCannotShift()
     {
         $col = new Immutable(['foo' => 'bar']);
 
         $this->expectException(\RuntimeException::class);
-        $col->rsort();
+        $col->shift();
     }
 
-    public function testCannotSort()
+    public function testCannotSortByKey()
     {
         $col = new Immutable(['foo' => 'bar']);
 
         $this->expectException(\RuntimeException::class);
-        $col->sort();
+        $col->sortByKey();
     }
 
-    public function testCannotUsort()
+    public function testCannotSortByKeyReversed()
     {
         $col = new Immutable(['foo' => 'bar']);
 
         $this->expectException(\RuntimeException::class);
-        $col->usort(function ($var) { return false; });
+        $col->sortByKeyReversed();
+    }
+
+    public function testCannotSortByValue()
+    {
+        $col = new Immutable(['foo' => 'bar']);
+
+        $this->expectException(\RuntimeException::class);
+        $col->sortByValue();
+    }
+
+    public function testCannotSortByValueReversed()
+    {
+        $col = new Immutable(['foo' => 'bar']);
+
+        $this->expectException(\RuntimeException::class);
+        $col->sortByValueReversed();
+    }
+
+    public function testCannotSortUsing()
+    {
+        $col = new Immutable(['foo' => 'bar']);
+
+        $this->expectException(\RuntimeException::class);
+        $col->sortUsing(function () {});
+    }
+
+    public function testCannotSortKeepingKeysUsing()
+    {
+        $col = new Immutable(['foo' => 'bar']);
+
+        $this->expectException(\RuntimeException::class);
+        $col->sortKeepingKeysUsing(function () {});
     }
 
     public function testCannotAdd()

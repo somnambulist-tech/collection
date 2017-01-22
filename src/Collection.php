@@ -433,7 +433,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      *
      * @link http://ca.php.net/array_merge
      *
-     * @param mixed $array either array, ArrayObject or BaseSet
+     * @param mixed $array either array, ArrayObject or Collection
      *
      * @return $this
      */
@@ -452,6 +452,18 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $this->setModified();
 
         return $this;
+    }
+
+    /**
+     * Alias of walk, applies the callback to all items, returns a new set
+     *
+     * @param callable $callable
+     *
+     * @return Collection
+     */
+    public function each(callable $callable)
+    {
+        return $this->walk($callable);
     }
 
     /**
@@ -664,6 +676,18 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Pops the element off the end of the set
+     *
+     * @link http://ca.php.net/array_pop
+     *
+     * @return mixed
+     */
+    public function pop()
+    {
+        return array_pop($this->set);
+    }
+
+    /**
      * Reduces the Set to a single value, returning it, or $initial if no value
      *
      * @link http://ca.php.net/array_reduce
@@ -682,6 +706,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * Reverses the data in the set maintaining any keys
      *
      * @link http://ca.php.net/array_reverse
+     *
      * @return Collection
      */
     public function reverse()
@@ -710,6 +735,36 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Shifts an element off the beginning of the set
+     *
+     * @link http://ca.php.net/array_shift
+     *
+     * @return mixed
+     */
+    public function shift()
+    {
+        return array_shift($this->set);
+    }
+
+    /**
+     * Extracts a portion of the set, returning a new set
+     *
+     * By default, preserves the keys.
+     *
+     * @link http://ca.php.net/array_slice
+     *
+     * @param int      $offset
+     * @param int|null $limit
+     * @param bool     $keys
+     *
+     * @return static
+     */
+    public function slice($offset, $limit = null, $keys = true)
+    {
+        return new static(\array_slice($this->set, $offset, $limit, $keys));
+    }
+
+    /**
      * Sort the set by a user defined function
      *
      * @link http://ca.php.net/usort
@@ -729,7 +784,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     /**
      * Sort the set by a user defined function
      *
-     * @link http://ca.php.net/usort
+     * @link http://ca.php.net/uasort
      *
      * @param mixed $callable Any valid PHP callable e.g. function, closure, method
      *
@@ -780,6 +835,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     /**
      * Sort the set by designated keys
      *
+     * @link http://ca.php.net/ksort
+     *
      * @param null|integer $type Any valid SORT_ constant
      *
      * @return $this
@@ -794,6 +851,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
 
     /**
      * Sort the set by designated keys in reverse order
+     *
+     * @link http://ca.php.net/krsort
      *
      * @param null|integer $type Any valid SORT_ constant
      *
