@@ -358,6 +358,36 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $col);
     }
 
+    public function testCallAndCollect()
+    {
+        $col = new Collection([
+            'bar' => new TestClass3(), 'bob' => new TestClass3(),
+        ]);
+
+        $ret = $col->call(function ($v, $k) {
+            return $v->toJson();
+        });
+
+        $expected = new Collection([
+            'bar' => '{"foo":"bar"}',
+            'bob' => '{"foo":"bar"}',
+        ]);
+
+        $this->assertEquals($expected, $ret);
+    }
+
+    public function testExcept()
+    {
+        $col = new Collection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
+        $this->assertCount(4, $col);
+
+        $col2 = $col->except('baz', 'test');
+
+        $this->assertCount(2, $col2);
+        $this->assertArrayHasKey('bar', $col2);
+        $this->assertArrayHasKey('bob', $col2);
+    }
+
     public function testFind()
     {
         $col        = new Collection(new TestClass4());
@@ -472,6 +502,27 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(9, $col);
 
         $tmp = $col->findByRegex('/^test-\d+/')->toArray();
+
+        $this->assertCount(5, $tmp);
+    }
+
+    public function testMatch()
+    {
+        $col = new Collection([
+            'test-1' => 'test',
+            'test-2' => 'test',
+            'test-abc' => 'test',
+            'test-abe' => 'test',
+            'test-abf' => 'test',
+            'test-3' => 'test',
+            'test-4' => 'test',
+            'test-10' => 'test',
+            'test-zad' => 'test',
+        ]);
+
+        $this->assertCount(9, $col);
+
+        $tmp = $col->match('/^test-\d+/')->toArray();
 
         $this->assertCount(5, $tmp);
     }

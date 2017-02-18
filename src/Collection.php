@@ -29,29 +29,29 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
 {
 
     /**
-     * Stores if set has changed
+     * Stores if Collection has changed
      *
      * @var boolean
      */
     protected $modified = false;
 
     /**
-     * The set
+     * The Collection
      *
      * @var array
      */
-    protected $set = [];
+    protected $items = [];
     
     
     
     /**
      * Constructor.
      *
-     * @param array $array An array of data to set
+     * @param mixed $items An array/item/Collection of data
      */
-    public function __construct($array = [])
+    public function __construct($items = [])
     {
-        $this->set = self::convertToArray($array);
+        $this->items = self::convertToArray($items);
     }
 
     /**
@@ -115,7 +115,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Implementation of __set_state to allow var_export set to be used
+     * Implementation of __set_state to allow var_export Collection to be used
      *
      * @param array $array
      *
@@ -125,24 +125,24 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public static function __set_state($array)
     {
         $oObject = new static();
-        $oObject->set($array['set']);
+        $oObject->set($array['items']);
         $oObject->setModified($array['modified']);
 
         return $oObject;
     }
 
     /**
-     * Returns an immutable collection of this set
+     * Returns an immutable collection of this Collection
      *
      * @return Immutable
      */
     public function freeze()
     {
-        return new Immutable($this->set);
+        return new Immutable($this->items);
     }
 
     /**
-     * Allows method names on sub-objects to be called on the Set
+     * Allows method names on sub-objects to be called on the Collection
      *
      * Calls into {@link invoke} to actually run the method.
      *
@@ -206,35 +206,35 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Resets the set
+     * Resets the Collection
      *
      * @return void
      */
     public function reset()
     {
-        $this->set = [];
+        $this->items = [];
         $this->setModified(false);
     }
 
     /**
-     * Runs $method on all object instances in the set
+     * Runs $method on all object instances in the Collection
      *
      * Invoke allows the same method to be called on all objects in the
-     * current set. Useful for setting a specific value, or triggering
+     * current Collection. Useful for setting a specific value, or triggering
      * an update across multiple objects in one go. Only object values
      * are used.
      *
-     * Optionally $arguments can be set and the method will be passed each
+     * Optionally $arguments can be provided and the method will be passed each
      * parameter as an argument.
      *
-     * For more than 5 parameters, call_user_func_array is used.
+     * For more than 2 parameters, call_user_func_array is used.
      *
      * @param string $method    Name of the method to call
      * @param array  $arguments Parameter list to use when calling $method
      *
      * @return $this
      */
-    public function invoke($method, array $arguments = array())
+    public function invoke($method, array $arguments = [])
     {
         if ($this->count() > 0) {
             foreach ($this as $key => $value) {
@@ -250,7 +250,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
                             $value->{$method}($arguments[0], $arguments[1]);
                             break;
                         default:
-                            \call_user_func_array(array($value, $method), $arguments);
+                            \call_user_func_array([$value, $method], $arguments);
                     }
                 }
             }
@@ -268,9 +268,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     {
         $array = [];
 
-        foreach ($this->set as $key => $value) {
+        foreach ($this->items as $key => $value) {
             if ($value instanceof Collection) {
-                /* @var Collection $value */
                 $array[$key] = $value->toArray();
             } else {
                 $array[$key] = $value;
@@ -281,7 +280,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Returns true if the set has been modified
+     * Returns true if the Collection has been modified
      *
      * @return boolean
      */
@@ -291,11 +290,11 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Sets the modification status of the set
+     * Sets the modification status of the Collection
      *
      * @param boolean $status
      *
-     * @return Collection
+     * @return $this
      */
     public function setModified($status = true)
     {
@@ -305,13 +304,13 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Returns the number of items in the set
+     * Returns the number of items in the Collection
      *
      * @return integer
      */
     public function count()
     {
-        return \count($this->set);
+        return \count($this->items);
     }
 
     /**
@@ -321,7 +320,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function offsetExists($offset)
     {
-        return \array_key_exists($offset, $this->set);
+        return \array_key_exists($offset, $this->items);
     }
 
     /**
@@ -331,7 +330,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function offsetGet($offset)
     {
-        $value = $this->set[$offset];
+        $value = $this->items[$offset];
 
         if (is_array($value)) {
             $value = new static($value);
@@ -348,16 +347,16 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function offsetSet($offset, $value)
     {
-        if (is_null($offset) && !$this->isValueInSet($value)) {
-            $this->set[] = $value;
+        if (is_null($offset) && !$this->contains($value)) {
+            $this->items[] = $value;
             $this->setModified();
         } else {
             if (!$this->offsetExists($offset)) {
-                $this->set[$offset] = $value;
+                $this->items[$offset] = $value;
                 $this->setModified();
             } else {
-                if ($this->set[$offset] !== $value) {
-                    $this->set[$offset] = $value;
+                if ($this->items[$offset] !== $value) {
+                    $this->items[$offset] = $value;
                     $this->setModified();
                 }
             }
@@ -370,9 +369,9 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function offsetUnset($offset)
     {
         if ($this->offsetExists($offset)) {
-            $this->set[$offset] = null;
+            $this->items[$offset] = null;
             $this->setModified();
-            unset($this->set[$offset]);
+            unset($this->items[$offset]);
         }
     }
 
@@ -383,7 +382,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->set);
+        return new \ArrayIterator($this->items);
     }
 
     /**
@@ -393,7 +392,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function serialize()
     {
-        return \serialize(['set' => $this->set, 'modified' => $this->isModified()]);
+        return \serialize(['items' => $this->items, 'modified' => $this->isModified()]);
     }
 
     /**
@@ -406,28 +405,27 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function unserialize($serialized)
     {
         $data = \unserialize($serialized);
-        if (is_array($data) && array_key_exists('set', $data) && array_key_exists('modified', $data)) {
-            $this->set($data['set']);
+        if (is_array($data) && array_key_exists('items', $data) && array_key_exists('modified', $data)) {
+            $this->set($data['items']);
             $this->setModified($data['modified']);
         }
     }
 
     /**
-     * Returns true if value is in the set
-     *
-     * @link http://ca.php.net/in_array
+     * Synonym for contains()
      *
      * @param mixed $value
      *
      * @return boolean
+     * @deprecated Use contains()s
      */
     public function isValueInSet($value)
     {
-        return \in_array($value, $this->set, (is_scalar($value) ? false : true));
+        return \in_array($value, $this->items, (is_scalar($value) ? false : true));
     }
 
     /**
-     * Appends the array or set object to this set, without reindexing the keys
+     * Appends the array or Collection object to this Collection, without reindexing the keys
      *
      * This is the equivalent of $array + $array.
      *
@@ -440,26 +438,49 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function append($array)
     {
         if ($array instanceof Collection) {
-            /* @var Collection $array */
             $array = $array->toArray();
         } elseif ($array instanceof \ArrayObject) {
             $array = (array)$array;
         } elseif (!\is_array($array)) {
-            $array = array($array);
+            $array = [$array];
         }
 
-        $this->set = $this->set + $array;
+        $this->items = $this->items + $array;
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Alias of walk, applies the callback to all items, returns a new set
+     * Creates a new Collection containing the results of the callable in the same keys
      *
-     * @param callable $callable
+     * For example: with a collection of the same objects, call a method to export
+     * part of each object into a new collection. Similar to using each() or walk()
+     * except the callable should return the new value for the key.
      *
-     * @return Collection
+     * @param callable $callable Receives: $value, $key
+     *
+     * @return static
+     */
+    public function call(callable $callable)
+    {
+        $ret = new static();
+
+        foreach ($this as $key => $value) {
+            $ret->set($key, $callable($value, $key));
+        }
+
+        $ret->setModified(false);
+
+        return $ret;
+    }
+
+    /**
+     * Alias of walk, applies the callback to all items, returns a new Collection
+     *
+     * @param callable $callable Receives: (&$value, $key)
+     *
+     * @return static
      */
     public function each(callable $callable)
     {
@@ -467,24 +488,40 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Filters the set through $callback returning a new set
+     * Get all items except for those with the specified keys.
+     *
+     * @param mixed $ignore
+     *
+     * @return static
+     */
+    public function except($ignore)
+    {
+        $ignore = is_array($ignore) ? $ignore : func_get_args();
+
+        return $this->filter(function ($key) use ($ignore) {
+            return !in_array($key, $ignore);
+        }, ARRAY_FILTER_USE_KEY);
+    }
+
+    /**
+     * Filters the Collection through callback returning a new Collection
      *
      * @link http://ca.php.net/array_filter
      *
      * @param mixed $callback PHP callable, closure or function
      * @param int   $flag     Flag to control values passed to callback function
      *
-     * @return $this
+     * @return static
      */
     public function filter($callback = null, $flag = 0)
     {
-        return new static(\array_filter($this->set, $callback), $flag);
+        return new static(\array_filter($this->items, $callback, $flag));
     }
 
     /**
      * Synonym for {@link search()}
      *
-     * Searches the Set for $value returning the corresponding key where the
+     * Searches the Collection for $value returning the corresponding key where the
      * item was found. Returns false if not found. Key may also be 0 (zero).
      *
      * @param mixed $value
@@ -497,51 +534,40 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Find a key(s) using a regular expression, always returns a new Set
-     *
-     * Similar to {@link keys} but allows any PERL regular expression to be
-     * used for locating a matching key. Returns a new Set containing matching
-     * keys and values.
+     * Synonym for match()
      *
      * @param string $regex PERL regular expression
      *
-     * @return Collection
+     * @return static
+     * @deprecated use match()
      */
     public function findByRegex($regex)
     {
-        /* @var Collection $oSet */
-        $oSet = new static();
-        foreach ($this as $key => $value) {
-            if (\preg_match($regex, $key)) {
-                $oSet[$key] = $value;
-            }
-        }
-
-        return $oSet;
+        return $this->match($regex);
     }
 
     /**
-     * Returns a new set with all sub-sets / arrays merged into one set
+     * Returns a new Collection with all sub-sets / arrays merged into one Collection
      *
      * If similar keys exist, they will be overwritten. This method is
      * intended to convert a multi-dimensional array into a key => value
-     * array. This method is called recursively through the set.
+     * array. This method is called recursively through the Collection.
      *
-     * @return Collection
+     * @return static
      */
     public function flatten()
     {
-        /* @var Collection $oSet */
-        $oSet = new static();
+        $col = new static();
+
         foreach ($this as $key => $value) {
             if (is_array($value) || $value instanceof Collection) {
-                $oSet->merge($this->_flatten($value));
+                $col->merge($this->_flatten($value));
             } else {
-                $oSet[$key] = $value;
+                $col[$key] = $value;
             }
         }
 
-        return $oSet;
+        return $col;
     }
 
     /**
@@ -559,7 +585,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             if (is_array($value)) {
                 $return = \array_merge($return, $this->_flatten($value));
             } elseif ($value instanceof Collection) {
-                /* @var Collection $oSet */
                 $return = \array_merge($return, $this->_flatten($value->all()));
             } else {
                 $return[$key] = $value;
@@ -570,18 +595,18 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Exchange all values for keys and return new Set
+     * Exchange all values for keys and return new Collection
      *
      * Note: this should only be used with elements that can be used as valid
      * PHP array keys.
      *
      * @link http://ca.php.net/array_flip
      *
-     * @return Collection
+     * @return static
      */
     public function flip()
     {
-        return new static(array_flip($this->set));
+        return new static(array_flip($this->items));
     }
 
     /**
@@ -594,52 +619,71 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * @param string  $search (optional)
      * @param boolean $strict (optional)
      *
-     * @return Collection
+     * @return static
      */
     public function keys($search = null, $strict = null)
     {
-        /* @var Collection $oSet */
-        $oSet = new static();
-
         if (null === $search && null === $strict) {
-            $keys = \array_keys($this->set);
+            $keys = \array_keys($this->items);
         } elseif (null !== $search && null === $strict) {
-            $keys = \array_keys($this->set, $search);
+            $keys = \array_keys($this->items, $search);
         } else {
-            $keys = \array_keys($this->set, $search, $strict);
+            $keys = \array_keys($this->items, $search, $strict);
         }
 
-        $oSet->set($keys);
-
-        return $oSet;
+        return new static($keys);
     }
 
     /**
-     * Runs the function $callback across the current set
+     * Runs the function $callback across the current Collection
      *
      * @link http://ca.php.net/array_map
      *
-     * @param callable $callback
+     * @param callable $callback Receives the value from the key
      *
-     * @return Collection
+     * @return static
      */
     public function map($callback)
     {
-        return new static(\array_map($callback, $this->set));
+        return new static(\array_map($callback, $this->items));
     }
 
     /**
-     * Merges the supplied array into the current set
+     * Find keys and values using a regular expression, returning a new Collection
      *
-     * Note: should only be used with sets of the same data, may cause strange results.
+     * Similar to {@link keys} but allows any PERL regular expression to be
+     * used for locating a matching key. Returns a new Collection containing matching
+     * keys and values.
+     *
+     * @param string $regex PERL regular expression
+     *
+     * @return static
+     */
+    public function match($regex)
+    {
+        $col = new static();
+
+        foreach ($this as $key => $value) {
+            if (\preg_match($regex, $key)) {
+                $col[$key] = $value;
+            }
+        }
+
+        return $col;
+    }
+
+    /**
+     * Merges the supplied array into the current Collection
+     *
+     * Note: should only be used with Collections of the same data, may cause strange results.
      * This method will re-index keys and overwrite existing values. If you wish to
      * preserve keys and values see {@link append}.
      *
      * @link http://ca.php.net/array_merge
      *
-     * @param mixed $array either array, ArrayObject, or BaseSet
+     * @param mixed $array either array, ArrayObject, or Collection
      *
-     * @return Collection
+     * @return $this
      */
     public function merge($array)
     {
@@ -651,32 +695,32 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             $array = array($array);
         }
 
-        $this->set = \array_merge($this->set, $array);
+        $this->items = \array_merge($this->items, $array);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Pads the set to size using value as the value of the new elements
+     * Pads the Collection to size using value as the value of the new elements
      *
      * @link http://ca.php.net/array_pad
      *
      * @param integer $size
      * @param mixed   $value
      *
-     * @return Collection
+     * @return $this
      */
     public function pad($size, $value)
     {
-        $this->set = \array_pad($this->set, $size, $value);
+        $this->items = \array_pad($this->items, $size, $value);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Pops the element off the end of the set
+     * Pops the element off the end of the Collection
      *
      * @link http://ca.php.net/array_pop
      *
@@ -684,43 +728,43 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function pop()
     {
-        return array_pop($this->set);
+        return array_pop($this->items);
     }
 
     /**
-     * Reduces the Set to a single value, returning it, or $initial if no value
+     * Reduces the Collection to a single value, returning it, or $initial if no value
      *
      * @link http://ca.php.net/array_reduce
      *
-     * @param callable $callback
+     * @param callable $callback Receives mixed $carry, mixed $value
      * @param mixed    $initial (optional) Default value to return if no result
      *
      * @return mixed
      */
     public function reduce($callback, $initial = null)
     {
-        return \array_reduce($this->set, $callback, $initial);
+        return \array_reduce($this->items, $callback, $initial);
     }
 
     /**
-     * Reverses the data in the set maintaining any keys
+     * Reverses the data in the Collection maintaining any keys
      *
      * @link http://ca.php.net/array_reverse
      *
-     * @return Collection
+     * @return $this
      */
     public function reverse()
     {
-        $this->set = \array_reverse($this->set, true);
+        $this->items = \array_reverse($this->items, true);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Searches the set via {@link http://ca.php.net/array_search array_search}
+     * Searches the Collection via {@link http://ca.php.net/array_search array_search}
      *
-     * Searches the Set for an item returning the corresponding key where the
+     * Searches the Collection for an item returning the corresponding key where the
      * item was found. Returns false if not found. Key may also be 0 (zero).
      *
      * @link http://ca.php.net/array_search
@@ -731,11 +775,11 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function search($value)
     {
-        return \array_search($value, $this->set, (\is_object($value) ? true : null));
+        return \array_search($value, $this->items, (\is_object($value) ? true : null));
     }
 
     /**
-     * Shifts an element off the beginning of the set
+     * Shifts an element off the beginning of the Collection
      *
      * @link http://ca.php.net/array_shift
      *
@@ -743,11 +787,11 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function shift()
     {
-        return array_shift($this->set);
+        return array_shift($this->items);
     }
 
     /**
-     * Extracts a portion of the set, returning a new set
+     * Extracts a portion of the Collection, returning a new Collection
      *
      * By default, preserves the keys.
      *
@@ -761,79 +805,79 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function slice($offset, $limit = null, $keys = true)
     {
-        return new static(\array_slice($this->set, $offset, $limit, $keys));
+        return new static(\array_slice($this->items, $offset, $limit, $keys));
     }
 
     /**
-     * Sort the set by a user defined function
+     * Sort the Collection by a user defined function
      *
      * @link http://ca.php.net/usort
      *
      * @param mixed $callable Any valid PHP callable e.g. function, closure, method
      *
-     * @return Collection
+     * @return $this
      */
     public function sortUsing($callable)
     {
-        \usort($this->set, $callable);
+        \usort($this->items, $callable);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Sort the set by a user defined function
+     * Sort the Collection by a user defined function
      *
      * @link http://ca.php.net/uasort
      *
      * @param mixed $callable Any valid PHP callable e.g. function, closure, method
      *
-     * @return Collection
+     * @return $this
      */
     public function sortKeepingKeysUsing($callable)
     {
-        \uasort($this->set, $callable);
+        \uasort($this->items, $callable);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Sorts the set by value using asort preserving keys, returns the Set
+     * Sorts the Collection by value using asort preserving keys, returns the Collection
      *
      * @link http://ca.php.net/asort
      *
      * @param integer $type Any valid SORT_ constant
      *
-     * @return Collection
+     * @return $this
      */
     public function sortByValue($type = SORT_STRING)
     {
-        \asort($this->set, $type);
+        \asort($this->items, $type);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Sorts the set by value using arsort preserving keys, returns the Set
+     * Sorts the Collection by value using arsort preserving keys, returns the Collection
      *
      * @link http://ca.php.net/arsort
      *
      * @param integer $type Any valid SORT_ constant
      *
-     * @return Collection
+     * @return $this
      */
     public function sortByValueReversed($type = SORT_STRING)
     {
-        \arsort($this->set, $type);
+        \arsort($this->items, $type);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Sort the set by designated keys
+     * Sort the Collection by designated keys
      *
      * @link http://ca.php.net/ksort
      *
@@ -843,14 +887,14 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function sortByKey($type = null)
     {
-        \ksort($this->set, $type);
+        \ksort($this->items, $type);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Sort the set by designated keys in reverse order
+     * Sort the Collection by designated keys in reverse order
      *
      * @link http://ca.php.net/krsort
      *
@@ -860,66 +904,66 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function sortByKeyReversed($type = null)
     {
-        \krsort($this->set, $type);
+        \krsort($this->items, $type);
         $this->setModified();
 
         return $this;
     }
 
     /**
-     * Returns the array values of the set as a new Set
+     * Returns the array values of the Collection as a new Collection
      *
      * @link http://ca.php.net/array_values
-     * @return Collection
+     * @return static
      */
     public function values()
     {
-        return new static(\array_values($this->set));
+        return new static(\array_values($this->items));
     }
 
     /**
-     * Creates a new set containing only unique values
+     * Creates a new Collection containing only unique values
      *
      * @param null|integer $type Sort flags
      *
      * @link http://ca.php.net/array_unique
-     * @return $this
+     * @return static
      */
     public function unique($type = null)
     {
-        return new static(\array_unique($this->set, $type));
+        return new static(\array_unique($this->items, $type));
     }
 
     /**
-     * Applies the callback to all elements in the Set, returning a new Set
+     * Applies the callback to all elements in the Collection, returning a new Collection
      *
      * @link http://ca.php.net/array_walk
      *
-     * @param callable $callback
+     * @param callable $callback Receives: (&$value, $key, ?$userdata)
      * @param mixed    $userdata (optional) additional user data for the callback
      *
-     * @return $this
+     * @return static
      */
     public function walk($callback, $userdata = null)
     {
-        $elements = $this->set;
+        $elements = $this->items;
         \array_walk($elements, $callback, $userdata);
 
         return new static($elements);
     }
 
     /**
-     * Returns all items in the set
+     * Returns all items in the Collection
      *
      * @return array
      */
     public function all()
     {
-        return $this->set;
+        return $this->items;
     }
 
     /**
-     * Returns the item from the set, null if not found
+     * Returns the item from the Collection, null if not found
      *
      * @param mixed $key
      * @param mixed $default (optional) If key is not found, returns this value (null by default)
@@ -940,7 +984,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Returns true if the specified key exists in the Set
+     * Returns true if the specified key exists in the Collection
      *
      * @param string $key
      *
@@ -952,7 +996,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Returns true if the specified key exists in the Set and is not empty
+     * Returns true if the specified key exists in the Collection and is not empty
      *
      * Empty in this case is not an empty string, null, zero or false. It should not
      * be used to check for null or boolean values.
@@ -967,7 +1011,9 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Alias of isValueInSet
+     * Returns true if the value is in the Collection
+     *
+     * @link http://ca.php.net/in_array
      *
      * @param mixed $value
      *
@@ -975,23 +1021,23 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function contains($value)
     {
-        return $this->isValueInSet($value);
+        return \in_array($value, $this->items, (is_scalar($value) ? false : true));
     }
 
     /**
-     * Adds an item to the set if it does not already exist
+     * Adds an item to the Collection if it does not already exist
      *
-     * This is the same as getting the instance of Set and using it as an array:
+     * This is the same as getting the instance of Collection and using it as an array:
      * <code>
-     * $oSet = new Scorpio\Component\Base\Set();
-     * $oSet->add('value1');
+     * $col = new Collection();
+     * $col->add('value1');
      * // is the same as:
-     * $oSet[] = 'value1';
+     * $col[] = 'value1';
      * </code>
      *
      * @param mixed $value
      *
-     * @return Collection
+     * @return $this
      */
     public function add($value)
     {
@@ -1001,11 +1047,12 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Adds the value if it does not already exist in the set
+     * Adds the value if it does not already exist in the Collection
      *
      * @param mixed $value
      *
      * @return $this
+     * @deprecated use add()
      */
     public function addIfNotInSet($value)
     {
@@ -1017,20 +1064,20 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Sets the items value
+     * Add the item with key to the Collection
      *
-     * If item is an array and value is null, the set will be replaced with
+     * If item is an array and value is null, the Collection will be replaced with
      * the items and marked as modified.
      *
      * @param mixed $key
      * @param mixed $value
      *
-     * @return Collection
+     * @return $this
      */
     public function set($key, $value = null)
     {
         if (\is_array($key) && $value === null) {
-            $this->set = $key;
+            $this->items = $key;
             $this->setModified();
         } else {
             $this->offsetSet($key, $value);
@@ -1040,11 +1087,11 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Removes the key from the set
+     * Removes the key from the Collection
      *
      * @param mixed $key
      *
-     * @return Collection
+     * @return $this
      */
     public function remove($key)
     {
@@ -1054,11 +1101,11 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Removes $value from the set
+     * Removes $value from the Collection
      *
      * @param mixed $value
      *
-     * @return Collection
+     * @return $this
      */
     public function removeElement($value)
     {
@@ -1070,23 +1117,23 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Returns the first element of the Set
+     * Returns the first element of the Collection
      *
      * @return mixed
      */
     public function first()
     {
-        return reset($this->set);
+        return reset($this->items);
     }
 
     /**
-     * Returns the last element of the Set
+     * Returns the last element of the Collection
      *
      * @return mixed
      */
     public function last()
     {
-        return end($this->set);
+        return end($this->items);
     }
 
     /**
@@ -1096,7 +1143,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function implode($glue = null)
     {
-        return implode($glue, $this->set);
+        return implode($glue, $this->items);
     }
 
     /**
