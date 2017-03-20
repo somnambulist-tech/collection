@@ -125,8 +125,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public static function __set_state($array)
     {
         $oObject = new static();
-        $oObject->set($array['items']);
-        $oObject->setModified($array['modified']);
+        $oObject->items    = $array['items'];
+        $oObject->modified = $array['modified'];
 
         return $oObject;
     }
@@ -406,8 +406,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     {
         $data = \unserialize($serialized);
         if (is_array($data) && array_key_exists('items', $data) && array_key_exists('modified', $data)) {
-            $this->set($data['items']);
-            $this->setModified($data['modified']);
+            $this->items    = $data['items'];
+            $this->modified = $data['modified'];
         }
     }
 

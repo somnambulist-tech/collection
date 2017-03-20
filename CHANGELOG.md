@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2017-03-20
+----------
+
+ * fixed serialization bug with Immutable collections
+
 2017-02-17
 ----------
 

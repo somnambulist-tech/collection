@@ -29,6 +29,29 @@ use Somnambulist\Collection\Immutable;
 class ImmutableTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCanSerialize()
+    {
+        $col = new Immutable([new TestClass4(), 'bar' => 'foo']);
+
+        $tmp = serialize($col);
+        $col = unserialize($tmp);
+
+        $this->assertInstanceOf(Immutable::class, $col);
+        $this->assertCount(2, $col);
+    }
+
+    public function testCanRestoreState()
+    {
+        $col  = new Immutable(new TestClass4());
+        $test = var_export($col, true);
+
+        eval('$col2 = ' . $test . ';');
+
+        $this->assertInstanceOf(Immutable::class, $col2);
+        $this->assertCount(1, $col2);
+        $this->assertFalse($col2->isModified());
+    }
+
     public function testCannotSetValueByArrayAccess()
     {
         $col = new Immutable();
