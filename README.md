@@ -2,7 +2,9 @@
 
 Provides a Collection container with no dependencies on any framework code. The collection is a
 wrapper around a standard array with many helper methods. It sits somewhere between a Laravel
-Collection and the Doctrine ArrayCollection.
+Collection and the Doctrine ArrayCollection and takes ideas from both of those as well as others.
+
+If you see something missing or have suggestions for other methods, submit a PR or ticket.
 
 ### Requirements
 
@@ -48,10 +50,14 @@ The Collection maintains an internal "dirty" flag that is changed when the colle
 
 Nested arrays are automatically converted to new Collections when accessed.
 
+#### Other Notes
+
+This Collection does not allow adding duplicate values to the Collection. They can be set
+on create, but calls to add() or offsetSet() will ignore the value.
+
 ### Available Methods
 
- * add() add a value (auto-key)
- * addIfNotInSet() only adds the value if it is not in the Collection already
+ * add() add a value (auto-key), only if it does not exist
  * all() returns the underlying array
  * append() adds the values to the end of the Collection
  * call() applies the callback to all items returning a new Collection with the same keys and the values from the callback
@@ -63,7 +69,6 @@ Nested arrays are automatically converted to new Collections when accessed.
  * except() filters out the specified keys, returning a new Collection
  * filter() filter the Collection by a callback
  * find() synonym of search, find the key a value has
- * findByRegex() synonym for match()
  * first() returns the first item
  * flatten() returns a 2 dimensional Collection of key => values
  * flip() exchange keys for values
@@ -76,11 +81,12 @@ Nested arrays are automatically converted to new Collections when accessed.
  * implodeKeys() join the keys together with the glue string
  * invoke() call a method on all objects in the Collection
  * isModified() has the Collection been modified since instantiation
- * isValueInSet() synonym for contains() (deprecated)
  * keys() returns all the keys in a new Collection
  * last() returns the last item
  * map() applies a callback to all items, returning a new Collection
  * match() find keys and values where the key matches the regex
+ * max() find the largest value in the collection (optionally by key/callable)
+ * min() find the smallest value in the collection (optionally by key/callable)
  * merge() combine items into the current Collection, replaces existing keys items
  * pad() pad the Collection to a size
  * pop() removes an item from the end of the Collection
@@ -98,6 +104,7 @@ Nested arrays are automatically converted to new Collections when accessed.
  * sortByValueReversed() sort in reverse order by valuem preserving key association
  * sortKeepingKeysUsing() apply a callback to sort the Collection, preserving keys
  * sortUsing() apply a callback to sort the Collection, creates new keys
+ * sum() sum values in collection, optionally by key or callable
  * toArray() convert to an array, cascades through values casting sub-Collections to array
  * unique() creates a new Collection containing only unique values
  * values() returns a new Collection containing just the values

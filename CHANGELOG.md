@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+2017-04-15
+----------
+
+ * added min, max and sum; loosely based on Laravels Collection methods of the same name
+ * added additional unit tests
+ * cleaned up offsetSet and fixed bug where null offset was not correctly handled
+ 
 2017-03-20
 ----------
 

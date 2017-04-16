@@ -240,15 +240,9 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             foreach ($this as $key => $value) {
                 if (\is_object($value) && \method_exists($value, $method)) {
                     switch (\count($arguments)) {
-                        case 0:
-                            $value->{$method}();
-                            break;
-                        case 1:
-                            $value->{$method}($arguments[0]);
-                            break;
-                        case 2:
-                            $value->{$method}($arguments[0], $arguments[1]);
-                            break;
+                        case 0: $value->{$method}(); break;
+                        case 1: $value->{$method}($arguments[0]); break;
+                        case 2: $value->{$method}($arguments[0], $arguments[1]); break;
                         default:
                             \call_user_func_array([$value, $method], $arguments);
                     }
@@ -342,24 +336,17 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     /**
      * @param string $offset
      * @param mixed  $value
-     *
-     * @return mixed
      */
     public function offsetSet($offset, $value)
     {
-        if (is_null($offset) && !$this->contains($value)) {
-            $this->items[] = $value;
-            $this->setModified();
-        } else {
-            if (!$this->offsetExists($offset)) {
-                $this->items[$offset] = $value;
+        if (is_null($offset)) {
+            if (!$this->contains($value)) {
+                $this->items[] = $value;
                 $this->setModified();
-            } else {
-                if ($this->items[$offset] !== $value) {
-                    $this->items[$offset] = $value;
-                    $this->setModified();
-                }
             }
+        } else {
+            $this->items[$offset] = $value;
+            $this->setModified();
         }
     }
 
@@ -673,6 +660,50 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Returns the highest value from the collection of values
+     *
+     * Key can be a string key or callable. Based on Laravel: Illuminate\Support\Collection.max
+     *
+     * @param null|string $key
+     *
+     * @return mixed
+     */
+    public function max($key = null)
+    {
+        $callback = $this->valueAccessor($key);
+
+        return $this->filter(function ($value) {
+            return !is_null($value);
+        })->reduce(function ($result, $item) use ($callback) {
+            $value = $callback($item);
+
+            return is_null($result) || $value > $result ? $value : $result;
+        });
+    }
+
+    /**
+     * Returns the lowest value from the collection of values
+     *
+     * Key can be a string key or callable. Based on Laravel: Illuminate\Support\Collection.min
+     *
+     * @param null|string $key
+     *
+     * @return mixed
+     */
+    public function min($key = null)
+    {
+        $callback = $this->valueAccessor($key);
+
+        return $this->filter(function ($value) {
+            return !is_null($value);
+        })->reduce(function ($result, $item) use ($callback) {
+            $value = $callback($item);
+
+            return is_null($result) || $value < $result ? $value : $result;
+        });
+    }
+
+    /**
      * Merges the supplied array into the current Collection
      *
      * Note: should only be used with Collections of the same data, may cause strange results.
@@ -908,6 +939,24 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $this->setModified();
 
         return $this;
+    }
+
+    /**
+     * Sum items in the collection, optionally matching the key / callable
+     *
+     * Based on Laravel: Illuminate\Support\Collection.sum
+     *
+     * @param null|string|callable $key
+     *
+     * @return mixed
+     */
+    public function sum($key = null)
+    {
+        $callback = $this->valueAccessor($key);
+
+        return $this->reduce(function ($result, $item) use ($callback) {
+            return $result + $callback($item);
+        }, 0);
     }
 
     /**
@@ -1153,6 +1202,59 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function implodeKeys($glue = null)
     {
-        return implode($glue, $this->keys()->toArray());
+        return $this->keys()->implode($glue);
+    }
+
+
+
+    /**
+     * Providers a callable for fetching data from a collection item
+     *
+     * Based on Laravel: Illuminate\Support\Collection.valueRetriever
+     *
+     * @param string|callable $value
+     *
+     * @return callable
+     */
+    protected function valueAccessor($value)
+    {
+        if ($this->isCallable($value)) {
+            return $value;
+        }
+
+        return function ($item) use ($value) {
+            if (is_null($value)) {
+                return $item;
+            }
+
+            if ($this->isTraversable($item)) {
+                return array_key_exists($value, $item) ? $item[$value] : null;
+            }
+
+            return $item;
+        };
+    }
+
+    /**
+     * Returns true if value is callable, but not a string callable
+     *
+     * Based on Laravel: Illuminate\Support\Collection.useAsCallable
+     *
+     * @param  mixed  $value
+     * @return bool
+     */
+    protected function isCallable($value)
+    {
+        return !is_string($value) && is_callable($value);
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    protected function isTraversable($value)
+    {
+        return is_array($value) || $value instanceof \ArrayAccess;
     }
 }

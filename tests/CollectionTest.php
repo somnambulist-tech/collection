@@ -262,6 +262,18 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['foo' => 'bar'], $arr);
     }
 
+    public function testToArrayOfCollections()
+    {
+        $col = new Collection([
+            'foo' => new Collection([1, 2, 3, 4]),
+            'bar' => new Collection([1, 2, 3, 4]),
+        ]);
+        $arr = $col->toArray();
+
+        $this->assertInternalType('array', $arr);
+        $this->assertEquals(['foo' => [1, 2, 3, 4], 'bar' => [1, 2, 3, 4]], $arr);
+    }
+
     public function testSetModified()
     {
         $col = new Collection(new TestClass4());
@@ -296,6 +308,16 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $col['bar'] = 'too';
 
         $this->assertEquals('too', $col['bar']);
+    }
+
+    public function testOffsetGetArrayWillReturnCOllection()
+    {
+        $col = new Collection(['bar' => ['foo' => 'bar', 'baz' => 'lurman']]);
+
+        $bar = $col['bar'];
+
+        $this->assertInstanceOf(Collection::class, $bar);
+        $this->assertCount(2, $bar);
     }
 
     public function testOffsetUnset()
@@ -358,6 +380,36 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $col);
     }
 
+    public function testAppendCollection()
+    {
+        $col = new Collection(new TestClass4());
+        $col2 = new Collection(['bar' => 'too']);
+
+        $this->assertCount(1, $col);
+        $col->append($col2);
+        $this->assertCount(2, $col);
+    }
+
+    public function testAppendArrayObject()
+    {
+        $col = new Collection(new TestClass4());
+        $col2 = new \ArrayObject(['bar' => 'too']);
+
+        $this->assertCount(1, $col);
+        $col->append($col2);
+        $this->assertCount(2, $col);
+    }
+
+    public function testAppendNonArray()
+    {
+        $col = new Collection(new TestClass4());
+        $col2 = 'bar';
+
+        $this->assertCount(1, $col);
+        $col->append($col2);
+        $this->assertCount(2, $col);
+    }
+
     public function testCallAndCollect()
     {
         $col = new Collection([
@@ -374,6 +426,21 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals($expected, $ret);
+    }
+
+    public function testCallMethodDirectly()
+    {
+        $mock1 = $this->createMock(TestClass3::class);
+        $mock1
+            ->expects($this->once())
+            ->method('toJson')
+        ;
+
+        $col = new Collection([
+            'bar' => $mock1,
+        ]);
+
+        $col->toJson();
     }
 
     public function testExcept()
@@ -421,6 +488,16 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals(['bar', 'baz', 'foobar'], $col->keys()->toArray());
+    }
+
+    public function testKeysStrict()
+    {
+        $col = new Collection([
+            '123' => 'foo',
+            'foobar' => 'baz',
+        ]);
+
+        $this->assertEmpty($col->keys(123, true)->toArray());
     }
 
     public function testFlip()
@@ -525,6 +602,120 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $tmp = $col->match('/^test-\d+/')->toArray();
 
         $this->assertCount(5, $tmp);
+    }
+
+    public function testMax()
+    {
+        $col = new Collection([
+            6, 9, 1, 4, 32, 8,
+        ]);
+
+        $this->assertEquals(32, $col->max());
+    }
+
+    public function testMaxCanUseKey()
+    {
+        $col = new Collection([
+            ['key' => 45,],
+            ['key' => 3,],
+            ['key' => 2,],
+            ['key' => 56,],
+            ['key' => 8,],
+        ]);
+
+        $this->assertEquals(56, $col->max('key'));
+    }
+
+    public function testMaxCanWorkWithSimpleArrays()
+    {
+        $col = new Collection([
+            ['key' => 45,],
+            ['key' => 3,],
+            ['key' => 2,],
+            ['key' => 56,],
+            ['key' => 8,],
+        ]);
+
+        $this->assertEquals(['key' => 56], $col->max());
+    }
+
+    public function testMerge()
+    {
+        $col = new Collection([
+            'foo' => 'bar'
+        ]);
+
+        $col->merge(['foo' => 'baz']);
+
+        $this->assertEquals(['foo' => 'baz'], $col->toArray());
+    }
+
+    public function testMergeCollections()
+    {
+        $col = new Collection([
+            'foo' => 'bar'
+        ]);
+
+        $col->merge(new Collection(['foo' => 'baz']));
+
+        $this->assertEquals(['foo' => 'baz'], $col->toArray());
+    }
+
+    public function testMergeArrayObjects()
+    {
+        $col = new Collection([
+            'foo' => 'bar'
+        ]);
+
+        $col->merge(new \ArrayObject(['foo' => 'baz']));
+
+        $this->assertEquals(['foo' => 'baz'], $col->toArray());
+    }
+
+    public function testMergeNonArraysAreCastToArrays()
+    {
+        $col = new Collection([
+            'foo' => 'bar'
+        ]);
+
+        $col->merge('foo');
+
+        $this->assertEquals(['foo' => 'bar', 'foo'], $col->toArray());
+    }
+
+    public function testMin()
+    {
+        $col = new Collection([
+            6, 9, 1, 4, 32, 8,
+        ]);
+
+        $this->assertEquals(1, $col->min());
+    }
+
+    public function testMinCanUseKey()
+    {
+        $col = new Collection([
+            ['key' => 45,],
+            ['key' => 3,],
+            ['key' => 2,],
+            ['key' => 56,],
+            ['key' => 8,],
+        ]);
+
+        $this->assertEquals(2, $col->min('key'));
+    }
+
+    public function testMinCanWorkWithSimpleArrays()
+    {
+        $col = new Collection([
+            ['key' => 45,],
+            ['key' => 3,],
+            ['key' => 2,],
+            ['key' => 56,],
+            ['key' => 8,],
+        ]);
+
+        $this->assertEquals(['key' => 2], $col->min());
     }
 
     public function testSortByKey()
@@ -693,6 +884,18 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($col->get('abe'));
     }
 
+    public function testGetWithDefaultClosure()
+    {
+        $col = new Collection([
+            'test-1' => 'test',
+            'test-2' => 'test',
+            'test-abc' => 'test',
+            'test-abe' => 'test',
+        ]);
+
+        $this->assertEquals('not-here', $col->get('abe', function () { return 'not-here'; }));
+    }
+
     public function testHas()
     {
         $col = new Collection([
@@ -741,10 +944,18 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $col);
     }
 
+    public function testAddDoesNotDuplicateValues()
+    {
+        $col = new Collection();
+        $col->add('value')->add('value')->add('value');
+
+        $this->assertCount(1, $col);
+    }
+
     public function testAddIfNotInSet()
     {
         $col = new Collection();
-        $col->add('value')->add('value2');
+        $col->addIfNotInSet('value')->addIfNotInSet('value2');
         $col->addIfNotInSet('value');
 
         $this->assertCount(2, $col);
@@ -757,6 +968,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($col->has('key'));
         $this->assertEquals('value', $col->get('key'));
+    }
+
+    public function testSetWithArrayReplacesItems()
+    {
+        $col = new Collection();
+        $col->set('key', 'value');
+
+        $this->assertTrue($col->has('key'));
+
+        $col->set(['foo' => 'bar', 'bar' => 'baz']);
+
+        $this->assertCount(2, $col);
+        $this->assertArrayNotHasKey('key', $col);
     }
 
     public function testRemove()
@@ -978,5 +1202,28 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $ret);
         $this->assertCount(2, $col);
+    }
+
+    public function testSum()
+    {
+        $col = new Collection([1, 2, 3, 4, 5]);
+
+        $this->assertEquals(15, $col->sum());
+    }
+
+    public function testSumByKey()
+    {
+        $col = new Collection([['val' => 1], ['bar' => 2], ['bar' => 3], ['bar' => 4], ['val' => 5]]);
+
+        $this->assertEquals(6, $col->sum('val'));
+    }
+
+    public function testSumByCallable()
+    {
+        $col = new Collection([['val' => 1], ['bar' => 2], ['bar' => 3], ['bar' => 4], ['val' => 5]]);
+
+        $this->assertEquals(18, $col->sum(function ($item) {
+            return isset($item['bar']) ? $item['bar'] * 2 : 0;
+        }));
     }
 }
