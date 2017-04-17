@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+2017-04-17
+----------
+
+ * added lower, upper, intersect, trim, diff, diffKeys, fill, fillKeysWith, explode, collectionFromString, toJson
+ * re-ordered methods to group PHP interface methods together
+ * moved other methods into (mostly) alphabetical order
+ * moved deprecated methods together
+
 2017-04-15
 ----------
 

@@ -67,6 +67,59 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Creates a new collection by exploding the string using delimiter
+     *
+     * @link http://ca.php.net/explode
+     *
+     * @param string $string
+     * @param string $delimiter
+     *
+     * @return static
+     */
+    public static function explode($string, $delimiter)
+    {
+        return new static(explode($delimiter, $string));
+    }
+
+    /**
+     * Creates a new collection for a string that describes key values
+     *
+     * E.g.: a URL query string: var=value&var2=value2
+     * E.g.: a pipe delimited string: op|op2:2,3|another:true
+     *
+     * @param string $string
+     * @param string $separator  String that separates parameters
+     * @param string $assignment String that signifies value assignment (if missing is true)
+     * @param string $options    String for multiple items per assignment
+     *
+     * @return static
+     */
+    public static function collectionFromString($string, $separator = '&', $assignment = '=', $options = ',') {
+        $collection = [];
+
+        if ( strlen(trim($string)) > 0 ) {
+            static::explode($string, $separator)
+                ->each(function ($item) use ($assignment, $options, &$collection) {
+                    if (false === strpos($item, $assignment)) {
+                        $collection[trim($item)] = true;
+                        return;
+                    }
+
+                    list($key, $value) = explode($assignment, $item);
+
+                    if (false !== strpos($value, $options)) {
+                        $value = static::explode($value, $options)->trim()->toArray();
+                    }
+
+                    $collection[trim($key)] = $value;
+                })
+            ;
+        }
+
+        return new static($collection);
+    }
+
+    /**
      * Ensures passed var is an array
      *
      * @param mixed   $var
@@ -129,16 +182,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $oObject->modified = $array['modified'];
 
         return $oObject;
-    }
-
-    /**
-     * Returns an immutable collection of this Collection
-     *
-     * @return Immutable
-     */
-    public function freeze()
-    {
-        return new Immutable($this->items);
     }
 
     /**
@@ -206,98 +249,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Resets the Collection
-     *
-     * @return void
-     */
-    public function reset()
-    {
-        $this->items = [];
-        $this->setModified(false);
-    }
-
-    /**
-     * Runs $method on all object instances in the Collection
-     *
-     * Invoke allows the same method to be called on all objects in the
-     * current Collection. Useful for setting a specific value, or triggering
-     * an update across multiple objects in one go. Only object values
-     * are used.
-     *
-     * Optionally $arguments can be provided and the method will be passed each
-     * parameter as an argument.
-     *
-     * For more than 2 parameters, call_user_func_array is used.
-     *
-     * @param string $method    Name of the method to call
-     * @param array  $arguments Parameter list to use when calling $method
-     *
-     * @return $this
-     */
-    public function invoke($method, array $arguments = [])
-    {
-        if ($this->count() > 0) {
-            foreach ($this as $key => $value) {
-                if (\is_object($value) && \method_exists($value, $method)) {
-                    switch (\count($arguments)) {
-                        case 0: $value->{$method}(); break;
-                        case 1: $value->{$method}($arguments[0]); break;
-                        case 2: $value->{$method}($arguments[0], $arguments[1]); break;
-                        default:
-                            \call_user_func_array([$value, $method], $arguments);
-                    }
-                }
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Return an associative array of the stored data.
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        $array = [];
-
-        foreach ($this->items as $key => $value) {
-            if ($value instanceof Collection) {
-                $array[$key] = $value->toArray();
-            } else {
-                $array[$key] = $value;
-            }
-        }
-
-        return $array;
-    }
-
-    /**
-     * Returns true if the Collection has been modified
-     *
-     * @return boolean
-     */
-    public function isModified()
-    {
-        return $this->modified;
-    }
-
-    /**
-     * Sets the modification status of the Collection
-     *
-     * @param boolean $status
-     *
-     * @return $this
-     */
-    public function setModified($status = true)
-    {
-        $this->modified = $status;
-
-        return $this;
-    }
-
-    /**
      * Returns the number of items in the Collection
      *
      * @return integer
@@ -305,6 +256,16 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function count()
     {
         return \count($this->items);
+    }
+
+    /**
+     * Returns the iterable data
+     *
+     * @return \ArrayIterator
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->items);
     }
 
     /**
@@ -363,16 +324,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Returns the iterable data
-     *
-     * @return \ArrayIterator
-     */
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->items);
-    }
-
-    /**
      * @link http://php.net/manual/en/serializable.serialize.php
      *
      * @return string
@@ -398,17 +349,64 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         }
     }
 
+
+
     /**
-     * Synonym for contains()
+     * Returns true if the Collection has been modified
+     *
+     * @return boolean
+     */
+    public function isModified()
+    {
+        return $this->modified;
+    }
+
+    /**
+     * Sets the modification status of the Collection
+     *
+     * @param boolean $status
+     *
+     * @return $this
+     */
+    public function setModified($status = true)
+    {
+        $this->modified = $status;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Adds an item to the Collection if it does not already exist
+     *
+     * This is the same as getting the instance of Collection and using it as an array:
+     * <code>
+     * $col = new Collection();
+     * $col->add('value1');
+     * // is the same as:
+     * $col[] = 'value1';
+     * </code>
      *
      * @param mixed $value
      *
-     * @return boolean
-     * @deprecated Use contains()s
+     * @return $this
      */
-    public function isValueInSet($value)
+    public function add($value)
     {
-        return \in_array($value, $this->items, (is_scalar($value) ? false : true));
+        $this->offsetSet(null, $value);
+
+        return $this;
+    }
+
+    /**
+     * Returns all items in the Collection
+     *
+     * @return array
+     */
+    public function all()
+    {
+        return $this->items;
     }
 
     /**
@@ -460,6 +458,48 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $ret->setModified(false);
 
         return $ret;
+    }
+
+    /**
+     * Returns true if the value is in the Collection
+     *
+     * @link http://ca.php.net/in_array
+     *
+     * @param mixed $value
+     *
+     * @return boolean
+     */
+    public function contains($value)
+    {
+        return \in_array($value, $this->items, (is_scalar($value) ? false : true));
+    }
+
+    /**
+     * Returns a new Collection containing the items not in $items
+     *
+     * @link http://ca.php.net/array_diff
+     *
+     * @param array|Collection $items
+     *
+     * @return static
+     */
+    public function diff($items)
+    {
+        return new static(array_diff($this->items, static::convertToArray($items)));
+    }
+
+    /**
+     * Returns a new Collection containing the items not in $items
+     *
+     * @link http://ca.php.net/array_diff_keys
+     *
+     * @param array|Collection $items
+     *
+     * @return static
+     */
+    public function diffKeys($items)
+    {
+        return new static(array_diff_key($this->items, static::convertToArray($items)));
     }
 
     /**
@@ -521,19 +561,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Synonym for match()
-     *
-     * @param string $regex PERL regular expression
-     *
-     * @return static
-     * @deprecated use match()
-     */
-    public function findByRegex($regex)
-    {
-        return $this->match($regex);
-    }
-
-    /**
      * Returns a new Collection with all sub-sets / arrays merged into one Collection
      *
      * If similar keys exist, they will be overwritten. This method is
@@ -582,6 +609,51 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Fill an array with values beginning at index defined by start for count members
+     *
+     * Start can be a negative number. Count can be zero or more.
+     *
+     * @link http://ca.php.net/array_fill
+     *
+     * @param int   $start
+     * @param int   $count
+     * @param mixed $value
+     *
+     * @return static
+     */
+    public function fill($start, $count, $value)
+    {
+        return new static(array_fill($start, $count, $value));
+    }
+
+    /**
+     * For all values in the current Collection, use as a key and assign $value to them
+     *
+     * This should only be used with scalar values that can be used as array keys.
+     * A new Collection is returned with all previous values as keys, assigned the value.
+     *
+     * @link http://ca.php.net/array_fill_keys
+     *
+     * @param mixed $value
+     *
+     * @return static
+     */
+    public function fillKeysWith($value)
+    {
+        return new static(array_fill_keys($this->values()->toArray(), $value));
+    }
+
+    /**
+     * Returns the first element of the Collection
+     *
+     * @return mixed
+     */
+    public function first()
+    {
+        return reset($this->items);
+    }
+
+    /**
      * Exchange all values for keys and return new Collection
      *
      * Note: this should only be used with elements that can be used as valid
@@ -594,6 +666,135 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function flip()
     {
         return new static(array_flip($this->items));
+    }
+
+    /**
+     * Returns an immutable collection of this Collection
+     *
+     * @return Immutable
+     */
+    public function freeze()
+    {
+        return new Immutable($this->items);
+    }
+
+    /**
+     * Returns the item from the Collection, null if not found
+     *
+     * @param mixed $key
+     * @param mixed $default (optional) If key is not found, returns this value (null by default)
+     *
+     * @return mixed
+     */
+    public function get($key, $default = null)
+    {
+        if ($this->has($key)) {
+            return $this->offsetGet($key);
+        } else {
+            if ($default instanceof \Closure) {
+                return $default();
+            }
+
+            return $default;
+        }
+    }
+
+    /**
+     * Returns true if the specified key exists in the Collection
+     *
+     * @param string $key
+     *
+     * @return boolean
+     */
+    public function has($key)
+    {
+        return ($this->offsetExists($key));
+    }
+
+    /**
+     * Returns true if the specified key exists in the Collection and is not empty
+     *
+     * Empty in this case is not an empty string, null, zero or false. It should not
+     * be used to check for null or boolean values.
+     *
+     * @param string $key
+     *
+     * @return boolean
+     */
+    public function hasValueFor($key)
+    {
+        return ($this->offsetExists($key) && $this->get($key));
+    }
+
+    /**
+     * @param null|string $glue
+     *
+     * @return string
+     */
+    public function implode($glue = null)
+    {
+        return implode($glue, $this->items);
+    }
+
+    /**
+     * @param null|string $glue
+     *
+     * @return string
+     */
+    public function implodeKeys($glue = null)
+    {
+        return $this->keys()->implode($glue);
+    }
+
+    /**
+     * Returns a new collection containing all the items that exist in the passed items
+     *
+     * @link http://ca.php.net/array_intersect
+     *
+     * @param mixed $items
+     *
+     * @return static
+     */
+    public function intersect($items)
+    {
+        return new static(array_intersect($this->items, static::convertToArray($items)));
+    }
+
+    /**
+     * Runs $method on all object instances in the Collection
+     *
+     * Invoke allows the same method to be called on all objects in the
+     * current Collection. Useful for setting a specific value, or triggering
+     * an update across multiple objects in one go. Only object values
+     * are used.
+     *
+     * Optionally $arguments can be provided and the method will be passed each
+     * parameter as an argument.
+     *
+     * For more than 2 parameters, call_user_func_array is used.
+     *
+     * @param string $method    Name of the method to call
+     * @param array  $arguments Parameter list to use when calling $method
+     *
+     * @return $this
+     */
+    public function invoke($method, array $arguments = [])
+    {
+        if ($this->count() > 0) {
+            foreach ($this as $key => $value) {
+                if (\is_object($value) && \method_exists($value, $method)) {
+                    switch (\count($arguments)) {
+                        case 0: $value->{$method}(); break;
+                        case 1: $value->{$method}($arguments[0]); break;
+                        case 2: $value->{$method}($arguments[0], $arguments[1]); break;
+                        default:
+                            \call_user_func_array([$value, $method], $arguments);
+                    }
+                }
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -619,6 +820,28 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         }
 
         return new static($keys);
+    }
+
+    /**
+     * Returns the last element of the Collection
+     *
+     * @return mixed
+     */
+    public function last()
+    {
+        return end($this->items);
+    }
+
+    /**
+     * Returns a new collection will all values mapped to lower case
+     *
+     * @return Collection
+     */
+    public function lower()
+    {
+        return $this->map(function ($item) {
+            return (function_exists('mb_strtolower')) ? mb_strtolower($item) : strtolower($item);
+        });
     }
 
     /**
@@ -778,6 +1001,59 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Removes the key from the Collection
+     *
+     * @param mixed $key
+     *
+     * @return $this
+     */
+    public function remove($key)
+    {
+        $this->offsetUnset($key);
+
+        return $this;
+    }
+
+    /**
+     * Removes $value from the Collection
+     *
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function removeElement($value)
+    {
+        if (false !== $key = $this->search($value)) {
+            $this->remove($key);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Removes any null items from the Collection, returning a new collection
+     *
+     * @return Collection
+     */
+    public function removeNulls()
+    {
+        return $this->filter(function ($item) {
+            return !is_null($item);
+        });
+    }
+
+    /**
+     * Resets the Collection
+     *
+     * @return void
+     */
+    public function reset()
+    {
+        $this->items = [];
+        $this->setModified(false);
+    }
+
+    /**
      * Reverses the data in the Collection maintaining any keys
      *
      * @link http://ca.php.net/array_reverse
@@ -807,6 +1083,29 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function search($value)
     {
         return \array_search($value, $this->items, (\is_object($value) ? true : null));
+    }
+
+    /**
+     * Add the item with key to the Collection
+     *
+     * If item is an array and value is null, the Collection will be replaced with
+     * the items and marked as modified.
+     *
+     * @param mixed $key
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function set($key, $value = null)
+    {
+        if (\is_array($key) && $value === null) {
+            $this->items = $key;
+            $this->setModified();
+        } else {
+            $this->offsetSet($key, $value);
+        }
+
+        return $this;
     }
 
     /**
@@ -960,6 +1259,46 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Return an associative array of the stored data.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $array = [];
+
+        foreach ($this->items as $key => $value) {
+            if ($value instanceof Collection) {
+                $array[$key] = $value->toArray();
+            } else {
+                $array[$key] = $value;
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * Returns a JSON encoded string of all items in the Collection
+     *
+     * @return string
+     */
+    public function toJson()
+    {
+        return json_encode($this->toArray());
+    }
+
+    /**
+     * Trims all values using trim(), returning a new Collection
+     *
+     * @return Collection
+     */
+    public function trim()
+    {
+        return $this->map('trim');
+    }
+
+    /**
      * Returns the array values of the Collection as a new Collection
      *
      * @link http://ca.php.net/array_values
@@ -984,6 +1323,18 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Returns a new collection will all values mapped to lower case
+     *
+     * @return Collection
+     */
+    public function upper()
+    {
+        return $this->map(function ($item) {
+            return (function_exists('mb_strtoupper')) ? mb_strtoupper($item) : strtoupper($item);
+        });
+    }
+
+    /**
      * Applies the callback to all elements in the Collection, returning a new Collection
      *
      * @link http://ca.php.net/array_walk
@@ -1001,98 +1352,19 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         return new static($elements);
     }
 
-    /**
-     * Returns all items in the Collection
-     *
-     * @return array
-     */
-    public function all()
-    {
-        return $this->items;
-    }
+
 
     /**
-     * Returns the item from the Collection, null if not found
-     *
-     * @param mixed $key
-     * @param mixed $default (optional) If key is not found, returns this value (null by default)
-     *
-     * @return mixed
-     */
-    public function get($key, $default = null)
-    {
-        if ($this->has($key)) {
-            return $this->offsetGet($key);
-        } else {
-            if ($default instanceof \Closure) {
-                return $default();
-            }
-
-            return $default;
-        }
-    }
-
-    /**
-     * Returns true if the specified key exists in the Collection
-     *
-     * @param string $key
-     *
-     * @return boolean
-     */
-    public function has($key)
-    {
-        return ($this->offsetExists($key));
-    }
-
-    /**
-     * Returns true if the specified key exists in the Collection and is not empty
-     *
-     * Empty in this case is not an empty string, null, zero or false. It should not
-     * be used to check for null or boolean values.
-     *
-     * @param string $key
-     *
-     * @return boolean
-     */
-    public function hasValueFor($key)
-    {
-        return ($this->offsetExists($key) && $this->get($key));
-    }
-
-    /**
-     * Returns true if the value is in the Collection
-     *
-     * @link http://ca.php.net/in_array
+     * Synonym for contains()
      *
      * @param mixed $value
      *
      * @return boolean
+     * @deprecated Use contains()s
      */
-    public function contains($value)
+    public function isValueInSet($value)
     {
         return \in_array($value, $this->items, (is_scalar($value) ? false : true));
-    }
-
-    /**
-     * Adds an item to the Collection if it does not already exist
-     *
-     * This is the same as getting the instance of Collection and using it as an array:
-     * <code>
-     * $col = new Collection();
-     * $col->add('value1');
-     * // is the same as:
-     * $col[] = 'value1';
-     * </code>
-     *
-     * @param mixed $value
-     *
-     * @return $this
-     */
-    public function add($value)
-    {
-        $this->offsetSet(null, $value);
-
-        return $this;
     }
 
     /**
@@ -1113,96 +1385,16 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Add the item with key to the Collection
+     * Synonym for match()
      *
-     * If item is an array and value is null, the Collection will be replaced with
-     * the items and marked as modified.
+     * @param string $regex PERL regular expression
      *
-     * @param mixed $key
-     * @param mixed $value
-     *
-     * @return $this
+     * @return static
+     * @deprecated use match()
      */
-    public function set($key, $value = null)
+    public function findByRegex($regex)
     {
-        if (\is_array($key) && $value === null) {
-            $this->items = $key;
-            $this->setModified();
-        } else {
-            $this->offsetSet($key, $value);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Removes the key from the Collection
-     *
-     * @param mixed $key
-     *
-     * @return $this
-     */
-    public function remove($key)
-    {
-        $this->offsetUnset($key);
-
-        return $this;
-    }
-
-    /**
-     * Removes $value from the Collection
-     *
-     * @param mixed $value
-     *
-     * @return $this
-     */
-    public function removeElement($value)
-    {
-        if (false !== $key = $this->search($value)) {
-            $this->remove($key);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Returns the first element of the Collection
-     *
-     * @return mixed
-     */
-    public function first()
-    {
-        return reset($this->items);
-    }
-
-    /**
-     * Returns the last element of the Collection
-     *
-     * @return mixed
-     */
-    public function last()
-    {
-        return end($this->items);
-    }
-
-    /**
-     * @param null|string $glue
-     *
-     * @return string
-     */
-    public function implode($glue = null)
-    {
-        return implode($glue, $this->items);
-    }
-
-    /**
-     * @param null|string $glue
-     *
-     * @return string
-     */
-    public function implodeKeys($glue = null)
-    {
-        return $this->keys()->implode($glue);
+        return $this->match($regex);
     }
 
 

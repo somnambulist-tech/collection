@@ -274,6 +274,27 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['foo' => [1, 2, 3, 4], 'bar' => [1, 2, 3, 4]], $arr);
     }
 
+    public function testToJson()
+    {
+        $col = new Collection(new TestClass4());
+        $arr = $col->toJson();
+
+        $this->assertInternalType('string', $arr);
+        $this->assertEquals('{"foo":"bar"}', $arr);
+    }
+
+    public function testToJsonOfCollections()
+    {
+        $col = new Collection([
+            'foo' => new Collection([1, 2, 3, 4]),
+            'bar' => new Collection([1, 2, 3, 4]),
+        ]);
+        $arr = $col->toJson();
+
+        $this->assertInternalType('string', $arr);
+        $this->assertEquals('{"foo":[1,2,3,4],"bar":[1,2,3,4]}', $arr);
+    }
+
     public function testSetModified()
     {
         $col = new Collection(new TestClass4());
@@ -430,17 +451,17 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testCallMethodDirectly()
     {
-        $mock1 = $this->createMock(TestClass3::class);
+        $mock1 = $this->createMock(TestClass4::class);
         $mock1
             ->expects($this->once())
-            ->method('toJson')
+            ->method('asJson')
         ;
 
         $col = new Collection([
             'bar' => $mock1,
         ]);
 
-        $col->toJson();
+        $col->asJson();
     }
 
     public function testExcept()
@@ -1225,5 +1246,144 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(18, $col->sum(function ($item) {
             return isset($item['bar']) ? $item['bar'] * 2 : 0;
         }));
+    }
+
+    public function testFill()
+    {
+        $col = Collection::collect([])->fill(0, 10, 'var');
+
+        $this->assertCount(10, $col);
+        $this->assertContains('var', $col);
+    }
+
+    public function testFillKeysWith()
+    {
+        $col = Collection::collect(['foo', 'bar', 'baz'])->fillKeysWith('test');
+
+        $this->assertCount(3, $col);
+        $this->assertArrayHasKey('foo', $col);
+        $this->assertArrayHasKey('bar', $col);
+        $this->assertArrayHasKey('baz', $col);
+        $this->assertEquals('test', $col['bar']);
+    }
+
+    public function testRemoveNulls()
+    {
+        $col = Collection::collect(['foo', 'bar', null, 'baz', null]);
+
+        $this->assertCount(5, $col);
+
+        $col = $col->removeNulls();
+
+        $this->assertCount(3, $col);
+    }
+
+    public function testTrim()
+    {
+        $col = Collection::collect(['foo  ', '  bar', '  baz  ']);
+
+        $this->assertCount(3, $col);
+
+        $col = $col->trim();
+
+        $this->assertContains('foo', $col);
+        $this->assertContains('bar', $col);
+        $this->assertContains('baz', $col);
+    }
+
+    public function testLower()
+    {
+        $col = Collection::collect(['FOO', 'FooBar', 'baz BaR']);
+
+        $this->assertCount(3, $col);
+
+        $col = $col->lower();
+
+        $this->assertContains('foo', $col);
+        $this->assertContains('foobar', $col);
+        $this->assertContains('baz bar', $col);
+    }
+
+    public function testUpper()
+    {
+        $col = Collection::collect(['FOO', 'FooBar', 'baz BaR']);
+
+        $this->assertCount(3, $col);
+
+        $col = $col->upper();
+
+        $this->assertContains('FOO', $col);
+        $this->assertContains('FOOBAR', $col);
+        $this->assertContains('BAZ BAR', $col);
+    }
+
+    public function testDiff()
+    {
+        $col1 = Collection::collect(["a" => "green", "red", "blue", "red"]);
+        $col2 = Collection::collect(["b" => "green", "yellow", "red"]);
+
+        $diff = $col1->diff($col2);
+
+        $this->assertCount(1, $diff);
+        $this->assertContains('blue', $diff);
+    }
+
+    public function testDiffKeys()
+    {
+        $col1 = Collection::collect(['blue' => 1, 'red' => 2, 'green' => 3, 'purple' => 4]);
+        $col2 = Collection::collect(['green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan' => 8]);
+
+        $diff = $col1->diffKeys($col2);
+
+        $this->assertCount(2, $diff);
+        $this->assertArrayHasKey('red', $diff);
+        $this->assertArrayHasKey('purple', $diff);
+    }
+
+    public function testIntersect()
+    {
+        $col = Collection::collect(['foo', '  bar', '  baz  ']);
+
+        $this->assertCount(3, $col);
+
+        $col = $col->trim();
+
+        $this->assertContains('foo', $col);
+        $this->assertContains('bar', $col);
+        $this->assertContains('baz', $col);
+    }
+
+    public function testExplode()
+    {
+        $array1 = array("a" => "green", "red", "blue");
+        $array2 = array("b" => "green", "yellow", "red");
+        $col = Collection::collect($array1)->intersect($array2);
+
+        $this->assertCount(2, $col);
+        $this->assertContains('green', $col);
+        $this->assertContains('red', $col);
+    }
+
+    public function testCollectionFromString()
+    {
+        $col = Collection::collectionFromString('foo=1&bar=baz&baz=2,3,4');
+
+        $this->assertCount(3, $col);
+        $this->assertArrayHasKey('foo', $col);
+        $this->assertArrayHasKey('bar', $col);
+        $this->assertArrayHasKey('baz', $col);
+        $this->assertEquals([2, 3, 4], $col['baz']->toArray());
+
+        $col = Collection::collectionFromString('trim|required|min:10|max:200|in:foo,bar,baz', '|', ':');
+
+        $this->assertCount(5, $col);
+        $this->assertArrayHasKey('trim', $col);
+        $this->assertArrayHasKey('required', $col);
+        $this->assertArrayHasKey('min', $col);
+        $this->assertEquals(10, $col->get('min'));
+        $this->assertArrayHasKey('max', $col);
+        $this->assertEquals(200, $col->get('max'));
+        $this->assertArrayHasKey('in', $col);
+        $this->assertEquals(['foo','bar','baz'], $col['in']->toArray());
     }
 }

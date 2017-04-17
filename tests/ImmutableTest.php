@@ -226,4 +226,38 @@ class ImmutableTest extends \PHPUnit_Framework_TestCase
         $this->expectException(\RuntimeException::class);
         $col->remove('foo');
     }
+
+    public function testExplode()
+    {
+        $array1 = array("a" => "green", "red", "blue");
+        $array2 = array("b" => "green", "yellow", "red");
+        $col = Immutable::collect($array1)->intersect($array2);
+
+        $this->assertCount(2, $col);
+        $this->assertContains('green', $col);
+        $this->assertContains('red', $col);
+    }
+
+    public function testCollectionFromString()
+    {
+        $col = Immutable::collectionFromString('foo=1&bar=baz&baz=2,3,4');
+
+        $this->assertCount(3, $col);
+        $this->assertArrayHasKey('foo', $col);
+        $this->assertArrayHasKey('bar', $col);
+        $this->assertArrayHasKey('baz', $col);
+        $this->assertEquals([2, 3, 4], $col['baz']->toArray());
+
+        $col = Immutable::collectionFromString('trim|required|min:10|max:200|in:foo,bar,baz', '|', ':');
+
+        $this->assertCount(5, $col);
+        $this->assertArrayHasKey('trim', $col);
+        $this->assertArrayHasKey('required', $col);
+        $this->assertArrayHasKey('min', $col);
+        $this->assertEquals(10, $col->get('min'));
+        $this->assertArrayHasKey('max', $col);
+        $this->assertEquals(200, $col->get('max'));
+        $this->assertArrayHasKey('in', $col);
+        $this->assertEquals(['foo','bar','baz'], $col['in']->toArray());
+    }
 }
