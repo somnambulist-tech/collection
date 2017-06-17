@@ -18,6 +18,8 @@
 
 namespace Somnambulist\Collection;
 
+use Somnambulist\Collection\Traits;
+
 /**
  * Class Collection
  *
@@ -28,12 +30,11 @@ namespace Somnambulist\Collection;
 class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Serializable
 {
 
-    /**
-     * Stores if Collection has changed
-     *
-     * @var boolean
-     */
-    protected $modified = false;
+    use Traits\ArrayAccess;
+    use Traits\Exportable;
+    use Traits\MagicMethods;
+    use Traits\Serializable;
+    use Traits\Sortable;
 
     /**
      * The Collection
@@ -41,9 +42,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * @var array
      */
     protected $items = [];
-    
-    
-    
+
     /**
      * Constructor.
      *
@@ -51,7 +50,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function __construct($items = [])
     {
-        $this->items = self::convertToArray($items);
+        $this->items = Factory::convertToArray($items);
     }
 
     /**
@@ -64,188 +63,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public static function collect($items)
     {
         return new static($items);
-    }
-
-    /**
-     * Creates a new collection by exploding the string using delimiter
-     *
-     * @link http://ca.php.net/explode
-     *
-     * @param string $string
-     * @param string $delimiter
-     *
-     * @return static
-     */
-    public static function explode($string, $delimiter)
-    {
-        return new static(explode($delimiter, $string));
-    }
-
-    /**
-     * Creates a new collection for a string that describes key values
-     *
-     * E.g.: a URL query string: var=value&var2=value2
-     * E.g.: a pipe delimited string: op|op2:2,3|another:true
-     *
-     * @param string $string
-     * @param string $separator  String that separates parameters
-     * @param string $assignment String that signifies value assignment (if missing is true)
-     * @param string $options    String for multiple items per assignment
-     *
-     * @return static
-     */
-    public static function collectionFromString($string, $separator = '&', $assignment = '=', $options = ',') {
-        $collection = [];
-
-        if ( strlen(trim($string)) > 0 ) {
-            static::explode($string, $separator)
-                ->each(function ($item) use ($assignment, $options, &$collection) {
-                    if (false === strpos($item, $assignment)) {
-                        $collection[trim($item)] = true;
-                        return;
-                    }
-
-                    list($key, $value) = explode($assignment, $item);
-
-                    if (false !== strpos($value, $options)) {
-                        $value = static::explode($value, $options)->trim()->toArray();
-                    }
-
-                    $collection[trim($key)] = $value;
-                })
-            ;
-        }
-
-        return new static($collection);
-    }
-
-    /**
-     * Ensures passed var is an array
-     *
-     * @param mixed   $var
-     * @param boolean $deep
-     *
-     * @return array
-     */
-    public static function convertToArray($var, $deep = false)
-    {
-        if (null === $var) {
-            return [];
-        }
-        if (is_scalar($var)) {
-            return [$var];
-        }
-        if (is_object($var)) {
-            if ($var instanceof \stdClass) {
-                $var = (array)$var;
-            } elseif ($var instanceof \Iterator) { // @codeCoverageIgnore
-                $var = iterator_to_array($var);
-            } elseif ($var instanceof \ArrayObject) { // @codeCoverageIgnore
-                $var = $var->getArrayCopy();
-            } elseif (method_exists($var, 'toArray')) {
-                $var = $var->toArray();
-            } elseif (method_exists($var, 'asArray')) {
-                $var = $var->asArray();
-            } elseif (method_exists($var, 'toJson')) {
-                $var = json_decode($var->toJson(), true);
-            } elseif (method_exists($var, 'asJson')) {
-                $var = json_decode($var->asJson(), true);
-            }
-
-            return $var;
-        }
-        if (is_array($var)) {
-            if ($deep) {
-                foreach ($var as &$item) {
-                    $item = static::convertToArray($item, true);
-                }
-            }
-
-            return $var;
-        } else {
-            return [$var]; // @codeCoverageIgnore
-        }
-    }
-
-    /**
-     * Implementation of __set_state to allow var_export Collection to be used
-     *
-     * @param array $array
-     *
-     * @return $this
-     * @static
-     */
-    public static function __set_state($array)
-    {
-        $oObject = new static();
-        $oObject->items    = $array['items'];
-        $oObject->modified = $array['modified'];
-
-        return $oObject;
-    }
-
-    /**
-     * Allows method names on sub-objects to be called on the Collection
-     *
-     * Calls into {@link invoke} to actually run the method.
-     *
-     * @param string $name
-     * @param array  $arguments
-     *
-     * @return $this
-     */
-    public function __call($name, $arguments)
-    {
-        return $this->invoke($name, $arguments);
-    }
-
-    /**
-     * Returns true if property exists (array key)
-     *
-     * @param string $name
-     *
-     * @return boolean
-     */
-    public function __isset($name)
-    {
-        return $this->offsetExists($name);
-    }
-
-    /**
-     * Returns the property matching $name
-     *
-     * @param string $name
-     *
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        return $this->offsetGet($name);
-    }
-
-    /**
-     * Set a property $name to $value
-     *
-     * @param string $name
-     * @param mixed  $value
-     *
-     * @return $this
-     */
-    public function __set($name, $value)
-    {
-        $this->offsetSet($name, $value);
-
-        return $this;
-    }
-
-    /**
-     * Removes property $name
-     *
-     * @param string $name
-     */
-    public function __unset($name)
-    {
-        $this->offsetUnset($name);
     }
 
     /**
@@ -266,113 +83,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function getIterator()
     {
         return new \ArrayIterator($this->items);
-    }
-
-    /**
-     * @param string $offset
-     *
-     * @return boolean
-     */
-    public function offsetExists($offset)
-    {
-        return \array_key_exists($offset, $this->items);
-    }
-
-    /**
-     * @param string $offset
-     *
-     * @return mixed
-     */
-    public function offsetGet($offset)
-    {
-        $value = $this->items[$offset];
-
-        if (is_array($value)) {
-            $value = new static($value);
-        }
-
-        return $value;
-    }
-
-    /**
-     * @param string $offset
-     * @param mixed  $value
-     */
-    public function offsetSet($offset, $value)
-    {
-        if (is_null($offset)) {
-            if (!$this->contains($value)) {
-                $this->items[] = $value;
-                $this->setModified();
-            }
-        } else {
-            $this->items[$offset] = $value;
-            $this->setModified();
-        }
-    }
-
-    /**
-     * @param string $offset
-     */
-    public function offsetUnset($offset)
-    {
-        if ($this->offsetExists($offset)) {
-            $this->items[$offset] = null;
-            $this->setModified();
-            unset($this->items[$offset]);
-        }
-    }
-
-    /**
-     * @link http://php.net/manual/en/serializable.serialize.php
-     *
-     * @return string
-     */
-    public function serialize()
-    {
-        return \serialize(['items' => $this->items, 'modified' => $this->isModified()]);
-    }
-
-    /**
-     * @link http://php.net/manual/en/serializable.unserialize.php
-     *
-     * @param string $serialized
-     *
-     * @return void
-     */
-    public function unserialize($serialized)
-    {
-        $data = \unserialize($serialized);
-        if (is_array($data) && array_key_exists('items', $data) && array_key_exists('modified', $data)) {
-            $this->items    = $data['items'];
-            $this->modified = $data['modified'];
-        }
-    }
-
-
-
-    /**
-     * Returns true if the Collection has been modified
-     *
-     * @return boolean
-     */
-    public function isModified()
-    {
-        return $this->modified;
-    }
-
-    /**
-     * Sets the modification status of the Collection
-     *
-     * @param boolean $status
-     *
-     * @return $this
-     */
-    public function setModified($status = true)
-    {
-        $this->modified = $status;
-
-        return $this;
     }
 
 
@@ -422,42 +132,40 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function append($array)
     {
-        if ($array instanceof Collection) {
-            $array = $array->toArray();
-        } elseif ($array instanceof \ArrayObject) {
-            $array = (array)$array;
-        } elseif (!\is_array($array)) {
-            $array = [$array];
-        }
-
-        $this->items = $this->items + $array;
-        $this->setModified();
+        $this->items = $this->items + Factory::convertToArray($array);
 
         return $this;
     }
 
     /**
-     * Creates a new Collection containing the results of the callable in the same keys
+     * Assert that all elements pass the test provided by the callback
      *
-     * For example: with a collection of the same objects, call a method to export
-     * part of each object into a new collection. Similar to using each() or walk()
-     * except the callable should return the new value for the key.
+     * @param callable $callback
+     *
+     * @return bool
+     */
+    public function assert(callable $callback): bool
+    {
+        foreach ($this->items as $key => $item) {
+            if ($callback($item, $key) === false) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Alias of transform
      *
      * @param callable $callable Receives: $value, $key
      *
      * @return static
+     * @deprecated v2 Use transform
      */
     public function call(callable $callable)
     {
-        $ret = new static();
-
-        foreach ($this as $key => $value) {
-            $ret->set($key, $callable($value, $key));
-        }
-
-        $ret->setModified(false);
-
-        return $ret;
+        return $this->transform($callable);
     }
 
     /**
@@ -469,7 +177,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      *
      * @return boolean
      */
-    public function contains($value)
+    public function contains($value): bool
     {
         return \in_array($value, $this->items, (is_scalar($value) ? false : true));
     }
@@ -485,7 +193,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function diff($items)
     {
-        return new static(array_diff($this->items, static::convertToArray($items)));
+        return new static(array_diff($this->items, Factory::convertToArray($items)));
     }
 
     /**
@@ -499,25 +207,31 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function diffKeys($items)
     {
-        return new static(array_diff_key($this->items, static::convertToArray($items)));
+        return new static(array_diff_key($this->items, Factory::convertToArray($items)));
     }
 
     /**
-     * Alias of walk, applies the callback to all items, returns a new Collection
+     * Execute a callback over the collection
      *
-     * @param callable $callable Receives: (&$value, $key)
+     * @param callable $callback Receives: ($item, $key)
      *
      * @return static
      */
-    public function each(callable $callable)
+    public function each(callable $callback)
     {
-        return $this->walk($callable);
+        foreach ($this->items as $key => $item) {
+            if ($callback($item, $key) === false) {
+                break;
+            }
+        }
+
+        return $this;
     }
 
     /**
      * Get all items except for those with the specified keys.
      *
-     * @param mixed $ignore
+     * @param mixed $ignore Array of key names, or multiple arguments
      *
      * @return static
      */
@@ -757,7 +471,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function intersect($items)
     {
-        return new static(array_intersect($this->items, static::convertToArray($items)));
+        return new static(array_intersect($this->items, Factory::convertToArray($items)));
     }
 
     /**
@@ -784,9 +498,15 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             foreach ($this as $key => $value) {
                 if (\is_object($value) && \method_exists($value, $method)) {
                     switch (\count($arguments)) {
-                        case 0: $value->{$method}(); break;
-                        case 1: $value->{$method}($arguments[0]); break;
-                        case 2: $value->{$method}($arguments[0], $arguments[1]); break;
+                        case 0:
+                            $value->{$method}();
+                            break;
+                        case 1:
+                            $value->{$method}($arguments[0]);
+                            break;
+                        case 2:
+                            $value->{$method}($arguments[0], $arguments[1]);
+                            break;
                         default:
                             \call_user_func_array([$value, $method], $arguments);
                     }
@@ -941,18 +661,25 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function merge($array)
     {
-        if ($array instanceof Collection) {
-            $array = $array->toArray();
-        } elseif ($array instanceof \ArrayObject) {
-            $array = (array)$array;
-        } elseif (!\is_array($array)) {
-            $array = array($array);
-        }
-
-        $this->items = \array_merge($this->items, $array);
-        $this->setModified();
+        $this->items = \array_merge($this->items, Factory::convertToArray($array));
 
         return $this;
+    }
+
+    /**
+     * Returns a new collection containing only these keys
+     *
+     * @param mixed $keys Array of key names, or multiple arguments
+     *
+     * @return Collection
+     */
+    public function only($keys)
+    {
+        $keys = is_array($keys) ? $keys : func_get_args();
+
+        return $this->filter(function ($key) use ($keys) {
+            return in_array($key, $keys);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     /**
@@ -968,9 +695,29 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function pad($size, $value)
     {
         $this->items = \array_pad($this->items, $size, $value);
-        $this->setModified();
 
         return $this;
+    }
+
+    /**
+     * Partition the Collection into two Collections using the given callback or key.
+     *
+     * Based on Laravel: Illuminate\Support\Collection.partition
+     *
+     * @param callable|string $callback
+     *
+     * @return static[static, static]
+     */
+    public function partition($callback)
+    {
+        $partitions = [new static, new static];
+        $callback   = $this->valueAccessor($callback);
+
+        foreach ($this->items as $key => $item) {
+            $partitions[(int) ! $callback($item)][$key] = $item;
+        }
+
+        return new static($partitions);
     }
 
     /**
@@ -991,7 +738,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * @link http://ca.php.net/array_reduce
      *
      * @param callable $callback Receives mixed $carry, mixed $value
-     * @param mixed    $initial (optional) Default value to return if no result
+     * @param mixed    $initial  (optional) Default value to return if no result
      *
      * @return mixed
      */
@@ -1050,7 +797,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function reset()
     {
         $this->items = [];
-        $this->setModified(false);
     }
 
     /**
@@ -1063,7 +809,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function reverse()
     {
         $this->items = \array_reverse($this->items, true);
-        $this->setModified();
 
         return $this;
     }
@@ -1089,7 +834,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * Add the item with key to the Collection
      *
      * If item is an array and value is null, the Collection will be replaced with
-     * the items and marked as modified.
+     * the items.
      *
      * @param mixed $key
      * @param mixed $value
@@ -1100,7 +845,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     {
         if (\is_array($key) && $value === null) {
             $this->items = $key;
-            $this->setModified();
         } else {
             $this->offsetSet($key, $value);
         }
@@ -1139,108 +883,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Sort the Collection by a user defined function
-     *
-     * @link http://ca.php.net/usort
-     *
-     * @param mixed $callable Any valid PHP callable e.g. function, closure, method
-     *
-     * @return $this
-     */
-    public function sortUsing($callable)
-    {
-        \usort($this->items, $callable);
-        $this->setModified();
-
-        return $this;
-    }
-
-    /**
-     * Sort the Collection by a user defined function
-     *
-     * @link http://ca.php.net/uasort
-     *
-     * @param mixed $callable Any valid PHP callable e.g. function, closure, method
-     *
-     * @return $this
-     */
-    public function sortKeepingKeysUsing($callable)
-    {
-        \uasort($this->items, $callable);
-        $this->setModified();
-
-        return $this;
-    }
-
-    /**
-     * Sorts the Collection by value using asort preserving keys, returns the Collection
-     *
-     * @link http://ca.php.net/asort
-     *
-     * @param integer $type Any valid SORT_ constant
-     *
-     * @return $this
-     */
-    public function sortByValue($type = SORT_STRING)
-    {
-        \asort($this->items, $type);
-        $this->setModified();
-
-        return $this;
-    }
-
-    /**
-     * Sorts the Collection by value using arsort preserving keys, returns the Collection
-     *
-     * @link http://ca.php.net/arsort
-     *
-     * @param integer $type Any valid SORT_ constant
-     *
-     * @return $this
-     */
-    public function sortByValueReversed($type = SORT_STRING)
-    {
-        \arsort($this->items, $type);
-        $this->setModified();
-
-        return $this;
-    }
-
-    /**
-     * Sort the Collection by designated keys
-     *
-     * @link http://ca.php.net/ksort
-     *
-     * @param null|integer $type Any valid SORT_ constant
-     *
-     * @return $this
-     */
-    public function sortByKey($type = null)
-    {
-        \ksort($this->items, $type);
-        $this->setModified();
-
-        return $this;
-    }
-
-    /**
-     * Sort the Collection by designated keys in reverse order
-     *
-     * @link http://ca.php.net/krsort
-     *
-     * @param null|integer $type Any valid SORT_ constant
-     *
-     * @return $this
-     */
-    public function sortByKeyReversed($type = null)
-    {
-        \krsort($this->items, $type);
-        $this->setModified();
-
-        return $this;
-    }
-
-    /**
      * Sum items in the collection, optionally matching the key / callable
      *
      * Based on Laravel: Illuminate\Support\Collection.sum
@@ -1259,33 +901,27 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
-     * Return an associative array of the stored data.
+     * Creates a new Collection containing the results of the callable in the same keys
      *
-     * @return array
+     * For example: with a collection of the same objects, call a method to export
+     * part of each object into a new collection. Similar to using each() or walk()
+     * except the callable should return the new value for the key.
+     *
+     * Note: this method preserves the array keys from the original Collection.
+     *
+     * @param callable $callable Receives: $value, $key
+     *
+     * @return static
      */
-    public function toArray()
+    public function transform(callable $callable)
     {
-        $array = [];
+        $ret = new static();
 
-        foreach ($this->items as $key => $value) {
-            if ($value instanceof Collection) {
-                $array[$key] = $value->toArray();
-            } else {
-                $array[$key] = $value;
-            }
+        foreach ($this as $key => $value) {
+            $ret->set($key, $callable($value, $key));
         }
 
-        return $array;
-    }
-
-    /**
-     * Returns a JSON encoded string of all items in the Collection
-     *
-     * @return string
-     */
-    public function toJson()
-    {
-        return json_encode($this->toArray());
+        return $ret;
     }
 
     /**
@@ -1296,6 +932,30 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     public function trim()
     {
         return $this->map('trim');
+    }
+
+    /**
+     * Returns the value for the specified key or if there is no value, returns the default
+     *
+     * Default can be a callable (closure) that will be executed. This method differs to
+     * {@link static::get()} in that the default will be returned even when the key exists and
+     * has no "truthy" value (null, false, empty string etc). Default can be a callable; this will
+     * be passed the value (if any) and the key as arguments.
+     *
+     * @param string         $key
+     * @param mixed|callable $default
+     *
+     * @return mixed
+     */
+    public function value($key, $default = null)
+    {
+        $value = $this->get($key);
+
+        if (!$value) {
+            return $this->valueExecutor($default, $value, $key);
+        }
+
+        return $value;
     }
 
     /**
@@ -1355,51 +1015,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
 
 
     /**
-     * Synonym for contains()
-     *
-     * @param mixed $value
-     *
-     * @return boolean
-     * @deprecated Use contains()s
-     */
-    public function isValueInSet($value)
-    {
-        return \in_array($value, $this->items, (is_scalar($value) ? false : true));
-    }
-
-    /**
-     * Adds the value if it does not already exist in the Collection
-     *
-     * @param mixed $value
-     *
-     * @return $this
-     * @deprecated use add()
-     */
-    public function addIfNotInSet($value)
-    {
-        if (!$this->contains($value)) {
-            $this->add($value);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Synonym for match()
-     *
-     * @param string $regex PERL regular expression
-     *
-     * @return static
-     * @deprecated use match()
-     */
-    public function findByRegex($regex)
-    {
-        return $this->match($regex);
-    }
-
-
-
-    /**
      * Providers a callable for fetching data from a collection item
      *
      * Based on Laravel: Illuminate\Support\Collection.valueRetriever
@@ -1428,11 +1043,30 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * If the value is a closure, executes it returning the value
+     *
+     * @param mixed $callable
+     * @param mixed $value
+     * @param mixed $key
+     *
+     * @return mixed
+     */
+    protected function valueExecutor($callable, $value, $key)
+    {
+        if ($this->isCallable($callable)) {
+            return $callable($value, $key);
+        }
+
+        return $callable;
+    }
+
+    /**
      * Returns true if value is callable, but not a string callable
      *
      * Based on Laravel: Illuminate\Support\Collection.useAsCallable
      *
-     * @param  mixed  $value
+     * @param  mixed $value
+     *
      * @return bool
      */
     protected function isCallable($value)

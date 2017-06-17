@@ -18,6 +18,7 @@
 
 namespace Somnambulist\Tests\Collection;
 
+use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\Collection;
 use Somnambulist\Collection\Immutable;
 
@@ -57,8 +58,15 @@ class TestClass4
  * @package    Somnambulist\Tests\Domain\Collection
  * @subpackage Somnambulist\Tests\Domain\Collection\CollectionTest
  */
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends TestCase
 {
+
+    public function testCollect()
+    {
+        $col = Collection::collect(['foo' => 'bar']);
+
+        $this->assertCount(1, $col);
+    }
 
     public function testConstructor()
     {
@@ -66,40 +74,6 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Collection::class, $col);
         $this->assertEmpty($col);
-    }
-
-    public function testConvertToArrayDeep()
-    {
-        $class = new \stdClass();
-        $class->foo = 'bar';
-        $class->baz = 'bar';
-
-        $array = [
-            clone $class,
-            clone $class,
-        ];
-
-        $expected = [
-            [
-                'foo' => 'bar',
-                'baz' => 'bar',
-            ],
-            [
-                'foo' => 'bar',
-                'baz' => 'bar',
-            ],
-        ];
-
-        $value = Collection::convertToArray($array, true);
-
-        $this->assertEquals($expected, $value);
-    }
-
-    public function testCollect()
-    {
-        $col = Collection::collect(['foo' => 'bar']);
-
-        $this->assertCount(1, $col);
     }
 
     public function testConstructorWithArray()
@@ -208,7 +182,6 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Collection::class, $col2);
         $this->assertCount(1, $col2);
-        $this->assertFalse($col2->isModified());
     }
 
     public function testFreezeReturnsImmutable()
@@ -295,16 +268,6 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('{"foo":[1,2,3,4],"bar":[1,2,3,4]}', $arr);
     }
 
-    public function testSetModified()
-    {
-        $col = new Collection(new TestClass4());
-        $col->bar = 'too';
-
-        $this->assertTrue($col->isModified());
-        $col->setModified(false);
-        $this->assertFalse($col->isModified());
-    }
-
     public function testCount()
     {
         $col = new Collection(new TestClass4());
@@ -382,15 +345,6 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $col);
     }
 
-    public function testIsValueInSet()
-    {
-        $col = new Collection(new TestClass4());
-        $col['bar'] = 'too';
-
-        $this->assertTrue($col->isValueInSet('bar'));
-        $this->assertFalse($col->isValueInSet('baz'));
-    }
-
     public function testAppend()
     {
         $col = new Collection(new TestClass4());
@@ -429,6 +383,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $col);
         $col->append($col2);
         $this->assertCount(2, $col);
+    }
+
+    public function testAssert()
+    {
+        $col = new Collection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
+        $this->assertTrue($col->assert(function ($item, $key) {
+            return !empty($item);
+        }));
+
+        $col = new Collection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
+        $this->assertFalse($col->assert(function ($item, $key) {
+            return $key === 'foo';
+        }));
     }
 
     public function testCallAndCollect()
@@ -581,27 +548,6 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $col->pad(10, 'a');
 
         $this->assertCount(10, $col);
-    }
-
-    public function testFindByRegex()
-    {
-        $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => 'test',
-            'test-abc' => 'test',
-            'test-abe' => 'test',
-            'test-abf' => 'test',
-            'test-3' => 'test',
-            'test-4' => 'test',
-            'test-10' => 'test',
-            'test-zad' => 'test',
-        ]);
-
-        $this->assertCount(9, $col);
-
-        $tmp = $col->findByRegex('/^test-\d+/')->toArray();
-
-        $this->assertCount(5, $tmp);
     }
 
     public function testMatch()
@@ -905,6 +851,22 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($col->get('abe'));
     }
 
+    public function testValue()
+    {
+        $col = new Collection([
+            'test-1' => 'test',
+            'test-2' => 'test',
+            'test-abc' => '',
+            'test-abe' => null,
+        ]);
+
+        $this->assertEquals('test', $col->value('test-1', 'bob'));
+        $this->assertEquals('bob', $col->value('test-abc', 'bob'));
+        $this->assertEquals('value was null', $col->value('test-abe', function ($value) {
+            return is_null($value) ? 'value was null' : 'not null';
+        }));
+    }
+
     public function testGetWithDefaultClosure()
     {
         $col = new Collection([
@@ -971,15 +933,6 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $col->add('value')->add('value')->add('value');
 
         $this->assertCount(1, $col);
-    }
-
-    public function testAddIfNotInSet()
-    {
-        $col = new Collection();
-        $col->addIfNotInSet('value')->addIfNotInSet('value2');
-        $col->addIfNotInSet('value');
-
-        $this->assertCount(2, $col);
     }
 
     public function testSet()
@@ -1097,6 +1050,27 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testInvokeWithSingleArg()
+    {
+        $col = new Collection([
+            new Collection([
+                'foo' => 'bar',
+            ]),
+            new Collection([
+                'foo' => 'bar',
+            ]),
+            new Collection([
+                'foo' => 'bar',
+            ]),
+        ]);
+
+        $ret = $col->invoke('remove', ['foo']);
+
+        foreach ($ret as $col) {
+            $this->assertCount(0, $col);
+        }
+    }
+
     public function testFilter()
     {
         $col = new Collection([
@@ -1173,15 +1147,16 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             'baz' => 2,
             'bob' => 3,
         ]);
+        $result = [];
 
-        $ret = $col->each(function (&$item, $key) {
-            $item = 'foo bars: ' . $item;
+        $col->each(function ($item, $key) use (&$result) {
+            if ($item < 3) {
+                $result[$key] = $item;
+            }
         });
 
-        $this->assertCount(3, $ret);
-        foreach ($ret as $key => $value) {
-            $this->assertContains('foo bars: ', $value);
-        }
+        $this->assertCount(2, $result);
+        $this->assertEquals(['foo' => 1, 'baz' => 2], $result);
     }
 
     public function testSlice()
@@ -1353,37 +1328,59 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('baz', $col);
     }
 
-    public function testExplode()
-    {
-        $array1 = array("a" => "green", "red", "blue");
-        $array2 = array("b" => "green", "yellow", "red");
-        $col = Collection::collect($array1)->intersect($array2);
 
-        $this->assertCount(2, $col);
-        $this->assertContains('green', $col);
-        $this->assertContains('red', $col);
+    public function testOnly()
+    {
+        $col1 = Collection::collect([
+            'blue' => 1, 'red' => 2, 'green' => 3, 'purple' => 4, 'black' => 5, 'indigo' => 6, 'yellow' => 7, 'cyan' => 8
+        ]);
+
+        $diff = $col1->only('red', 'green', 'blue');
+
+        $this->assertCount(3, $diff);
+        $this->assertEquals(['red' => 2, 'green' => 3, 'blue' => 1], $diff->toArray());
+
+        $diff = $col1->only(['red', 'green', 'blue']);
+
+        $this->assertCount(3, $diff);
+        $this->assertEquals(['red' => 2, 'green' => 3, 'blue' => 1], $diff->toArray());
     }
 
-    public function testCollectionFromString()
+    public function testPartition()
     {
-        $col = Collection::collectionFromString('foo=1&bar=baz&baz=2,3,4');
+        $collection = new Collection(range(1, 10));
+        list($firstPartition, $secondPartition) = $collection->partition(function ($i) {
+            return $i <= 5;
+        });
+        $this->assertEquals([1, 2, 3, 4, 5], $firstPartition->values()->toArray());
+        $this->assertEquals([6, 7, 8, 9, 10], $secondPartition->values()->toArray());
+    }
 
-        $this->assertCount(3, $col);
-        $this->assertArrayHasKey('foo', $col);
-        $this->assertArrayHasKey('bar', $col);
-        $this->assertArrayHasKey('baz', $col);
-        $this->assertEquals([2, 3, 4], $col['baz']->toArray());
+    public function testPartitionByKey()
+    {
+        $courses = new Collection([
+            ['free' => true, 'title' => 'Basic'], ['free' => false, 'title' => 'Premium'],
+        ]);
+        list($free, $premium) = $courses->partition('free');
+        $this->assertSame([['free' => true, 'title' => 'Basic']], $free->values()->toArray());
+        $this->assertSame([['free' => false, 'title' => 'Premium']], $premium->values()->toArray());
+    }
 
-        $col = Collection::collectionFromString('trim|required|min:10|max:200|in:foo,bar,baz', '|', ':');
+    public function testPartitionPreservesKeys()
+    {
+        $courses = new Collection([
+            'a' => ['free' => true], 'b' => ['free' => false], 'c' => ['free' => true],
+        ]);
+        list($free, $premium) = $courses->partition('free');
+        $this->assertSame(['a' => ['free' => true], 'c' => ['free' => true]], $free->toArray());
+        $this->assertSame(['b' => ['free' => false]], $premium->toArray());
+    }
 
-        $this->assertCount(5, $col);
-        $this->assertArrayHasKey('trim', $col);
-        $this->assertArrayHasKey('required', $col);
-        $this->assertArrayHasKey('min', $col);
-        $this->assertEquals(10, $col->get('min'));
-        $this->assertArrayHasKey('max', $col);
-        $this->assertEquals(200, $col->get('max'));
-        $this->assertArrayHasKey('in', $col);
-        $this->assertEquals(['foo','bar','baz'], $col['in']->toArray());
+    public function testPartitionEmptyCollection()
+    {
+        $collection = new Collection();
+        $this->assertCount(2, $collection->partition(function () {
+            return true;
+        }));
     }
 }

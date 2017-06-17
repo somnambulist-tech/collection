@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+2017-06-23
+----------
+
+ * changed each() to mirror other Collection each implementations - BC break!
+ * changed methods that accept arrays to use convertToArray()
+ * changed call() to transform() - call() is now deprecated
+ * removed all previously deprecated methods
+ * removed static factory methods to a factory class (except collect())
+ * removed modified flag
+ * added assert()
+ * added only()
+ * added partition()
+ * added value()
+ * extracted some method groups into traits
+
 2017-04-17
 ----------
 

@@ -197,14 +197,6 @@ class Immutable extends Collection
     /**
      * @throws \RuntimeException
      */
-    public function addIfNotInSet($value)
-    {
-        throw new \RuntimeException('Collection is immutable');
-    }
-
-    /**
-     * @throws \RuntimeException
-     */
     public function set($key, $value = null)
     {
         throw new \RuntimeException('Collection is immutable');
