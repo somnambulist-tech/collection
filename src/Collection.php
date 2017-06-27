@@ -86,6 +86,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
 
+
     /**
      * Adds an item to the Collection if it does not already exist
      *
@@ -620,8 +621,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             $value = $callback($item);
 
             return is_null($result) || $value > $result ? $value : $result;
-        })
-            ;
+        });
     }
 
     /**
@@ -643,8 +643,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             $value = $callback($item);
 
             return is_null($result) || $value < $result ? $value : $result;
-        })
-            ;
+        });
     }
 
     /**
@@ -715,7 +714,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $callback   = $this->valueAccessor($callback);
 
         foreach ($this->items as $key => $item) {
-            $partitions[(int)!$callback($item)][$key] = $item;
+            $partitions[(int) ! $callback($item)][$key] = $item;
         }
 
         return new static($partitions);
@@ -1027,6 +1026,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
 
         return new static($elements);
     }
+
 
 
     /**
