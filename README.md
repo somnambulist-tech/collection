@@ -112,6 +112,7 @@ on create, but calls to add() or offsetSet() will ignore the value.
  * reverse() reverses the data maintaining key association
  * search() finds the key for an item in the Collection
  * shift() shift an item from the beginning of the Collection
+ * shuffle() shuffles the items in the Collection
  * slice() extract a portion of the Collection
  * sortByKey() sort the Collection by the keys
  * sortByKeyReversed() sort the keys in reverse order

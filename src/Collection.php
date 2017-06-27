@@ -86,7 +86,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
 
-
     /**
      * Adds an item to the Collection if it does not already exist
      *
@@ -621,7 +620,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             $value = $callback($item);
 
             return is_null($result) || $value > $result ? $value : $result;
-        });
+        })
+            ;
     }
 
     /**
@@ -643,7 +643,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             $value = $callback($item);
 
             return is_null($result) || $value < $result ? $value : $result;
-        });
+        })
+            ;
     }
 
     /**
@@ -714,7 +715,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $callback   = $this->valueAccessor($callback);
 
         foreach ($this->items as $key => $item) {
-            $partitions[(int) ! $callback($item)][$key] = $item;
+            $partitions[(int)!$callback($item)][$key] = $item;
         }
 
         return new static($partitions);
@@ -865,6 +866,21 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Shuffle the items in the collection.
+     *
+     * http://php.net/manual/en/function.shuffle.php
+     *
+     * @return static
+     */
+    public function shuffle()
+    {
+        $items = $this->items;
+        shuffle($items);
+
+        return new static($items);
+    }
+
+    /**
      * Extracts a portion of the Collection, returning a new Collection
      *
      * By default, preserves the keys.
@@ -1011,7 +1027,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
 
         return new static($elements);
     }
-
 
 
     /**
