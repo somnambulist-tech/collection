@@ -1200,6 +1200,19 @@ class CollectionTest extends TestCase
         $this->assertCount(2, $col);
     }
 
+    public function testShuffle()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->shuffle();
+
+        $this->assertInstanceOf(Collection::class, $ret);
+    }
+
     public function testSum()
     {
         $col = new Collection([1, 2, 3, 4, 5]);
