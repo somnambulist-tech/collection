@@ -865,6 +865,21 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Shuffle the items in the collection.
+     *
+     * http://php.net/manual/en/function.shuffle.php
+     *
+     * @return static
+     */
+    public function shuffle()
+    {
+        $items = $this->items;
+        shuffle($items);
+
+        return new static($items);
+    }
+
+    /**
      * Extracts a portion of the Collection, returning a new Collection
      *
      * By default, preserves the keys.
