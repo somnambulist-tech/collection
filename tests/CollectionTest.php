@@ -21,36 +21,9 @@ namespace Somnambulist\Tests\Collection;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\Collection;
 use Somnambulist\Collection\Immutable;
-
-class TestClass1
-{
-    public function toArray()
-    {
-        return ['foo' => 'bar',];
-    }
-}
-class TestClass2
-{
-    public function asArray()
-    {
-        return ['foo' => 'bar',];
-    }
-}
-
-class TestClass3
-{
-    public function toJson()
-    {
-        return '{"foo":"bar"}';
-    }
-}
-class TestClass4
-{
-    public function asJson()
-    {
-        return '{"foo":"bar"}';
-    }
-}
+use Somnambulist\Tests\Collection\Fixtures\TestClass1;
+use Somnambulist\Tests\Collection\Fixtures\TestClass3;
+use Somnambulist\Tests\Collection\Fixtures\TestClass4;
 
 /**
  * Class CollectionTest
@@ -61,330 +34,31 @@ class TestClass4
 class CollectionTest extends TestCase
 {
 
-    public function testCollect()
-    {
-        $col = Collection::collect(['foo' => 'bar']);
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testConstructor()
+    /**
+     * @group collection
+     */
+    public function testAdd()
     {
         $col = new Collection();
+        $col->add('value')->add('value2');
 
-        $this->assertInstanceOf(Collection::class, $col);
-        $this->assertEmpty($col);
+        $this->assertCount(2, $col);
     }
 
-    public function testConstructorWithArray()
-    {
-        $col = new Collection(['foo' => 'bar']);
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testConstructorWithNull()
-    {
-        $col = new Collection(null);
-
-        $this->assertCount(0, $col);
-    }
-
-    public function testConstructorWithCollection()
-    {
-        $col = new Collection(['foo' => 'bar']);
-        $col2 = new Collection($col);
-
-        $this->assertCount(1, $col2);
-    }
-
-    public function testConstructorWithStdClass()
-    {
-        $col = new \stdClass;
-        $col->foo = 'bar';
-        $col2 = new Collection($col);
-
-        $this->assertCount(1, $col2);
-    }
-
-    public function testConstructorWithIterator()
-    {
-        $col = new \ArrayIterator(['foo' => 'bar']);
-        $col2 = new Collection($col);
-
-        $this->assertCount(1, $col2);
-    }
-
-    public function testConstructorWithArrayObject()
-    {
-        $col = new \ArrayObject(['foo' => 'bar']);
-        $col2 = new Collection($col);
-
-        $this->assertCount(1, $col2);
-    }
-
-    public function testConstructorWithScalar()
-    {
-        $col = new Collection('bar');
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testConstructorWithObjectToArray()
-    {
-        $col = new Collection(new TestClass1());
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testConstructorWithObjectAsArray()
-    {
-        $col = new Collection(new TestClass2());
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testConstructorWithObjectToJson()
-    {
-        $col = new Collection(new TestClass3());
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testConstructorWithObjectAsJson()
-    {
-        $col = new Collection(new TestClass4());
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testConstructorWithNestedObjects()
-    {
-        $obj  = new \stdClass();
-        $obj2 = new \stdClass();
-        $obj3 = new \stdClass();
-        $obj2->bar = 'baz';
-        $obj2->bar = $obj3;
-
-        $obj->foo = $obj2;
-
-        $col = new Collection($obj);
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testCanRestoreState()
-    {
-        $col  = new Collection(new TestClass4());
-        $test = var_export($col, true);
-
-        eval('$col2 = ' . $test . ';');
-
-        $this->assertInstanceOf(Collection::class, $col2);
-        $this->assertCount(1, $col2);
-    }
-
-    public function testFreezeReturnsImmutable()
+    /**
+     * @group collection
+     */
+    public function testAddDoesNotDuplicateValues()
     {
         $col = new Collection();
-
-        $this->assertInstanceOf(Immutable::class, $col->freeze());
-    }
-
-    public function testReset()
-    {
-        $col = new Collection(new TestClass4());
+        $col->add('value')->add('value')->add('value');
 
         $this->assertCount(1, $col);
-        $col->reset();
-        $this->assertCount(0, $col);
     }
 
-    public function testMagicIsset()
-    {
-        $col = new Collection(new TestClass4());
-
-        $this->assertTrue(isset($col->foo));
-        $this->assertFalse(isset($col->bar));
-    }
-
-    public function testMagicSetGet()
-    {
-        $col = new Collection();
-        $col->foo = 'bar';
-
-        $this->assertEquals('bar', $col->foo);
-    }
-
-    public function testMagicUnset()
-    {
-        $col = new Collection();
-        $col->foo = 'bar';
-
-        $this->assertEquals('bar', $col->foo);
-        unset($col->foo);
-        $this->assertObjectNotHasAttribute('foo', $col);
-    }
-
-    public function testToArray()
-    {
-        $col = new Collection(new TestClass4());
-        $arr = $col->toArray();
-
-        $this->assertInternalType('array', $arr);
-        $this->assertEquals(['foo' => 'bar'], $arr);
-    }
-
-    public function testToArrayOfCollections()
-    {
-        $col = new Collection([
-            'foo' => new Collection([1, 2, 3, 4]),
-            'bar' => new Collection([1, 2, 3, 4]),
-        ]);
-        $arr = $col->toArray();
-
-        $this->assertInternalType('array', $arr);
-        $this->assertEquals(['foo' => [1, 2, 3, 4], 'bar' => [1, 2, 3, 4]], $arr);
-    }
-
-    public function testToJson()
-    {
-        $col = new Collection(new TestClass4());
-        $arr = $col->toJson();
-
-        $this->assertInternalType('string', $arr);
-        $this->assertEquals('{"foo":"bar"}', $arr);
-    }
-
-    public function testToJsonOfCollections()
-    {
-        $col = new Collection([
-            'foo' => new Collection([1, 2, 3, 4]),
-            'bar' => new Collection([1, 2, 3, 4]),
-        ]);
-        $arr = $col->toJson();
-
-        $this->assertInternalType('string', $arr);
-        $this->assertEquals('{"foo":[1,2,3,4],"bar":[1,2,3,4]}', $arr);
-    }
-
-    public function testCount()
-    {
-        $col = new Collection(new TestClass4());
-        $col->bar = 'too';
-
-        $this->assertCount(2, $col);
-        $this->assertEquals(2, $col->count());
-    }
-
-    public function testOffsetExists()
-    {
-        $col = new Collection(new TestClass4());
-        $col->bar = 'too';
-
-        $this->assertTrue(isset($col['bar']));
-        $this->assertFalse(isset($col['dog']));
-    }
-
-    public function testOffsetGetSet()
-    {
-        $col = new Collection(new TestClass4());
-        $col['bar'] = 'too';
-
-        $this->assertEquals('too', $col['bar']);
-    }
-
-    public function testOffsetGetArrayWillReturnCOllection()
-    {
-        $col = new Collection(['bar' => ['foo' => 'bar', 'baz' => 'lurman']]);
-
-        $bar = $col['bar'];
-
-        $this->assertInstanceOf(Collection::class, $bar);
-        $this->assertCount(2, $bar);
-    }
-
-    public function testOffsetUnset()
-    {
-        $col = new Collection(new TestClass4());
-        $col['bar'] = 'too';
-        unset($col['bar']);
-
-        $this->assertObjectNotHasAttribute('bar', $col);
-    }
-
-    public function testIterator()
-    {
-        $col = new Collection(new TestClass4());
-        $col['bar'] = 'too';
-
-        foreach ($col as $key => $value) {
-
-        }
-
-        $this->assertTrue(true);
-    }
-
-    public function testGetIterator()
-    {
-        $col = new Collection(new TestClass4());
-        $col['bar'] = 'too';
-
-        $this->assertInstanceOf(\ArrayIterator::class, $col->getIterator());
-    }
-
-    public function testSerialize()
-    {
-        $col = new Collection(new TestClass4());
-        $col['bar'] = 'too';
-
-        $tmp = serialize($col);
-        $col = unserialize($tmp);
-
-        $this->assertInstanceOf(Collection::class, $col);
-        $this->assertCount(2, $col);
-    }
-
-    public function testAppend()
-    {
-        $col = new Collection(new TestClass4());
-        $col2 = ['bar' => 'too'];
-
-        $this->assertCount(1, $col);
-        $col->append($col2);
-        $this->assertCount(2, $col);
-    }
-
-    public function testAppendCollection()
-    {
-        $col = new Collection(new TestClass4());
-        $col2 = new Collection(['bar' => 'too']);
-
-        $this->assertCount(1, $col);
-        $col->append($col2);
-        $this->assertCount(2, $col);
-    }
-
-    public function testAppendArrayObject()
-    {
-        $col = new Collection(new TestClass4());
-        $col2 = new \ArrayObject(['bar' => 'too']);
-
-        $this->assertCount(1, $col);
-        $col->append($col2);
-        $this->assertCount(2, $col);
-    }
-
-    public function testAppendNonArray()
-    {
-        $col = new Collection(new TestClass4());
-        $col2 = 'bar';
-
-        $this->assertCount(1, $col);
-        $col->append($col2);
-        $this->assertCount(2, $col);
-    }
-
+    /**
+     * @group collection
+     */
     public function testAssert()
     {
         $col = new Collection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
@@ -398,6 +72,9 @@ class CollectionTest extends TestCase
         }));
     }
 
+    /**
+     * @group collection
+     */
     public function testCallAndCollect()
     {
         $col = new Collection([
@@ -405,6 +82,7 @@ class CollectionTest extends TestCase
         ]);
 
         $ret = $col->call(function ($v, $k) {
+            /** @var TestClass3 $v */
             return $v->toJson();
         });
 
@@ -416,21 +94,76 @@ class CollectionTest extends TestCase
         $this->assertEquals($expected, $ret);
     }
 
-    public function testCallMethodDirectly()
+    /**
+     * @group collection
+     */
+    public function testContains()
     {
-        $mock1 = $this->createMock(TestClass4::class);
-        $mock1
-            ->expects($this->once())
-            ->method('asJson')
-        ;
-
         $col = new Collection([
-            'bar' => $mock1,
+            'test-1' => 'test',
+            'test-2' => null,
+            'test-abc' => false,
+            'test-abe' => 'test',
         ]);
 
-        $col->asJson();
+        $this->assertTrue($col->contains('test'));
+        $this->assertFalse($col->contains(1234));
     }
 
+    /**
+     * @group collection
+     */
+    public function testDiff()
+    {
+        $col1 = Collection::collect(["a" => "green", "red", "blue", "red"]);
+        $col2 = Collection::collect(["b" => "green", "yellow", "red"]);
+
+        $diff = $col1->diff($col2);
+
+        $this->assertCount(1, $diff);
+        $this->assertContains('blue', $diff);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testDiffKeys()
+    {
+        $col1 = Collection::collect(['blue' => 1, 'red' => 2, 'green' => 3, 'purple' => 4]);
+        $col2 = Collection::collect(['green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan' => 8]);
+
+        $diff = $col1->diffKeys($col2);
+
+        $this->assertCount(2, $diff);
+        $this->assertArrayHasKey('red', $diff);
+        $this->assertArrayHasKey('purple', $diff);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testEach()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+        $result = [];
+
+        $col->each(function ($item, $key) use (&$result) {
+            if ($item < 3) {
+                $result[$key] = $item;
+            }
+        });
+
+        $this->assertCount(2, $result);
+        $this->assertEquals(['foo' => 1, 'baz' => 2], $result);
+    }
+
+    /**
+     * @group collection
+     */
     public function testExcept()
     {
         $col = new Collection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
@@ -443,15 +176,34 @@ class CollectionTest extends TestCase
         $this->assertArrayHasKey('bob', $col2);
     }
 
-    public function testFind()
+    /**
+     * @group collection
+     */
+    public function testFill()
     {
-        $col        = new Collection(new TestClass4());
-        $col['bar'] = 'too';
+        $col = Collection::collect([])->fill(0, 10, 'var');
 
-        $this->assertNotFalse($col->find('bar'));
-        $this->assertFalse($col->find('baz'));
+        $this->assertCount(10, $col);
+        $this->assertContains('var', $col);
     }
 
+    /**
+     * @group collection
+     */
+    public function testFillKeysWith()
+    {
+        $col = Collection::collect(['foo', 'bar', 'baz'])->fillKeysWith('test');
+
+        $this->assertCount(3, $col);
+        $this->assertArrayHasKey('foo', $col);
+        $this->assertArrayHasKey('bar', $col);
+        $this->assertArrayHasKey('baz', $col);
+        $this->assertEquals('test', $col['bar']);
+    }
+
+    /**
+     * @group collection
+     */
     public function testFlatten()
     {
         $obj      = new \stdClass();
@@ -467,27 +219,28 @@ class CollectionTest extends TestCase
         $this->assertEquals(['foo' => 'bar', 'bar' => 'baz', 'you' => 'me'], $tmp->toArray());
     }
 
-    public function testKeys()
+    /**
+     * @group collection
+     */
+    public function testFilter()
     {
         $col = new Collection([
-            'bar' => 'baz',
-            'baz' => 'foo',
-            'foobar' => 'baz',
+            'foo' => 'bar',
+            'baz' => 'bar',
+            'bob' => 'baz',
         ]);
 
-        $this->assertEquals(['bar', 'baz', 'foobar'], $col->keys()->toArray());
+        $ret = $col->filter(function ($var) {
+            return $var == 'baz';
+        });
+
+        $this->assertCount(1, $ret);
+        $this->assertEquals('bob', $ret->keys()[0]);
     }
 
-    public function testKeysStrict()
-    {
-        $col = new Collection([
-            '123' => 'foo',
-            'foobar' => 'baz',
-        ]);
-
-        $this->assertEmpty($col->keys(123, true)->toArray());
-    }
-
+    /**
+     * @group collection
+     */
     public function testFlip()
     {
         $col = new Collection([
@@ -497,388 +250,19 @@ class CollectionTest extends TestCase
         $this->assertEquals(['foo' => 0, 'bar' => 1, 'baz' => 2], $col->flip()->toArray());
     }
 
-    public function testValues()
-    {
-        $col = new Collection([
-            'bar' => 'baz',
-            'baz' => 'foo',
-            'foobar' => 'baz',
-        ]);
-
-        $this->assertEquals(['baz', 'foo', 'baz'], $col->values()->toArray());
-    }
-
-    public function testUnique()
-    {
-        $col = new Collection([
-            'bar' => 'baz',
-            'baz' => 'foo',
-            'foobar' => 'baz',
-        ]);
-
-        $this->assertEquals(['bar' => 'baz', 'baz' => 'foo'], $col->unique()->toArray());
-    }
-
-    public function testKeysSearch()
-    {
-        $col = new Collection([
-            'bar' => 'baz',
-            'baz' => 'foo',
-            'foobar' => 'baz',
-        ]);
-
-        $this->assertEquals(['baz'], $col->keys('foo')->toArray());
-        $this->assertEquals(['bar', 'foobar'], $col->keys('baz')->toArray());
-    }
-
-    public function testReverse()
-    {
-        $col = new Collection([
-            'bar' => 'baz',
-            'baz' => 'foo',
-            'foobar' => 'baz',
-        ]);
-
-        $this->assertEquals(['foobar' => 'baz', 'baz' => 'foo', 'bar' => 'baz'], $col->reverse()->toArray());
-    }
-
-    public function testPad()
+    /**
+     * @group collection
+     */
+    public function testFreezeReturnsImmutable()
     {
         $col = new Collection();
-        $col->pad(10, 'a');
 
-        $this->assertCount(10, $col);
+        $this->assertInstanceOf(Immutable::class, $col->freeze());
     }
 
-    public function testMatch()
-    {
-        $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => 'test',
-            'test-abc' => 'test',
-            'test-abe' => 'test',
-            'test-abf' => 'test',
-            'test-3' => 'test',
-            'test-4' => 'test',
-            'test-10' => 'test',
-            'test-zad' => 'test',
-        ]);
-
-        $this->assertCount(9, $col);
-
-        $tmp = $col->match('/^test-\d+/')->toArray();
-
-        $this->assertCount(5, $tmp);
-    }
-
-    public function testMax()
-    {
-        $col = new Collection([
-            6, 9, 1, 4, 32, 8,
-        ]);
-
-        $this->assertEquals(32, $col->max());
-    }
-
-    public function testMaxCanUseKey()
-    {
-        $col = new Collection([
-            ['key' => 45,],
-            ['key' => 3,],
-            ['key' => 2,],
-            ['key' => 56,],
-            ['key' => 8,],
-        ]);
-
-        $this->assertEquals(56, $col->max('key'));
-    }
-
-    public function testMaxCanWorkWithSimpleArrays()
-    {
-        $col = new Collection([
-            ['key' => 45,],
-            ['key' => 3,],
-            ['key' => 2,],
-            ['key' => 56,],
-            ['key' => 8,],
-        ]);
-
-        $this->assertEquals(['key' => 56], $col->max());
-    }
-
-    public function testMerge()
-    {
-        $col = new Collection([
-            'foo' => 'bar'
-        ]);
-
-        $col->merge(['foo' => 'baz']);
-
-        $this->assertEquals(['foo' => 'baz'], $col->toArray());
-    }
-
-    public function testMergeCollections()
-    {
-        $col = new Collection([
-            'foo' => 'bar'
-        ]);
-
-        $col->merge(new Collection(['foo' => 'baz']));
-
-        $this->assertEquals(['foo' => 'baz'], $col->toArray());
-    }
-
-    public function testMergeArrayObjects()
-    {
-        $col = new Collection([
-            'foo' => 'bar'
-        ]);
-
-        $col->merge(new \ArrayObject(['foo' => 'baz']));
-
-        $this->assertEquals(['foo' => 'baz'], $col->toArray());
-    }
-
-    public function testMergeNonArraysAreCastToArrays()
-    {
-        $col = new Collection([
-            'foo' => 'bar'
-        ]);
-
-        $col->merge('foo');
-
-        $this->assertEquals(['foo' => 'bar', 'foo'], $col->toArray());
-    }
-
-    public function testMin()
-    {
-        $col = new Collection([
-            6, 9, 1, 4, 32, 8,
-        ]);
-
-        $this->assertEquals(1, $col->min());
-    }
-
-    public function testMinCanUseKey()
-    {
-        $col = new Collection([
-            ['key' => 45,],
-            ['key' => 3,],
-            ['key' => 2,],
-            ['key' => 56,],
-            ['key' => 8,],
-        ]);
-
-        $this->assertEquals(2, $col->min('key'));
-    }
-
-    public function testMinCanWorkWithSimpleArrays()
-    {
-        $col = new Collection([
-            ['key' => 45,],
-            ['key' => 3,],
-            ['key' => 2,],
-            ['key' => 56,],
-            ['key' => 8,],
-        ]);
-
-        $this->assertEquals(['key' => 2], $col->min());
-    }
-
-    public function testSortByKey()
-    {
-        $col = new Collection([
-            'ztest' => 'test',
-            'atest' => 'test',
-            'gtest' => 'test',
-            'etest' => 'test',
-            'utest' => 'test',
-            'btest' => 'test',
-        ]);
-
-        $col->sortByKey();
-
-        $this->assertEquals(['atest', 'btest', 'etest', 'gtest', 'utest', 'ztest'], $col->keys()->toArray());
-    }
-
-    public function testSortByKeyReversed()
-    {
-        $col = new Collection([
-            'ztest' => 'test',
-            'atest' => 'test',
-            'gtest' => 'test',
-            'etest' => 'test',
-            'utest' => 'test',
-            'btest' => 'test',
-        ]);
-
-        $col->sortByKeyReversed();
-
-        $this->assertEquals(['ztest', 'utest', 'gtest', 'etest', 'btest', 'atest'], $col->keys()->toArray());
-    }
-
-    public function testSortByValue()
-    {
-        $col = new Collection([
-            'ztest' => 'test',
-            'atest' => 'testa',
-            'gtest' => 'tests',
-            'etest' => 'testd',
-            'utest' => 'teste',
-            'btest' => 'testp',
-        ]);
-
-        $col->sortByValue();
-
-        $expected = [
-            'ztest' => 'test',
-            'atest' => 'testa',
-            'etest' => 'testd',
-            'utest' => 'teste',
-            'btest' => 'testp',
-            'gtest' => 'tests',
-        ];
-
-        $this->assertEquals($expected, $col->toArray());
-    }
-
-    public function testSortByValueReversed()
-    {
-        $col = new Collection([
-            'ztest' => 'test',
-            'atest' => 'testa',
-            'gtest' => 'tests',
-            'etest' => 'testd',
-            'utest' => 'teste',
-            'btest' => 'testp',
-        ]);
-
-        $col->sortByValueReversed();
-
-        $expected = [
-            'gtest' => 'tests',
-            'btest' => 'testp',
-            'utest' => 'teste',
-            'etest' => 'testd',
-            'atest' => 'testa',
-            'ztest' => 'test',
-        ];
-
-        $this->assertEquals($expected, $col->toArray());
-    }
-
-    public function testSortUsing()
-    {
-        $col = new Collection([
-            'ztest' => 'test',
-            'atest' => 'testa',
-            'gtest' => 'tests',
-            'etest' => 'testd',
-            'utest' => 'teste',
-            'btest' => 'testp',
-        ]);
-
-        $col->sortUsing(function ($a, $b) {
-            return strcmp($a, $b);
-        });
-
-        $expected = [
-            'test',
-            'testa',
-            'testd',
-            'teste',
-            'testp',
-            'tests',
-        ];
-
-        $this->assertEquals($expected, $col->toArray());
-    }
-
-    public function testSortKeepingKeysUsing()
-    {
-        $col = new Collection([
-            'ztest' => 'test',
-            'atest' => 'testa',
-            'gtest' => 'tests',
-            'etest' => 'testd',
-            'utest' => 'teste',
-            'btest' => 'testp',
-        ]);
-
-        $col->sortKeepingKeysUsing(function ($a, $b) {
-            return strcmp($a, $b);
-        });
-
-        $expected = [
-            'ztest' => 'test',
-            'atest' => 'testa',
-            'etest' => 'testd',
-            'utest' => 'teste',
-            'btest' => 'testp',
-            'gtest' => 'tests',
-        ];
-
-        $this->assertEquals($expected, $col->toArray());
-    }
-
-    public function testAll()
-    {
-        $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => 'test',
-            'test-abc' => 'test',
-            'test-abe' => 'test',
-            'test-abf' => 'test',
-            'test-3' => 'test',
-            'test-4' => 'test',
-            'test-10' => 'test',
-            'test-zad' => 'test',
-        ]);
-
-        $this->assertInternalType('array', $col->all());
-    }
-
-    public function testGet()
-    {
-        $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => 'test',
-            'test-abc' => 'test',
-            'test-abe' => 'test',
-        ]);
-
-        $this->assertEquals('test', $col->get('test-abe'));
-        $this->assertNull($col->get('abe'));
-    }
-
-    public function testValue()
-    {
-        $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => 'test',
-            'test-abc' => '',
-            'test-abe' => null,
-        ]);
-
-        $this->assertEquals('test', $col->value('test-1', 'bob'));
-        $this->assertEquals('bob', $col->value('test-abc', 'bob'));
-        $this->assertEquals('value was null', $col->value('test-abe', function ($value) {
-            return is_null($value) ? 'value was null' : 'not null';
-        }));
-    }
-
-    public function testGetWithDefaultClosure()
-    {
-        $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => 'test',
-            'test-abc' => 'test',
-            'test-abe' => 'test',
-        ]);
-
-        $this->assertEquals('not-here', $col->get('abe', function () { return 'not-here'; }));
-    }
-
+    /**
+     * @group collection
+     */
     public function testHas()
     {
         $col = new Collection([
@@ -892,6 +276,9 @@ class CollectionTest extends TestCase
         $this->assertFalse($col->has('abe'));
     }
 
+    /**
+     * @group collection
+     */
     public function testHasValueFor()
     {
         $col = new Collection([
@@ -906,105 +293,36 @@ class CollectionTest extends TestCase
         $this->assertFalse($col->hasValueFor('test-abc'));
     }
 
-    public function testContains()
+    /**
+     * @group collection
+     */
+    public function testKeys()
     {
         $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => null,
-            'test-abc' => false,
-            'test-abe' => 'test',
+            'bar' => 'baz',
+            'baz' => 'foo',
+            'foobar' => 'baz',
         ]);
 
-        $this->assertTrue($col->contains('test'));
-        $this->assertFalse($col->contains(1234));
+        $this->assertEquals(['bar', 'baz', 'foobar'], $col->keys()->toArray());
     }
 
-    public function testAdd()
-    {
-        $col = new Collection();
-        $col->add('value')->add('value2');
-
-        $this->assertCount(2, $col);
-    }
-
-    public function testAddDoesNotDuplicateValues()
-    {
-        $col = new Collection();
-        $col->add('value')->add('value')->add('value');
-
-        $this->assertCount(1, $col);
-    }
-
-    public function testSet()
-    {
-        $col = new Collection();
-        $col->set('key', 'value');
-
-        $this->assertTrue($col->has('key'));
-        $this->assertEquals('value', $col->get('key'));
-    }
-
-    public function testSetWithArrayReplacesItems()
-    {
-        $col = new Collection();
-        $col->set('key', 'value');
-
-        $this->assertTrue($col->has('key'));
-
-        $col->set(['foo' => 'bar', 'bar' => 'baz']);
-
-        $this->assertCount(2, $col);
-        $this->assertArrayNotHasKey('key', $col);
-    }
-
-    public function testRemove()
-    {
-        $col = new Collection();
-        $col->set('key', 'value');
-
-        $this->assertTrue($col->has('key'));
-
-        $col->remove('key');
-
-        $this->assertCount(0, $col);
-    }
-
-    public function testRemoveElement()
-    {
-        $col = new Collection();
-        $col->set('key', 'value');
-
-        $this->assertTrue($col->has('key'));
-
-        $col->removeElement('value');
-
-        $this->assertCount(0, $col);
-    }
-
-    public function testFirst()
+    /**
+     * @group collection
+     */
+    public function testKeysStrict()
     {
         $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => null,
-            'test-abc' => false,
-            'test-abe' => 'test',
+            '123' => 'foo',
+            'foobar' => 'baz',
         ]);
 
-        $this->assertEquals('test', $col->first());
+        $this->assertEmpty($col->keys(123, true)->toArray());
     }
 
-    public function testLast()
-    {
-        $col = new Collection([
-            'test-1' => 'test',
-            'test-2' => null,
-            'test-abc' => false,
-            'test-abe' => 'test-abc',
-        ]);
-
-        $this->assertEquals('test-abc', $col->last());
-    }
-
+    /**
+     * @group collection
+     */
     public function testImplode()
     {
         $col = new Collection([
@@ -1017,6 +335,9 @@ class CollectionTest extends TestCase
         $this->assertEquals('test|||test-abc', $col->implode('|'));
     }
 
+    /**
+     * @group collection
+     */
     public function testImplodeKeys()
     {
         $col = new Collection([
@@ -1029,6 +350,25 @@ class CollectionTest extends TestCase
         $this->assertEquals('test-1|test-2|test-abc|test-abe', $col->implodeKeys('|'));
     }
 
+    /**
+     * @group collection
+     */
+    public function testIntersect()
+    {
+        $col = Collection::collect(['foo', '  bar', '  baz  ']);
+
+        $this->assertCount(3, $col);
+
+        $col = $col->trim();
+
+        $this->assertContains('foo', $col);
+        $this->assertContains('bar', $col);
+        $this->assertContains('baz', $col);
+    }
+
+    /**
+     * @group collection
+     */
     public function testInvoke()
     {
         $col = new Collection([
@@ -1046,10 +386,14 @@ class CollectionTest extends TestCase
         $ret = $col->invoke('set', ['foo', 'baz']);
 
         foreach ($ret as $col) {
+            /** @var Collection $col */
             $this->assertEquals('baz', $col->get('foo'));
         }
     }
 
+    /**
+     * @group collection
+     */
     public function testInvokeWithSingleArg()
     {
         $col = new Collection([
@@ -1071,22 +415,9 @@ class CollectionTest extends TestCase
         }
     }
 
-    public function testFilter()
-    {
-        $col = new Collection([
-            'foo' => 'bar',
-            'baz' => 'bar',
-            'bob' => 'baz',
-        ]);
-
-        $ret = $col->filter(function ($var) {
-            return $var == 'baz';
-        });
-
-        $this->assertCount(1, $ret);
-        $this->assertEquals('bob', $ret->keys()[0]);
-    }
-
+    /**
+     * @group collection
+     */
     public function testMap()
     {
         $col = new Collection([
@@ -1105,243 +436,9 @@ class CollectionTest extends TestCase
         }
     }
 
-    public function testReduce()
-    {
-        $col = new Collection([
-            'foo' => 1,
-            'baz' => 2,
-            'bob' => 3,
-        ]);
-        $initial = 0;
-
-        $ret = $col->reduce(function ($carry, $var) {
-            return $carry + ($var * $var);
-        }, $initial);
-
-        $this->assertNotNull($ret);
-        $this->assertEquals(14, $ret);
-    }
-
-    public function testWalk()
-    {
-        $col = new Collection([
-            'foo' => 1,
-            'baz' => 2,
-            'bob' => 3,
-        ]);
-
-        $ret = $col->walk(function (&$item, $key, $prefix) {
-            $item = $prefix . $item;
-        }, 'foo bars: ');
-
-        $this->assertCount(3, $ret);
-        foreach ($ret as $key => $value) {
-            $this->assertContains('foo bars: ', $value);
-        }
-    }
-
-    public function testEach()
-    {
-        $col = new Collection([
-            'foo' => 1,
-            'baz' => 2,
-            'bob' => 3,
-        ]);
-        $result = [];
-
-        $col->each(function ($item, $key) use (&$result) {
-            if ($item < 3) {
-                $result[$key] = $item;
-            }
-        });
-
-        $this->assertCount(2, $result);
-        $this->assertEquals(['foo' => 1, 'baz' => 2], $result);
-    }
-
-    public function testSlice()
-    {
-        $col = new Collection([
-            'foo' => 1,
-            'baz' => 2,
-            'bob' => 3,
-        ]);
-
-        $ret = $col->slice(2);
-
-        $this->assertEquals(['bob' => 3], $ret->toArray());
-    }
-
-    public function testPop()
-    {
-        $col = new Collection([
-            'foo' => 1,
-            'baz' => 2,
-            'bob' => 3,
-        ]);
-
-        $ret = $col->pop();
-
-        $this->assertEquals(3, $ret);
-        $this->assertCount(2, $col);
-    }
-
-    public function testShift()
-    {
-        $col = new Collection([
-            'foo' => 1,
-            'baz' => 2,
-            'bob' => 3,
-        ]);
-
-        $ret = $col->shift();
-
-        $this->assertEquals(1, $ret);
-        $this->assertCount(2, $col);
-    }
-
-    public function testShuffle()
-    {
-        $col = new Collection([
-            'foo' => 1,
-            'baz' => 2,
-            'bob' => 3,
-        ]);
-
-        $ret = $col->shuffle();
-
-        $this->assertInstanceOf(Collection::class, $ret);
-    }
-
-    public function testSum()
-    {
-        $col = new Collection([1, 2, 3, 4, 5]);
-
-        $this->assertEquals(15, $col->sum());
-    }
-
-    public function testSumByKey()
-    {
-        $col = new Collection([['val' => 1], ['bar' => 2], ['bar' => 3], ['bar' => 4], ['val' => 5]]);
-
-        $this->assertEquals(6, $col->sum('val'));
-    }
-
-    public function testSumByCallable()
-    {
-        $col = new Collection([['val' => 1], ['bar' => 2], ['bar' => 3], ['bar' => 4], ['val' => 5]]);
-
-        $this->assertEquals(18, $col->sum(function ($item) {
-            return isset($item['bar']) ? $item['bar'] * 2 : 0;
-        }));
-    }
-
-    public function testFill()
-    {
-        $col = Collection::collect([])->fill(0, 10, 'var');
-
-        $this->assertCount(10, $col);
-        $this->assertContains('var', $col);
-    }
-
-    public function testFillKeysWith()
-    {
-        $col = Collection::collect(['foo', 'bar', 'baz'])->fillKeysWith('test');
-
-        $this->assertCount(3, $col);
-        $this->assertArrayHasKey('foo', $col);
-        $this->assertArrayHasKey('bar', $col);
-        $this->assertArrayHasKey('baz', $col);
-        $this->assertEquals('test', $col['bar']);
-    }
-
-    public function testRemoveNulls()
-    {
-        $col = Collection::collect(['foo', 'bar', null, 'baz', null]);
-
-        $this->assertCount(5, $col);
-
-        $col = $col->removeNulls();
-
-        $this->assertCount(3, $col);
-    }
-
-    public function testTrim()
-    {
-        $col = Collection::collect(['foo  ', '  bar', '  baz  ']);
-
-        $this->assertCount(3, $col);
-
-        $col = $col->trim();
-
-        $this->assertContains('foo', $col);
-        $this->assertContains('bar', $col);
-        $this->assertContains('baz', $col);
-    }
-
-    public function testLower()
-    {
-        $col = Collection::collect(['FOO', 'FooBar', 'baz BaR']);
-
-        $this->assertCount(3, $col);
-
-        $col = $col->lower();
-
-        $this->assertContains('foo', $col);
-        $this->assertContains('foobar', $col);
-        $this->assertContains('baz bar', $col);
-    }
-
-    public function testUpper()
-    {
-        $col = Collection::collect(['FOO', 'FooBar', 'baz BaR']);
-
-        $this->assertCount(3, $col);
-
-        $col = $col->upper();
-
-        $this->assertContains('FOO', $col);
-        $this->assertContains('FOOBAR', $col);
-        $this->assertContains('BAZ BAR', $col);
-    }
-
-    public function testDiff()
-    {
-        $col1 = Collection::collect(["a" => "green", "red", "blue", "red"]);
-        $col2 = Collection::collect(["b" => "green", "yellow", "red"]);
-
-        $diff = $col1->diff($col2);
-
-        $this->assertCount(1, $diff);
-        $this->assertContains('blue', $diff);
-    }
-
-    public function testDiffKeys()
-    {
-        $col1 = Collection::collect(['blue' => 1, 'red' => 2, 'green' => 3, 'purple' => 4]);
-        $col2 = Collection::collect(['green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan' => 8]);
-
-        $diff = $col1->diffKeys($col2);
-
-        $this->assertCount(2, $diff);
-        $this->assertArrayHasKey('red', $diff);
-        $this->assertArrayHasKey('purple', $diff);
-    }
-
-    public function testIntersect()
-    {
-        $col = Collection::collect(['foo', '  bar', '  baz  ']);
-
-        $this->assertCount(3, $col);
-
-        $col = $col->trim();
-
-        $this->assertContains('foo', $col);
-        $this->assertContains('bar', $col);
-        $this->assertContains('baz', $col);
-    }
-
-
+    /**
+     * @group collection
+     */
     public function testOnly()
     {
         $col1 = Collection::collect([
@@ -1359,41 +456,228 @@ class CollectionTest extends TestCase
         $this->assertEquals(['red' => 2, 'green' => 3, 'blue' => 1], $diff->toArray());
     }
 
-    public function testPartition()
+    /**
+     * @group collection
+     */
+    public function testPad()
     {
-        $collection = new Collection(range(1, 10));
-        list($firstPartition, $secondPartition) = $collection->partition(function ($i) {
-            return $i <= 5;
-        });
-        $this->assertEquals([1, 2, 3, 4, 5], $firstPartition->values()->toArray());
-        $this->assertEquals([6, 7, 8, 9, 10], $secondPartition->values()->toArray());
+        $col = new Collection();
+        $col->pad(10, 'a');
+
+        $this->assertCount(10, $col);
     }
 
-    public function testPartitionByKey()
+    /**
+     * @group collection
+     */
+    public function testReduce()
     {
-        $courses = new Collection([
-            ['free' => true, 'title' => 'Basic'], ['free' => false, 'title' => 'Premium'],
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
         ]);
-        list($free, $premium) = $courses->partition('free');
-        $this->assertSame([['free' => true, 'title' => 'Basic']], $free->values()->toArray());
-        $this->assertSame([['free' => false, 'title' => 'Premium']], $premium->values()->toArray());
+        $initial = 0;
+
+        $ret = $col->reduce(function ($carry, $var) {
+            return $carry + ($var * $var);
+        }, $initial);
+
+        $this->assertNotNull($ret);
+        $this->assertEquals(14, $ret);
     }
 
-    public function testPartitionPreservesKeys()
+    /**
+     * @group collection
+     */
+    public function testRemove()
     {
-        $courses = new Collection([
-            'a' => ['free' => true], 'b' => ['free' => false], 'c' => ['free' => true],
+        $col = new Collection();
+        $col->set('key', 'value');
+
+        $this->assertTrue($col->has('key'));
+
+        $col->remove('key');
+
+        $this->assertCount(0, $col);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testRemoveElement()
+    {
+        $col = new Collection();
+        $col->set('key', 'value');
+
+        $this->assertTrue($col->has('key'));
+
+        $col->removeElement('value');
+
+        $this->assertCount(0, $col);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testRemoveNulls()
+    {
+        $col = Collection::collect(['foo', 'bar', null, 'baz', null]);
+
+        $this->assertCount(5, $col);
+
+        $col = $col->removeNulls();
+
+        $this->assertCount(3, $col);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testReset()
+    {
+        $col = new Collection(new TestClass4());
+
+        $this->assertCount(1, $col);
+        $col->reset();
+        $this->assertCount(0, $col);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testReverse()
+    {
+        $col = new Collection([
+            'bar' => 'baz',
+            'baz' => 'foo',
+            'foobar' => 'baz',
         ]);
-        list($free, $premium) = $courses->partition('free');
-        $this->assertSame(['a' => ['free' => true], 'c' => ['free' => true]], $free->toArray());
-        $this->assertSame(['b' => ['free' => false]], $premium->toArray());
+
+        $this->assertEquals(['foobar' => 'baz', 'baz' => 'foo', 'bar' => 'baz'], $col->reverse()->toArray());
     }
 
-    public function testPartitionEmptyCollection()
+    /**
+     * @group collection
+     */
+    public function testSerialize()
     {
-        $collection = new Collection();
-        $this->assertCount(2, $collection->partition(function () {
-            return true;
-        }));
+        $col = new Collection(new TestClass4());
+        $col['bar'] = 'too';
+
+        $tmp = serialize($col);
+        $col = unserialize($tmp);
+
+        $this->assertInstanceOf(Collection::class, $col);
+        $this->assertCount(2, $col);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testSet()
+    {
+        $col = new Collection();
+        $col->set('key', 'value');
+
+        $this->assertTrue($col->has('key'));
+        $this->assertEquals('value', $col->get('key'));
+    }
+
+    /**
+     * @group collection
+     */
+    public function testSetWithArrayReplacesItems()
+    {
+        $col = new Collection();
+        $col->set('key', 'value');
+
+        $this->assertTrue($col->has('key'));
+
+        $col->set(['foo' => 'bar', 'bar' => 'baz']);
+
+        $this->assertCount(2, $col);
+        $this->assertArrayNotHasKey('key', $col);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testShuffle()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->shuffle();
+
+        $this->assertInstanceOf(Collection::class, $ret);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testSlice()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->slice(2);
+
+        $this->assertEquals(['bob' => 3], $ret->toArray());
+    }
+
+    /**
+     * @group collection
+     */
+    public function testUnique()
+    {
+        $col = new Collection([
+            'bar' => 'baz',
+            'baz' => 'foo',
+            'foobar' => 'baz',
+        ]);
+
+        $this->assertEquals(['bar' => 'baz', 'baz' => 'foo'], $col->unique()->toArray());
+    }
+
+    /**
+     * @group collection
+     */
+    public function testValues()
+    {
+        $col = new Collection([
+            'bar' => 'baz',
+            'baz' => 'foo',
+            'foobar' => 'baz',
+        ]);
+
+        $this->assertEquals(['baz', 'foo', 'baz'], $col->values()->toArray());
+    }
+
+    /**
+     * @group collection
+     */
+    public function testWalk()
+    {
+        $col = new Collection([
+            'foo' => 1,
+            'baz' => 2,
+            'bob' => 3,
+        ]);
+
+        $ret = $col->walk(function (&$item, $key, $prefix) {
+            $item = $prefix . $item;
+        }, 'foo bars: ');
+
+        $this->assertCount(3, $ret);
+        foreach ($ret as $key => $value) {
+            $this->assertContains('foo bars: ', $value);
+        }
     }
 }

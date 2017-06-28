@@ -78,6 +78,7 @@ on create, but calls to add() or offsetSet() will ignore the value.
  * diffKeys() returns the keys not present in the past collection of items
  * each() applies the callback to all items in the set; if the callback fails stops iterating
  * except() filters out the specified keys, returning a new Collection
+ * extract() returns a Collection containing the values of the specified field, optionally indexed by another field
  * filter() filter the Collection by a callback
  * fill() create a Collection filled with a value
  * fillKeysWith() create a new Collection using the values as keys, and assign the passed var as the key value

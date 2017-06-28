@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+2017-06-28
+----------
+
+ * added extract()
+ * refactored unit tests to reduce the size off the main test file
+
+2017-06-27
+----------
+
+ * added shuffle() (thanks to @paulmaclean)
+
 2017-06-23
 ----------
 

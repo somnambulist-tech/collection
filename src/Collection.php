@@ -245,6 +245,28 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     }
 
     /**
+     * Extract the values for all items with an element named $element, optionally indexed by $withKey
+     *
+     * @param string      $element
+     * @param string|null $withKey
+     *
+     * @return static
+     */
+    public function extract($element, $withKey = null)
+    {
+        $valueExtractor = $this->valueAccessor($element);
+        $keyExtractor   = $this->valueAccessor($withKey, true);
+
+        $result = new static();
+        
+        foreach ($this as $value) {
+            $result->set($keyExtractor($value), $valueExtractor($value));
+        }
+
+        return $result;
+    }
+
+    /**
      * Filters the Collection through callback returning a new Collection
      *
      * @link http://ca.php.net/array_filter
@@ -1035,25 +1057,34 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * Based on Laravel: Illuminate\Support\Collection.valueRetriever
      *
      * @param string|callable $value
+     * @param bool            $returnNull If true, returns null instead of the item
      *
      * @return callable
      */
-    protected function valueAccessor($value)
+    protected function valueAccessor($value, $returnNull = false)
     {
         if ($this->isCallable($value)) {
             return $value;
         }
 
-        return function ($item) use ($value) {
+        return function ($item) use ($value, $returnNull) {
             if (is_null($value)) {
-                return $item;
+                return $returnNull ? null : $item;
             }
-
             if ($this->isTraversable($item)) {
                 return array_key_exists($value, $item) ? $item[$value] : null;
             }
+            if (is_object($item) && isset($item->{$value})) {
+                return $item->{$value};
+            }
+            if (is_object($item) && method_exists($item, $value)) {
+                return $item->{$value}();
+            }
+            if (is_object($item) && method_exists($item, 'get' . ucwords($value))) {
+                return $item->{'get' . ucwords($value)}();
+            }
 
-            return $item;
+            return $returnNull ? null : $item;
         };
     }
 

@@ -20,6 +20,7 @@ namespace Somnambulist\Tests\Collection;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\Immutable;
+use Somnambulist\Tests\Collection\Fixtures\TestClass4;
 
 /**
  * Class ImmutableTest
@@ -53,6 +54,7 @@ class ImmutableTest extends TestCase
         $col  = new Immutable(new TestClass4());
         $test = var_export($col, true);
 
+        /** @var Collection $col2 */
         eval('$col2 = ' . $test . ';');
 
         $this->assertInstanceOf(Immutable::class, $col2);

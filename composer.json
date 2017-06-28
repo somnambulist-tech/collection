@@ -17,7 +17,8 @@
         "php": ">=7"
     },
     "require-dev": {
-        "phpunit/phpunit": "~6.2"
+        "phpunit/phpunit": "~6.2",
+        "symfony/var-dumper": "3.3.*"
     },
     "autoload": {
         "psr-4": {
@@ -26,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Somnambulist\\Test\\Collection\\": "tests/"
+            "Somnambulist\\Tests\\Collection\\": "tests/"
         }
     },
     "config": {
