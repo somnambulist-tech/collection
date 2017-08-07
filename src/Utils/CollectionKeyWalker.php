@@ -66,9 +66,9 @@ class CollectionKeyWalker
                 $collection = $collection[$segment];
             } elseif (is_object($collection) && isset($collection->{$segment})) {
                 $collection = $collection->{$segment};
-            } elseif (is_object($collection) && method_exists($collection, $segment)) {
+            } elseif (is_object($collection) && !($collection instanceof Collection) && method_exists($collection, $segment)) {
                 $collection = $collection->{$segment}();
-            } elseif (is_object($collection) && method_exists($collection, 'get' . ucwords($segment))) {
+            } elseif (is_object($collection) && !($collection instanceof Collection) && method_exists($collection, 'get' . ucwords($segment))) {
                 $collection = $collection->{'get' . ucwords($segment)}();
             } else {
                 return Support::value($default);
