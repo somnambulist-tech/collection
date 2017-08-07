@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+2017-08-06
+----------
+
+ * added dot access via `get()` allowing Collections to be traversed using `key.*.value` syntax
+ * added support class for some common functions
+ * refactored `extract()` and `flatten()`
+ * replacing Collection contents via an array on `set()` is now deprecated
+ * docs update
+
 2017-06-28
 ----------
 

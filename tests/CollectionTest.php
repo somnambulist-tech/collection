@@ -586,6 +586,8 @@ class CollectionTest extends TestCase
 
     /**
      * @group collection
+     * @deprecated
+     * @expectedException \PHPUnit\Framework\Error\Deprecated
      */
     public function testSetWithArrayReplacesItems()
     {

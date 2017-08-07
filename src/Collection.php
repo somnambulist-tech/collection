@@ -19,6 +19,7 @@
 namespace Somnambulist\Collection;
 
 use Somnambulist\Collection\Traits;
+use Somnambulist\Collection\Utils\Support;
 
 /**
  * Class Collection
@@ -254,16 +255,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function extract($element, $withKey = null)
     {
-        $valueExtractor = $this->valueAccessor($element);
-        $keyExtractor   = $this->valueAccessor($withKey, true);
-
-        $result = new static();
-        
-        foreach ($this as $value) {
-            $result->set($keyExtractor($value), $valueExtractor($value));
-        }
-
-        return $result;
+        return new static(Utils\CollectionKeyWalker::extract($this, $element, $withKey));
     }
 
     /**
@@ -311,37 +303,13 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
 
         foreach ($this as $key => $value) {
             if (is_array($value) || $value instanceof Collection) {
-                $col->merge($this->_flatten($value));
+                $col->merge(Support::flatten($value));
             } else {
                 $col[$key] = $value;
             }
         }
 
         return $col;
-    }
-
-    /**
-     * Internal function that converts the passed value to an array
-     *
-     * @param array|Collection $var
-     *
-     * @return array
-     */
-    protected function _flatten($var)
-    {
-        $return = [];
-
-        foreach ($var as $key => $value) {
-            if (is_array($value)) {
-                $return = \array_merge($return, $this->_flatten($value));
-            } elseif ($value instanceof Collection) {
-                $return = \array_merge($return, $this->_flatten($value->all()));
-            } else {
-                $return[$key] = $value;
-            }
-        }
-
-        return $return;
     }
 
     /**
@@ -424,15 +392,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     public function get($key, $default = null)
     {
-        if ($this->has($key)) {
-            return $this->offsetGet($key);
-        } else {
-            if ($default instanceof \Closure) {
-                return $default();
-            }
-
-            return $default;
-        }
+        return Utils\CollectionKeyWalker::walk($this, $key, $default);
     }
 
     /**
@@ -858,6 +818,9 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * If item is an array and value is null, the Collection will be replaced with
      * the items.
      *
+     * Note: replacing the Collection contents is considered deprecated and will be removed
+     * in the next major version.
+     *
      * @param mixed $key
      * @param mixed $value
      *
@@ -867,6 +830,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     {
         if (\is_array($key) && $value === null) {
             $this->items = $key;
+            trigger_error('Replacing collection contents via set is deprecated', E_USER_DEPRECATED);
         } else {
             $this->offsetSet($key, $value);
         }
@@ -889,7 +853,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     /**
      * Shuffle the items in the collection.
      *
-     * http://php.net/manual/en/function.shuffle.php
+     * @link http://php.net/manual/en/function.shuffle.php
      *
      * @return static
      */
@@ -999,6 +963,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      * Returns the array values of the Collection as a new Collection
      *
      * @link http://ca.php.net/array_values
+     *
      * @return static
      */
     public function values()
@@ -1009,9 +974,10 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     /**
      * Creates a new Collection containing only unique values
      *
+     * @link http://ca.php.net/array_unique
+     *
      * @param null|integer $type Sort flags
      *
-     * @link http://ca.php.net/array_unique
      * @return static
      */
     public function unique($type = null)
@@ -1063,7 +1029,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     protected function valueAccessor($value, $returnNull = false)
     {
-        if ($this->isCallable($value)) {
+        if (Support::isCallable($value)) {
             return $value;
         }
 
@@ -1071,7 +1037,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
             if (is_null($value)) {
                 return $returnNull ? null : $item;
             }
-            if ($this->isTraversable($item)) {
+            if (Support::isTraversable($item)) {
                 return array_key_exists($value, $item) ? $item[$value] : null;
             }
             if (is_object($item) && isset($item->{$value})) {
@@ -1099,34 +1065,10 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
      */
     protected function valueExecutor($callable, $value, $key)
     {
-        if ($this->isCallable($callable)) {
+        if (Support::isCallable($callable)) {
             return $callable($value, $key);
         }
 
         return $callable;
-    }
-
-    /**
-     * Returns true if value is callable, but not a string callable
-     *
-     * Based on Laravel: Illuminate\Support\Collection.useAsCallable
-     *
-     * @param  mixed $value
-     *
-     * @return bool
-     */
-    protected function isCallable($value)
-    {
-        return !is_string($value) && is_callable($value);
-    }
-
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    protected function isTraversable($value)
-    {
-        return is_array($value) || $value instanceof \ArrayAccess;
     }
 }
