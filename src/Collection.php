@@ -241,7 +241,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $ignore = is_array($ignore) ? $ignore : func_get_args();
 
         return $this->filter(function ($key) use ($ignore) {
-            return !in_array($key, $ignore);
+            return !in_array($key, $ignore, true);
         }, ARRAY_FILTER_USE_KEY);
     }
 
@@ -660,7 +660,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         $keys = is_array($keys) ? $keys : func_get_args();
 
         return $this->filter(function ($key) use ($keys) {
-            return in_array($key, $keys);
+            return in_array($key, $keys, true);
         }, ARRAY_FILTER_USE_KEY);
     }
 
