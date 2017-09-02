@@ -26,15 +26,19 @@ contents if they are objects, but the number of items is fixed.
 
 Instantiate with an array or other collection of items:
 
-    $collection = Collection::collect($items);
-    $collection->map()->filter()...
-    
+```php
+$collection = Collection::collect($items);
+$collection->map()->filter()...
+```
+
 Freeze changes to a collection:
 
-    $locked = $collection->freeze()
-    
-    // raises exception
-    $locked->shift()
+```php
+$locked = $collection->freeze()
+
+// raises exception
+$locked->shift()
+```
 
 #### Dot Access
 
