@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+2018-05-01
+----------
+
+ * added `toQueryString()`
+ * added `removeEmpty()`
+ * added support for accessing dot key names directly in get() via `@` prefix
+ * removed composer.lock and added .gitattributes for cleaner exporting
+
 2017-08-06
 ----------
 

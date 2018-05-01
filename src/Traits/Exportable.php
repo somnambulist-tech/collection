@@ -52,6 +52,21 @@ trait Exportable
     }
 
     /**
+     * Returns a HTTP query string of the values
+     *
+     * Note: should only be used with elements that can be cast to scalars.
+     *
+     * @param string $separator
+     * @param int    $encoding
+     *
+     * @return string
+     */
+    public function toQueryString($separator = '&', $encoding = PHP_QUERY_RFC3986)
+    {
+        return http_build_query($this->toArray(), null, $separator, $encoding);
+    }
+
+    /**
      * Returns a JSON encoded string of all items in the Collection
      *
      * @return string

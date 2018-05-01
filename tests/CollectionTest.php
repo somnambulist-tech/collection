@@ -551,6 +551,20 @@ class CollectionTest extends TestCase
     /**
      * @group collection
      */
+    public function testRemoveEmpty()
+    {
+        $col = Collection::collect(['foo', 'bar', null, 'baz', '', false, 0]);
+
+        $this->assertCount(7, $col);
+
+        $col = $col->removeEmpty();
+
+        $this->assertCount(4, $col);
+    }
+
+    /**
+     * @group collection
+     */
     public function testRemoveNulls()
     {
         $col = Collection::collect(['foo', 'bar', null, 'baz', null]);

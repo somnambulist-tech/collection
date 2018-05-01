@@ -239,4 +239,31 @@ class CollectionKeyWalkerTest extends TestCase
             return 'example';
         }));
     }
+
+    /**
+     * @group walker
+     */
+    public function testCanAccessKeysViaDotAccessorWithAtSign()
+    {
+        $col = new Collection([
+            'key.value.id'          => 123456,
+            'key.value.description' => 'foobar',
+        ]);
+
+        $this->assertEquals(123456, $col->get('@key.value.id'));
+        $this->assertEquals('foobar', $col->get('@key.value.description'));
+        $this->assertEquals('foobar', $col['key.value.description']);
+    }
+
+    /**
+     * @group walker
+     */
+    public function testCanAccessKeysViaDotAccessorWithAtSignSupportsDefault()
+    {
+        $col = new Collection([
+            'key.value.description' => 'foobar',
+        ]);
+
+        $this->assertEquals('my-id-here', $col->get('@key.value.id', 'my-id-here'));
+    }
 }

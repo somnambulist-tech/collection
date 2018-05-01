@@ -45,6 +45,21 @@ class CollectionExportTest extends TestCase
     /**
      * @group export
      */
+    public function testToQueryString()
+    {
+        $col = new Collection([
+            'foo' => 'bar',
+            'bar' => ['baz1', 'baz2'],
+            'baz' => true,
+        ]);
+        $str = $col->toQueryString();
+
+        $this->assertEquals('foo=bar&bar%5B0%5D=baz1&bar%5B1%5D=baz2&baz=1', $str);
+    }
+
+    /**
+     * @group export
+     */
     public function testToJson()
     {
         $col = new Collection(new TestClass4());

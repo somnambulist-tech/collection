@@ -240,9 +240,9 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     {
         $ignore = is_array($ignore) ? $ignore : func_get_args();
 
-        return $this->filter(function ($key) use ($ignore) {
+        return $this->filter(function ($value, $key) use ($ignore) {
             return !in_array($key, $ignore, true);
-        }, ARRAY_FILTER_USE_KEY);
+        });
     }
 
     /**
@@ -261,16 +261,18 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     /**
      * Filters the Collection through callback returning a new Collection
      *
+     * Callback will receive both the value and the key as ARRAY_FILTER_USE_BOTH is passed
+     * to
+     *
      * @link http://ca.php.net/array_filter
      *
      * @param mixed $callback PHP callable, closure or function
-     * @param int   $flag     Flag to control values passed to callback function
      *
      * @return static
      */
-    public function filter($callback = null, $flag = 0)
+    public function filter($callback = null)
     {
-        return new static(\array_filter($this->items, $callback, $flag));
+        return new static(\array_filter($this->items, $callback, ARRAY_FILTER_USE_BOTH));
     }
 
     /**
@@ -659,9 +661,9 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
     {
         $keys = is_array($keys) ? $keys : func_get_args();
 
-        return $this->filter(function ($key) use ($keys) {
+        return $this->filter(function ($value, $key) use ($keys) {
             return in_array($key, $keys, true);
-        }, ARRAY_FILTER_USE_KEY);
+        });
     }
 
     /**
@@ -757,6 +759,20 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Seria
         }
 
         return $this;
+    }
+
+    /**
+     * Removes values that are matched as empty through an equivalence check
+     *
+     * @param array $empty Array of values considered to be "empty"
+     *
+     * @return Collection
+     */
+    public function removeEmpty(array $empty = [false, null, ''])
+    {
+        return $this->filter(function ($item) use ($empty) {
+            return !in_array($item, $empty, true);
+        });
     }
 
     /**

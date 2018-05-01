@@ -60,6 +60,11 @@ Key walking is implemented in a standalone class allowing it to be re-used in ot
 is based on Laravel's `data_get()` and `Arr::pluck()`, modified to support getter methods and default handling
 when extracting from objects.
 
+To access elements that use dot notation for keys, either:
+
+ * access the collection using array access notation e.g. `$col['the.key.name']`
+ * prefix the key with an `@` sign
+
 #### Other Usages
 
 The Collection can be serialized - provided the items within it support serializing.
@@ -103,7 +108,7 @@ on create, but calls to `add()` or `offsetSet()` will ignore the value.
  * `each()` applies the callback to all items in the set; if the callback fails stops iterating
  * `except()` filters out the specified keys, returning a new Collection
  * `extract()` returns a Collection containing the values of the specified field, optionally indexed by another field
- * `filter()` filter the Collection by a callback
+ * `filter()` filter the Collection by a callback, receives value and key
  * `fill()` create a Collection filled with a value
  * `fillKeysWith()` create a new Collection using the values as keys, and assign the passed var as the key value
  * `find()` synonym of search, find the key a value has
@@ -133,6 +138,8 @@ on create, but calls to `add()` or `offsetSet()` will ignore the value.
  * `reduce()` applies a callback to the Collection to produce a single value
  * `remove()` removes the key
  * `removeElement()` removes the value
+ * `removeEmpty()` remove the values considered to be "empty", default: false, null and empty string
+ * `removeNulls()` remove all actual null values (`is_null($value)` is true)
  * `reset()` clears all items from the Collection
  * `reverse()` reverses the data maintaining key association
  * `search()` finds the key for an item in the Collection
@@ -147,6 +154,7 @@ on create, but calls to `add()` or `offsetSet()` will ignore the value.
  * `sortUsing()` apply a callback to sort the Collection, creates new keys
  * `sum()` sum values in collection, optionally by key or callable
  * `toArray()` convert to an array, cascades through values casting sub-Collections to array
+ * `toQueryString()` convert to a HTTP query string, casts all elements to array first
  * `toJson()` convert to a JSON string, uses toArray() internally
  * `transform()` applies the callback to all items returning a new Collection with the same keys and the values from the callback
  * `trim()` remove whitespace surrounding all values

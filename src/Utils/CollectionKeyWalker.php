@@ -46,6 +46,13 @@ class CollectionKeyWalker
         if (is_null($key)) {
             return $collection;
         }
+        if (is_string($key) && mb_substr($key, 0, 1) == '@') {
+            if (Support::keyExists($collection, mb_substr($key, 1))) {
+                return $collection[mb_substr($key, 1)];
+            }
+
+            return Support::value($default);
+        }
 
         $key = is_array($key) ? $key : explode('.', $key);
 
