@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2018-06-14
+----------
+
+ * added `pipe()` allowing a Collection of items to be transformed by a Collection of operators
+
 2018-05-01
 ----------
 

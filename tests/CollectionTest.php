@@ -500,6 +500,88 @@ class CollectionTest extends TestCase
 
     /**
      * @group collection
+     * @group pipe
+     */
+    public function testPipeWithMethod()
+    {
+        $ud = new class {
+            public function decorate(Collection $object)
+            {
+                $object->get('context')->set('user', 'ROOT');
+
+                return $object;
+            }
+        };
+        $sd = new class {
+            public function decorate(Collection $object)
+            {
+                $object->get('context')->set('server', 'testing.example.example');
+
+                return $object;
+            }
+        };
+
+        $col = new Collection();
+        $col->add($ud)->add($sd);
+
+        $events = new Collection([
+            new Collection(['name' => 'event 1', 'payload' => [], 'context' => new Collection()]),
+            new Collection(['name' => 'event 2', 'payload' => [], 'context' => new Collection()]),
+        ]);
+
+        $decorated = $col->pipe($events, 'decorate');
+
+        foreach ($decorated as $event) {
+            $this->assertCount(2, $event->get('context'));
+            $this->assertEquals('ROOT', $event->get('context')->get('user'));
+            $this->assertEquals('testing.example.example', $event->get('context')->get('server'));
+        }
+    }
+
+    /**
+     * @group collection
+     * @group pipe
+     */
+    public function testPipeWithClosure()
+    {
+        $ud = new class {
+            public function decorate(Collection $object)
+            {
+                $object->get('context')->set('user', 'ROOT');
+
+                return $object;
+            }
+        };
+        $sd = new class {
+            public function decorate(Collection $object)
+            {
+                $object->get('context')->set('server', 'testing.example.example');
+
+                return $object;
+            }
+        };
+
+        $col = new Collection();
+        $col->add($ud)->add($sd);
+
+        $events = new Collection([
+            new Collection(['name' => 'event 1', 'payload' => [], 'context' => new Collection()]),
+            new Collection(['name' => 'event 2', 'payload' => [], 'context' => new Collection()]),
+        ]);
+
+        $decorated = $col->pipe($events, function ($operator, $item, $key) {
+            return $operator->decorate($item);
+        });
+
+        foreach ($decorated as $event) {
+            $this->assertCount(2, $event->get('context'));
+            $this->assertEquals('ROOT', $event->get('context')->get('user'));
+            $this->assertEquals('testing.example.example', $event->get('context')->get('server'));
+        }
+    }
+
+    /**
+     * @group collection
      */
     public function testReduce()
     {

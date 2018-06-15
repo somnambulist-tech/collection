@@ -134,6 +134,7 @@ on create, but calls to `add()` or `offsetSet()` will ignore the value.
  * `merge()` combine items into the current Collection, replaces existing keys items
  * `only()` returns only these keys in a new Collection
  * `pad()` pad the Collection to a size
+ * `pipe()` transform a Collection of items through a collection of Operators, similar to a pipeline
  * `pop()` removes an item from the end of the Collection
  * `reduce()` applies a callback to the Collection to produce a single value
  * `remove()` removes the key
