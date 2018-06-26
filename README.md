@@ -82,6 +82,9 @@ Nested arrays are automatically converted to new Collections when accessed.
 This Collection does not allow adding duplicate values in the Collection. They can be set
 on create, but calls to `add()` or `offsetSet()` will ignore the value.
 
+As of 2.2.0 an interface has been added `ExportableInterface` allowing `toArray` to cascade transform
+sub-objects contained within a Collection.
+
 ### Available Methods
 
 #### Factory Methods

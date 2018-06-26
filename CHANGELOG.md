@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+2018-06-26
+----------
+
+ * added `ExportableInterface` (thanks to @Garethp)
+ * possible bug: in Collection factory, Collection used toArray now uses all() to get contents
+
 2018-06-14
 ----------
 

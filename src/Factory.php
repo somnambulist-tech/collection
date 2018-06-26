@@ -46,6 +46,8 @@ final class Factory
         if (is_object($var)) {
             if ($var instanceof \stdClass) {
                 $var = (array)$var;
+            } elseif ($var instanceof Collection) {
+                $var = $var->all();
             } elseif ($var instanceof \Iterator) { // @codeCoverageIgnore
                 $var = iterator_to_array($var);
             } elseif ($var instanceof \ArrayObject) { // @codeCoverageIgnore
