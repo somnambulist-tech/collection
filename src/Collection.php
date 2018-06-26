@@ -19,6 +19,7 @@
 namespace Somnambulist\Collection;
 
 use function foo\func;
+use Somnambulist\Collection\Interfaces\ExportableInterface;
 use Somnambulist\Collection\Traits;
 use Somnambulist\Collection\Utils\Support;
 
@@ -29,7 +30,7 @@ use Somnambulist\Collection\Utils\Support;
  * @subpackage Somnambulist\Collection\Collection
  * @author     Dave Redfern
  */
-class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Serializable
+class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \Serializable, ExportableInterface
 {
 
     use Traits\ArrayAccess;

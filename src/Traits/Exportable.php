@@ -18,7 +18,7 @@
 
 namespace Somnambulist\Collection\Traits;
 
-use Somnambulist\Collection\Collection;
+use Somnambulist\Collection\Interfaces\ExportableInterface;
 
 /**
  * Class Exportable
@@ -41,7 +41,7 @@ trait Exportable
         $array = [];
 
         foreach ($this->items as $key => $value) {
-            if ($value instanceof Collection) {
+            if ($value instanceof ExportableInterface) {
                 $array[$key] = $value->toArray();
             } else {
                 $array[$key] = $value;
