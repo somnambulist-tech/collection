@@ -22,7 +22,7 @@ namespace Somnambulist\Collection\Traits;
  * Trait JsonSerializable
  *
  * @package    Somnambulist\Collection\Traits
- * @subpackage Somnambulist\Collection\Traits\Serializable
+ * @subpackage Somnambulist\Collection\Traits\JsonSerializable
  *
  * @property array $items
  */
