@@ -26,6 +26,7 @@ namespace Somnambulist\Collection\Interfaces;
  */
 interface ExportableInterface
 {
+
     /**
      * Return an associative array of the stored data.
      *

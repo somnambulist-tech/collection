@@ -16,18 +16,23 @@
  * and is licensed under the MIT license.
  */
 
-namespace Somnambulist\Collection\Traits;
+namespace Somnambulist\Collection;
 
 /**
- * Class ArrayAccess
+ * Class Collection
  *
- * @package    Somnambulist\Collection\Traits
- * @subpackage Somnambulist\Collection\Traits\ArrayAccess
- *
- * @property array $items
+ * @package    Somnambulist\Collection
+ * @subpackage Somnambulist\Collection\Collection
  */
-trait ArrayAccess
+abstract class AbstractCollection implements \ArrayAccess, \Countable, \IteratorAggregate
 {
+
+    /**
+     * The Collection
+     *
+     * @var array
+     */
+    protected $items = [];
 
     /**
      * @param string $offset
@@ -55,6 +60,11 @@ trait ArrayAccess
      */
     public function offsetSet($offset, $value)
     {
+        if (is_null($offset)) {
+            $this->items[] = $value;
+            return;
+        }
+
         $this->items[$offset] = $value;
     }
 
@@ -67,5 +77,33 @@ trait ArrayAccess
             $this->items[$offset] = null;
             unset($this->items[$offset]);
         }
+    }
+
+    /**
+     * Returns the number of items in the Collection
+     *
+     * @return integer
+     */
+    public function count()
+    {
+        return \count($this->items);
+    }
+
+    /**
+     * Returns the iterable data
+     *
+     * @return \ArrayIterator
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->items);
+    }
+
+    /**
+     * @return array
+     */
+    public function getInternalArray()
+    {
+        return $this->items;
     }
 }
