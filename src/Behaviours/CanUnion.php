@@ -26,6 +26,6 @@ trait CanUnion
      */
     public function union($items): self
     {
-        return new static($this->items + Value::convertToArray($items));
+        return new static($this->items + Value::toArray($items));
     }
 }

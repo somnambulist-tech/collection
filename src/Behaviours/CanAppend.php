@@ -18,6 +18,20 @@ trait CanAppend
 {
 
     /**
+     * Append the value to the collection
+     *
+     * @param mixed $value
+     *
+     * @return self
+     */
+    public function add($value): self
+    {
+        $this->append($value);
+
+        return $this;
+    }
+
+    /**
      * Add elements to the end of the collection
      *
      * @link https://www.php.net/array_push

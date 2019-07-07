@@ -33,7 +33,7 @@ trait CanMerge
      */
     public function merge($value): self
     {
-        $this->items = array_merge($this->items, Value::convertToArray($value));
+        $this->items = array_merge($this->items, Value::toArray($value));
 
         return $this;
     }

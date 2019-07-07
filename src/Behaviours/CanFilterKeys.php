@@ -12,14 +12,14 @@ use function is_object;
 use function preg_match;
 
 /**
- * Trait WhereKeyMatches
+ * Trait CanFilterKeys
  *
  * @package    Somnambulist\Collection\Behaviours\Search
- * @subpackage Somnambulist\Collection\Behaviours\Search\WhereKeyMatches
+ * @subpackage Somnambulist\Collection\Behaviours\Search\CanFilterKeys
  *
  * @property array $items
  */
-trait CanSearchKeys
+trait CanFilterKeys
 {
 
     /**
@@ -32,24 +32,6 @@ trait CanSearchKeys
     public function except(...$ignore): self
     {
         return $this->without(...$ignore);
-    }
-
-    /**
-     * Returns true if the key(s) all exist in the collection
-     *
-     * @param string ...$key
-     *
-     * @return bool
-     */
-    public function has(...$key): bool
-    {
-        $result = true;
-
-        foreach ($key as $test) {
-            $result = $result && $this->offsetExists($test);
-        }
-
-        return $result;
     }
 
     /**

@@ -9,14 +9,14 @@ use function reset;
 use Somnambulist\Collection\Utils\Value;
 
 /**
- * Trait AccessorMethods
+ * Trait CanGetItem
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\AccessorMethods
+ * @subpackage Somnambulist\Collection\Behaviours\CanGetItem
  *
  * @property array $items
  */
-trait AccessorMethods
+trait CanGetItem
 {
 
     /**

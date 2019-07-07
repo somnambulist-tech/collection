@@ -12,14 +12,14 @@ use function strtolower;
 use function strtoupper;
 
 /**
- * Trait StringManipulations
+ * Trait CanManipulateStrings
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\StringManipulations
+ * @subpackage Somnambulist\Collection\Behaviours\CanManipulateStrings
  *
  * @property array $items
  */
-trait StringManipulations
+trait CanManipulateStrings
 {
 
     /**
@@ -44,6 +44,16 @@ trait StringManipulations
         return $this->map(function ($item) {
             return (function_exists('mb_strtolower')) ? mb_strtolower($item) : strtolower($item);
         });
+    }
+
+    /**
+     * Trims all values using trim(), returning a new Collection
+     *
+     * @return static
+     */
+    public function trim(): self
+    {
+        return $this->map('trim');
     }
 
     /**

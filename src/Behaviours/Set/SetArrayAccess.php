@@ -18,7 +18,7 @@ use function sprintf;
 trait SetArrayAccess
 {
 
-    public function offsetSet($offset, $value)
+    final public function offsetSet($offset, $value)
     {
         if ($this->contains($value)) {
             throw new DomainException(sprintf('The set already contains a value of type "%s"', gettype($value)));

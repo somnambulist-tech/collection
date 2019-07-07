@@ -27,6 +27,6 @@ trait CanCombine
      */
     public function combine($values): self
     {
-        return new static(array_combine($this->items, Value::convertToArray($values)));
+        return new static(array_combine($this->items, Value::toArray($values)));
     }
 }

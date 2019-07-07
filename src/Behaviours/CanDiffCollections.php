@@ -32,7 +32,7 @@ trait CanDiffCollections
      */
     public function diff($items)
     {
-        return new static(array_diff($this->items, Value::convertToArray($items)));
+        return new static(array_diff($this->items, Value::toArray($items)));
     }
 
     /**
@@ -45,7 +45,7 @@ trait CanDiffCollections
      */
     public function diffUsing($items, callable $callback)
     {
-        return new static(array_udiff($this->items, Value::convertToArray($items), $callback));
+        return new static(array_udiff($this->items, Value::toArray($items), $callback));
     }
 
     /**
@@ -57,7 +57,7 @@ trait CanDiffCollections
      */
     public function diffAssoc($items)
     {
-        return new static(array_diff_assoc($this->items, Value::convertToArray($items)));
+        return new static(array_diff_assoc($this->items, Value::toArray($items)));
     }
 
     /**
@@ -70,7 +70,7 @@ trait CanDiffCollections
      */
     public function diffAssocUsing($items, callable $callback)
     {
-        return new static(array_diff_uassoc($this->items, Value::convertToArray($items), $callback));
+        return new static(array_diff_uassoc($this->items, Value::toArray($items), $callback));
     }
 
     /**
@@ -82,7 +82,7 @@ trait CanDiffCollections
      */
     public function diffKeys($items)
     {
-        return new static(array_diff_key($this->items, Value::convertToArray($items)));
+        return new static(array_diff_key($this->items, Value::toArray($items)));
     }
 
     /**
@@ -95,6 +95,6 @@ trait CanDiffCollections
      */
     public function diffKeysUsing($items, callable $callback)
     {
-        return new static(array_diff_ukey($this->items, Value::convertToArray($items), $callback));
+        return new static(array_diff_ukey($this->items, Value::toArray($items), $callback));
     }
 }

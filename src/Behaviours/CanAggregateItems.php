@@ -11,14 +11,14 @@ use function key;
 use function reset;
 
 /**
- * Trait MathFunctions
+ * Trait CanAggregateItems
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\MathFunctions
+ * @subpackage Somnambulist\Collection\Behaviours\CanAggregateItems
  *
  * @property array $items
  */
-trait MathFunctions
+trait CanAggregateItems
 {
 
     /**

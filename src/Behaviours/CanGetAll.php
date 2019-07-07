@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 /**
- * Trait GetAll
+ * Trait CanGetAll
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\GetAll
+ * @subpackage Somnambulist\Collection\Behaviours\CanGetAll
  *
  * @property array $items
  */
-trait GetAll
+trait CanGetAll
 {
 
     /**

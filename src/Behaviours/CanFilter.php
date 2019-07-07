@@ -5,44 +5,19 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 use function array_filter;
-use function array_unique;
 use function in_array;
 use function is_null;
 
 /**
- * Trait CanSearch
+ * Trait CanFilter
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\CanSearch
+ * @subpackage Somnambulist\Collection\Behaviours\CanFilter
  *
  * @property array $items
  */
 trait CanFilter
 {
-
-    /**
-     * Finds the first item matching the criteria
-     *
-     * @param callable $criteria
-     *
-     * @return mixed
-     */
-    public function find(callable $criteria)
-    {
-        return $this->filter($criteria)->first();
-    }
-
-    /**
-     * Finds the last item matching the criteria
-     *
-     * @param callable $criteria
-     *
-     * @return mixed
-     */
-    public function findLast(callable $criteria)
-    {
-        return $this->filter($criteria)->last();
-    }
 
     /**
      * Filters the collection using the callback
@@ -75,7 +50,9 @@ trait CanFilter
     /**
      * Returns items that do NOT pass the test callable
      *
-     * The callable is wrapped and checked the return type checked.
+     * The callable is wrapped and checked if it returns false. For example: your callable is a closure
+     * that `return Str::contains($value->name(), 'bob');`, then `notMatching` will return all items
+     * that do not match that criteria.
      *
      * @param callable $criteria
      *
@@ -122,19 +99,5 @@ trait CanFilter
         return $this->filter(function ($item) {
             return !is_null($item);
         });
-    }
-
-    /**
-     * Creates a new Collection containing only unique values
-     *
-     * @link https://www.php.net/array_unique
-     *
-     * @param null|integer $type Sort flags to use on values
-     *
-     * @return static
-     */
-    public function unique($type = null): self
-    {
-        return new static(array_unique($this->items, $type));
     }
 }

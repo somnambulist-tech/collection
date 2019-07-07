@@ -35,7 +35,7 @@ final class Value
     }
 
     /**
-     * Providers a callable for fetching data from a collection item
+     * Provides a callable for fetching data from a collection item
      *
      * Based on Laravel: Illuminate\Support\Collection.valueRetriever
      *
@@ -107,7 +107,7 @@ final class Value
      *
      * @return array
      */
-    public static function convertToArray($value): array
+    public static function toArray($value): array
     {
         if (is_null($value)) {
             return [];

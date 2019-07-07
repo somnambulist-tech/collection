@@ -14,7 +14,7 @@ use IteratorAggregate;
  * @package    Somnambulist\Collection\Contracts
  * @subpackage Somnambulist\Collection\Contracts\Collection
  */
-interface Collection extends ArrayAccess, IteratorAggregate, Countable
+interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayable, Jsonable
 {
 
 }

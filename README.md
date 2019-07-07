@@ -8,7 +8,7 @@ If you see something missing or have suggestions for other methods, submit a PR 
 
 ### Requirements
 
- * PHP 7+
+ * PHP 7.2+
 
 ### Installation
 
@@ -18,9 +18,13 @@ Install using composer, or checkout / pull the files from github.com.
 
 ### Collection Types
 
-There is a single collection implementation with an extended version providing an immutable
-collection i.e.: once created you cannot change the collection. You can still change the
-contents if they are objects, but the number of items is fixed.
+There are several types of collection that all implement the Collection interface:
+
+ * SimpleCollection
+ * MutableCollection
+ * FrozenCollection
+ * MutableSet
+ * FrozenSet
 
 ### Using
 
@@ -166,12 +170,18 @@ sub-objects contained within a Collection.
  * `upper()` converts all values to uppercase, returns a new Collection
  * `value()` similar to get() except returns the default if the returned value is empty
  * `values()` returns a new Collection containing just the values
- * `walk()` applies a callback to each item, returns a new Collection (uses array_walk)
 
 ### Deprecated Methods
 
- * call() use transform()
- * using set() to replace the Collection contents is deprecated
+ * removeElement() use remove()
+ * using remove() to remove keys, use unset()
+
+#### Removed from v3
+
+ * call() use map()
+ * invoke() use run()
+ * walk() use map()
+ * using set() to replace the Collection has been removed
 
 #### Removed from v2
 

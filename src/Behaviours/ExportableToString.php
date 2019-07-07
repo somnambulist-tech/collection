@@ -6,6 +6,7 @@ namespace Somnambulist\Collection\Behaviours;
 
 use Closure;
 use Somnambulist\Collection\Utils\Value;
+use function http_build_query;
 use function implode;
 use function sprintf;
 
@@ -53,6 +54,21 @@ trait ExportableToString
         }
 
         return implode($glue, $elements);
+    }
+
+    /**
+     * Returns a HTTP query string of the values
+     *
+     * Note: should only be used with elements that can be cast to scalars.
+     *
+     * @param string $separator
+     * @param int    $encoding
+     *
+     * @return string
+     */
+    public function toQueryString($separator = '&', $encoding = PHP_QUERY_RFC3986): string
+    {
+        return http_build_query($this->toArray(), null, $separator, $encoding);
     }
 
     /**
