@@ -12,14 +12,14 @@ use function uasort;
 use function usort;
 
 /**
- * Trait CanSort
+ * Trait Sortable
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\CanSort
+ * @subpackage Somnambulist\Collection\Behaviours\Sortable
  *
  * @property array $items
  */
-trait CanSort
+trait Sortable
 {
 
     /**

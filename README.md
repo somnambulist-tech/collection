@@ -173,13 +173,16 @@ sub-objects contained within a Collection.
 
 ### Deprecated Methods
 
+ * invoke() use run()
  * removeElement() use remove()
+ * find() returns the first match from a filter() and NOT a key
+ * transform() use map()
  * using remove() to remove keys, use unset()
 
 #### Removed from v3
 
  * call() use map()
- * invoke() use run()
+ * search() use filter() or keys()
  * walk() use map()
  * using set() to replace the Collection has been removed
 

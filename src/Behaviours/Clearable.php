@@ -5,35 +5,35 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 /**
- * Trait Resetable
+ * Trait Clearable
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Resetable
+ * @subpackage Somnambulist\Collection\Behaviours\Clearable
  *
  * @property array $items
  */
-trait Resetable
+trait Clearable
 {
 
     /**
-     * Alias of reset
+     * Clear all elements from the collection
      *
      * @return static
      */
     public function clear(): self
     {
-        return $this->reset();
+        $this->items = [];
+
+        return $this;
     }
 
     /**
-     * Resets the internal array to an empty array
+     * Alias of clear
      *
      * @return static
      */
     public function reset(): self
     {
-        $this->items = [];
-
-        return $this;
+        return $this->clear();
     }
 }

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 /**
- * Trait CanAddDuplicateAndRemoveItems
+ * Trait CanAddAndRemoveItems
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\CanAddDuplicateAndRemoveItems
+ * @subpackage Somnambulist\Collection\Behaviours\CanAddAndRemoveItems
  *
  * @property array $items
  */
-trait CanAddDuplicateAndRemoveItems
+trait CanAddAndRemoveItems
 {
 
     final public function offsetSet($offset, $value)

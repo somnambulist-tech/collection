@@ -48,6 +48,22 @@ trait CanAppend
     }
 
     /**
+     * Push all of the given items onto the collection.
+     *
+     * @param iterable $items
+     *
+     * @return static
+     */
+    public function concat($items): self
+    {
+        foreach ($items as $item) {
+            $this->push($item);
+        }
+
+        return $this;
+    }
+
+    /**
      * Alias of append
      *
      * @param mixed ...$value

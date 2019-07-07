@@ -69,7 +69,13 @@ final class FactoryUtils
      *
      * @return Collection
      */
-    public static function createFromString(string $string, string $separator = '&', string $assignment = '=', string $options = ',', string $type = MutableCollection::class): Collection
+    public static function createFromString(
+        string $string,
+        string $separator = '&',
+        string $assignment = '=',
+        string $options = ',',
+        string $type = MutableCollection::class
+    ): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
@@ -86,7 +92,7 @@ final class FactoryUtils
                     list($key, $value) = explode($assignment, $item);
 
                     if (false !== strpos($value, $options)) {
-                        $value = static::explode($value, $options, $type)->trim()->toArray();
+                        $value = static::explode($value, $options, $type)->map('trim')->toArray();
                     }
 
                     $collection[trim($key)] = $value;
@@ -109,7 +115,12 @@ final class FactoryUtils
      *
      * @return Collection
      */
-    public static function createFromIniString(string $ini, $sections = false, $mode = INI_SCANNER_NORMAL, string $type = MutableCollection::class): Collection
+    public static function createFromIniString(
+        string $ini,
+        bool $sections = false,
+        $mode = INI_SCANNER_NORMAL,
+        string $type = MutableCollection::class
+    ): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
@@ -126,7 +137,7 @@ final class FactoryUtils
      *
      * @return Collection
      */
-    public static function createFromUrl($url, string $type = MutableCollection::class): Collection
+    public static function createFromUrl(string $url, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
@@ -146,7 +157,7 @@ final class FactoryUtils
      *
      * @return Collection
      */
-    public static function createFromUrlQuery($url, string $type = MutableCollection::class): Collection
+    public static function createFromUrlQuery(string $url, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
