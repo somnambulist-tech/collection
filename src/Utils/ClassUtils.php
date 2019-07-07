@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Utils;
 
 use Closure;
+use InvalidArgumentException;
 use RuntimeException;
 use Somnambulist\Collection\Contracts\Collection;
 use function get_class;
@@ -45,6 +46,15 @@ final class ClassUtils
     public static function studly($string): string
     {
         return str_replace(' ', '', static::capitalize($string));
+    }
+
+    public static function assertClassImplements($class, $interface)
+    {
+        if (!in_array($interface, class_implements($class))) {
+            throw new InvalidArgumentException(
+                sprintf('The collection type "%s" does not implement "%s"', $class, $interface)
+            );
+        }
     }
 
     /**

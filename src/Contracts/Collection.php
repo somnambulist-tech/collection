@@ -17,4 +17,5 @@ use IteratorAggregate;
 interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayable, Jsonable
 {
 
+
 }

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 /**
- * Trait CanSetItemAtKey
+ * Trait CanSetKey
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\CanSetItemAtKey
+ * @subpackage Somnambulist\Collection\Behaviours\CanSetKey
  *
  * @property array $items
  */
-trait CanSetItemAtKey
+trait CanSetKey
 {
 
     /**

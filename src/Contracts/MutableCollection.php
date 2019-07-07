@@ -13,4 +13,5 @@ namespace Somnambulist\Collection\Contracts;
 interface MutableCollection extends Collection
 {
 
+
 }

@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
-use RuntimeException;
 use Somnambulist\Collection\Contracts\ImmutableCollection;
 use Somnambulist\Collection\FrozenCollection;
-use function class_implements;
-use function sprintf;
+use Somnambulist\Collection\Utils\ClassUtils;
 
 /**
  * Trait Freezeable
@@ -34,9 +32,7 @@ trait Freezeable
     {
         $class = $this->freezableClass;
 
-        if (!in_array(ImmutableCollection::class, class_implements($class))) {
-            throw new RuntimeException(sprintf('%s does not implement %s', $this->freezableClass, ImmutableCollection::class));
-        }
+        ClassUtils::assertClassImplements($class, ImmutableCollection::class);
 
         return new $class($this->items);
     }
