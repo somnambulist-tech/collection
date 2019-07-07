@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use RuntimeException;
 use Somnambulist\Collection\Contracts\ImmutableCollection;
 use Somnambulist\Collection\FrozenCollection;
+use function class_implements;
+use function sprintf;
 
 /**
  * Trait Freezeable
@@ -18,8 +21,23 @@ use Somnambulist\Collection\FrozenCollection;
 trait Freezeable
 {
 
+    /**
+     * The class name to use when freezing the Collection
+     *
+     * Should implement the ImmutableCollection interface.
+     *
+     * @var string
+     */
+    public $freezableClass = FrozenCollection::class;
+
     public function freeze(): ImmutableCollection
     {
-        return new FrozenCollection($this->items);
+        $class = $this->freezableClass;
+
+        if (!in_array(ImmutableCollection::class, class_implements($class))) {
+            throw new RuntimeException(sprintf('%s does not implement %s', $this->freezableClass, ImmutableCollection::class));
+        }
+
+        return new $class($this->items);
     }
 }

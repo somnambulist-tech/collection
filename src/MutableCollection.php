@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Somnambulist\Collection;
 
 
-use Somnambulist\Collection\Behaviours\Collection\MutableArrayAccess;
 use Somnambulist\Collection\Behaviours\Collection\MutableObjectAccess;
+use Somnambulist\Collection\Behaviours\CanAddDuplicateAndRemoveItems;
 
 /**
  * Class MutableCollection
@@ -17,7 +17,7 @@ use Somnambulist\Collection\Behaviours\Collection\MutableObjectAccess;
 class MutableCollection extends AbstractCollection
 {
 
-    use MutableArrayAccess;
+    use CanAddDuplicateAndRemoveItems;
     use MutableObjectAccess;
 
 

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection;
 
-use Somnambulist\Collection\Behaviours\Immutable\ImmutableArrayAccess;
-use Somnambulist\Collection\Behaviours\Immutable\ImmutableObjectAccess;
+use Somnambulist\Collection\Behaviours\CannotAddOrRemoveItems;
+use Somnambulist\Collection\Behaviours\ExportableToArray;
+use Somnambulist\Collection\Behaviours\ExportableToJson;
+use Somnambulist\Collection\Behaviours\ExportableToString;
 use Somnambulist\Collection\Contracts\ImmutableCollection;
 
 /**
@@ -17,8 +19,9 @@ use Somnambulist\Collection\Contracts\ImmutableCollection;
 class FrozenCollection extends AbstractCollection implements ImmutableCollection
 {
 
-    use ImmutableArrayAccess;
-    use ImmutableObjectAccess;
-
+    use CannotAddOrRemoveItems;
+    use ExportableToArray;
+    use ExportableToJson;
+    use ExportableToString;
 
 }

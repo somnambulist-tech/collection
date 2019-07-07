@@ -2,20 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Behaviours\Set;
+namespace Somnambulist\Collection\Behaviours;
 
 use DomainException;
 use function gettype;
 use function sprintf;
+
 /**
- * Trait SetArrayAccess
+ * Trait CannotAddDuplicateItems
  *
- * @package    Somnambulist\Collection\Behaviours\Set
- * @subpackage Somnambulist\Collection\Behaviours\Set\SetArrayAccess
+ * @package    Somnambulist\Collection\Behaviours
+ * @subpackage Somnambulist\Collection\Behaviours\CannotAddDuplicateItems
  *
  * @property array $items
  */
-trait SetArrayAccess
+trait CannotAddDuplicateItems
 {
 
     final public function offsetSet($offset, $value)
@@ -31,9 +32,19 @@ trait SetArrayAccess
         }
     }
 
-    public function offsetUnset($offset)
+    final public function offsetUnset($offset)
     {
         $this->items[$offset] = null;
         unset($this->items[$offset]);
+    }
+
+    final public function __set($offset, $value)
+    {
+        $this->offsetSet($offset, $value);
+    }
+
+    final public function __unset($offset)
+    {
+        $this->offsetUnset($offset);
     }
 }
