@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Utils;
 
-use InvalidArgumentException;
 use Somnambulist\Collection\Contracts\Collection;
+use Somnambulist\Collection\MutableCollection;
 
 /**
  * Class FactoryUtils
@@ -23,13 +23,13 @@ final class FactoryUtils
     /**
      * Creates a new collection instance with a nested array from the key
      *
-     * @param string $type
      * @param string $key
      * @param mixed  $value
+     * @param string $type
      *
-     * @return array|mixed
+     * @return Collection
      */
-    public static function createWithNestedArrayFromKey(string $type, $key, $value): void
+    public static function createWithNestedArrayFromKey(string $key, $value, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
@@ -61,22 +61,22 @@ final class FactoryUtils
      * E.g.: a URL query string: var=value&var2=value2
      * E.g.: a pipe delimited string: op|op2:2,3|another:true
      *
-     * @param string $type
      * @param string $string
      * @param string $separator  String that separates parameters
      * @param string $assignment String that signifies value assignment (if missing is true)
      * @param string $options    String for multiple items per assignment
+     * @param string $type
      *
      * @return Collection
      */
-    public static function createFromString($type, $string, $separator = '&', $assignment = '=', $options = ',')
+    public static function createFromString(string $string, string $separator = '&', string $assignment = '=', string $options = ',', string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
         $collection = [];
 
         if ( strlen(trim($string)) > 0 ) {
-            static::explode($type, $string, $separator)
+            static::explode($string, $separator, $type)
                 ->each(function ($item) use ($type, $assignment, $options, &$collection) {
                     if (false === strpos($item, $assignment)) {
                         $collection[trim($item)] = true;
@@ -86,7 +86,7 @@ final class FactoryUtils
                     list($key, $value) = explode($assignment, $item);
 
                     if (false !== strpos($value, $options)) {
-                        $value = static::explode($type, $value, $options)->trim()->toArray();
+                        $value = static::explode($value, $options, $type)->trim()->toArray();
                     }
 
                     $collection[trim($key)] = $value;
@@ -102,14 +102,14 @@ final class FactoryUtils
      *
      * @link https://www.php.net/parse_ini_string
      *
-     * @param string $type
      * @param string $ini
      * @param bool   $sections (optional) Process sections and return a multi-dimensional array
      * @param int    $mode     (optional) INI_SCANNER constant
+     * @param string $type
      *
      * @return Collection
      */
-    public static function createFromIniString($type, $ini, $sections = false, $mode = INI_SCANNER_NORMAL)
+    public static function createFromIniString(string $ini, $sections = false, $mode = INI_SCANNER_NORMAL, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
@@ -121,17 +121,17 @@ final class FactoryUtils
      *
      * @link https://www.php.net/parse_url
      *
-     * @param string $type
      * @param string $url
+     * @param string $type
      *
      * @return Collection
      */
-    public static function createFromUrl($type, $url)
+    public static function createFromUrl($url, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
         $url          = parse_url($url);
-        $url['query'] = static::createFromUrlQuery($type, $url['query']);
+        $url['query'] = static::createFromUrlQuery($url['query'], $type);
 
         return new $type($url);
     }
@@ -141,12 +141,12 @@ final class FactoryUtils
      *
      * @link https://www.php.net/parse_url
      *
-     * @param string $type
      * @param string $url
+     * @param string $type
      *
      * @return Collection
      */
-    public static function createFromUrlQuery($type, $url)
+    public static function createFromUrlQuery($url, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
@@ -161,13 +161,13 @@ final class FactoryUtils
      *
      * @link https://www.php.net/explode
      *
-     * @param string $type
      * @param string $string
      * @param string $delimiter
+     * @param string $type
      *
      * @return Collection
      */
-    public static function explode($type, $string, $delimiter)
+    public static function explode(string $string, string $delimiter, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 

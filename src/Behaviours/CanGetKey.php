@@ -19,7 +19,7 @@ trait CanGetKey
      * Get the value at the specified key, if the _KEY_ does NOT exist, return the default
      *
      * Note: if the key is null or false, the value will be returned. If you must have a non
-     * falsey value, use {@link AbstractCollection::value()} instead.
+     * falsey value, use {@link value()} instead.
      *
      * @param string $key
      * @param mixed  $default

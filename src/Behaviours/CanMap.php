@@ -72,7 +72,7 @@ trait CanMap
      */
     public function transform(callable $transformer): self
     {
-        trigger_error(__FUNCTION__ . ' is deprecated, use map() instead', E_USER_DEPRECATED);
+        trigger_error(__METHOD__ . ' is deprecated, use map() instead', E_USER_DEPRECATED);
 
         return $this->map($transformer);
     }

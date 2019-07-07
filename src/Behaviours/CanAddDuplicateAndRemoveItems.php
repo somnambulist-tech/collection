@@ -26,8 +26,10 @@ trait CanAddDuplicateAndRemoveItems
 
     final public function offsetUnset($offset)
     {
-        $this->items[$offset] = null;
-        unset($this->items[$offset]);
+        if ($this->offsetExists($offset)) {
+            $this->items[$offset] = null;
+            unset($this->items[$offset]);
+        }
     }
 
     final public function __set($offset, $value)

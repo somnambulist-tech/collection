@@ -43,7 +43,7 @@ trait CanRemoveItem
      */
     public function removeElement($value): self
     {
-        trigger_error(__FUNCTION__ . ' is deprecated use remove() instead', E_USER_DEPRECATED);
+        trigger_error(__METHOD__ . ' is deprecated use remove() instead', E_USER_DEPRECATED);
 
         if (false !== $key = $this->find($value)) {
             $this->remove($key);
