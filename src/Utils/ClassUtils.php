@@ -4,7 +4,17 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Utils;
 
+use Closure;
+use RuntimeException;
 use Somnambulist\Collection\Contracts\Collection;
+use function get_class;
+use function is_object;
+use function lcfirst;
+use function method_exists;
+use function preg_replace;
+use function sprintf;
+use function str_replace;
+use function ucwords;
 
 /**
  * Class ClassUtils
@@ -24,12 +34,17 @@ final class ClassUtils
 
     public static function camel($string): string
     {
-        return lcfirst(static::capitalize($string));
+        return lcfirst(static::studly($string));
     }
 
     public static function capitalize($string): string
     {
-        return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $string)));
+        return ucwords(str_replace(['-', '_'], ' ', $string));
+    }
+
+    public static function studly($string): string
+    {
+        return str_replace(' ', '', static::capitalize($string));
     }
 
     /**
@@ -38,8 +53,8 @@ final class ClassUtils
      * Will try the following patterns:
      *
      *  * test as-is
-     *  * get + CapitalizedStringNoSpaces
-     *  * camelizedStringNoSpaces
+     *  * get + StudlyStringNoSpaces
+     *  * camelStringNoSpaces
      *
      * @param mixed  $subject
      * @param string $test
@@ -48,7 +63,7 @@ final class ClassUtils
      */
     public static function getAccessMethodFor($subject, $test): ?string
     {
-        foreach ([$test, 'get' . static::capitalize($test), static::camel($test)] as $try) {
+        foreach ([$test, 'get' . static::studly($test), static::camel($test)] as $try) {
             if (is_object($subject) && method_exists($subject, $try)) {
                 return $try;
             }
@@ -57,19 +72,101 @@ final class ClassUtils
         return null;
     }
 
-    public static function method($subject, $property, $accessorPrefix = null, $default = null)
+    /**
+     * Gets the property name as used in the subject, only for objects
+     *
+     * Will try the following variations of property name:
+     *
+     *  * the property as-is
+     *  * camelStringNoSpaces
+     *  * StudlyStringNoSpaces
+     *
+     * @param object|array $subject
+     * @param string       $property
+     *
+     * @return string
+     */
+    public static function getPropertyNameIn($subject, string $property): ?string
     {
-        if (Value::isTraversable($subject) && KeyWalker::keyExists($subject, $property)) {
-            $subject = $subject[$property];
-        } elseif (is_object($subject) && isset($subject->{$property})) {
-            $subject = $subject->{$property};
-        } elseif (is_object($subject) && !($subject instanceof Collection) && method_exists($subject, $property)) {
-            $subject = $subject->{$property}();
-        } elseif (is_object($subject) && !($subject instanceof Collection) && method_exists($subject, 'get' . ucwords($property))) {
-            $subject = $subject->{'get' . ucwords($property)}();
-        } else {
-            return Value::get($default);
+        foreach ([$property, static::camel($property), static::studly($property)] as $try) {
+            if (is_object($subject) && property_exists($subject, $try)) {
+                return $try;
+            }
         }
 
+        return null;
+    }
+
+    /**
+     * Gets the value of the property from an object subject
+     *
+     * Returns null if the nothing was accessed, however the call may result in a null
+     * response.
+     *
+     * @param object|array $subject
+     * @param string       $property
+     *
+     * @return mixed
+     */
+    public static function getProperty($subject, string $property)
+    {
+        if (Value::isTraversable($subject) && Value::hasKey($subject, $property)) {
+            return $subject[$property];
+        }
+
+        if (is_object($subject) && isset($subject->{$property})) {
+            return $subject->{$property};
+        }
+
+        if (!$subject instanceof Collection && null !== $method = static::getAccessMethodFor($subject, $property)) {
+            return $subject->{$method}();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param object|array $subject
+     * @param string       $property
+     *
+     * @return bool
+     */
+    public static function hasProperty($subject, string $property): bool
+    {
+        if (Value::isTraversable($subject) && Value::hasKey($subject, $property)) {
+            return true;
+        }
+
+        return null !== static::getPropertyNameIn($subject, $property);
+    }
+
+    /**
+     * Attempts to set the property to value in subject
+     *
+     * @param object|array $subject
+     * @param string       $property
+     * @param mixed        $value
+     */
+    public static function setProperty(&$subject, string $property, $value): void
+    {
+        if (Value::isTraversable($subject) && Value::hasKey($subject, $property)) {
+            $sub[$property] = $value;
+            return;
+        }
+
+        if (null !== $prop = static::getPropertyNameIn($subject, $property)) {
+            Closure::bind(function () use ($prop, $value) {
+                $this->{$prop} = $value;
+            }, $subject, $subject)();
+
+            return;
+        }
+
+        throw new RuntimeException(
+            sprintf(
+                'Unable to set property "%s" (from %s) on object of type "%s"',
+                $prop, $property, get_class($subject)
+            )
+        );
     }
 }

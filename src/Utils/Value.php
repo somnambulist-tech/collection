@@ -188,6 +188,23 @@ final class Value
     }
 
     /**
+     * Returns true if the key exists in the array'ish
+     *
+     * @param mixed  $array
+     * @param string $key
+     *
+     * @return bool
+     */
+    public static function hasKey($array, string $key): bool
+    {
+        if ($array instanceof ArrayAccess) {
+            return $array->offsetExists($key);
+        }
+
+        return array_key_exists($key, $array);
+    }
+
+    /**
      * Returns true if value is callable, but not a string callable
      *
      * @param mixed $value

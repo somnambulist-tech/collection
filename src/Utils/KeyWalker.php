@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Utils;
 
-use ArrayAccess;
 use Somnambulist\Collection\Contracts\Collection;
 
 /**
@@ -16,7 +15,7 @@ use Somnambulist\Collection\Contracts\Collection;
  * @package    Somnambulist\Collection\Utils
  * @subpackage Somnambulist\Collection\Utils\KeyWalker
  */
-class KeyWalker
+final class KeyWalker
 {
 
     /**
@@ -28,17 +27,17 @@ class KeyWalker
      *
      * @return array|mixed
      */
-    public static function walk($collection, $key, $default = null)
+    public static function get($collection, $key, $default = null)
     {
         if (is_null($key)) {
             return $collection;
         }
         if (is_string($key) && mb_substr($key, 0, 1) == '@') {
-            if (static::keyExists($collection, mb_substr($key, 1))) {
-                return $collection[mb_substr($key, 1)];
-            }
-
-            return Value::get($default);
+            // <3.0 used an @ prefix to check for exact strings
+            $key = mb_substr($key, 1);
+        }
+        if (Value::hasKey($collection, $key)) {
+            return $collection[$key];
         }
 
         $key = is_array($key) ? $key : explode('.', $key);
@@ -56,20 +55,54 @@ class KeyWalker
                 return in_array('*', $key) ? Value::flatten($result) : $result;
             }
 
-            if (Value::isTraversable($collection) && static::keyExists($collection, $segment)) {
-                $collection = $collection[$segment];
-            } elseif (is_object($collection) && isset($collection->{$segment})) {
-                $collection = $collection->{$segment};
-            } elseif (is_object($collection) && !($collection instanceof Collection) && method_exists($collection, $segment)) {
-                $collection = $collection->{$segment}();
-            } elseif (is_object($collection) && !($collection instanceof Collection) && method_exists($collection, 'get' . ucwords($segment))) {
-                $collection = $collection->{'get' . ucwords($segment)}();
+            if (ClassUtils::hasProperty($collection, $segment)) {
+                $collection = ClassUtils::getProperty($collection, $segment);
             } else {
                 return Value::get($default);
             }
         }
 
         return $collection;
+    }
+
+    /**
+     * Walks the collection checking if a key exists using dot notation
+     *
+     * @param Collection|array $collection
+     * @param string           $key
+     *
+     * @return array|mixed
+     */
+    public static function has($collection, $key): bool
+    {
+        if (is_null($key)) {
+            return false;
+        }
+        if (is_string($key) && mb_substr($key, 0, 1) == '@') {
+            // <3.0 used an @ prefix to check for exact strings
+            $key = mb_substr($key, 1);
+        }
+        if (Value::hasKey($collection, $key)) {
+            return true;
+        }
+
+        $key = is_array($key) ? $key : explode('.', $key);
+
+        while (!is_null($segment = array_shift($key))) {
+            if ($segment === '*') {
+                if ($collection instanceof Collection) {
+                    $collection = $collection->all();
+                } elseif (!is_array($collection)) {
+                    return false;
+                }
+
+                return static::has($collection, $key);
+            }
+
+            return ClassUtils::hasProperty($collection, $segment);
+        }
+
+        return false;
     }
 
     /**
@@ -89,12 +122,12 @@ class KeyWalker
         [$value, $key] = static::extractKeyValueParameters($value, $key);
 
         foreach ($collection as $item) {
-            $itemValue = static::walk($item, $value, $default);
+            $itemValue = static::get($item, $value, $default);
 
             if (is_null($key)) {
                 $results[] = $itemValue;
             } else {
-                $itemKey = static::walk($item, $key, $default);
+                $itemKey = static::get($item, $key, $default);
 
                 $results[$itemKey] = $itemValue;
             }
@@ -117,22 +150,5 @@ class KeyWalker
         $key   = is_null($key) || is_array($key) ? $key : explode('.', $key);
 
         return [$value, $key];
-    }
-
-    /**
-     * Returns true if the key exists in the array
-     *
-     * @param mixed  $array
-     * @param string $key
-     *
-     * @return bool
-     */
-    public static function keyExists($array, $key): bool
-    {
-        if ($array instanceof ArrayAccess) {
-            return $array->offsetExists($key);
-        }
-
-        return array_key_exists($key, $array);
     }
 }
