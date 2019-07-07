@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use Somnambulist\Collection\Utils\Value;
 use function arsort;
 use function is_null;
 use function key;
 use function reset;
-use Somnambulist\Collection\Utils\Value;
 
 /**
  * Trait MathFunctions
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\MathFunctions
+ *
+ * @property array $items
  */
 trait MathFunctions
 {
@@ -74,31 +76,6 @@ trait MathFunctions
     }
 
     /**
-     * Returns the modal (most frequent) value from the collection based on the key
-     *
-     * @param null|string|callable $key
-     *
-     * @return float|int
-     */
-    public function modal($key = null)
-    {
-        $callback = Value::accessor($key);
-
-        $tally = [];
-
-        foreach ($this->items as $key => $value) {
-            $valueToCount = $callback($value);
-
-            $tally[$valueToCount]++;
-        }
-
-        arsort($tally, SORT_NUMERIC);
-        reset($tally);
-
-        return key($tally);
-    }
-
-    /**
      * Returns the lowest value from the collection of values
      *
      * Key can be a string key or callable. Based on Laravel: Illuminate\Support\Collection.min
@@ -121,6 +98,31 @@ trait MathFunctions
                 return is_null($result) || $value < $result ? $value : $result;
             })
         ;
+    }
+
+    /**
+     * Returns the modal (most frequent) value from the collection based on the key
+     *
+     * @param null|string|callable $key
+     *
+     * @return float|int
+     */
+    public function modal($key = null)
+    {
+        $callback = Value::accessor($key);
+
+        $tally = [];
+
+        foreach ($this->items as $key => $value) {
+            $valueToCount = $callback($value);
+
+            $tally[$valueToCount]++;
+        }
+
+        arsort($tally, SORT_NUMERIC);
+        reset($tally);
+
+        return key($tally);
     }
 
     /**

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use Closure;
+use Somnambulist\Collection\Utils\Value;
 use function implode;
 use function sprintf;
 
@@ -12,6 +14,8 @@ use function sprintf;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\ExportableToString
+ *
+ * @property array $items
  */
 trait ExportableToString
 {
@@ -19,19 +23,28 @@ trait ExportableToString
     /**
      * Implodes all the values into a single string, objects should support __toString
      *
-     * If withKeys is not null, the keys are output first using this to delineate them
-     * from the value.
+     * If a specific value is specified it will be pulled from any sub-arrays or
+     * objects; alternatively it can be a closure to fetch specific properties from
+     * any objects in the collection.
      *
-     * @param null|string $glue
-     * @param null|string $withKeys
+     * If $withKeys is set to a string, it will prefix the string value with the key
+     * and the $withKeys string.
+     *
+     * @param null|string|Closure $value
+     * @param null|string         $glue
+     * @param null|string         $withKeys
      *
      * @return string
      */
-    public function implode($glue = ',', $withKeys = null): string
+    public function implode($value = null, $glue = ',', $withKeys = null): string
     {
         $elements = [];
 
+        $accessor = Value::accessor($value);
+
         foreach ($this->items as $key => $value) {
+            $value = $accessor($value);
+
             if (null !== $withKeys) {
                 $elements[] = sprintf('%s%s%s', $key, $withKeys, $value);
             } else {

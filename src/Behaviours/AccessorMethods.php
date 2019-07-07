@@ -13,6 +13,8 @@ use Somnambulist\Collection\Utils\Value;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\AccessorMethods
+ *
+ * @property array $items
  */
 trait AccessorMethods
 {

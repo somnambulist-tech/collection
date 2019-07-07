@@ -14,6 +14,8 @@ use function is_null;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanSearch
+ *
+ * @property array $items
  */
 trait CanFilter
 {

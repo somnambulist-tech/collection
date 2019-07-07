@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours\Set;
 
 use DomainException;
-
+use function gettype;
+use function sprintf;
 /**
  * Trait SetArrayAccess
  *
  * @package    Somnambulist\Collection\Behaviours\Set
  * @subpackage Somnambulist\Collection\Behaviours\Set\SetArrayAccess
+ *
+ * @property array $items
  */
 trait SetArrayAccess
 {

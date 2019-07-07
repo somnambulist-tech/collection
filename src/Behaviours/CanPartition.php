@@ -11,6 +11,8 @@ use Somnambulist\Collection\Utils\Value;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanPartition
+ *
+ * @property array $items
  */
 trait CanPartition
 {

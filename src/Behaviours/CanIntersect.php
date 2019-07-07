@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 use Somnambulist\Collection\Utils\Value;
+use function array_intersect;
+use function array_intersect_key;
 
 /**
  * Trait CanIntersect
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanIntersect
+ *
+ * @property array $items
  */
 trait CanIntersect
 {

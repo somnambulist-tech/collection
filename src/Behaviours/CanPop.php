@@ -11,6 +11,8 @@ use function array_pop;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanPop
+ *
+ * @property array $items
  */
 trait CanPop
 {

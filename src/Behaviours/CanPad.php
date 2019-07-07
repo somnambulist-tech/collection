@@ -11,6 +11,8 @@ use function array_pad;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanPad
+ *
+ * @property array $items
  */
 trait CanPad
 {

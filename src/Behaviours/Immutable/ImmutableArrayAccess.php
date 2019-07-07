@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours\Immutable;
 
 use DomainException;
+use function sprintf;
 
 /**
  * Trait ImmutableArrayAccess
  *
  * @package    Somnambulist\Collection\Behaviours\Immutable
  * @subpackage Somnambulist\Collection\Behaviours\Immutable\ImmutableArrayAccess
+ *
+ * @property array $items
  */
 trait ImmutableArrayAccess
 {

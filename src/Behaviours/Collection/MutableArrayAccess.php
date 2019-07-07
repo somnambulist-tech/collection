@@ -9,6 +9,8 @@ namespace Somnambulist\Collection\Behaviours\Collection;
  *
  * @package    Somnambulist\Collection\Behaviours\Collection
  * @subpackage Somnambulist\Collection\Behaviours\Collection\MutableArrayAccess
+ *
+ * @property array $items
  */
 trait MutableArrayAccess
 {

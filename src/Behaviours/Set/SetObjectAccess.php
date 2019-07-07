@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours\Set;
 
 use DomainException;
+use function gettype;
 
 /**
  * Trait MutableObjectAccess
  *
  * @package    Somnambulist\Collection\Behaviours\Set
  * @subpackage Somnambulist\Collection\Behaviours\Set\MutableObjectAccess
+ *
+ * @property array $items
  */
 trait SetObjectAccess
 {
@@ -29,13 +32,12 @@ trait SetObjectAccess
         $this->offsetUnset($offset);
     }
 
-
     /**
      * Append the value to the collection
      *
      * @param mixed $value
      *
-     * @return self
+     * @return static
      */
     public function add($value): self
     {
@@ -50,7 +52,7 @@ trait SetObjectAccess
      * @param string $offset
      * @param mixed  $value
      *
-     * @return self
+     * @return static
      */
     public function set($offset, $value): self
     {
@@ -64,7 +66,7 @@ trait SetObjectAccess
      *
      * @param mixed $value
      *
-     * @return self
+     * @return static
      */
     public function remove($value): self
     {
@@ -78,7 +80,7 @@ trait SetObjectAccess
      *
      * @param string $offset
      *
-     * @return self
+     * @return static
      */
     public function unset($offset): self
     {

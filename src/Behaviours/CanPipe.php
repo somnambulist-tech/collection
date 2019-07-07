@@ -11,6 +11,8 @@ use Somnambulist\Collection\Utils\Value;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanPipe
+ *
+ * @property array $items
  */
 trait CanPipe
 {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Utils;
 
+use Somnambulist\Collection\Contracts\Collection;
+
 /**
  * Class ClassUtils
  *
@@ -14,6 +16,21 @@ final class ClassUtils
 {
 
     private function __construct() {}
+
+    public static function ascii($string): string
+    {
+        return preg_replace("/[^A-Za-z0-9 \_\-]/", '', $string);
+    }
+
+    public static function camel($string): string
+    {
+        return lcfirst(static::capitalize($string));
+    }
+
+    public static function capitalize($string): string
+    {
+        return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $string)));
+    }
 
     /**
      * Returns an accessor method for the object, if it is an object and it matches a pattern
@@ -40,18 +57,19 @@ final class ClassUtils
         return null;
     }
 
-    public static function ascii($string): string
+    public static function method($subject, $property, $accessorPrefix = null, $default = null)
     {
-        return preg_replace("/[^A-Za-z0-9 \_\-]/", '', $string);
-    }
+        if (Value::isTraversable($subject) && KeyWalker::keyExists($subject, $property)) {
+            $subject = $subject[$property];
+        } elseif (is_object($subject) && isset($subject->{$property})) {
+            $subject = $subject->{$property};
+        } elseif (is_object($subject) && !($subject instanceof Collection) && method_exists($subject, $property)) {
+            $subject = $subject->{$property}();
+        } elseif (is_object($subject) && !($subject instanceof Collection) && method_exists($subject, 'get' . ucwords($property))) {
+            $subject = $subject->{'get' . ucwords($property)}();
+        } else {
+            return Value::get($default);
+        }
 
-    public static function capitalize($string): string
-    {
-        return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $string)));
-    }
-
-    public static function camel($string): string
-    {
-        return lcfirst(static::camel($string));
     }
 }

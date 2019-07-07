@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 /**
- * Class CanGroupBy
+ * Trait CanGroupBy
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanGroupBy
+ *
+ * @property array $items
  */
 trait CanGroupBy
 {

@@ -13,5 +13,10 @@ namespace Somnambulist\Collection\Contracts;
 interface Arrayable
 {
 
+    /**
+     * Return an array from the object
+     *
+     * @return array
+     */
     public function toArray(): array;
 }

@@ -6,11 +6,18 @@ namespace Somnambulist\Collection\Behaviours;
 
 use Somnambulist\Collection\Utils\Value;
 
+use function array_keys;
+use function in_array;
+use function is_object;
+use function preg_match;
+
 /**
  * Trait WhereKeyMatches
  *
  * @package    Somnambulist\Collection\Behaviours\Search
  * @subpackage Somnambulist\Collection\Behaviours\Search\WhereKeyMatches
+ *
+ * @property array $items
  */
 trait CanSearchKeys
 {
@@ -55,7 +62,7 @@ trait CanSearchKeys
     public function hasAnyOf(...$key): bool
     {
         foreach ($key as $test) {
-            if ($this->offsetExists($test)) {
+            if ($this->has($test)) {
                 return true;
             }
         }
@@ -75,7 +82,7 @@ trait CanSearchKeys
         $result = true;
 
         foreach ($key as $test) {
-            $result = $result && !$this->offsetExists($test);
+            $result = $result && !$this->has($test);
         }
 
         return $result;
@@ -150,8 +157,8 @@ trait CanSearchKeys
         $matches = [];
 
         foreach ($keys as $key) {
-            if ($this->offsetExists($key)) {
-                $matches[$key] = $this->offsetGet($key);
+            if ($this->has($key)) {
+                $matches[$key] = $this->get($key);
             }
         }
 

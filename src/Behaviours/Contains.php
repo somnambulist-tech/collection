@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use function in_array;
+use function is_scalar;
+
 /**
  * Trait Contains
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\Contains
+ *
+ * @property array $items
  */
 trait Contains
 {

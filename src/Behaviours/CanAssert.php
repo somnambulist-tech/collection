@@ -11,10 +11,19 @@ use Somnambulist\Collection\Exceptions\AssertionFailedException;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanAssert
+ *
+ * @property array $items
  */
 trait CanAssert
 {
 
+    /**
+     * Run the test for all items in the collection; failures raise an exception
+     *
+     * @param callable $callback
+     *
+     * @return static
+     */
     public function assert(callable $callback): self
     {
         foreach ($this->items as $key => $value) {

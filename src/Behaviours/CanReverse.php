@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use function array_reverse;
+
 /**
  * Trait CanReverse
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanReverse
+ *
+ * @property array $items
  */
 trait CanReverse
 {

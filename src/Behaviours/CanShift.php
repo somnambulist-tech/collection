@@ -11,6 +11,8 @@ use function array_shift;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanShift
+ *
+ * @property array $items
  */
 trait CanShift
 {

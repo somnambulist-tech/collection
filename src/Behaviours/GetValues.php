@@ -7,12 +7,14 @@ namespace Somnambulist\Collection\Behaviours;
 use function array_values;
 
 /**
- * Trait GetOnlyValues
+ * Trait GetValues
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\GetOnlyValues
+ * @subpackage Somnambulist\Collection\Behaviours\GetValues
+ *
+ * @property array $items
  */
-trait GetOnlyValues
+trait GetValues
 {
 
     /**

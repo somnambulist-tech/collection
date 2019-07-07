@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use function array_flip;
+
 /**
  * Trait CanFlip
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanFlip
+ *
+ * @property array $items
  */
 trait CanFlip
 {

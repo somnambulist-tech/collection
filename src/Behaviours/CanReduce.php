@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use function array_reduce;
+
 /**
  * Trait CanReduce
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanReduce
+ *
+ * @property array $items
  */
 trait CanReduce
 {

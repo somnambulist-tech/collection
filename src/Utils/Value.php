@@ -73,7 +73,7 @@ final class Value
     }
 
     /**
-     * Collapse an array of arrays into a single array.
+     * Collapse an array of arrays into a single array
      *
      * @param array $value
      *
@@ -143,6 +143,33 @@ final class Value
         }
 
         return [$value];
+    }
+
+    /**
+     * Recursively collapses all collections / arrays / values into an array
+     *
+     * Unlike `collapse()` this will recurse through all elements in the provided value.
+     * Keys will be overwritten if they exist in multiple elements.
+     *
+     * @param array|Collection $value
+     *
+     * @return array
+     */
+    public static function flatten($value): array
+    {
+        $return = [];
+
+        foreach ($value as $key => $values) {
+            if (is_array($values)) {
+                $return = array_merge($return, static::flatten($values));
+            } elseif ($values instanceof Collection) {
+                $return = array_merge($return, static::flatten($values->all()));
+            } else {
+                $return[$key] = $values;
+            }
+        }
+
+        return $return;
     }
 
     /**

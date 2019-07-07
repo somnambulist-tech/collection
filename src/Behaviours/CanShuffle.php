@@ -11,6 +11,8 @@ use function shuffle;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanShuffle
+ *
+ * @property array $items
  */
 trait CanShuffle
 {

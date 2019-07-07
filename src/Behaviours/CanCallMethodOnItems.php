@@ -5,20 +5,24 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 use Closure;
+use function is_object;
+use function method_exists;
 
 /**
  * Trait CanCallMethodOnItems
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanCallMethodOnItems
+ *
+ * @property array $items
  */
-trait CanRunMethodOnItems
+trait CanCallMethodOnItems
 {
 
     /**
      * Run the method or Closure on all object items in the collection
      *
-     * A closure is passed: the current value, key and the unpacked arguments
+     * If a closure is passed the current value, key and the unpacked arguments are provided.
      * The method is passed: the unpacked arguments
      *
      * Only objects are processed.

@@ -16,6 +16,8 @@ use function strtoupper;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\StringManipulations
+ *
+ * @property array $items
  */
 trait StringManipulations
 {

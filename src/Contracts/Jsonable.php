@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Contracts;
 
 /**
- * Interface JsonSerializable
+ * Interface Jsonable
  *
  * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\JsonSerializable
+ * @subpackage Somnambulist\Collection\Contracts\Jsonable
  */
 interface Jsonable
 {

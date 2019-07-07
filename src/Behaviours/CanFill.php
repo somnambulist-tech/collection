@@ -12,6 +12,8 @@ use function array_fill_keys;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanFill
+ *
+ * @property array $items
  */
 trait CanFill
 {

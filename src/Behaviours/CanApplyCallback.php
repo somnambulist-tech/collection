@@ -9,12 +9,14 @@ namespace Somnambulist\Collection\Behaviours;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanApplyCallback
+ *
+ * @property array $items
  */
 trait CanApplyCallback
 {
 
     /**
-     * Execute a callback over the collection
+     * Execute a callback over the collection, halting if the callback returns false
      *
      * @param callable $callback Receives: ($value, $key)
      *
@@ -23,7 +25,7 @@ trait CanApplyCallback
     public function each(callable $callback): self
     {
         foreach ($this->items as $key => $value) {
-            if ($callback($value, $key) === false) {
+            if (false === $callback($value, $key)) {
                 break;
             }
         }

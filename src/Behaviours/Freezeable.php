@@ -12,6 +12,8 @@ use Somnambulist\Collection\FrozenCollection;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\Freezeable
+ *
+ * @property array $items
  */
 trait Freezeable
 {

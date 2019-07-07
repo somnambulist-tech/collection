@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
+use function is_null;
+
 /**
  * Trait CanCountyBy
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanCountyBy
+ *
+ * @property array $items
  */
 trait CanCountyBy
 {

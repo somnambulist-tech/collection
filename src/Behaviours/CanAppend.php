@@ -11,6 +11,8 @@ use function array_push;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\CanAppend
+ *
+ * @property array $items
  */
 trait CanAppend
 {

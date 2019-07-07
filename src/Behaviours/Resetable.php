@@ -9,6 +9,8 @@ namespace Somnambulist\Collection\Behaviours;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\Resetable
+ *
+ * @property array $items
  */
 trait Resetable
 {

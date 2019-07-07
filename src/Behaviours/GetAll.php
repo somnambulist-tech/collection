@@ -9,6 +9,8 @@ namespace Somnambulist\Collection\Behaviours;
  *
  * @package    Somnambulist\Collection\Behaviours
  * @subpackage Somnambulist\Collection\Behaviours\GetAll
+ *
+ * @property array $items
  */
 trait GetAll
 {

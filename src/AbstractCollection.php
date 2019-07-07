@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection;
 
+use ArrayIterator;
+use Somnambulist\Collection\Contracts\Collection;
 use function array_key_exists;
 use function count;
-use ArrayAccess;
-use ArrayIterator;
-use Countable;
-use IteratorAggregate;
 
 /**
  * Class AbstractCollection
@@ -17,7 +15,7 @@ use IteratorAggregate;
  * @package    Somnambulist\Collection
  * @subpackage Somnambulist\Collection\AbstractCollection
  */
-abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Countable
+abstract class AbstractCollection implements Collection
 {
 
     /**
