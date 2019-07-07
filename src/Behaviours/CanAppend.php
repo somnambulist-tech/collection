@@ -22,7 +22,7 @@ trait CanAppend
      *
      * @param mixed $value
      *
-     * @return self
+     * @return static
      */
     public function add($value): self
     {

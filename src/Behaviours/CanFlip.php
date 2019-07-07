@@ -22,7 +22,7 @@ trait CanFlip
      *
      * Note: this should only be used with elements that can be used as valid PHP array keys.
      *
-     * @link http://ca.php.net/array_flip
+     * @link https://www.php.net/array_flip
      *
      * @return static
      */

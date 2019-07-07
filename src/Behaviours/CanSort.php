@@ -25,7 +25,7 @@ trait CanSort
     /**
      * Sort the Collection by a user defined function
      *
-     * @link http://ca.php.net/usort
+     * @link https://www.php.net/usort
      *
      * @param mixed $callable Any valid PHP callable e.g. function, closure, method
      *
@@ -41,7 +41,7 @@ trait CanSort
     /**
      * Sort the Collection by a user defined function
      *
-     * @link http://ca.php.net/uasort
+     * @link https://www.php.net/uasort
      *
      * @param mixed $callable Any valid PHP callable e.g. function, closure, method
      *
@@ -57,7 +57,7 @@ trait CanSort
     /**
      * Sorts the Collection by value using asort preserving keys, returns the Collection
      *
-     * @link http://ca.php.net/asort
+     * @link https://www.php.net/asort
      *
      * @param integer $type Any valid SORT_ constant
      *
@@ -73,7 +73,7 @@ trait CanSort
     /**
      * Sorts the Collection by value using arsort preserving keys, returns the Collection
      *
-     * @link http://ca.php.net/arsort
+     * @link https://www.php.net/arsort
      *
      * @param integer $type Any valid SORT_ constant
      *
@@ -89,7 +89,7 @@ trait CanSort
     /**
      * Sort the Collection by designated keys
      *
-     * @link http://ca.php.net/ksort
+     * @link https://www.php.net/ksort
      *
      * @param null|integer $type Any valid SORT_ constant
      *
@@ -105,7 +105,7 @@ trait CanSort
     /**
      * Sort the Collection by designated keys in reverse order
      *
-     * @link http://ca.php.net/krsort
+     * @link https://www.php.net/krsort
      *
      * @param null|integer $type Any valid SORT_ constant
      *

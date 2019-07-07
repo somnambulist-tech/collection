@@ -23,7 +23,7 @@ trait CanFill
      *
      * Start can be a negative number. Count can be zero or more.
      *
-     * @link http://ca.php.net/array_fill
+     * @link https://www.php.net/array_fill
      *
      * @param int   $start
      * @param int   $count
@@ -42,7 +42,7 @@ trait CanFill
      * This should only be used with scalar values that can be used as array keys.
      * A new Collection is returned with all previous values as keys, assigned the value.
      *
-     * @link http://ca.php.net/array_fill_keys
+     * @link https://www.php.net/array_fill_keys
      *
      * @param mixed $value
      *

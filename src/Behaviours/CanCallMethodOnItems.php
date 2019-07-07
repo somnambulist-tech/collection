@@ -30,7 +30,7 @@ trait CanCallMethodOnItems
      * @param string|Closure $method
      * @param mixed          ...$arguments
      *
-     * @return self
+     * @return static
      */
     public function run($method, ...$arguments): self
     {

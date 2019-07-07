@@ -20,7 +20,7 @@ trait CanPad
     /**
      * Pads the Collection to size using value as the value of the new elements
      *
-     * @link http://ca.php.net/array_pad
+     * @link https://www.php.net/array_pad
      *
      * @param integer $size
      * @param mixed   $value

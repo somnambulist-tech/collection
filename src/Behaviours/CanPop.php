@@ -20,7 +20,7 @@ trait CanPop
     /**
      * Pops the element off the end of the Collection
      *
-     * @link http://ca.php.net/array_pop
+     * @link https://www.php.net/array_pop
      *
      * @return mixed
      */

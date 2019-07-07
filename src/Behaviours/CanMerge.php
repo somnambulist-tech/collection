@@ -25,7 +25,7 @@ trait CanMerge
      * This method will re-index keys and overwrite existing values. If you wish to
      * preserve keys and values see {@link append}.
      *
-     * @link http://ca.php.net/array_merge
+     * @link https://www.php.net/array_merge
      *
      * @param mixed $value The value to merge into this collection
      *

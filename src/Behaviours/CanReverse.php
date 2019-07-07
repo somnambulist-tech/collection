@@ -20,7 +20,7 @@ trait CanReverse
     /**
      * Reverses the data in the Collection maintaining any keys
      *
-     * @link http://ca.php.net/array_reverse
+     * @link https://www.php.net/array_reverse
      *
      * @return static
      */

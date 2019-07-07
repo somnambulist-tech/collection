@@ -22,7 +22,7 @@ trait CanSlice
      *
      * By default, preserves the keys.
      *
-     * @link http://ca.php.net/array_slice
+     * @link https://www.php.net/array_slice
      *
      * @param int      $offset
      * @param int|null $limit
