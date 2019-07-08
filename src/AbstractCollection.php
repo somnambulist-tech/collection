@@ -8,7 +8,6 @@ use ArrayIterator;
 use Somnambulist\Collection\Contracts\Collection;
 use function array_key_exists;
 use function count;
-use Somnambulist\Collection\Utils\Value;
 
 /**
  * Class AbstractCollection
@@ -32,25 +31,30 @@ abstract class AbstractCollection implements Collection
     protected $items = [];
 
     /**
-     * Constructor.
-     *
      * @param mixed $items
+     *
+     * @return static
      */
-    public function __construct($items = [])
-    {
-        $this->items = Value::toArray($items);
-    }
-
-    public static function collect($items = []): Collection
+    public static function collect($items = [])
     {
         return new static($items);
     }
 
-    public static function new($items = []): Collection
+    /**
+     * @param mixed $items
+     *
+     * @return static
+     */
+    public static function new($items = [])
     {
         return new static($items);
     }
 
+    /**
+     * @param string $name
+     *
+     * @return mixed|static
+     */
     public function __get($name)
     {
         return $this->offsetGet($name);
@@ -69,6 +73,9 @@ abstract class AbstractCollection implements Collection
         return $object;
     }
 
+    /**
+     * @return int
+     */
     public function count()
     {
         return count($this->items);

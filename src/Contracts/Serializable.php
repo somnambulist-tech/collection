@@ -15,5 +15,10 @@ interface Serializable
 
     public function serialize(): string;
 
+    /**
+     * @param string $serialized
+     *
+     * @return static
+     */
     public function unserialize($serialized);
 }

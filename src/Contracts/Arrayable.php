@@ -19,8 +19,6 @@ interface Arrayable
 {
 
     /**
-     * Return an array from the object
-     *
      * @return array
      */
     public function toArray(): array;

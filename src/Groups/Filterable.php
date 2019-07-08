@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\CanFilter;
-use Somnambulist\Collection\Behaviours\CanFilterKeys;
+use Somnambulist\Collection\Behaviours\Query\CanFilter;
+use Somnambulist\Collection\Behaviours\Query\CanFilterKeys;
 
 /**
  * Trait Filterable

@@ -16,8 +16,6 @@ interface Jsonable
     /**
      * @param int $options Any valid combination of JSON_* constants
      *
-     * @link https://www.php.net/json_encode
-     *
      * @return string
      */
     public function toJson(int $options = 0): string;

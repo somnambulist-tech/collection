@@ -6,20 +6,18 @@ namespace Somnambulist\Collection\Utils;
 
 use ArrayAccess;
 use ArrayObject;
-use InvalidArgumentException;
 use Iterator;
 use Somnambulist\Collection\Contracts\Collection;
+use Somnambulist\Collection\MutableCollection;
 use stdClass;
 use Traversable;
 use function array_key_exists;
 use function array_merge;
-use function gettype;
 use function is_array;
 use function is_null;
 use function is_string;
 use function iterator_to_array;
 use function property_exists;
-use function sprintf;
 
 /**
  * Class Value
@@ -126,7 +124,7 @@ final class Value
                 $value = $value->getArrayCopy();
             }
 
-            foreach (['all', 'toArray', 'asArray'] as $method) {
+            foreach (['all', 'toArray', 'asArray', 'jsonSerialize'] as $method) {
                 if (method_exists($value, $method)) {
                     $value = $value->{$method}();
                     break;
@@ -134,9 +132,7 @@ final class Value
             }
 
             if (!is_array($value)) {
-                throw new InvalidArgumentException(
-                    sprintf('Object of type "%s" could not be converted to an array', gettype($value))
-                );
+                $value = [$value];
             }
 
             return $value;
@@ -146,26 +142,60 @@ final class Value
     }
 
     /**
+     * Attempts to convert the value to nested collection of the specified type
+     *
+     * Will iterate: arrays, iterators, array objects and convert them to collection
+     * instances.
+     *
+     * @param mixed  $value
+     * @param string $type
+     *
+     * @return Collection
+     */
+    public static function toCollection($value, $type = MutableCollection::class): Collection
+    {
+        $items = [];
+
+        foreach ($value as $key => $item) {
+            if (is_array($item)) {
+                $items[$key] = new $type(static::toCollection($item));
+            } elseif ($value instanceof Iterator) {
+                $items[$key] = new $type(static::toCollection(iterator_to_array($value)));
+            } elseif ($value instanceof ArrayObject) {
+                $items[$key] = new $type(static::toCollection($value->getArrayCopy()));
+            } else {
+                $items[$key] = $value;
+            }
+        }
+
+        return new $type($items);
+    }
+
+    /**
      * Recursively collapses all collections / arrays / values into an array
      *
      * Unlike `collapse()` this will recurse through all elements in the provided value.
      * Keys will be overwritten if they exist in multiple elements.
      *
      * @param array|Collection $value
+     * @param bool             $dotKeys Prefix keys with the previous key or not
+     * @param string|null      $prefix  Prefix to prepend to keys
      *
      * @return array
      */
-    public static function flatten($value): array
+    public static function flatten($value, $dotKeys = false, $prefix = null): array
     {
         $return = [];
 
         foreach ($value as $key => $values) {
             if (is_array($values)) {
-                $return = array_merge($return, static::flatten($values));
+                $prefix .= $key . '.';
+                $return = array_merge($return, static::flatten($values, $dotKeys, $prefix));
             } elseif ($values instanceof Collection) {
-                $return = array_merge($return, static::flatten($values->all()));
+                $prefix .= $key . '.';
+                $return = array_merge($return, static::flatten($values->all(), $dotKeys, $prefix));
             } else {
-                $return[$key] = $values;
+                $return[($dotKeys ? $prefix : '') . $key] = $values;
             }
         }
 
@@ -190,12 +220,12 @@ final class Value
     /**
      * Returns true if the key exists in the array'ish
      *
-     * @param mixed  $array
-     * @param string $key
+     * @param mixed      $array
+     * @param string|int $key
      *
      * @return bool
      */
-    public static function hasKey($array, string $key): bool
+    public static function hasKey($array, $key): bool
     {
         if ($array instanceof ArrayAccess) {
             return $array->offsetExists($key);

@@ -4,35 +4,35 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection;
 
+use Somnambulist\Collection\Behaviours\Assertion\CanAssert;
 use Somnambulist\Collection\Behaviours\CanAddAndRemoveItems;
-use Somnambulist\Collection\Behaviours\CanAppend;
-use Somnambulist\Collection\Behaviours\CanApplyCallback;
-use Somnambulist\Collection\Behaviours\CanAssert;
-use Somnambulist\Collection\Behaviours\CanCollapse;
-use Somnambulist\Collection\Behaviours\CanCombine;
-use Somnambulist\Collection\Behaviours\CanFilter;
-use Somnambulist\Collection\Behaviours\CanFilterKeys;
-use Somnambulist\Collection\Behaviours\CanGetAll;
-use Somnambulist\Collection\Behaviours\CanGetFirst;
-use Somnambulist\Collection\Behaviours\CanGetKey;
-use Somnambulist\Collection\Behaviours\CanGetLast;
-use Somnambulist\Collection\Behaviours\CanGetValue;
-use Somnambulist\Collection\Behaviours\CanGetValues;
-use Somnambulist\Collection\Behaviours\CanMap;
-use Somnambulist\Collection\Behaviours\CanMerge;
-use Somnambulist\Collection\Behaviours\CanPop;
-use Somnambulist\Collection\Behaviours\CanPrepend;
-use Somnambulist\Collection\Behaviours\CanRemoveItem;
-use Somnambulist\Collection\Behaviours\CanRemoveKey;
-use Somnambulist\Collection\Behaviours\CanSetKey;
-use Somnambulist\Collection\Behaviours\CanShift;
-use Somnambulist\Collection\Behaviours\Contains;
-use Somnambulist\Collection\Behaviours\ExportableToArray;
-use Somnambulist\Collection\Behaviours\ExportableToJson;
-use Somnambulist\Collection\Behaviours\ExportableToString;
-use Somnambulist\Collection\Behaviours\HasKey;
-use Somnambulist\Collection\Behaviours\Clearable;
-use Somnambulist\Collection\Behaviours\Uniqueable;
+use Somnambulist\Collection\Behaviours\Export\ExportableToArray;
+use Somnambulist\Collection\Behaviours\Export\ExportableToJson;
+use Somnambulist\Collection\Behaviours\Export\ExportableToString;
+use Somnambulist\Collection\Behaviours\MapReduce\CanCollapse;
+use Somnambulist\Collection\Behaviours\MapReduce\CanMap;
+use Somnambulist\Collection\Behaviours\Mutate\CanAppend;
+use Somnambulist\Collection\Behaviours\Mutate\CanCombine;
+use Somnambulist\Collection\Behaviours\Mutate\CanMerge;
+use Somnambulist\Collection\Behaviours\Mutate\CanPop;
+use Somnambulist\Collection\Behaviours\Mutate\CanPrepend;
+use Somnambulist\Collection\Behaviours\Mutate\CanRemoveItem;
+use Somnambulist\Collection\Behaviours\Mutate\CanRemoveKey;
+use Somnambulist\Collection\Behaviours\Mutate\CanSetKey;
+use Somnambulist\Collection\Behaviours\Mutate\CanShift;
+use Somnambulist\Collection\Behaviours\Mutate\Clearable;
+use Somnambulist\Collection\Behaviours\Pipes\CanEach;
+use Somnambulist\Collection\Behaviours\Query\CanFilter;
+use Somnambulist\Collection\Behaviours\Query\CanFilterKeys;
+use Somnambulist\Collection\Behaviours\Query\CanGetAll;
+use Somnambulist\Collection\Behaviours\Query\CanGetFirst;
+use Somnambulist\Collection\Behaviours\Query\CanGetKey;
+use Somnambulist\Collection\Behaviours\Query\CanGetLast;
+use Somnambulist\Collection\Behaviours\Query\CanGetValue;
+use Somnambulist\Collection\Behaviours\Query\CanGetValues;
+use Somnambulist\Collection\Behaviours\Query\Contains;
+use Somnambulist\Collection\Behaviours\Query\HasKey;
+use Somnambulist\Collection\Behaviours\Query\Uniqueable;
 
 /**
  * Class SimpleCollection
@@ -47,7 +47,7 @@ class SimpleCollection extends AbstractCollection
 
     use CanAddAndRemoveItems;
     use CanAppend;
-    use CanApplyCallback;
+    use CanEach;
     use CanAssert;
     use CanCollapse;
     use CanCombine;

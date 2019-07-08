@@ -13,5 +13,8 @@ namespace Somnambulist\Collection\Contracts;
 interface Freezable
 {
 
+    /**
+     * @return ImmutableCollection
+     */
     public function freeze(): ImmutableCollection;
 }

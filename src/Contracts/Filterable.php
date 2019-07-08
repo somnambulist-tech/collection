@@ -13,25 +13,88 @@ namespace Somnambulist\Collection\Contracts;
 interface Filterable
 {
 
-    public function filter($criteria = null): self;
+    /**
+     * @param mixed $criteria PHP callable, closure or function
+     *
+     * @return static
+     */
+    public function filter($criteria = null);
 
-    public function matching(callable $criteria): self;
+    /**
+     * Alias of filter to add but requires the callable
+     *
+     * @param callable $criteria
+     *
+     * @return static
+     */
+    public function matching(callable $criteria);
 
-    public function notMatching(callable $criteria): self;
+    /**
+     * @param callable $criteria
+     *
+     * @return static
+     */
+    public function notMatching(callable $criteria);
 
-    public function removeEmpty(array $empty = [false, null, '']): self;
+    /**
+     * @param array $empty
+     *
+     * @return static
+     */
+    public function removeEmpty(array $empty = [false, null, '']);
 
-    public function removeNulls(): self;
+    /**
+     * @return static
+     */
+    public function removeNulls();
 
+    /**
+     * @param string ...$key
+     *
+     * @return bool
+     */
     public function hasAnyOf(...$key): bool;
 
+    /**
+     * @param string ...$key
+     *
+     * @return bool
+     */
     public function hasNoneOf(...$key): bool;
 
-    public function keys($search = null, bool $strict = false): self;
+    /**
+     * @param mixed $search
+     * @param bool  $strict
+     *
+     * @return static
+     */
+    public function keys($search = null, bool $strict = false);
 
-    public function keysMatching($criteria): self;
+    /**
+     * @param string|callable $criteria Regular expression or a closure
+     *
+     * @return static
+     */
+    public function keysMatching($criteria);
 
-    public function with(...$keys): self;
+    /**
+     * @param integer $type
+     *
+     * @return static
+     */
+    public function unique($type = SORT_STRING);
 
-    public function without(...$keys): self;
+    /**
+     * @param string ...$keys
+     *
+     * @return static
+     */
+    public function with(...$keys);
+
+    /**
+     * @param string ...$keys
+     *
+     * @return static
+     */
+    public function without(...$keys);
 }

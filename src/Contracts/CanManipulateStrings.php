@@ -13,11 +13,23 @@ namespace Somnambulist\Collection\Contracts;
 interface CanManipulateStrings
 {
 
-    public function capitalize(): self;
+    /**
+     * @return static
+     */
+    public function capitalize();
 
-    public function lower(): self;
+    /**
+     * @return static
+     */
+    public function lower();
 
-    public function trim(): self;
+    /**
+     * @return static
+     */
+    public function trim();
 
-    public function upper(): self;
+    /**
+     * @return static
+     */
+    public function upper();
 }

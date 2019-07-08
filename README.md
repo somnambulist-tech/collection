@@ -141,7 +141,8 @@ sub-objects contained within a Collection.
  * `merge()` combine items into the current Collection, replaces existing keys items
  * `only()` returns only these keys in a new Collection
  * `pad()` pad the Collection to a size
- * `pipe()` transform a Collection of items through a collection of Operators, similar to a pipeline
+ * `pipe()` pass the collection to the callable
+ * `pipeline()` transform a Collection of items through a collection of Operators, similar to a pipeline
  * `pop()` removes an item from the end of the Collection
  * `reduce()` applies a callback to the Collection to produce a single value
  * `remove()` removes the key
@@ -172,16 +173,21 @@ sub-objects contained within a Collection.
  * `values()` returns a new Collection containing just the values
 
 ### Deprecated Methods
-
+ 
+ * append() is now union(); append() adds elements to the array without keys
  * invoke() use run()
  * removeElement() use remove()
- * find() returns the first match from a filter() and NOT a key
  * transform() use map()
+ * find() returns the first match from a filter() and NOT a key
+ * pipe() was renamed to pipeline()
+ * using invoke() (run()) now uses the splat operator so arguments should be passed as separate args not as an array
  * using remove() to remove keys, use unset()
 
 #### Removed from v3
 
+ * __call() has been removed as it masks method errors
  * call() use map()
+ * implodeKeys() use keys()->implode()
  * search() use filter() or keys()
  * walk() use map()
  * using set() to replace the Collection has been removed

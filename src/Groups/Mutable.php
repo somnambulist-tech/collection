@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\CanAppend;
-use Somnambulist\Collection\Behaviours\CanCombine;
-use Somnambulist\Collection\Behaviours\CanFill;
-use Somnambulist\Collection\Behaviours\CanFlip;
-use Somnambulist\Collection\Behaviours\CanManipulateStrings;
-use Somnambulist\Collection\Behaviours\CanMerge;
-use Somnambulist\Collection\Behaviours\CanPad;
-use Somnambulist\Collection\Behaviours\CanPop;
-use Somnambulist\Collection\Behaviours\CanPrepend;
-use Somnambulist\Collection\Behaviours\CanRemapKeys;
-use Somnambulist\Collection\Behaviours\CanRemoveItem;
-use Somnambulist\Collection\Behaviours\CanRemoveKey;
-use Somnambulist\Collection\Behaviours\CanReplace;
-use Somnambulist\Collection\Behaviours\CanReverse;
-use Somnambulist\Collection\Behaviours\CanSetKey;
-use Somnambulist\Collection\Behaviours\CanShift;
-use Somnambulist\Collection\Behaviours\CanShuffle;
-use Somnambulist\Collection\Behaviours\CanUnion;
-use Somnambulist\Collection\Behaviours\Clearable;
+use Somnambulist\Collection\Behaviours\Mutate\CanAppend;
+use Somnambulist\Collection\Behaviours\Mutate\CanCombine;
+use Somnambulist\Collection\Behaviours\Mutate\CanFill;
+use Somnambulist\Collection\Behaviours\Mutate\CanFlip;
+use Somnambulist\Collection\Behaviours\Mutate\CanManipulateStrings;
+use Somnambulist\Collection\Behaviours\Mutate\CanMerge;
+use Somnambulist\Collection\Behaviours\Mutate\CanPad;
+use Somnambulist\Collection\Behaviours\Mutate\CanPop;
+use Somnambulist\Collection\Behaviours\Mutate\CanPrepend;
+use Somnambulist\Collection\Behaviours\Mutate\CanRemapKeys;
+use Somnambulist\Collection\Behaviours\Mutate\CanRemoveItem;
+use Somnambulist\Collection\Behaviours\Mutate\CanRemoveKey;
+use Somnambulist\Collection\Behaviours\Mutate\CanReplace;
+use Somnambulist\Collection\Behaviours\Mutate\CanReverse;
+use Somnambulist\Collection\Behaviours\Mutate\CanSetKey;
+use Somnambulist\Collection\Behaviours\Mutate\CanShift;
+use Somnambulist\Collection\Behaviours\Mutate\CanShuffle;
+use Somnambulist\Collection\Behaviours\Mutate\CanUnion;
+use Somnambulist\Collection\Behaviours\Mutate\Clearable;
 
 /**
  * Trait Mutable

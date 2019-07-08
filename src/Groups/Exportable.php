@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\ExportableToArray;
-use Somnambulist\Collection\Behaviours\ExportableToJson;
-use Somnambulist\Collection\Behaviours\ExportableToString;
-use Somnambulist\Collection\Behaviours\Serializable;
+use Somnambulist\Collection\Behaviours\Export\ExportableToArray;
+use Somnambulist\Collection\Behaviours\Export\ExportableToJson;
+use Somnambulist\Collection\Behaviours\Export\ExportableToString;
+use Somnambulist\Collection\Behaviours\Export\Serializable;
 
 /**
  * Trait Exportable
