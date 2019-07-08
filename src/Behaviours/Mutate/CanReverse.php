@@ -24,7 +24,7 @@ trait CanReverse
      *
      * @return static
      */
-    public function reverse(): self
+    public function reverse()
     {
         $this->items = array_reverse($this->items, true);
 

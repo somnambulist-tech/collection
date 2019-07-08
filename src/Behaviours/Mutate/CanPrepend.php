@@ -26,7 +26,7 @@ trait CanPrepend
      *
      * @return static
      */
-    public function prepend(...$value): self
+    public function prepend(...$value)
     {
         array_unshift($this->items, ...$value);
 

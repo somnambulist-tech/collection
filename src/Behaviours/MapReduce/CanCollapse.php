@@ -22,8 +22,8 @@ trait CanCollapse
      *
      * @return static
      */
-    public function collapse(): self
+    public function collapse()
     {
-        return new static(Value::collapse($this->items));
+        return $this->new(Value::collapse($this->items));
     }
 }

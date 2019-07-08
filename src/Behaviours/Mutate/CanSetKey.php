@@ -23,7 +23,7 @@ trait CanSetKey
      *
      * @return static
      */
-    public function set($offset, $value): self
+    public function set($offset, $value)
     {
         $this->offsetSet($offset, $value);
 

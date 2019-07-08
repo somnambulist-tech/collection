@@ -26,7 +26,7 @@ trait CanGetKeys
      *
      * @return static
      */
-    public function keys($search = null, bool $strict = false): self
+    public function keys($search = null, bool $strict = false)
     {
         if (null === $search) {
             $keys = array_keys($this->items);
@@ -34,6 +34,6 @@ trait CanGetKeys
             $keys = array_keys($this->items, $search, (is_object($search) ? true : $strict));
         }
 
-        return new static($keys);
+        return $this->new($keys);
     }
 }

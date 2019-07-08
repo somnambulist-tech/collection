@@ -26,7 +26,7 @@ trait CanGroupBy
      *
      * @return static
      */
-    public function groupBy(callable $criteria): self
+    public function groupBy(callable $criteria)
     {
         $groups = [];
 
@@ -41,9 +41,9 @@ trait CanGroupBy
         }
 
         foreach ($groups as $group => $values) {
-            $groups[$group] = new static($values);
+            $groups[$group] = $this->new($values);
         }
 
-        return new static($groups);
+        return $this->new($groups);
     }
 }

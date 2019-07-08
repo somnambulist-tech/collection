@@ -24,7 +24,7 @@ trait CanAssert
      *
      * @return static
      */
-    public function assert(callable $callback): self
+    public function assert(callable $callback)
     {
         foreach ($this->items as $key => $value) {
             if (false === $callback($value, $key)) {

@@ -28,7 +28,7 @@ trait CanManipulateStrings
      *
      * @return static
      */
-    public function capitalize(): self
+    public function capitalize()
     {
         return $this->map(function ($item) {
             return (function_exists('mb_convert_case')) ? mb_convert_case($item, MB_CASE_TITLE) : ucwords($item);
@@ -40,7 +40,7 @@ trait CanManipulateStrings
      *
      * @return static
      */
-    public function lower(): self
+    public function lower()
     {
         return $this->map(function ($item) {
             return (function_exists('mb_strtolower')) ? mb_strtolower($item) : strtolower($item);
@@ -52,7 +52,7 @@ trait CanManipulateStrings
      *
      * @return static
      */
-    public function trim(): self
+    public function trim()
     {
         return $this->map(function ($item) {
             return trim($item);
@@ -64,7 +64,7 @@ trait CanManipulateStrings
      *
      * @return static
      */
-    public function upper(): self
+    public function upper()
     {
         return $this->map(function ($item) {
             return (function_exists('mb_strtoupper')) ? mb_strtoupper($item) : strtoupper($item);

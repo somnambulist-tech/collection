@@ -22,8 +22,8 @@ trait CanGetValues
      *
      * @return static
      */
-    public function values(): self
+    public function values()
     {
-        return new static(array_values($this->items));
+        return $this->new(array_values($this->items));
     }
 }

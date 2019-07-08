@@ -30,8 +30,8 @@ trait CanSlice
      *
      * @return static
      */
-    public function slice($offset, $limit = null, $keys = true): self
+    public function slice($offset, $limit = null, $keys = true)
     {
-        return new static(array_slice($this->items, $offset, $limit, $keys));
+        return $this->new(array_slice($this->items, $offset, $limit, $keys));
     }
 }

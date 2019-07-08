@@ -26,15 +26,15 @@ trait CanPartition
      *
      * @return static[static, static]
      */
-    public function partition($callback): self
+    public function partition($callback)
     {
-        $partitions = [new static, new static];
+        $partitions = [[], []];
         $callback   = Value::accessor($callback);
 
         foreach ($this->items as $key => $item) {
             $partitions[(int) ! $callback($item)][$key] = $item;
         }
 
-        return new static($partitions);
+        return $this->new([$this->new($partitions[0]), $this->new($partitions[1])]);
     }
 }

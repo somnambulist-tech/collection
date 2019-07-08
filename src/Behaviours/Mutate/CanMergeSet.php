@@ -29,7 +29,7 @@ trait CanMergeSet
      *
      * @return static
      */
-    public function merge($value): self
+    public function merge($value)
     {
         $values = Value::toArray($value);
         $unique = array_unique($values);

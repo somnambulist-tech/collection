@@ -29,7 +29,7 @@ trait CanRun
      *
      * @return CanRun
      */
-    public function invoke($method, array $arguments = []): self
+    public function invoke($method, array $arguments = [])
     {
         trigger_error(__METHOD__ . ' is deprecated; use run() instead', E_USER_DEPRECATED);
 
@@ -52,7 +52,7 @@ trait CanRun
      * @throws RuntimeException
      * @throws BadMethodCallException
      */
-    public function run($method, ...$arguments): self
+    public function run($method, ...$arguments)
     {
         foreach ($this->items as $key => $value) {
             if ($method instanceof Closure) {

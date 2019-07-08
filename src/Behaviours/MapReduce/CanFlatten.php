@@ -26,9 +26,9 @@ trait CanFlatten
      *
      * @return static
      */
-    public function flatten(): self
+    public function flatten()
     {
-        return new static(Value::flatten($this->items));
+        return $this->new(Value::flatten($this->items));
     }
 
     /**
@@ -38,8 +38,8 @@ trait CanFlatten
      *
      * @return static
      */
-    public function flattenWithDotKeys(): self
+    public function flattenWithDotKeys()
     {
-        return new static(Value::flatten($this->items, true));
+        return $this->new(Value::flatten($this->items, true));
     }
 }

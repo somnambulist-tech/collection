@@ -26,9 +26,9 @@ trait CanIntersect
      *
      * @return static
      */
-    public function intersect($items): self
+    public function intersect($items)
     {
-        return new static(array_intersect($this->items, Value::toArray($items)));
+        return $this->new(array_intersect($this->items, Value::toArray($items)));
     }
 
     /**
@@ -38,8 +38,8 @@ trait CanIntersect
      *
      * @return static
      */
-    public function intersectByKeys($items): self
+    public function intersectByKeys($items)
     {
-        return new static(array_intersect_key($this->items, Value::toArray($items)));
+        return $this->new(array_intersect_key($this->items, Value::toArray($items)));
     }
 }

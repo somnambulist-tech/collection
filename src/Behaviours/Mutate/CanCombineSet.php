@@ -26,7 +26,7 @@ trait CanCombineSet
      *
      * @return static
      */
-    public function combine($values): self
+    public function combine($values)
     {
         $values = Value::toArray($values);
         $unique = array_unique($values);
@@ -35,6 +35,6 @@ trait CanCombineSet
             throw DuplicateItemException::preparedValuesContainDuplicates(__FUNCTION__);
         }
 
-        return new static(array_combine($this->items, $values));
+        return $this->new(array_combine($this->items, $values));
     }
 }

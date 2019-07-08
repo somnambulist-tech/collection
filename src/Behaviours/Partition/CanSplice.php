@@ -27,12 +27,12 @@ trait CanSplice
      *
      * @return static
      */
-    public function splice($offset, $length = null, $replacement = []): self
+    public function splice($offset, $length = null, $replacement = [])
     {
         if (func_num_args() === 1) {
-            return new static(array_splice($this->items, $offset));
+            return $this->new(array_splice($this->items, $offset));
         }
 
-        return new static(array_splice($this->items, $offset, $length, $replacement));
+        return $this->new(array_splice($this->items, $offset, $length, $replacement));
     }
 }

@@ -54,7 +54,7 @@ trait CanPipe
      *
      * @return static
      */
-    public function pipeline(iterable $items, $through): self
+    public function pipeline(iterable $items, $through)
     {
         foreach ($this->items as $key => $operator) {
             $new = [];
@@ -72,6 +72,6 @@ trait CanPipe
             $items = $new;
         }
 
-        return new static($items);
+        return $this->new($items);
     }
 }

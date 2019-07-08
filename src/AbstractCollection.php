@@ -8,6 +8,7 @@ use ArrayIterator;
 use Somnambulist\Collection\Contracts\Collection;
 use function array_key_exists;
 use function count;
+use Somnambulist\Collection\Utils\ClassUtils;
 
 /**
  * Class AbstractCollection
@@ -24,6 +25,17 @@ abstract class AbstractCollection implements Collection
      * @var bool
      */
     public static $wrapArrays = true;
+
+    /**
+     * The type of collection to create when new collections are needed
+     *
+     * Must be a Collection interface class. This is required for the Set, where operations
+     * can result in duplicate values and that is the expected behaviour, but allowing a
+     * different type of collection is useful e.g.: return a limited set after filtering.
+     *
+     * @var string
+     */
+    protected static $collectionClass;
 
     /**
      * @var array
@@ -45,9 +57,19 @@ abstract class AbstractCollection implements Collection
      *
      * @return static
      */
-    public static function new($items = [])
+    public static function create($items = [])
     {
         return new static($items);
+    }
+
+    /**
+     * @param string $class
+     */
+    public static function setCollectionClass(string $class): void
+    {
+        ClassUtils::assertClassImplements($class, Collection::class);
+
+        static::$collectionClass = $class;
     }
 
     /**
@@ -86,6 +108,20 @@ abstract class AbstractCollection implements Collection
         return new ArrayIterator($this->items);
     }
 
+    /**
+     * @param array|mixed $items
+     *
+     * @return static|Collection
+     */
+    public function new($items)
+    {
+        if (is_null(static::$collectionClass)) {
+            static::$collectionClass = static::class;
+        }
+
+        return new static::$collectionClass($items);
+    }
+
     public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->items);
@@ -96,7 +132,7 @@ abstract class AbstractCollection implements Collection
         $value = $this->items[$offset];
 
         if (static::$wrapArrays && is_array($value)) {
-            $value = new static($value);
+            $value = $this->new($value);
         }
 
         return $value;

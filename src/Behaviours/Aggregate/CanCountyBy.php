@@ -24,7 +24,7 @@ trait CanCountyBy
      *
      * @return static
      */
-    public function countBy($callback = null): self
+    public function countBy($callback = null)
     {
         if (is_null($callback)) {
             $callback = function ($value) {
@@ -32,7 +32,7 @@ trait CanCountyBy
             };
         }
 
-        return new static($this->groupBy($callback)->map(function ($value) {
+        return $this->new($this->groupBy($callback)->map(function ($value) {
             return $value->count();
         }));
     }

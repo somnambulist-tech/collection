@@ -31,7 +31,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortUsing($callable): self
+    public function sortUsing($callable)
     {
         usort($this->items, $callable);
 
@@ -47,7 +47,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortUsingWithKeys($callable): self
+    public function sortUsingWithKeys($callable)
     {
         uasort($this->items, $callable);
 
@@ -63,7 +63,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortByValue($type = SORT_STRING): self
+    public function sortByValue($type = SORT_STRING)
     {
         asort($this->items, $type);
 
@@ -79,7 +79,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortByValueReversed($type = SORT_STRING): self
+    public function sortByValueReversed($type = SORT_STRING)
     {
         arsort($this->items, $type);
 
@@ -95,7 +95,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortByKey($type = null): self
+    public function sortByKey($type = null)
     {
         ksort($this->items, $type);
 
@@ -111,7 +111,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortByKeyReversed($type = null): self
+    public function sortByKeyReversed($type = null)
     {
         krsort($this->items, $type);
 

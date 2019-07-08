@@ -31,9 +31,9 @@ trait CanFill
      *
      * @return static
      */
-    public function fill($start, $count, $value): self
+    public function fill($start, $count, $value)
     {
-        return new static(array_fill($start, $count, $value));
+        return $this->new(array_fill($start, $count, $value));
     }
 
     /**
@@ -48,8 +48,8 @@ trait CanFill
      *
      * @return static
      */
-    public function fillKeysWith($value): self
+    public function fillKeysWith($value)
     {
-        return new static(array_fill_keys($this->values()->toArray(), $value));
+        return $this->new(array_fill_keys($this->values()->toArray(), $value));
     }
 }

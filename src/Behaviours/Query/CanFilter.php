@@ -30,9 +30,9 @@ trait CanFilter
      *
      * @return static
      */
-    public function filter($criteria = null): self
+    public function filter($criteria = null)
     {
-        return new static(array_filter($this->items, $criteria, ARRAY_FILTER_USE_BOTH));
+        return $this->new(array_filter($this->items, $criteria, ARRAY_FILTER_USE_BOTH));
     }
 
     /**
@@ -42,7 +42,7 @@ trait CanFilter
      *
      * @return static
      */
-    public function matching(callable $criteria): self
+    public function matching(callable $criteria)
     {
         return $this->filter($criteria);
     }
@@ -58,7 +58,7 @@ trait CanFilter
      *
      * @return static
      */
-    public function notMatching(callable $criteria): self
+    public function notMatching(callable $criteria)
     {
         return $this->filter(function ($value, $key) use ($criteria) { return !$criteria($value, $key); });
     }
@@ -70,7 +70,7 @@ trait CanFilter
      *
      * @return static
      */
-    public function reject(callable $criteria): self
+    public function reject(callable $criteria)
     {
         return $this->notMatching($criteria);
     }
@@ -82,7 +82,7 @@ trait CanFilter
      *
      * @return static
      */
-    public function removeEmpty(array $empty = [false, null, '']): self
+    public function removeEmpty(array $empty = [false, null, ''])
     {
         return $this->filter(function ($item) use ($empty) {
             return !in_array($item, $empty, true);
@@ -94,7 +94,7 @@ trait CanFilter
      *
      * @return static
      */
-    public function removeNulls(): self
+    public function removeNulls()
     {
         return $this->filter(function ($item) {
             return !is_null($item);

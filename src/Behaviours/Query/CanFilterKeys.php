@@ -26,7 +26,7 @@ trait CanFilterKeys
      *
      * @return static
      */
-    public function except(...$ignore): self
+    public function except(...$ignore)
     {
         return $this->without(...$ignore);
     }
@@ -74,7 +74,7 @@ trait CanFilterKeys
      *
      * @return static
      */
-    public function keysMatching($criteria): self
+    public function keysMatching($criteria)
     {
         $matches = [];
 
@@ -90,7 +90,7 @@ trait CanFilterKeys
             }
         }
 
-        return new static($matches);
+        return $this->new($matches);
     }
 
     /**
@@ -100,7 +100,7 @@ trait CanFilterKeys
      *
      * @return static
      */
-    public function only(...$keys): self
+    public function only(...$keys)
     {
         return $this->with(...$keys);
     }
@@ -112,7 +112,7 @@ trait CanFilterKeys
      *
      * @return static
      */
-    public function with(...$keys): self
+    public function with(...$keys)
     {
         $matches = [];
 
@@ -122,7 +122,7 @@ trait CanFilterKeys
             }
         }
 
-        return new static($matches);
+        return $this->new($matches);
     }
 
     /**
@@ -132,7 +132,7 @@ trait CanFilterKeys
      *
      * @return static
      */
-    public function without(...$keys): self
+    public function without(...$keys)
     {
         return $this->filter(function ($value, $key) use ($keys) {
             return !in_array($key, $keys, true);

@@ -22,7 +22,7 @@ trait CanRemoveItem
      *
      * @return static
      */
-    public function remove($value): self
+    public function remove($value)
     {
         if ($this->offsetExists($value)) {
             trigger_error('To remove keys, use unset(), remove is for values', E_USER_DEPRECATED);
@@ -41,7 +41,7 @@ trait CanRemoveItem
      *
      * @return static
      */
-    public function removeElement($value): self
+    public function removeElement($value)
     {
         trigger_error(__METHOD__ . ' is deprecated use remove() instead', E_USER_DEPRECATED);
 

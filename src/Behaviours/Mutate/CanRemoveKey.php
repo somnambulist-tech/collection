@@ -20,7 +20,7 @@ trait CanRemoveKey
      *
      * @return static
      */
-    public function unset($offset): self
+    public function unset($offset)
     {
         $this->offsetUnset($offset);
 

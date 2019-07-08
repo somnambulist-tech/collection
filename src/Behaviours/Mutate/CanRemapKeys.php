@@ -24,7 +24,7 @@ trait CanRemapKeys
      *
      * @return static
      */
-    public function remapKeys(array $map): self
+    public function remapKeys(array $map)
     {
         foreach ($this->items as $key => $value) {
             if (isset($map[$key])) {

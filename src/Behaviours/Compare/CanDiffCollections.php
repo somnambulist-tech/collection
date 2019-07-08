@@ -30,9 +30,9 @@ trait CanDiffCollections
      *
      * @return static
      */
-    public function diff($items): self
+    public function diff($items)
     {
-        return new static(array_diff($this->items, Value::toArray($items)));
+        return $this->new(array_diff($this->items, Value::toArray($items)));
     }
 
     /**
@@ -43,9 +43,9 @@ trait CanDiffCollections
      *
      * @return static
      */
-    public function diffUsing($items, callable $callback): self
+    public function diffUsing($items, callable $callback)
     {
-        return new static(array_udiff($this->items, Value::toArray($items), $callback));
+        return $this->new(array_udiff($this->items, Value::toArray($items), $callback));
     }
 
     /**
@@ -55,9 +55,9 @@ trait CanDiffCollections
      *
      * @return static
      */
-    public function diffAssoc($items): self
+    public function diffAssoc($items)
     {
-        return new static(array_diff_assoc($this->items, Value::toArray($items)));
+        return $this->new(array_diff_assoc($this->items, Value::toArray($items)));
     }
 
     /**
@@ -68,9 +68,9 @@ trait CanDiffCollections
      *
      * @return static
      */
-    public function diffAssocUsing($items, callable $callback): self
+    public function diffAssocUsing($items, callable $callback)
     {
-        return new static(array_diff_uassoc($this->items, Value::toArray($items), $callback));
+        return $this->new(array_diff_uassoc($this->items, Value::toArray($items), $callback));
     }
 
     /**
@@ -80,9 +80,9 @@ trait CanDiffCollections
      *
      * @return static
      */
-    public function diffKeys($items): self
+    public function diffKeys($items)
     {
-        return new static(array_diff_key($this->items, Value::toArray($items)));
+        return $this->new(array_diff_key($this->items, Value::toArray($items)));
     }
 
     /**
@@ -93,8 +93,8 @@ trait CanDiffCollections
      *
      * @return static
      */
-    public function diffKeysUsing($items, callable $callback): self
+    public function diffKeysUsing($items, callable $callback)
     {
-        return new static(array_diff_ukey($this->items, Value::toArray($items), $callback));
+        return $this->new(array_diff_ukey($this->items, Value::toArray($items), $callback));
     }
 }

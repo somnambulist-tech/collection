@@ -26,8 +26,8 @@ trait Uniqueable
      *
      * @return static
      */
-    public function unique($type = SORT_STRING): self
+    public function unique($type = SORT_STRING)
     {
-        return new static(array_unique($this->items, $type));
+        return $this->new(array_unique($this->items, $type));
     }
 }

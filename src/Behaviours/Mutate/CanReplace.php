@@ -25,7 +25,7 @@ trait CanReplace
      *
      * @return static
      */
-    public function replace(...$items): self
+    public function replace(...$items)
     {
         $this->items = array_replace($this->items, ...$items);
 
@@ -39,7 +39,7 @@ trait CanReplace
      *
      * @return static
      */
-    public function replaceRecursively(...$items): self
+    public function replaceRecursively(...$items)
     {
         $this->items = array_replace_recursive($this->items, ...$items);
 

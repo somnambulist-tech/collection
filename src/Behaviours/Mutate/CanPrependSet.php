@@ -25,7 +25,7 @@ trait CanPrependSet
      *
      * @return static
      */
-    public function prepend(...$value): self
+    public function prepend(...$value)
     {
         foreach ($value as $item) {
             if ($this->contains($item)) {

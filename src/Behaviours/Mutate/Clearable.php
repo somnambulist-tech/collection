@@ -20,7 +20,7 @@ trait Clearable
      *
      * @return static
      */
-    public function clear(): self
+    public function clear()
     {
         $this->items = [];
 
@@ -32,7 +32,7 @@ trait Clearable
      *
      * @return static
      */
-    public function reset(): self
+    public function reset()
     {
         return $this->clear();
     }

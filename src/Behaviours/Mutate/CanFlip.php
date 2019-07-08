@@ -26,8 +26,8 @@ trait CanFlip
      *
      * @return static
      */
-    public function flip(): self
+    public function flip()
     {
-        return new static(array_flip($this->items));
+        return $this->new(array_flip($this->items));
     }
 }

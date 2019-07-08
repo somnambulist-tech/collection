@@ -24,12 +24,10 @@ trait CanShuffle
      *
      * @return static
      */
-    public function shuffle(): self
+    public function shuffle()
     {
-        $items = $this->items;
+        shuffle($this->items);
 
-        shuffle($items);
-
-        return new static($items);
+        return $this;
     }
 }

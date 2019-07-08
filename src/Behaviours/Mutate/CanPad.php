@@ -27,7 +27,7 @@ trait CanPad
      *
      * @return static
      */
-    public function pad($size, $value): self
+    public function pad($size, $value)
     {
         $this->items = array_pad($this->items, $size, $value);
 

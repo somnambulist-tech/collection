@@ -24,7 +24,7 @@ trait CanAppend
      *
      * @return static
      */
-    public function add($value): self
+    public function add($value)
     {
         $this->append($value);
 
@@ -40,7 +40,7 @@ trait CanAppend
      *
      * @return static
      */
-    public function append(...$value): self
+    public function append(...$value)
     {
         array_push($this->items, ...$value);
 
@@ -54,7 +54,7 @@ trait CanAppend
      *
      * @return static
      */
-    public function concat($items): self
+    public function concat($items)
     {
         foreach ($items as $item) {
             $this->push($item);
@@ -70,7 +70,7 @@ trait CanAppend
      *
      * @return static
      */
-    public function push(...$value): self
+    public function push(...$value)
     {
         return $this->append(...$value);
     }

@@ -27,7 +27,7 @@ trait Contains
      */
     public function contains($value): bool
     {
-        return in_array($value, $this->items, (is_scalar($value) ? false : true));
+        return in_array($value, $this->items, true);
     }
 
     public function doesNotContain($value): bool

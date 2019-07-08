@@ -26,7 +26,7 @@ trait CanMap
      *
      * @return static
      */
-    public function flatMap(callable $callable): self
+    public function flatMap(callable $callable)
     {
         return $this->map($callable)->collapse();
     }
@@ -45,13 +45,13 @@ trait CanMap
      *
      * @return static
      */
-    public function map(callable $callable): self
+    public function map(callable $callable)
     {
         $keys = array_keys($this->items);
 
         $items = array_map($callable, $this->items, $keys);
 
-        return new static(array_combine($keys, $items));
+        return $this->new(array_combine($keys, $items));
     }
 
     /**
@@ -61,7 +61,7 @@ trait CanMap
      *
      * @return static
      */
-    public function mapInto(string $class): self
+    public function mapInto(string $class)
     {
         return $this->map(function ($value, $key) use ($class) {
             return new $class($value, $key);
@@ -75,7 +75,7 @@ trait CanMap
      *
      * @return static
      */
-    public function transform(callable $transformer): self
+    public function transform(callable $transformer)
     {
         trigger_error(__METHOD__ . ' is deprecated, use map() instead', E_USER_DEPRECATED);
 

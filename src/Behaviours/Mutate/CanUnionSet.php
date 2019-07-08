@@ -25,7 +25,7 @@ trait CanUnionSet
      *
      * @return static
      */
-    public function union($items): self
+    public function union($items)
     {
         $items = Value::toArray($items);
 

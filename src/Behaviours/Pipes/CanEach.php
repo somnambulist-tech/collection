@@ -22,7 +22,7 @@ trait CanEach
      *
      * @return static
      */
-    public function each(callable $callback): self
+    public function each(callable $callback)
     {
         foreach ($this->items as $key => $value) {
             if (false === $callback($value, $key)) {

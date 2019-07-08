@@ -25,8 +25,8 @@ trait CanExtract
      *
      * @return static
      */
-    public function extract($element, $withKey = null): self
+    public function extract($element, $withKey = null)
     {
-        return new static(KeyWalker::extract($this, $element, $withKey));
+        return $this->new(KeyWalker::extract($this, $element, $withKey));
     }
 }
