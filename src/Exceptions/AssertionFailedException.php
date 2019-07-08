@@ -41,7 +41,7 @@ class AssertionFailedException extends Exception
 
     public static function assertionFailedFor($key, $value)
     {
-        return new static($key, $value);
+        return new self($key, $value);
     }
 
     /**

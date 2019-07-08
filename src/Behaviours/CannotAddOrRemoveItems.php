@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
-use DomainException;
-use function sprintf;
+use Somnambulist\Collection\Exceptions\CollectionIsFrozenException;
 
 /**
  * Trait CannotAddOrRemoveItems
@@ -20,21 +19,21 @@ trait CannotAddOrRemoveItems
 
     final public function offsetSet($offset, $value)
     {
-        throw new DomainException(sprintf('%s is immutable: %s cannot be set', static::class, $offset));
+        throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
     }
 
     final public function offsetUnset($offset)
     {
-        throw new DomainException(sprintf('%s is immutable: %s cannot be unset', static::class, $offset));
+        throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
     }
 
     final public function __set($offset, $value)
     {
-        throw new DomainException(sprintf('%s is immutable: %s cannot be set', static::class, $offset));
+        throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
     }
 
     final public function __unset($offset)
     {
-        throw new DomainException(sprintf('%s is immutable: %s cannot be unset', static::class, $offset));
+        throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
     }
 }
