@@ -14,7 +14,7 @@ interface Freezable
 {
 
     /**
-     * @return ImmutableCollection
+     * @return Immutable
      */
-    public function freeze(): ImmutableCollection;
+    public function freeze(): Immutable;
 }

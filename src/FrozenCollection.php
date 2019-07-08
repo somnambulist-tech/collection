@@ -7,7 +7,7 @@ namespace Somnambulist\Collection;
 use Somnambulist\Collection\Behaviours\CannotAddOrRemoveItems;
 use Somnambulist\Collection\Contracts\Comparable as IsDiffable;
 use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
-use Somnambulist\Collection\Contracts\ImmutableCollection as IsImmutable;
+use Somnambulist\Collection\Contracts\Immutable as IsImmutable;
 use Somnambulist\Collection\Contracts\Mappable as IsMappable;
 use Somnambulist\Collection\Contracts\Runnable as IsRunnable;
 use Somnambulist\Collection\Contracts\Serializable as IsSerializable;

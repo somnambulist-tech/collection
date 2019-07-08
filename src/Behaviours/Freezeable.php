@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours;
 
 use InvalidArgumentException;
-use Somnambulist\Collection\Contracts\ImmutableCollection;
+use Somnambulist\Collection\Contracts\Immutable;
 use Somnambulist\Collection\FrozenCollection;
 use Somnambulist\Collection\Utils\ClassUtils;
 
@@ -36,12 +36,12 @@ trait Freezeable
      */
     public static function setFreezableClass(string $class): void
     {
-        ClassUtils::assertClassImplements($class, ImmutableCollection::class);
+        ClassUtils::assertClassImplements($class, Immutable::class);
 
         self::$freezableClass = $class;
     }
 
-    public function freeze(): ImmutableCollection
+    public function freeze(): Immutable
     {
         return new self::$freezableClass($this->items);
     }
