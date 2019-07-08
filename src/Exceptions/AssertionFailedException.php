@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Exceptions;
 
 use Exception;
+use function get_class;
+use function gettype;
+use function is_object;
+use function sprintf;
 
 /**
  * Class AssertionFailedException
@@ -28,20 +32,25 @@ class AssertionFailedException extends Exception
     /**
      * Constructor.
      *
-     * @param mixed $key
      * @param mixed $value
+     * @param mixed $key
      */
-    public function __construct($key, $value)
+    public function __construct($value, $key)
     {
         $this->key   = $key;
         $this->value = $value;
 
-        parent::__construct(sprintf('Assertion failed for key "%s" with value type "%s"', $key, gettype($value)));
+        parent::__construct(
+            sprintf(
+                'Assertion failed for key "%s" with value type "%s"', $key,
+                is_object($value) ? get_class($value) : gettype($value)
+            )
+        );
     }
 
-    public static function assertionFailedFor($key, $value)
+    public static function assertionFailedFor($value, $key)
     {
-        return new self($key, $value);
+        return new self($value, $key);
     }
 
     /**

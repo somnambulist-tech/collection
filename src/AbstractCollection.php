@@ -6,9 +6,11 @@ namespace Somnambulist\Collection;
 
 use ArrayIterator;
 use Somnambulist\Collection\Contracts\Collection;
+use Somnambulist\Collection\Utils\ClassUtils;
 use function array_key_exists;
 use function count;
-use Somnambulist\Collection\Utils\ClassUtils;
+use function is_array;
+use function is_null;
 
 /**
  * Class AbstractCollection

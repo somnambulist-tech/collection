@@ -7,6 +7,8 @@ namespace Somnambulist\Collection\Behaviours\Pipes;
 use BadMethodCallException;
 use Closure;
 use RuntimeException;
+use function get_class;
+use function gettype;
 use function is_object;
 use function method_exists;
 

@@ -23,12 +23,13 @@ trait CanAssert
      * @param callable $callback
      *
      * @return static
+     * @throws AssertionFailedException
      */
     public function assert(callable $callback)
     {
         foreach ($this->items as $key => $value) {
             if (false === $callback($value, $key)) {
-                throw AssertionFailedException::assertionFailedFor($key, $value);
+                throw AssertionFailedException::assertionFailedFor($value, $key);
             }
         }
 
