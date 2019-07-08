@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
-use DomainException;
-use function gettype;
-use function sprintf;
+use Somnambulist\Collection\Exceptions\DuplicateItemException;
 
 /**
  * Trait CannotAddDuplicateItems
@@ -22,7 +20,7 @@ trait CannotAddDuplicateItems
     final public function offsetSet($offset, $value)
     {
         if ($this->contains($value)) {
-            throw new DomainException(sprintf('The set already contains a value of type "%s"', gettype($value)));
+            throw DuplicateItemException::found($value, array_search($value, $this->items));
         }
 
         if (null === $offset) {

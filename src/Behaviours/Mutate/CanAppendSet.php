@@ -1,0 +1,85 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Somnambulist\Collection\Behaviours\Mutate;
+
+use function array_push;
+use Somnambulist\Collection\Exceptions\DuplicateItemException;
+
+/**
+ * Trait CanAppendSet
+ *
+ * @package    Somnambulist\Collection\Behaviours
+ * @subpackage Somnambulist\Collection\Behaviours\Mutate\CanAppendSet
+ *
+ * @property array $items
+ */
+trait CanAppendSet
+{
+
+    /**
+     * Append the value to the collection
+     *
+     * @param mixed $value
+     *
+     * @return static
+     */
+    public function add($value): self
+    {
+        $this->append($value);
+
+        return $this;
+    }
+
+    /**
+     * Add elements to the end of the collection
+     *
+     * @link https://www.php.net/array_push
+     *
+     * @param mixed ...$value One or values to add
+     *
+     * @return static
+     */
+    public function append(...$value): self
+    {
+        foreach ($value as $item) {
+            if ($this->contains($item)) {
+                throw DuplicateItemException::found($value, $this->keys($item)->first());
+            } else {
+                array_push($this->items, $item);
+            }
+        }
+
+
+        return $this;
+    }
+
+    /**
+     * Push all of the given items onto the collection.
+     *
+     * @param iterable $items
+     *
+     * @return static
+     */
+    public function concat($items): self
+    {
+        foreach ($items as $item) {
+            $this->push($item);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Alias of append
+     *
+     * @param mixed ...$value
+     *
+     * @return static
+     */
+    public function push(...$value): self
+    {
+        return $this->append(...$value);
+    }
+}

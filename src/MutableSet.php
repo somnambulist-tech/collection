@@ -19,7 +19,7 @@ use Somnambulist\Collection\Groups\Comparable;
 use Somnambulist\Collection\Groups\Exportable;
 use Somnambulist\Collection\Groups\Filterable;
 use Somnambulist\Collection\Groups\Mappable;
-use Somnambulist\Collection\Groups\Mutable;
+use Somnambulist\Collection\Groups\MutableSet as Mutable;
 use Somnambulist\Collection\Groups\Partitionable;
 use Somnambulist\Collection\Groups\Queryable;
 use Somnambulist\Collection\Groups\Runnable;
@@ -28,6 +28,15 @@ use Somnambulist\Collection\Utils\Value;
 
 /**
  * Class MutableSet
+ *
+ * Note: this is not a true set, in that string keys are allowed.
+ *
+ * A set only contains the value once. This implementation attempts to keep
+ * duplicate values out and will raise an exception if a duplicate is found
+ * during any mutation operation.
+ *
+ * Certain mutations cannot be used in a Set, e.g. pad, fill, fillKeys as they
+ * generate the same value for every key.
  *
  * @package    Somnambulist\Collection
  * @subpackage Somnambulist\Collection\MutableSet
