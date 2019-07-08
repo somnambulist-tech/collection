@@ -14,4 +14,9 @@ class TestClass4
     {
         return '{"foo":"bar"}';
     }
+
+    public static function __set_state($an_array)
+    {
+        return new static($an_array);
+    }
 }

@@ -5,7 +5,6 @@ namespace Somnambulist\Collection\Tests;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\MutableCollection as Collection;
 use Somnambulist\Collection\Utils\FactoryUtils as Factory;
-use Somnambulist\Collection\Utils\Value;
 
 /**
  * Class FactoryTest
@@ -15,33 +14,6 @@ use Somnambulist\Collection\Utils\Value;
  */
 class FactoryTest extends TestCase
 {
-
-    public function testConvertToArrayDeep()
-    {
-        $class = new \stdClass();
-        $class->foo = 'bar';
-        $class->baz = 'bar';
-
-        $array = [
-            clone $class,
-            clone $class,
-        ];
-
-        $expected = [
-            [
-                'foo' => 'bar',
-                'baz' => 'bar',
-            ],
-            [
-                'foo' => 'bar',
-                'baz' => 'bar',
-            ],
-        ];
-
-        $value = Value::toArray($array, true);
-
-        $this->assertEquals($expected, $value);
-    }
 
     public function testExplode()
     {

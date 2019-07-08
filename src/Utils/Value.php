@@ -98,8 +98,8 @@ final class Value
      * Converts the value to an array
      *
      * For objects, stdClass, Collection, Iterator and ArrayObject will be converted. If the
-     * object has an all, toArray or asArray method, that will be called. Otherwise, an
-     * exception will be raised if conversion fails.
+     * object has an all, toArray or asArray method, that will be called. Does not cascade
+     * into sub-arrays or collections.
      *
      * @param mixed $value
      *
