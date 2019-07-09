@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours\Query;
 
 use function in_array;
-use function is_scalar;
 
 /**
  * Trait Contains

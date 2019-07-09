@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Export\ExportableToArray;
-use Somnambulist\Collection\Behaviours\Export\ExportableToJson;
-use Somnambulist\Collection\Behaviours\Export\ExportableToString;
+use Somnambulist\Collection\Behaviours\Export\ExportToArray;
+use Somnambulist\Collection\Behaviours\Export\ExportToJson;
+use Somnambulist\Collection\Behaviours\Export\ExportToQueryString;
+use Somnambulist\Collection\Behaviours\Export\ExportToString;
 use Somnambulist\Collection\Behaviours\Export\Serializable;
 
 /**
@@ -20,9 +21,10 @@ use Somnambulist\Collection\Behaviours\Export\Serializable;
 trait Exportable
 {
 
-    use ExportableToArray;
-    use ExportableToJson;
-    use ExportableToString;
+    use ExportToArray;
+    use ExportToJson;
+    use ExportToQueryString;
+    use ExportToString;
     use Serializable;
 
 }

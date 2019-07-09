@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Mutate\CanAppendSet;
-use Somnambulist\Collection\Behaviours\Mutate\CanCombineSet;
-use Somnambulist\Collection\Behaviours\Mutate\CanManipulateStrings;
-use Somnambulist\Collection\Behaviours\Mutate\CanMergeSet;
-use Somnambulist\Collection\Behaviours\Mutate\CanPop;
-use Somnambulist\Collection\Behaviours\Mutate\CanPrependSet;
-use Somnambulist\Collection\Behaviours\Mutate\CanRemapKeys;
-use Somnambulist\Collection\Behaviours\Mutate\CanRemoveItem;
-use Somnambulist\Collection\Behaviours\Mutate\CanRemoveKey;
-use Somnambulist\Collection\Behaviours\Mutate\CanReverse;
-use Somnambulist\Collection\Behaviours\Mutate\CanSetKey;
-use Somnambulist\Collection\Behaviours\Mutate\CanShift;
-use Somnambulist\Collection\Behaviours\Mutate\CanShuffle;
-use Somnambulist\Collection\Behaviours\Mutate\CanUnionSet;
-use Somnambulist\Collection\Behaviours\Mutate\Clearable;
+use Somnambulist\Collection\Behaviours\Mutate\AppendOnlyUniqueValues;
+use Somnambulist\Collection\Behaviours\Mutate\CombineOnlyUniqueValues;
+use Somnambulist\Collection\Behaviours\Mutate\Clear;
+use Somnambulist\Collection\Behaviours\Mutate\MergeOnlyUniqueValues;
+use Somnambulist\Collection\Behaviours\Mutate\Pop;
+use Somnambulist\Collection\Behaviours\Mutate\PrependOnlyUniqueValues;
+use Somnambulist\Collection\Behaviours\Mutate\RemapKeys;
+use Somnambulist\Collection\Behaviours\Mutate\RemoveValue;
+use Somnambulist\Collection\Behaviours\Mutate\Reverse;
+use Somnambulist\Collection\Behaviours\Mutate\SetKeyValue;
+use Somnambulist\Collection\Behaviours\Mutate\Shift;
+use Somnambulist\Collection\Behaviours\Mutate\Shuffle;
+use Somnambulist\Collection\Behaviours\Mutate\UnionOnlyUniqueValues;
+use Somnambulist\Collection\Behaviours\Mutate\UnsetKey;
+use Somnambulist\Collection\Behaviours\Strings\Capitalize;
 
 /**
  * Trait MutableSet
@@ -31,20 +31,20 @@ use Somnambulist\Collection\Behaviours\Mutate\Clearable;
 trait MutableSet
 {
 
-    use CanAppendSet;
-    use CanCombineSet;
-    use CanManipulateStrings;
-    use CanMergeSet;
-    use CanPop;
-    use CanPrependSet;
-    use CanRemapKeys;
-    use CanRemoveItem;
-    use CanRemoveKey;
-    use CanReverse;
-    use CanSetKey;
-    use CanShift;
-    use CanShuffle;
-    use CanUnionSet;
-    use Clearable;
+    use AppendOnlyUniqueValues;
+    use CombineOnlyUniqueValues;
+    use Capitalize;
+    use MergeOnlyUniqueValues;
+    use Pop;
+    use PrependOnlyUniqueValues;
+    use RemapKeys;
+    use RemoveValue;
+    use UnsetKey;
+    use Reverse;
+    use SetKeyValue;
+    use Shift;
+    use Shuffle;
+    use UnionOnlyUniqueValues;
+    use Clear;
 
 }

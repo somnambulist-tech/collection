@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Mutate\CanAppend;
-use Somnambulist\Collection\Behaviours\Mutate\CanCombine;
-use Somnambulist\Collection\Behaviours\Mutate\CanFill;
-use Somnambulist\Collection\Behaviours\Mutate\CanFlip;
-use Somnambulist\Collection\Behaviours\Mutate\CanManipulateStrings;
-use Somnambulist\Collection\Behaviours\Mutate\CanMerge;
-use Somnambulist\Collection\Behaviours\Mutate\CanPad;
-use Somnambulist\Collection\Behaviours\Mutate\CanPop;
-use Somnambulist\Collection\Behaviours\Mutate\CanPrepend;
-use Somnambulist\Collection\Behaviours\Mutate\CanRemapKeys;
-use Somnambulist\Collection\Behaviours\Mutate\CanRemoveItem;
-use Somnambulist\Collection\Behaviours\Mutate\CanRemoveKey;
-use Somnambulist\Collection\Behaviours\Mutate\CanReplace;
-use Somnambulist\Collection\Behaviours\Mutate\CanReverse;
-use Somnambulist\Collection\Behaviours\Mutate\CanSetKey;
-use Somnambulist\Collection\Behaviours\Mutate\CanShift;
-use Somnambulist\Collection\Behaviours\Mutate\CanShuffle;
-use Somnambulist\Collection\Behaviours\Mutate\CanUnion;
-use Somnambulist\Collection\Behaviours\Mutate\Clearable;
+use Somnambulist\Collection\Behaviours\Mutate\AppendValues;
+use Somnambulist\Collection\Behaviours\Mutate\Clear;
+use Somnambulist\Collection\Behaviours\Mutate\CombineValues;
+use Somnambulist\Collection\Behaviours\Mutate\Fill;
+use Somnambulist\Collection\Behaviours\Mutate\Flip;
+use Somnambulist\Collection\Behaviours\Mutate\MergeValues;
+use Somnambulist\Collection\Behaviours\Mutate\Pad;
+use Somnambulist\Collection\Behaviours\Mutate\Pop;
+use Somnambulist\Collection\Behaviours\Mutate\PrependValues;
+use Somnambulist\Collection\Behaviours\Mutate\RemapKeys;
+use Somnambulist\Collection\Behaviours\Mutate\RemoveValue;
+use Somnambulist\Collection\Behaviours\Mutate\ReplaceValues;
+use Somnambulist\Collection\Behaviours\Mutate\Reverse;
+use Somnambulist\Collection\Behaviours\Mutate\SetKeyValue;
+use Somnambulist\Collection\Behaviours\Mutate\Shift;
+use Somnambulist\Collection\Behaviours\Mutate\Shuffle;
+use Somnambulist\Collection\Behaviours\Mutate\UnionValues;
+use Somnambulist\Collection\Behaviours\Mutate\UnsetKey;
 
 /**
  * Trait Mutable
@@ -35,24 +34,24 @@ use Somnambulist\Collection\Behaviours\Mutate\Clearable;
 trait Mutable
 {
 
-    use CanAppend;
-    use CanCombine;
-    use CanFill;
-    use CanFlip;
-    use CanManipulateStrings;
-    use CanMerge;
-    use CanPad;
-    use CanPop;
-    use CanPrepend;
-    use CanRemapKeys;
-    use CanRemoveItem;
-    use CanRemoveKey;
-    use CanReplace;
-    use CanReverse;
-    use CanSetKey;
-    use CanShift;
-    use CanShuffle;
-    use CanUnion;
-    use Clearable;
+    use AppendValues;
+    use CombineValues;
+    use Clear;
+    use CombineValues;
+    use Fill;
+    use Flip;
+    use MergeValues;
+    use Pad;
+    use Pop;
+    use PrependValues;
+    use RemapKeys;
+    use RemoveValue;
+    use ReplaceValues;
+    use Reverse;
+    use SetKeyValue;
+    use Shift;
+    use Shuffle;
+    use UnionValues;
+    use UnsetKey;
 
 }

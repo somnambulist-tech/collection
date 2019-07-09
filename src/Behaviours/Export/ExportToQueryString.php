@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Somnambulist\Collection\Behaviours\Export;
+
+use function http_build_query;
+
+/**
+ * Trait ExportToQueryString
+ *
+ * @package    Somnambulist\Collection\Behaviours
+ * @subpackage Somnambulist\Collection\Behaviours\Export\ExportToQueryString
+ *
+ * @property array $items
+ */
+trait ExportToQueryString
+{
+
+    /**
+     * Returns a HTTP query string of the values
+     *
+     * Note: should only be used with elements that can be cast to scalars.
+     *
+     * @param string $separator
+     * @param int    $encoding
+     *
+     * @return string
+     */
+    public function toQueryString($separator = '&', $encoding = PHP_QUERY_RFC3986): string
+    {
+        return http_build_query($this->toArray(), '', $separator, $encoding);
+    }
+}

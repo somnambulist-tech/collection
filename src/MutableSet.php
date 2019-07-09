@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection;
 
 use Somnambulist\Collection\Behaviours\CannotAddDuplicateItems;
-use Somnambulist\Collection\Behaviours\Freezeable;
+use Somnambulist\Collection\Behaviours\Freeze;
 use Somnambulist\Collection\Contracts\Assertable as IsAssertable;
 use Somnambulist\Collection\Contracts\Comparable as IsDiffable;
 use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
@@ -25,6 +25,7 @@ use Somnambulist\Collection\Groups\MutableSet as Mutable;
 use Somnambulist\Collection\Groups\Partitionable;
 use Somnambulist\Collection\Groups\Queryable;
 use Somnambulist\Collection\Groups\Runnable;
+use Somnambulist\Collection\Groups\StringHelpers;
 use Somnambulist\Collection\Utils\RunProxy;
 use Somnambulist\Collection\Utils\Value;
 
@@ -52,12 +53,13 @@ class MutableSet extends AbstractCollection implements IsAssertable, IsMutable, 
     use Comparable;
     use Exportable;
     use Filterable;
-    use Freezeable;
+    use Freeze;
     use Mappable;
     use Mutable;
     use Partitionable;
     use Queryable;
     use Runnable;
+    use StringHelpers;
 
     protected static $collectionClass = MutableCollection::class;
 

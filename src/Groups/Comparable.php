@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Compare\CanDiffCollections;
-use Somnambulist\Collection\Behaviours\Compare\CanIntersect;
+use Somnambulist\Collection\Behaviours\Compare\DiffKeys;
+use Somnambulist\Collection\Behaviours\Compare\DiffValues;
+use Somnambulist\Collection\Behaviours\Compare\Intersect;
 
 /**
  * Trait Comparable
@@ -16,7 +17,8 @@ use Somnambulist\Collection\Behaviours\Compare\CanIntersect;
 trait Comparable
 {
 
-    use CanDiffCollections;
-    use CanIntersect;
+    use DiffKeys;
+    use DiffValues;
+    use Intersect;
 
 }

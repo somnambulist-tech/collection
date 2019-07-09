@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection;
 
 use Somnambulist\Collection\Behaviours\CanAddAndRemoveItems;
-use Somnambulist\Collection\Behaviours\Freezeable;
+use Somnambulist\Collection\Behaviours\Freeze;
 use Somnambulist\Collection\Contracts\Comparable as IsDiffable;
 use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
 use Somnambulist\Collection\Contracts\Freezable as IsFreezable;
@@ -23,6 +23,7 @@ use Somnambulist\Collection\Groups\Mutable;
 use Somnambulist\Collection\Groups\Partitionable;
 use Somnambulist\Collection\Groups\Queryable;
 use Somnambulist\Collection\Groups\Runnable;
+use Somnambulist\Collection\Groups\StringHelpers;
 use Somnambulist\Collection\Utils\RunProxy;
 use Somnambulist\Collection\Utils\Value;
 
@@ -40,12 +41,13 @@ class MutableCollection extends AbstractCollection implements IsMutable, IsFilte
     use Assertable;
     use Comparable;
     use Exportable;
-    use Freezeable;
+    use Freeze;
     use Mappable;
     use Mutable;
     use Queryable;
     use Partitionable;
     use Runnable;
+    use StringHelpers;
 
     /**
      * Constructor.

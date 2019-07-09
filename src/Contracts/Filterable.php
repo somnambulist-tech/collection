@@ -37,18 +37,6 @@ interface Filterable
     public function notMatching(callable $criteria);
 
     /**
-     * @param array $empty
-     *
-     * @return static
-     */
-    public function removeEmpty(array $empty = [false, null, '']);
-
-    /**
-     * @return static
-     */
-    public function removeNulls();
-
-    /**
      * @param string ...$key
      *
      * @return bool
@@ -64,11 +52,10 @@ interface Filterable
 
     /**
      * @param mixed $search
-     * @param bool  $strict
      *
      * @return static
      */
-    public function keys($search = null, bool $strict = false);
+    public function keys($search = null);
 
     /**
      * @param string|callable $criteria Regular expression or a closure

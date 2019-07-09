@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Assertion\CanAssert;
+use Somnambulist\Collection\Behaviours\Assertion\Assert;
 
 /**
  * Trait Assertable
@@ -15,6 +15,6 @@ use Somnambulist\Collection\Behaviours\Assertion\CanAssert;
 trait Assertable
 {
 
-    use CanAssert;
+    use Assert;
 
 }

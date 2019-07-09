@@ -72,11 +72,10 @@ interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayabl
 
     /**
      * @param mixed $search
-     * @param bool  $strict
      *
      * @return static
      */
-    public function keys($search = null, bool $strict = false);
+    public function keys($search = null);
 
     /**
      * @return mixed

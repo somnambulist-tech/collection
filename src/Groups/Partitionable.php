@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Partition\CanGroupBy;
-use Somnambulist\Collection\Behaviours\Partition\CanPartition;
-use Somnambulist\Collection\Behaviours\Partition\CanSlice;
-use Somnambulist\Collection\Behaviours\Partition\CanSplice;
+use Somnambulist\Collection\Behaviours\Partition\GroupBy;
+use Somnambulist\Collection\Behaviours\Partition\Partition;
+use Somnambulist\Collection\Behaviours\Partition\Slice;
+use Somnambulist\Collection\Behaviours\Partition\Splice;
 
 /**
  * Trait Partitionable
@@ -18,9 +18,9 @@ use Somnambulist\Collection\Behaviours\Partition\CanSplice;
 trait Partitionable
 {
 
-    use CanGroupBy;
-    use CanPartition;
-    use CanSlice;
-    use CanSplice;
+    use GroupBy;
+    use Partition;
+    use Slice;
+    use Splice;
 
 }

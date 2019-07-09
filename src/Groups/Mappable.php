@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\MapReduce\CanCollapse;
-use Somnambulist\Collection\Behaviours\MapReduce\CanFlatten;
-use Somnambulist\Collection\Behaviours\MapReduce\CanMap;
-use Somnambulist\Collection\Behaviours\MapReduce\CanReduce;
+use Somnambulist\Collection\Behaviours\MapReduce\Collapse;
+use Somnambulist\Collection\Behaviours\MapReduce\FlatMap;
+use Somnambulist\Collection\Behaviours\MapReduce\Flatten;
+use Somnambulist\Collection\Behaviours\MapReduce\Map;
+use Somnambulist\Collection\Behaviours\MapReduce\MapInto;
+use Somnambulist\Collection\Behaviours\MapReduce\Reduce;
 
 /**
  * Trait Mappable
@@ -20,9 +22,11 @@ use Somnambulist\Collection\Behaviours\MapReduce\CanReduce;
 trait Mappable
 {
 
-    use CanCollapse;
-    use CanFlatten;
-    use CanMap;
-    use CanReduce;
+    use Collapse;
+    use FlatMap;
+    use Flatten;
+    use Map;
+    use MapInto;
+    use Reduce;
 
 }

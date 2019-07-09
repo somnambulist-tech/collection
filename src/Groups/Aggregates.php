@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Aggregate\CanAggregateItems;
-use Somnambulist\Collection\Behaviours\Aggregate\CanCountyBy;
+use Somnambulist\Collection\Behaviours\Aggregate\AggregateValues;
+use Somnambulist\Collection\Behaviours\Aggregate\CountyBy;
 
 /**
  * Trait Aggregates
@@ -16,7 +16,7 @@ use Somnambulist\Collection\Behaviours\Aggregate\CanCountyBy;
 trait Aggregates
 {
 
-    use CanAggregateItems;
-    use CanCountyBy;
+    use AggregateValues;
+    use CountyBy;
 
 }

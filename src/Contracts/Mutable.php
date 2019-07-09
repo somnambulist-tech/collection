@@ -37,7 +37,7 @@ interface Mutable extends Collection
      *
      * @return static
      */
-    public function concat($items);
+    public function concat(iterable $items);
 
     /**
      * @param mixed $value The value to merge into this collection

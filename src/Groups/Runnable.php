@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
-use Somnambulist\Collection\Behaviours\Pipes\CanEach;
-use Somnambulist\Collection\Behaviours\Pipes\CanPipe;
-use Somnambulist\Collection\Behaviours\Pipes\CanRun;
+use Somnambulist\Collection\Behaviours\Pipes\Pipeline;
+use Somnambulist\Collection\Behaviours\Pipes\RunCallableOnValues;
+use Somnambulist\Collection\Behaviours\Pipes\Pipe;
+use Somnambulist\Collection\Behaviours\Pipes\RunMethodOnValues;
 
 /**
  * Trait Runnable
@@ -20,8 +21,9 @@ use Somnambulist\Collection\Behaviours\Pipes\CanRun;
 trait Runnable
 {
 
-    use CanEach;
-    use CanRun;
-    use CanPipe;
+    use RunCallableOnValues;
+    use RunMethodOnValues;
+    use Pipe;
+    use Pipeline;
 
 }
