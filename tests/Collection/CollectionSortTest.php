@@ -152,7 +152,7 @@ class CollectionSortTest extends TestCase
             'btest' => 'testp',
         ]);
 
-        $col->sortKeepingKeysUsing(function ($a, $b) {
+        $col->sortUsingWithKeys(function ($a, $b) {
             return strcmp($a, $b);
         });
 

@@ -225,7 +225,7 @@ class MutableCollectionTest extends TestCase
         $tmp = $col->flatten();
 
         $this->assertCount(3, $tmp);
-        $this->assertEquals(['foo' => 'bar', 'bar' => 'baz', 'you' => 'me'], $tmp->toArray());
+        $this->assertEquals([0 => ['foo' => 'bar'], 'bar' => 'baz', 'you' => 'me'], $tmp->toArray());
     }
 
     /**
@@ -244,7 +244,7 @@ class MutableCollectionTest extends TestCase
         $tmp = $col->flattenWithDotKeys();
 
         $this->assertCount(3, $tmp);
-        $this->assertEquals(['foo' => 'bar', 'foobar.bar' => 'baz', 'foobar.foobar2.you' => 'me'], $tmp->toArray());
+        $this->assertEquals([0 => ['foo' => 'bar'], 'foobar.bar' => 'baz', 'foobar.foobar2.you' => 'me'], $tmp->toArray());
     }
 
     /**

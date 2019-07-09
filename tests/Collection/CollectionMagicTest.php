@@ -5,6 +5,7 @@ namespace Somnambulist\Collection\Tests\Collection;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\MutableCollection as Collection;
 use Somnambulist\Collection\Tests\Fixtures\TestClass4;
+use Somnambulist\Collection\Tests\Fixtures\TestClass5;
 
 /**
  * Class CollectionMagicTest
@@ -35,7 +36,7 @@ class CollectionMagicTest extends TestCase
      */
     public function testMagicIsset()
     {
-        $col = new Collection(new TestClass4());
+        $col = new Collection(['foo' => new TestClass4(), 'baz' => new TestClass4()]);
 
         $this->assertTrue(isset($col->foo));
         $this->assertFalse(isset($col->bar));
@@ -80,6 +81,6 @@ class CollectionMagicTest extends TestCase
             'bar' => $mock1,
         ]);
 
-        $col->asJson();
+        $col->run->asJson();
     }
 }

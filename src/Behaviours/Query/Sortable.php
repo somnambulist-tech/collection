@@ -95,7 +95,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortByKey($type = null)
+    public function sortByKey($type = SORT_REGULAR)
     {
         ksort($this->items, $type);
 
@@ -111,7 +111,7 @@ trait Sortable
      *
      * @return static
      */
-    public function sortByKeyReversed($type = null)
+    public function sortByKeyReversed($type = SORT_REGULAR)
     {
         krsort($this->items, $type);
 

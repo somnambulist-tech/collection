@@ -23,8 +23,19 @@ class CollectionSearchTest extends TestCase
         $col        = new Collection(new TestClass4());
         $col['bar'] = 'too';
 
-        $this->assertNotFalse($col->find('bar'));
+        $this->assertEquals('too', $col->find('too'));
         $this->assertFalse($col->find('baz'));
+    }
+
+    /**
+     * @group search
+     */
+    public function testFindWithClosure()
+    {
+        $col        = new Collection(new TestClass4());
+        $col['bar'] = 'too';
+
+        $this->assertEquals('too', $col->find(function ($value, $key) { return 'bar' === $key; }));
     }
 
     /**
@@ -45,7 +56,7 @@ class CollectionSearchTest extends TestCase
     /**
      * @group search
      */
-    public function testMatch()
+    public function testKeysMatching()
     {
         $col = new Collection([
             'test-1' => 'test',
@@ -61,20 +72,8 @@ class CollectionSearchTest extends TestCase
 
         $this->assertCount(9, $col);
 
-        $tmp = $col->match('/^test-\d+/')->toArray();
+        $tmp = $col->keysMatching('/^test-\d+/')->toArray();
 
         $this->assertCount(5, $tmp);
-    }
-
-    /**
-     * @group search
-     */
-    public function testSearch()
-    {
-        $col        = new Collection(new TestClass4());
-        $col['bar'] = 'too';
-
-        $this->assertNotFalse($col->search('bar'));
-        $this->assertFalse($col->search('baz'));
     }
 }

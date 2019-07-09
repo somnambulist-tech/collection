@@ -14,6 +14,7 @@ use Somnambulist\Collection\Contracts\Mutable as IsMutable;
 use Somnambulist\Collection\Contracts\Runnable as IsRunnable;
 use Somnambulist\Collection\Contracts\Serializable as IsSerializable;
 use Somnambulist\Collection\Contracts\Sortable as IsSortable;
+use Somnambulist\Collection\Groups\Aggregates;
 use Somnambulist\Collection\Groups\Assertable;
 use Somnambulist\Collection\Groups\Comparable;
 use Somnambulist\Collection\Groups\Exportable;
@@ -35,6 +36,7 @@ class MutableCollection extends AbstractCollection implements IsMutable, IsFilte
 {
 
     use CanAddAndRemoveItems;
+    use Aggregates;
     use Assertable;
     use Comparable;
     use Exportable;

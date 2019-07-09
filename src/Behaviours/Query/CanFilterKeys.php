@@ -80,7 +80,7 @@ trait CanFilterKeys
 
         if (!Value::isCallable($criteria)) {
             $criteria = function ($key) use ($criteria) {
-                return false !== preg_match($criteria, $key);
+                return 1 === preg_match($criteria, $key);
             };
         }
 

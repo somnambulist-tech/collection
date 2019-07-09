@@ -11,6 +11,8 @@ use Somnambulist\Collection\Contracts\Immutable as IsImmutable;
 use Somnambulist\Collection\Contracts\Mappable as IsMappable;
 use Somnambulist\Collection\Contracts\Runnable as IsRunnable;
 use Somnambulist\Collection\Contracts\Serializable as IsSerializable;
+use Somnambulist\Collection\Groups\Aggregates;
+use Somnambulist\Collection\Groups\Assertable;
 use Somnambulist\Collection\Groups\Comparable;
 use Somnambulist\Collection\Groups\Exportable;
 use Somnambulist\Collection\Groups\Filterable;
@@ -30,6 +32,8 @@ class FrozenCollection extends AbstractCollection implements IsImmutable, IsFilt
 {
 
     use CannotAddOrRemoveItems;
+    use Aggregates;
+    use Assertable;
     use Comparable;
     use Exportable;
     use Filterable;

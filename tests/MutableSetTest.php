@@ -103,7 +103,7 @@ class MutableSetTest extends TestCase
      */
     public function testAssert()
     {
-        $col = new \Somnambulist\Collection\MutableCollection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
+        $col = new MutableCollection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
         $this->assertSame($col, $col->assert(function ($item, $key) {
             return !empty($item);
         }));
@@ -254,7 +254,7 @@ class MutableSetTest extends TestCase
         $tmp = $col->flatten();
 
         $this->assertCount(3, $tmp);
-        $this->assertEquals(['foo' => 'bar', 'bar' => 'baz', 'you' => 'me'], $tmp->toArray());
+        $this->assertEquals([0 => ['foo' => 'bar'], 'bar' => 'baz', 'you' => 'me'], $tmp->toArray());
     }
 
     /**
@@ -273,7 +273,7 @@ class MutableSetTest extends TestCase
         $tmp = $col->flattenWithDotKeys();
 
         $this->assertCount(3, $tmp);
-        $this->assertEquals(['foo' => 'bar', 'foobar.bar' => 'baz', 'foobar.foobar2.you' => 'me'], $tmp->toArray());
+        $this->assertEquals([0 => ['foo' => 'bar'], 'foobar.bar' => 'baz', 'foobar.foobar2.you' => 'me'], $tmp->toArray());
     }
 
     /**
