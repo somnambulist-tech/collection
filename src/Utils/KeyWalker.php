@@ -32,6 +32,7 @@ final class KeyWalker
         if (is_null($key)) {
             return $collection;
         }
+
         if (is_string($key) && mb_substr($key, 0, 1) == '@') {
             // <3.0 used an @ prefix to check for exact strings
             $key = mb_substr($key, 1);

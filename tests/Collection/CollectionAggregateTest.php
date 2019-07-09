@@ -17,6 +17,34 @@ class CollectionAggregateTest extends TestCase
     /**
      * @group aggregate
      */
+    public function testAverage()
+    {
+        $col = new Collection([
+            6, 9, 1, 4, 32, 8,
+        ]);
+
+        $this->assertEquals((6+9+1+4+32+8)/6, $col->average());
+    }
+
+    /**
+     * @group aggregate
+     */
+    public function testAverageCanUseKey()
+    {
+        $col = new Collection([
+            ['key' => 45,],
+            ['key' => 3,],
+            ['key' => 2,],
+            ['key' => 56,],
+            ['key' => 8,],
+        ]);
+
+        $this->assertEquals((45+3+2+56+8)/5, $col->average('key'));
+    }
+
+    /**
+     * @group aggregate
+     */
     public function testMin()
     {
         $col = new Collection([
@@ -100,6 +128,50 @@ class CollectionAggregateTest extends TestCase
         ]);
 
         $this->assertEquals(['key' => 56], $col->max());
+    }
+
+    /**
+     * @group aggregate
+     */
+    public function testModalCanWorkWithSimpleArrays()
+    {
+        $col = new Collection([
+            2, 3, 3, 3, 5, 56, 6, 7, 45, 34, 3,
+        ]);
+
+        $this->assertEquals(3, $col->modal());
+    }
+
+    /**
+     * @group aggregate
+     */
+    public function testModalReturnsFalseIfNoModal()
+    {
+        $col = new Collection([
+            ['key' => 45,],
+            ['key' => 3,],
+            ['key' => 2,],
+            ['key' => 56,],
+            ['key' => 8,],
+        ]);
+
+        $this->assertFalse($col->modal('key'));
+    }
+
+    /**
+     * @group aggregate
+     */
+    public function testModalCanReturnMultipleModals()
+    {
+        $col = new Collection([
+            ['key' => 45,],
+            ['key' => 2,],
+            ['key' => 2,],
+            ['key' => 45,],
+            ['key' => 8,],
+        ]);
+
+        $this->assertEquals([45, 2], $col->modal('key'));
     }
 
     /**

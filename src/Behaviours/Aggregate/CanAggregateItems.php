@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours\Aggregate;
 
 use Somnambulist\Collection\Utils\Value;
+use function array_keys;
+use function array_count_values;
 use function arsort;
+use function count;
+use function current;
 use function is_null;
-use function key;
-use function reset;
 
 /**
  * Trait CanAggregateItems
@@ -103,26 +105,41 @@ trait CanAggregateItems
     /**
      * Returns the modal (most frequent) value from the collection based on the key
      *
+     * In the case of a single modal, returns that value (int/float).
+     * In the case of several modals, returns an array of each value
+     * If every value is a modal, returns false.
+     *
+     * If you have many modals, consider grouping by occurrence instead.
+     *
+     * @link https://cowburn.info/2009/04/01/php-array-mode/
+     *
      * @param null|string|callable $key
      *
-     * @return float|int
+     * @return mixed
      */
     public function modal($key = null)
     {
         $callback = Value::accessor($key);
 
-        $tally = [];
+        $values = [];
 
         foreach ($this->items as $key => $value) {
-            $valueToCount = $callback($value);
-
-            $tally[$valueToCount]++;
+            $values[] = $callback($value);
         }
 
-        arsort($tally, SORT_NUMERIC);
-        reset($tally);
+        $counts = array_count_values($values);
+        arsort($counts);
+        $modes = array_keys($counts, current($counts), true);
 
-        return key($tally);
+        if (count($values) === count($counts)) {
+            return false;
+        }
+
+        if (count($modes) === 1) {
+            return $modes[0];
+        }
+
+        return $modes;
     }
 
     /**

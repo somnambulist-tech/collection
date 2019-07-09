@@ -1,10 +1,45 @@
 ## Collection Library
 
-Provides a Collection container with no dependencies on any framework code. The collection is a
-wrapper around a standard array with many helper methods. It sits somewhere between a Laravel
-Collection and the Doctrine ArrayCollection and takes ideas from both of those as well as others.
+Somnambulist Collection provides a framework for making collections and pseudo sets of your own.
+It has been completely re-worked from the previous versions into a set of behaviours (traits) and
+some common interfaces grouped around function.
 
-If you see something missing or have suggestions for other methods, submit a PR or ticket.
+The basic "Collection" is an interface that extends ArrayAccess, IteratorAggregate and Countable;
+and adds Arrayable and Jsonable as common requirements. Then the basic methods are:
+
+```php
+public function all(): array;
+public function contains($value): bool;
+public function doesNotContain($value): bool;
+public function each(callable $callback);
+public function filter($criteria = null);
+public function first();
+public function get($key, $default = null);
+public function has(...$key): bool;
+public function keys($search = null, bool $strict = false);
+public function last();
+public function map(callable $callable);
+public function value($key, $default = null);
+public function values();
+```
+
+From this, additional functionality is added by interface and traits - or implement your own.
+The goal is to allow for a set of small, re-usable, well tested functions that can be combined
+to provide the functionality you need, instead of a single monolithic collection class that
+does everything and more.
+
+Of course out of the box, several standard implementations are included.
+
+This is heavily inspired by Doctrine ArrayCollection and of course Laravel Collection along
+with ideas from Lithium framework, ez Components, CakePHP and more.
+
+If you see something missing or have suggestions for other methods, submit a PR or ticket!
+Adding functions is easy with the trait system and if you think that the groupings need work,
+suggest a better name!
+
+__Note:__ there are substantial differences between v2 and v3. In fact the changes are so large
+that a drop-in replacement is unlikely to work. Be sure to read the notes about what has
+changed.
 
 ### Requirements
 
@@ -16,27 +51,38 @@ Install using composer, or checkout / pull the files from github.com.
 
  * composer require somnambulist/collection
 
-### Collection Types
+### Built-in Collections
 
-There are several types of collection that all implement the Collection interface:
+There are several types of collection that all implement the Collection interface with varying
+levels of functionality:
 
- * SimpleCollection
- * MutableCollection
- * FrozenCollection
- * MutableSet
+ * SimpleCollection - a very basic, Doctrine ArrayCollection like style collection
+ * MutableCollection - more like Laravel Collection, supports dot notation accessing
+ * FrozenCollection - more like a Symfony Frozen ParameterBag, but more, with dot notation
+ * MutableSet - a pseudo set that does not allow duplicate values, but does allow string keys.
+
+There's no frozen set, but if you freeze a MutableSet; you have yourself a FrozenSet.
 
 ### Using
 
 Instantiate with an array or other collection of items:
 
 ```php
-$collection = Collection::collect($items);
+$collection = MutableCollection::collect($items);
 $collection->map()->filter()...
 ```
 
 Freeze changes to a collection:
 
 ```php
+$locked = $collection->freeze()
+
+// raises exception
+$locked->shift()
+```
+Use a custom Immutable collection class:
+```php
+MutableCollection::setFreezeableClass();
 $locked = $collection->freeze()
 
 // raises exception

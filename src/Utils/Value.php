@@ -39,35 +39,17 @@ final class Value
      * Based on Laravel: Illuminate\Support\Collection.valueRetriever
      *
      * @param string|callable $value
-     * @param bool            $returnNull If true, returns null instead of the item
      *
      * @return callable
      */
-    public static function accessor($value, $returnNull = false): callable
+    public static function accessor($value): callable
     {
         if (static::isCallable($value)) {
             return $value;
         }
 
-        return function ($item) use ($value, $returnNull) {
-            if (is_null($value)) {
-                return $returnNull ? null : $item;
-            }
-
-            if (Value::isAccessibleByKey($item)) {
-                return array_key_exists($value, $item) ? $item[$value] : null;
-            }
-
-            if (is_object($item)) {
-                if (property_exists($item, $value)) {
-                    return $item->{$value};
-                }
-                if (null !== $method = ClassUtils::getAccessMethodFor($item, $value)) {
-                    return $item->{$method}();
-                }
-            }
-
-            return $returnNull ? null : $item;
+        return function ($item) use ($value) {
+            return KeyWalker::get($item, $value);
         };
     }
 

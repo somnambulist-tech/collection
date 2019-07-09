@@ -23,6 +23,20 @@ interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayabl
     public function all(): array;
 
     /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function contains($value): bool;
+
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function doesNotContain($value): bool;
+
+    /**
      * @param callable $callback Receives: ($value, $key)
      *
      * @return static
@@ -48,6 +62,13 @@ interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayabl
      * @return mixed
      */
     public function get($key, $default = null);
+
+    /**
+     * @param string ...$key
+     *
+     * @return bool
+     */
+    public function has(...$key): bool;
 
     /**
      * @param mixed $search
@@ -82,6 +103,4 @@ interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayabl
      */
     public function values();
 
-    public function contains($value): bool;
-    public function doesNotContain($value): bool;
 }
