@@ -3,17 +3,17 @@
 namespace Somnambulist\Collection\Tests\Collection\Exportable;
 
 use PHPUnit\Framework\TestCase;
+use Somnambulist\Collection\Contracts\Arrayable;
 use Somnambulist\Collection\Groups\Exportable;
 use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Interfaces\ExportableInterface;
 
 /**
- * Class ExportableTest
+ * Class ArrayableTest
  *
- * @package    Somnambulist\Tests\Collection\Exportable
- * @subpackage Somnambulist\Tests\Collection\Exportable\ExportableTest
+ * @package    Somnambulist\Collection\Tests\Collection\Exportable
+ * @subpackage Somnambulist\Collection\Tests\Collection\Exportable\ArrayableTest
  */
-class ExportableTest extends TestCase
+class ArrayableTest extends TestCase
 {
 
     /**
@@ -36,7 +36,7 @@ class ExportableTest extends TestCase
      */
     public function testToArrayOfClassImplementingExportable()
     {
-        $item = new class implements ExportableInterface {
+        $item = new class implements Arrayable {
 
             use Exportable;
 
@@ -54,7 +54,7 @@ class ExportableTest extends TestCase
      */
     public function testToArrayOfCollectionsCascadesToArrayOfExportable()
     {
-        $item = new class implements ExportableInterface {
+        $item = new class implements Arrayable {
 
             use Exportable;
 
