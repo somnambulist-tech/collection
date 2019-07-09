@@ -24,7 +24,7 @@ class CollectionExportTest extends TestCase
         $arr = $col->toArray();
 
         $this->assertIsArray($arr);
-        $this->assertEquals(['foo' => 'bar'], $arr);
+        $this->assertEquals([0 => ['foo' => 'bar']], $arr);
     }
 
     /**
@@ -66,7 +66,7 @@ class CollectionExportTest extends TestCase
         $arr = $col->toJson();
 
         $this->assertIsString($arr);
-        $this->assertEquals('{"foo":"bar"}', $arr);
+        $this->assertEquals('[{"foo":"bar"}]', $arr);
     }
 
     /**

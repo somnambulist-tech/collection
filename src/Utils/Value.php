@@ -6,7 +6,8 @@ namespace Somnambulist\Collection\Utils;
 
 use ArrayAccess;
 use ArrayObject;
-use Iterator;
+use JsonSerializable;
+use Somnambulist\Collection\Contracts\Arrayable;
 use Somnambulist\Collection\Contracts\Collection;
 use Somnambulist\Collection\MutableCollection;
 use stdClass;
@@ -97,9 +98,10 @@ final class Value
     /**
      * Converts the value to an array
      *
-     * For objects, stdClass, Collection, Iterator and ArrayObject will be converted. If the
+     * For objects of stdClass, Collection, Traversable and ArrayObject will be converted. If the
      * object has an all, toArray or asArray method, that will be called. Does not cascade
-     * into sub-arrays or collections.
+     * into sub-arrays, collections or attempt to convert objects that implement various toArray
+     * or json methods.
      *
      * @param mixed $value
      *
@@ -109,36 +111,74 @@ final class Value
     {
         if (is_null($value)) {
             return [];
-        }
-        if (is_array($value)) {
+        } elseif (is_array($value)) {
             return $value;
-        }
-        if (is_object($value)) {
-            if ($value instanceof stdClass) {
-                $value = (array)$value;
-            } elseif ($value instanceof Collection) {
-                $value = $value->all();
-            } elseif ($value instanceof Iterator) {
-                $value = iterator_to_array($value);
-            } elseif ($value instanceof ArrayObject) {
-                $value = $value->getArrayCopy();
-            }
-
-            foreach (['all', 'toArray', 'asArray', 'jsonSerialize'] as $method) {
-                if (method_exists($value, $method)) {
-                    $value = $value->{$method}();
-                    break;
-                }
-            }
-
-            if (!is_array($value)) {
-                $value = [$value];
-            }
-
-            return $value;
+        } elseif ($value instanceof stdClass) {
+            return (array)$value;
+        } elseif ($value instanceof Collection) {
+            return $value->all();
+        } elseif ($value instanceof Arrayable) {
+            return $value->toArray();
+        } elseif ($value instanceof Traversable) {
+            return iterator_to_array($value);
         }
 
         return [$value];
+    }
+
+    /**
+     * Attempts to call into various methods to convert the value to an array
+     *
+     * This method will check:
+     *
+     *  * Collection
+     *  * Arrayable
+     *  * JsonSerializable
+     *  * stdClass -> array
+     *  * Traversable
+     *  * obj->asArray
+     *  * obj->asJson
+     *  * obj->toArray
+     *  * obj->toJson
+     *  * obj->all -> exportToArray
+     *  * returns the value that could be an object
+     *
+     * @param mixed $value
+     *
+     * @return array|mixed
+     */
+    public static function exportToArray($value)
+    {
+        if ($value instanceof Collection) {
+            return $value->toArray();
+        } elseif ($value instanceof Arrayable) {
+            return $value->toArray();
+        } elseif ($value instanceof JsonSerializable) {
+            return $value->jsonSerialize();
+        } elseif ($value instanceof stdClass) {
+            return (array)$value;
+        } elseif ($value instanceof Traversable) {
+            return iterator_to_array($value);
+        } elseif (is_object($value)) {
+            foreach (['toArray', 'asArray',] as $method) {
+                if (method_exists($value, $method)) {
+                    return $value->{$method}();
+                }
+            }
+
+            foreach (['toJson', 'asJson',] as $method) {
+                if (method_exists($value, $method)) {
+                    return json_decode($value->{$method}(), true);
+                }
+            }
+
+            // last ditch, all() usually returns an array of items
+            if (method_exists($value, 'all')) {
+                return static::exportToArray($value->all());
+            }
+        }
+
+        return $value;
     }
 
     /**
@@ -159,7 +199,7 @@ final class Value
         foreach ($value as $key => $item) {
             if (is_array($item)) {
                 $items[$key] = new $type(static::toCollection($item));
-            } elseif ($value instanceof Iterator) {
+            } elseif ($value instanceof Traversable) {
                 $items[$key] = new $type(static::toCollection(iterator_to_array($value)));
             } elseif ($value instanceof ArrayObject) {
                 $items[$key] = new $type(static::toCollection($value->getArrayCopy()));

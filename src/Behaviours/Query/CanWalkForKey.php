@@ -36,6 +36,6 @@ trait CanWalkForKey
      */
     public function get($key, $default = null)
     {
-        return KeyWalker::get($this->items, $key, $default);
+        return KeyWalker::get($this, $key, $default);
     }
 }

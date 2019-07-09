@@ -36,7 +36,8 @@ final class KeyWalker
             // <3.0 used an @ prefix to check for exact strings
             $key = mb_substr($key, 1);
         }
-        if (Value::hasKey($collection, $key)) {
+
+        if (is_string($key) && Value::hasKey($collection, $key)) {
             return $collection[$key];
         }
 
@@ -82,7 +83,7 @@ final class KeyWalker
             // <3.0 used an @ prefix to check for exact strings
             $key = mb_substr($key, 1);
         }
-        if (Value::hasKey($collection, $key)) {
+        if (is_string($key) && Value::hasKey($collection, $key)) {
             return true;
         }
 

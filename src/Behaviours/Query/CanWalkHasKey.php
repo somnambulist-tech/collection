@@ -37,7 +37,7 @@ trait CanWalkHasKey
         $result = true;
 
         foreach ($key as $test) {
-            $result = $result && KeyWalker::has($this->items, $test);
+            $result = $result && KeyWalker::has($this, $test);
         }
 
         return $result;

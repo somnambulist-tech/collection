@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours\Export;
 
-use JsonSerializable;
-use Somnambulist\Collection\Contracts\Arrayable;
-use stdClass;
-use function json_decode;
-use function method_exists;
+use Somnambulist\Collection\Utils\Value;
 
 /**
  * Trait ExportableToArray
@@ -24,6 +20,9 @@ trait ExportableToArray
     /**
      * Convert the collection and any nested data to an array
      *
+     * Note: some objects may fail to convert to arrays if they do not have
+     * appropriate export / array methods.
+     *
      * @return array
      */
     public function toArray(): array
@@ -31,19 +30,7 @@ trait ExportableToArray
         $array = [];
 
         foreach ($this->items as $key => $value) {
-            if ($value instanceof Arrayable) {
-                $array[$key] = $value->toArray();
-            } elseif ($value instanceof JsonSerializable) {
-                $array[$key] = $value->jsonSerialize();
-            } elseif ($value instanceof stdClass) {
-                $array[$key] = (array)$value;
-            } elseif (method_exists($value, 'toArray')) {
-                $array[$key] = $value->toArray();
-            } elseif (method_exists($value, 'toJson')) {
-                $array[$key] = json_decode($value->toJson(), true);
-            } else {
-                $array[$key] = $value;
-            }
+            $array[$key] = Value::exportToArray($value);
         }
 
         return $array;

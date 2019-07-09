@@ -68,7 +68,7 @@ trait ExportableToString
      */
     public function toQueryString($separator = '&', $encoding = PHP_QUERY_RFC3986): string
     {
-        return http_build_query($this->toArray(), null, $separator, $encoding);
+        return http_build_query($this->toArray(), '', $separator, $encoding);
     }
 
     /**

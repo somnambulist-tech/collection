@@ -24,7 +24,6 @@ There are several types of collection that all implement the Collection interfac
  * MutableCollection
  * FrozenCollection
  * MutableSet
- * FrozenSet
 
 ### Using
 
@@ -46,7 +45,14 @@ $locked->shift()
 
 #### Dot Access
 
-From version 2.1 dot notation can now be used directly with the Collection for both `get()` and `extract()`
+From V3, dot access is available on:
+
+ * has*
+ * get
+ * extract
+ * with
+
+From V2.1 dot notation can now be used directly with the Collection for both `get()` and `extract()`
 calls. For example: `users.*.name` would fetch the name from all elements in the users key space. Dot access
 can call into:
 
@@ -64,10 +70,8 @@ Key walking is implemented in a standalone class allowing it to be re-used in ot
 is based on Laravel's `data_get()` and `Arr::pluck()`, modified to support getter methods and default handling
 when extracting from objects.
 
-To access elements that use dot notation for keys, either:
-
- * access the collection using array access notation e.g. `$col['the.key.name']`
- * prefix the key with an `@` sign
+`@` access is no longer needed. If a key exists with dots, it will be returned first. If an `@` is used it will
+be stripped off and the element returned. This will remain until V4.
 
 #### Other Usages
 
@@ -77,9 +81,12 @@ The Collection implements `__set_state()` so can be used with var_export() e.g.:
 
 The Collection supports object access, array access and iteration.
 
-The Collection supports `__call()` that proxies through to invoke() allowing methods to be called on all object items.
+The Collection supports a virtual property `run` that allows method calling. Previously `__call` was used
+however in the V3 re-write this highlighted numerous bugs that were masked. To call a method, ensure
+the collection implements `Runnable` and use the Runnable trait, then: `$col->run->methodName(arg1, arg2)`
+it returns the original collection after running the method.
 
-Nested arrays are automatically converted to new Collections when accessed.
+Nested arrays can be automatically converted to new Collections when accessed if set (default).
 
 #### Other Notes
 
@@ -93,12 +100,17 @@ sub-objects contained within a Collection.
 
 #### Factory Methods
 
+#### On the collection class
+
  * `collect()` create a new Collection statically
- * `collectionFromIniString()` create a Collection from an ini style string
- * `collectionFromString()` split an encoded string into a Collection
- * `collectionFromUrl()` given a URL returns a Collection after using `parse_url()`
- * `collectionFromUrlQuery()` converts a URL query string to a Collection using `parse_str()`
- * `convertToArray()` attempts to convert the variable to an array
+ * `create()` create a new Collection statically
+
+#### As helpers in the FactoryUtils 
+
+ * `createFromIniString()` create a Collection from an ini style string
+ * `createFromString()` split an encoded string into a Collection
+ * `createFromUrl()` given a URL returns a Collection after using `parse_url()`
+ * `createFromUrlQuery()` converts a URL query string to a Collection using `parse_str()`
  * `explode()` explode a string into a Collection
 
 #### Operator Methods
