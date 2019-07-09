@@ -15,7 +15,7 @@ use Somnambulist\Collection\Contracts\Runnable;
  * @package    Somnambulist\Collection\Utils
  * @subpackage Somnambulist\Collection\Utils\Proxy
  */
-class RunProxy
+final class RunProxy
 {
 
     /**
