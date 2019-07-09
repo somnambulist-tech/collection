@@ -80,10 +80,12 @@ final class KeyWalker
         if (is_null($key)) {
             return false;
         }
+        
         if (is_string($key) && mb_substr($key, 0, 1) == '@') {
             // <3.0 used an @ prefix to check for exact strings
             $key = mb_substr($key, 1);
         }
+
         if (is_string($key) && Value::hasKey($collection, $key)) {
             return true;
         }
@@ -98,7 +100,11 @@ final class KeyWalker
                     return false;
                 }
 
-                $result = static::extract($collection, $key);
+                $result = static::extract($collection, $key, null, '__somnambulist_collection_value_exists_key_not_found');
+
+                foreach ($result as &$item) {
+                    $item = !('__somnambulist_collection_value_exists_key_not_found' === $item);
+                }
 
                 return count(array_filter($result)) === count($result);
             }
