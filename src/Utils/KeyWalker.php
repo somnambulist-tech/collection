@@ -97,10 +97,16 @@ final class KeyWalker
                     return false;
                 }
 
-                return static::has($collection, $key);
+                $result = static::extract($collection, $key);
+
+                return count(array_filter($result)) === count($result);
             }
 
-            return ClassUtils::hasProperty($collection, $segment);
+            if (ClassUtils::hasProperty($collection, $segment)) {
+                $collection = ClassUtils::getProperty($collection, $segment);
+            } else {
+                return false;
+            }
         }
 
         return false;
