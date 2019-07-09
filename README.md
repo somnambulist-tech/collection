@@ -1,5 +1,7 @@
 ## Collection Library
 
+__Note:__ V3 is still under development and has not been fully documented yet!
+
 Somnambulist Collection provides a framework for making collections and pseudo sets of your own.
 It has been completely re-worked from the previous versions into a set of behaviours (traits) and
 some common interfaces grouped around function.
@@ -16,7 +18,7 @@ public function filter($criteria = null);
 public function first();
 public function get($key, $default = null);
 public function has(...$key): bool;
-public function keys($search = null, bool $strict = false);
+public function keys($search = null);
 public function last();
 public function map(callable $callable);
 public function value($key, $default = null);
