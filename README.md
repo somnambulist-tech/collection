@@ -1,7 +1,5 @@
 # Somnambulist Collection Library
 
-__Note:__ V3 documentation is still being worked on; not all aspects have been covered yet.
-
 Somnambulist Collection provides a framework for making collections and pseudo sets of your own.
 It has been completely re-worked from the previous versions into a set of behaviours (traits) and
 some common interfaces grouped around function.
@@ -53,6 +51,25 @@ changed.
 Install using composer, or checkout / pull the files from github.com.
 
  * composer require somnambulist/collection
+
+## Contributing
+
+Contributions are more than welcome! Whether doc improvements, new methods or bug fixes.
+In all cases, fork the repository, make a branch then submit a PR - the usual GitHub flow.
+
+Please bare in mind the following:
+
+ * the minimum version of PHP is 7.2
+ * traits should not specify a return type but must include a docblock return type
+ * return types for the Collection must be `static` to allow runtime resolution
+ * all trait methods must have docblocks - these are converted to docs
+ * if a trait uses code from elsewhere, it should be attributed whenever possible
+ * consider the type of operation and if it will work in a Set or a Frozen collection
+ * tests should be included
+
+Remember that the Collection could be a Set or Frozen, so often it is necessary to operate
+on the values and then create a new collection after processing. See the current implementations
+for examples.
 
 ## Important BC Breaks with 2.2
 
@@ -300,6 +317,8 @@ when extracting from objects.
 
 ## Method Index
 
+The collection behaviour docs are generated from the source code.
+
 ### Factory Methods
 
 #### On the collection class
@@ -318,7 +337,7 @@ when extracting from objects.
 
 ### Methods by Group
 
- | Aggregates         | Assertable    | Comparable  
+ | [Aggregates](docs/aggregates.md) | [Assertable](docs/assertable.md) | [Comparable](docs/comparable.md)  
  | ---                | ---           | ---
  | average            | assert        | diff 
  | max                |               | diffUsing
@@ -329,7 +348,7 @@ when extracting from objects.
  | countBy            |               | intersect
  |                    |               | intersectByKeys
 
- | Exportable         | Filterable    | Mappable  
+ | [Exportable](docs/exportable.md) | [Filterable](docs/queryable.md) | [Mappable](docs/mappable.md)
  | ---                | ---           | ---
  | jsonSerialize      | filter        | collapse
  | toArray            | matching      | flatMap
@@ -345,7 +364,7 @@ when extracting from objects.
  |                    | with          |
  |                    | without       |
  
- | Mutable            | Partitionable | Queryable
+ | [Mutable](docs/mutateable.md) | [Partitionable](docs/partitionable.md) | [Queryable](docs/queryable.md)
  | ---                | ---           | ---
  | add                | groupBy       | all
  | append             | partition     | contains
@@ -372,7 +391,7 @@ when extracting from objects.
  | union              |               |
  | unset              |               |
 
- | Runnable  | String Helpers
+ | [Runnable](docs/runnable.md) | [String Helpers](docs/string_helpers.md)
  | ---       | ---
  | each      | capitalize
  | pipe      | lower
