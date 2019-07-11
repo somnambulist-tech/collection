@@ -1,62 +1,19 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license.
- */
 
-namespace Somnambulist\Tests\Collection;
+namespace Somnambulist\Collection\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\Collection;
-use Somnambulist\Collection\Factory;
+use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Collection\Utils\FactoryUtils as Factory;
 
 /**
  * Class FactoryTest
  *
- * @package    Somnambulist\Tests\Collection
- * @subpackage Somnambulist\Tests\Collection\FactoryTest
+ * @package    Somnambulist\Collection\Tests
+ * @subpackage Somnambulist\Collection\Tests\FactoryTest
  */
 class FactoryTest extends TestCase
 {
-
-    public function testConvertToArrayDeep()
-    {
-        $class = new \stdClass();
-        $class->foo = 'bar';
-        $class->baz = 'bar';
-
-        $array = [
-            clone $class,
-            clone $class,
-        ];
-
-        $expected = [
-            [
-                'foo' => 'bar',
-                'baz' => 'bar',
-            ],
-            [
-                'foo' => 'bar',
-                'baz' => 'bar',
-            ],
-        ];
-
-        $value = Factory::convertToArray($array, true);
-
-        $this->assertEquals($expected, $value);
-    }
 
     public function testExplode()
     {
@@ -69,9 +26,9 @@ class FactoryTest extends TestCase
         $this->assertContains('red', $col);
     }
 
-    public function testCollectionFromString()
+    public function testCreateFromString()
     {
-        $col = Factory::collectionFromString('foo=1&bar=baz&baz=2,3,4');
+        $col = Factory::createFromString('foo=1&bar=baz&baz=2,3,4');
 
         $this->assertCount(3, $col);
         $this->assertArrayHasKey('foo', $col);
@@ -79,7 +36,7 @@ class FactoryTest extends TestCase
         $this->assertArrayHasKey('baz', $col);
         $this->assertEquals([2, 3, 4], $col['baz']->toArray());
 
-        $col = Factory::collectionFromString('trim|required|min:10|max:200|in:foo,bar,baz', '|', ':');
+        $col = Factory::createFromString('trim|required|min:10|max:200|in:foo,bar,baz', '|', ':');
 
         $this->assertCount(5, $col);
         $this->assertArrayHasKey('trim', $col);
@@ -92,9 +49,9 @@ class FactoryTest extends TestCase
         $this->assertEquals(['foo','bar','baz'], $col['in']->toArray());
     }
 
-    public function testCollectionFromUrl()
+    public function testCreateFromUrl()
     {
-        $col = Factory::collectionFromUrl('http://username:password@hostname:9090/path?arg=value#anchor');
+        $col = Factory::createFromUrl('http://username:password@hostname:9090/path?arg=value#anchor');
 
         $this->assertEquals('username', $col->get('user'));
         $this->assertEquals('password', $col->get('pass'));
@@ -106,9 +63,9 @@ class FactoryTest extends TestCase
         $this->assertEquals('value', $col->get('query')->get('arg'));
     }
 
-    public function testCollectionFromUrlQuery()
+    public function testCreateFromUrlQuery()
     {
-        $col = Factory::collectionFromUrlQuery('single=value&arg[]=value&arg[]=value2&foo&bar');
+        $col = Factory::createFromUrlQuery('single=value&arg[]=value&arg[]=value2&foo&bar');
 
         $this->assertEquals('value', $col->get('single'));
         $this->assertCount(2, $col->get('arg'));
@@ -116,7 +73,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('', $col->get('bar'));
     }
 
-    public function testCollectionFromIniString()
+    public function testCreateFromIniString()
     {
         // from: http://ca.php.net/manual/en/function.parse-ini-string.php#111845
         $ini = '
@@ -134,7 +91,7 @@ val_arr_two[6] = "key_6"
 val_arr_two[some_key] = "some_key_value"
 ';
 
-        $col = Factory::collectionFromIniString($ini, true);
+        $col = Factory::createFromIniString($ini, true);
 
         $this->assertEquals('some value', $col->simple->get('val_one'));
         $this->assertCount(3, $col->get('array')->get('val_arr'));
