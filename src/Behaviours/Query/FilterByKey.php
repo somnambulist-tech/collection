@@ -114,15 +114,9 @@ trait FilterByKey
      */
     public function with(...$keys)
     {
-        $matches = [];
-
-        foreach ($keys as $key) {
-            if ($this->has($key)) {
-                $matches[$key] = $this->get($key);
-            }
-        }
-
-        return $this->new($matches);
+        return $this->filter(function ($value, $key) use ($keys) {
+            return in_array($key, $keys, true);
+        });
     }
 
     /**

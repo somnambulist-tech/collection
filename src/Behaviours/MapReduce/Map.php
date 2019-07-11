@@ -28,6 +28,7 @@ trait Map
      * the behaviour will be undefined.
      *
      * @link https://www.php.net/array_map
+     * @link https://github.com/laravel/framework/blob/5.8/src/Illuminate/Support/Collection.php#L1116
      *
      * @param callable $callable
      *

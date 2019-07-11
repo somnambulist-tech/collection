@@ -21,19 +21,22 @@ trait Freeze
 {
 
     /**
+     * The class to use when "freezing" the collection
+     *
+     * Must implement the ImmutableCollection interface. When implementing an immutable
+     * class, be careful that you avoid introducing mutation methods; sorting should be
+     * counted in those, but the choice is up to you. You could sort and return a new
+     * frozen collection via a custom implementation.
+     *
      * @var string
      */
     protected static $freezableClass = FrozenCollection::class;
 
-    /**
-     * Set the class to use when "freezing" the collection
-     *
-     * Must implement the ImmutableCollection interface. When implementing an immutable
-     * class, be careful of adding mutation methods.
-     *
-     * @param string $class
-     * @throws InvalidArgumentException
-     */
+    public static function getFreezableClass(): string
+    {
+        return static::$freezableClass;
+    }
+
     public static function setFreezableClass(string $class): void
     {
         ClassUtils::assertClassImplements($class, Immutable::class);

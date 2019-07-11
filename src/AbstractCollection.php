@@ -22,11 +22,17 @@ abstract class AbstractCollection implements Collection
 {
 
     /**
-     * If true, any array will be wrapped in the current Collection type when accessed
+     * Should array values on access be wrapped in a Collection
+     *
+     * This will replace the array value in the Collection with the Collection instance.
+     * The default is to do this as it allows for consistent object access down large
+     * array structures, but as it can be a matter of preference, it can be disabled.
+     * If disabled, note this is a global flag for all Collection instances to ensure
+     * consistent behaviour.
      *
      * @var bool
      */
-    public static $wrapArrays = true;
+    private static $wrapArrays = true;
 
     /**
      * The type of collection to create when new collections are needed
@@ -64,14 +70,31 @@ abstract class AbstractCollection implements Collection
         return new static($items);
     }
 
-    /**
-     * @param string $class
-     */
+    public static function getCollectionClass(): string
+    {
+        return static::$collectionClass;
+    }
+
     public static function setCollectionClass(string $class): void
     {
         ClassUtils::assertClassImplements($class, Collection::class);
 
         static::$collectionClass = $class;
+    }
+
+    public static function disableArrayWrapping(): void
+    {
+        self::$wrapArrays = false;
+    }
+
+    public static function enableArrayWrapping(): void
+    {
+        self::$wrapArrays = true;
+    }
+
+    public static function isArrayWrappingEnabled(): bool
+    {
+        return self::$wrapArrays;
     }
 
     /**
@@ -111,6 +134,12 @@ abstract class AbstractCollection implements Collection
     }
 
     /**
+     * Creates a new instance using the defined {@see AbstractCollection::$collectionClass}
+     *
+     * This is used internally when creating new Collections from operations to avoid
+     * instances where a transformation would create duplicate values and otherwise
+     * fail to work with the Set logic.
+     *
      * @param array|mixed $items
      *
      * @return static|Collection
@@ -133,8 +162,8 @@ abstract class AbstractCollection implements Collection
     {
         $value = $this->items[$offset];
 
-        if (static::$wrapArrays && is_array($value)) {
-            $value = $this->new($value);
+        if (self::$wrapArrays && is_array($value)) {
+            $value = $this->items[$offset] = $this->new($value);
         }
 
         return $value;

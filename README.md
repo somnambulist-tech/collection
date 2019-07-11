@@ -1,6 +1,6 @@
-## Collection Library
+# Somnambulist Collection Library
 
-__Note:__ V3 is still under development and has not been fully documented yet!
+__Note:__ V3 documentation is still being worked on; not all aspects have been covered yet.
 
 Somnambulist Collection provides a framework for making collections and pseudo sets of your own.
 It has been completely re-worked from the previous versions into a set of behaviours (traits) and
@@ -43,17 +43,195 @@ __Note:__ there are substantial differences between v2 and v3. In fact the chang
 that a drop-in replacement is unlikely to work. Be sure to read the notes about what has
 changed.
 
-### Requirements
+## Requirements
 
  * PHP 7.2+
+ * ext-json for JSON export
 
-### Installation
+## Installation
 
 Install using composer, or checkout / pull the files from github.com.
 
  * composer require somnambulist/collection
 
-### Built-in Collections
+## Important BC Breaks with 2.2
+
+### Value conversion to collections on create
+
+The level of conversion attempted when creating a collection with value (`Collection::collect`)
+has changed. Previously toJson / asJson would be called, converting anything with those to
+arrays. These methods are no longer called and the objects will be preserved. This is to prevent
+Model objects having attributes extracted, or potentially expensive serialization processed
+being triggered.
+
+Additionally: performing a recursive, `deep`, conversion has been removed. Now only the top 
+level item will be converted to an array and any nested items will be left alone.
+
+### MutableSet enforces unique values
+
+Previously the v2 collection was a mix of set and collection in that you can create it with
+the same value, but could not add the same value multiple times - unless using merge, append
+or other creative ways of joining data together.
+
+With V3 this distinction is now made clear with both a MutableCollection AND a MutableSet. Now
+the MutableSet _does_ enforce value uniqueness and this extends to: merge, combine, union,
+append, prepend and in fact any attempt to mutate the set where you can add values. Attempting
+to add duplicate values raises an exception, instead of doing nothing.  
+
+The MutableCollection _does_ allow duplicate values and it no longer attempts to do checks for
+duplicates at all.
+
+This change does raise the issue of: map/reduce/filter etc. These could quite easily produce
+the same value and naturally would cause an error. To combat this, the "new" collection type
+can be set per inherited class so the MutableSet when queried returns MutableCollections.
+In fact any Collection interface class can be used; including your own.
+
+```php
+// change collection type
+MutableSet::setCollectionClass(MyCollection::class);
+
+// get the current collection class
+MutableSet::getCollectionClass();
+```
+
+### Reduction in methods on FrozenCollection (ImmutableCollection)
+
+In V2 the ImmutableCollection was an extension of the main Collection with various methods
+overridden to prevent them being used. This was not a great way of handling the differences
+as it still meant the collection had all the methods available.
+
+In V3 the `collection` is defined by an interface and ImmutableCollection defines another
+branch of this - except there are no mutation methods defined; therefore FrozenCollection has
+no mutation methods at all. It contains query methods but not sorting methods as sorting could
+change the keys.
+
+This does mean that if you freeze a MutableSet, you now have an ImmutableSet - basically for
+free.
+
+Similarly to the mutable collections; the class used as the frozen collection can be changed
+for an alternative implementation.
+
+```php
+// change class
+FrozenCollection::setFreezableClass(SomeClass::class);
+
+// get the current class
+FrozenCollection::getFreezableClass();
+```
+
+By default if not set, this will automatically use the `static::class` name; so the current
+class implementation.
+
+### Array wrapping now optional (default enabled)
+
+The previous collection already had the ability to silently convert arrays to collections when
+accessed. This remains, however there are 2 changes:
+
+ 1. it can be disabled globally for all collection instances
+ 2. once accessed the array is switched for the collection
+ 
+With 1. this ensures that the behaviour of all collections is consistent; and with 2. this now
+means that if the fetched collection is modified, the original value in the original collection
+will also be modified, preventing inconsistencies.
+
+To disable array wrapping:
+
+```php
+// before using any collections...
+MutableCollection::disableArrayWrapping();
+
+// re-enable
+MutableCollection::enableArrayWrapping();
+
+// check status
+if (MutableCollection::isArrayWrappingEnabled()) {
+
+}
+```
+
+### Factory class moved
+
+The factory class has been moved to `FactoryUtils` and all the methods renamed to start with
+`create` instead of `collection`. They now take an additional parameter `$type` that is the
+class type to instantiate.
+
+`convertToArray` has been removed and is now in the new `Value` class and is called `toArray`.
+
+### __call removed
+
+The previous behaviour of `__call` was to pass through to `invoke` (now `run`) and call that
+method on all items in the collection if the value was an object.
+
+During refactoring it was found that this behaviour was masking bugs and missing methods so
+the __call method has been removed completely.
+
+Instead, a magic `__get` property can be accessed to accomplish a similar task:
+
+V2:
+```php
+// set a request object to all elements in the collection
+Collection::collect([array of similar objects])->setRequestTo($request);
+```
+V3:
+```php
+// set a request object to all elements in the collection
+Collection::collect([array of similar objects])->run->setRequestTo($request);
+```
+
+Further: if you attempt to use this on a class that contains non-objects it will raise an
+exception. Similarly: calling a method that does not exist on the objects will raise an 
+exception. This should help debugging and prevent hard to trace errors.
+
+### Method behaviour changes
+
+`@` prefix no longer required to access dotted keys. It will be stripped automatically but this
+behaviour will be removed in 4.0.
+
+`append` that was previously used to join array together through the union operator (`arr + arr`)
+will add items to the end of the collection via `array_push`. It now accepts multiple arguments
+and each one will be added in turn to the collection. `push` is an alias of `append`.
+The previous `append` behaviour is now `union`.
+
+`find` was previously an alias for `search` and would return the key of the value matched.
+`search` has been removed with `keys` taking over the responsibility of fetching keys for
+values by item searching. `find` now performs a filter and returns _the first_ item matched.
+
+There is a new `findLast` to complement `find` that returns the last element.
+
+`has` now supports multiple arguments and dot notation (when enabled) allowing a truthy test
+of nested values. If multiple arguments are provided ALL must be true. To complete `has`
+there are `hasAnyOf` that returns true on the first positive match; and `hasNoneOf` that
+returns true only if none of the values are present.
+
+During refactoring it became apparent that there were multiple methods doing the same job
+as `map`. Previously though the implementation of `map` did not provide keys, however by
+switching to the Laravel method, now transform and variations can all be performed through
+map making all those other versions redundant. The side-effect of this though, is that `map`
+now passes 2 arguments to callables meaning single argument functions can no longer be used.
+
+Previous:
+```php
+Collection::collect([...])->map('trim')->...do more stuff
+```
+V3:
+```php
+Collection::collect([...])->map(function ($value, $key) { return trim($value); })->...do more stuff
+```
+
+`pipe` has been re-implemented to be consistent with Laravels Collection and the previous
+functionality has been named `pipeline`. The behaviour of `pipeline` has not changed. `pipe`
+passes the collection as argument to the `callable`, returning the result of the callable.
+
+`removeElement` has been deprecated and `remove` now removes items. Previously `remove`
+removed the key, however with PHP 7 `unset` can be used as a method name, so now it is more
+logical to `unset` a key and `remove` an item. Additionally: as keys() can match multiple
+values, `remove` will remove all instances of that value from the collection. If you need
+to remove a specific element, use `unset`.
+
+`shuffle` now modifies the _same_ collection; previously it made a new collection. However a
+separate trait is included to return a new collection instead (used in Frozen for example).
+
+## Built-in Collections
 
 There are several types of collection that all implement the Collection interface with varying
 levels of functionality:
@@ -65,7 +243,7 @@ levels of functionality:
 
 There's no frozen set, but if you freeze a MutableSet; you have yourself a FrozenSet.
 
-### Using
+## Usage
 
 Instantiate with an array or other collection of items:
 
@@ -91,17 +269,16 @@ $locked = $collection->freeze()
 $locked->shift()
 ```
 
-#### Dot Access
+### Dot Access
 
-From V3, dot access is available on:
+Dot access is available on:
 
  * has*
  * get
  * extract
- * with
+ * aggregate functions
 
-From V2.1 dot notation can now be used directly with the Collection for both `get()` and `extract()`
-calls. For example: `users.*.name` would fetch the name from all elements in the users key space. Dot access
+For example: `users.*.name` would fetch the name from all elements in the users key space. Dot access
 can call into:
 
  * arrays
@@ -109,7 +286,10 @@ can call into:
  * public object properties
  * object return methods e.g.: `name` would be translated to `name()`
  * object `get` methods e.g: `name` would be translated to `getName()`
- 
+
+If the key name uses snake casing e.g.: user_address, this will be converted to UserAddress for method
+access checks.
+
 A default can be supplied with `get()` that if the specified key does not exist, it will be used instead.
 The default can be a closure. Note: that this will be called for all elements e.g: `users.*.age` with a
 default that returned `0`, would return 0 for all matching users without an age present.
@@ -118,35 +298,9 @@ Key walking is implemented in a standalone class allowing it to be re-used in ot
 is based on Laravel's `data_get()` and `Arr::pluck()`, modified to support getter methods and default handling
 when extracting from objects.
 
-`@` access is no longer needed. If a key exists with dots, it will be returned first. If an `@` is used it will
-be stripped off and the element returned. This will remain until V4.
+## Method Index
 
-#### Other Usages
-
-The Collection can be serialized - provided the items within it support serializing.
-
-The Collection implements `__set_state()` so can be used with var_export() e.g.: if caching to files.
-
-The Collection supports object access, array access and iteration.
-
-The Collection supports a virtual property `run` that allows method calling. Previously `__call` was used
-however in the V3 re-write this highlighted numerous bugs that were masked. To call a method, ensure
-the collection implements `Runnable` and use the Runnable trait, then: `$col->run->methodName(arg1, arg2)`
-it returns the original collection after running the method.
-
-Nested arrays can be automatically converted to new Collections when accessed if set (default).
-
-#### Other Notes
-
-This Collection does not allow adding duplicate values in the Collection. They can be set
-on create, but calls to `add()` or `offsetSet()` will ignore the value.
-
-As of 2.2.0 an interface has been added `ExportableInterface` allowing `toArray` to cascade transform
-sub-objects contained within a Collection.
-
-### Available Methods
-
-#### Factory Methods
+### Factory Methods
 
 #### On the collection class
 
@@ -159,78 +313,84 @@ sub-objects contained within a Collection.
  * `createFromString()` split an encoded string into a Collection
  * `createFromUrl()` given a URL returns a Collection after using `parse_url()`
  * `createFromUrlQuery()` converts a URL query string to a Collection using `parse_str()`
+ * `createWithNestedArrayFromKey` converts a key like `user.addresses.home` to a nested collection
  * `explode()` explode a string into a Collection
 
-#### Operator Methods
+### Methods by Group
 
- * `add()` add a value (auto-key), only if it does not exist
- * `all()` returns the underlying array
- * `append()` adds the values to the end of the Collection
- * `assert()` returns true if all elements pass the test, false on first failure
- * `call()` alias of transform()
- * `contains()` does the collection have the value
- * `count()` returns the number of items in the Collection
- * `diff()` returns the items not present in the past collection of items
- * `diffKeys()` returns the keys not present in the past collection of items
- * `each()` applies the callback to all items in the set; if the callback fails stops iterating
- * `except()` filters out the specified keys, returning a new Collection
- * `extract()` returns a Collection containing the values of the specified field, optionally indexed by another field
- * `filter()` filter the Collection by a callback, receives value and key
- * `fill()` create a Collection filled with a value
- * `fillKeysWith()` create a new Collection using the values as keys, and assign the passed var as the key value
- * `find()` synonym of search, find the key a value has
- * `first()` returns the first item
- * `flatten()` returns a 2 dimensional Collection of key => values
- * `flip()` exchange keys for values
- * `freeze()` convert the Collection to an Immutable collection
- * `get()` return the value with key, or the default if not found. Default can be a closure
- * `getIterator()` returns an ArrayIterator
- * `has()` returns true if the key exists in the Collection
- * `hasValueForKey()` returns true if the key exists and the value is not empty
- * `implode()` join values together with the glue string
- * `implodeKeys()` join the keys together with the glue string
- * `intersect()` returns a Collection of items that exist in the past items
- * `invoke()` call a method on all objects in the Collection
- * `keys()` returns all the keys in a new Collection
- * `last()` returns the last item
- * `lower()` converts all values to lowercase, returns a new Collection
- * `map()` applies a callback to all items, returning a new Collection
- * `match()` find keys and values where the key matches the regex
- * `max()` find the largest value in the collection (optionally by key/callable)
- * `min()` find the smallest value in the collection (optionally by key/callable)
- * `merge()` combine items into the current Collection, replaces existing keys items
- * `only()` returns only these keys in a new Collection
- * `pad()` pad the Collection to a size
- * `pipe()` pass the collection to the callable
- * `pipeline()` transform a Collection of items through a collection of Operators, similar to a pipeline
- * `pop()` removes an item from the end of the Collection
- * `reduce()` applies a callback to the Collection to produce a single value
- * `remove()` removes the key
- * `removeElement()` removes the value
- * `removeEmpty()` remove the values considered to be "empty", default: false, null and empty string
- * `removeNulls()` remove all actual null values (`is_null($value)` is true)
- * `reset()` clears all items from the Collection
- * `reverse()` reverses the data maintaining key association
- * `search()` finds the key for an item in the Collection
- * `shift()` shift an item from the beginning of the Collection
- * `shuffle()` shuffles the items in the Collection
- * `slice()` extract a portion of the Collection
- * `sortByKey()` sort the Collection by the keys
- * `sortByKeyReversed()` sort the keys in reverse order
- * `sortByValue()` sort the Collection byt the values, preserves key association
- * `sortByValueReversed()` sort in reverse order by valuem preserving key association
- * `sortKeepingKeysUsing()` apply a callback to sort the Collection, preserving keys
- * `sortUsing()` apply a callback to sort the Collection, creates new keys
- * `sum()` sum values in collection, optionally by key or callable
- * `toArray()` convert to an array, cascades through values casting sub-Collections to array
- * `toQueryString()` convert to a HTTP query string, casts all elements to array first
- * `toJson()` convert to a JSON string, uses toArray() internally
- * `transform()` applies the callback to all items returning a new Collection with the same keys and the values from the callback
- * `trim()` remove whitespace surrounding all values
- * `unique()` creates a new Collection containing only unique values
- * `upper()` converts all values to uppercase, returns a new Collection
- * `value()` similar to get() except returns the default if the returned value is empty
- * `values()` returns a new Collection containing just the values
+ | Aggregates         | Assertable    | Comparable  
+ | ---                | ---           | ---
+ | average            | assert        | diff 
+ | max                |               | diffUsing
+ | median             |               | diffAssoc
+ | min                |               | diffAssocUsing
+ | modal              |               | diffKeys
+ | sum                |               | diffKeysUsing
+ | countBy            |               | intersect
+ |                    |               | intersectByKeys
+
+ | Exportable         | Filterable    | Mappable  
+ | ---                | ---           | ---
+ | jsonSerialize      | filter        | collapse
+ | toArray            | matching      | flatMap
+ | toJson             | notMatching   | flatten
+ | toQueryString      | reject        | map
+ | toString           | except        | mapInto
+ | serialize          | has           | reduce
+ | unserialize        | hasAnyOf      |
+ |                    | hasNoneOf     |
+ |                    | keys          |
+ |                    | keysMatching  |
+ |                    | only          |
+ |                    | with          |
+ |                    | without       |
+ 
+ | Mutable            | Partitionable | Queryable
+ | ---                | ---           | ---
+ | add                | groupBy       | all
+ | append             | partition     | contains
+ | concat             | slice         | doesNotContain
+ | combine            | splice        | extract
+ | clear              |               | find
+ | combine            |               | findLast
+ | fill               |               | first
+ | fillKeysWith       |               | get
+ | flip               |               | last
+ | merge              |               | has
+ | pad                |               | removeEmpty
+ | pop                |               | removeNulls
+ | prepend            |               | sortByKey
+ | push               |               | sortByKeyReversed
+ | remapKeys          |               | sortByValue
+ | remove             |               | sortByValueReversed
+ | replace            |               | sortUsing
+ | replaceRecursively |               | sortUsingWithKeys
+ | reverse            |               | value
+ | set                |               | values
+ | shift              |               |
+ | shuffle            |               |
+ | union              |               |
+ | unset              |               |
+
+ | Runnable  | String Helpers
+ | ---       | ---
+ | each      | capitalize
+ | pipe      | lower
+ | pipeline  | trim
+ | run       | upper
+
+### Magic Methods & PHP Interface Methods
+ 
+ * getIterator
+ * offsetGet
+ * offsetExists
+ * offsetSet
+ * offsetUnset
+ * __get
+ * __isset
+ * __set
+ * __set_state
+ * __unset
 
 ### Deprecated Methods
  
@@ -243,7 +403,7 @@ sub-objects contained within a Collection.
  * using invoke() (run()) now uses the splat operator so arguments should be passed as separate args not as an array
  * using remove() to remove keys, use unset()
 
-#### Removed from v3
+### Removed from v3
 
  * __call() has been removed as it masks method errors
  * call() use map()
@@ -252,7 +412,7 @@ sub-objects contained within a Collection.
  * walk() use map()
  * using set() to replace the Collection has been removed
 
-#### Removed from v2
+### Removed from v2
 
  * isValueInSet() use contains()
  * addIfNotInSet() use add()

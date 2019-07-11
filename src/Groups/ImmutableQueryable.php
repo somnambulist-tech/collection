@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Groups;
 
+use Somnambulist\Collection\Behaviours\Mutate\ShuffleNewCollection;
 use Somnambulist\Collection\Behaviours\Query\All;
 use Somnambulist\Collection\Behaviours\Query\Contains;
 use Somnambulist\Collection\Behaviours\Query\Extract;
@@ -41,8 +42,9 @@ trait ImmutableQueryable
     use HasKeyWithDotNotation;
     use Keys;
     use Last;
+    use ShuffleNewCollection;
+    use Unique;
     use Value;
     use Values;
-    use Unique;
 
 }

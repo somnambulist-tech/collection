@@ -21,13 +21,6 @@ interface Mappable
     public function collapse();
 
     /**
-     * @param callable $callable
-     *
-     * @return static
-     */
-    public function flatMap(callable $callable);
-
-    /**
      * @return static
      */
     public function flatten();
@@ -38,13 +31,6 @@ interface Mappable
      * @return static
      */
     public function map(callable $callable);
-
-    /**
-     * @param string $class
-     *
-     * @return static
-     */
-    public function mapInto(string $class);
 
     /**
      * Reduces the Collection to a single value, returning it, or $initial if no value

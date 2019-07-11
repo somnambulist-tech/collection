@@ -18,7 +18,6 @@ use function is_array;
 use function is_null;
 use function is_string;
 use function iterator_to_array;
-use function property_exists;
 
 /**
  * Class Value
@@ -55,6 +54,8 @@ final class Value
 
     /**
      * Collapse an array of arrays into a single array
+     *
+     * Based on Laravel Collection.collapse
      *
      * @param array $value
      *

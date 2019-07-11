@@ -18,6 +18,8 @@ trait MapInto
     /**
      * Map the values into a new class.
      *
+     * @link https://github.com/laravel/framework/blob/5.8/src/Illuminate/Support/Collection.php#L1224
+     *
      * @param string $class
      *
      * @return static

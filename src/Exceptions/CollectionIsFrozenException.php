@@ -20,4 +20,9 @@ class CollectionIsFrozenException extends DomainException
     {
         return new self(sprintf('%s is immutable: %s cannot be set', $class, $offset));
     }
+
+    public static function cannotUnsetKeyIn(string $class, $offset): self
+    {
+        return new self(sprintf('%s is immutable: %s cannot be unset', $class, $offset));
+    }
 }

@@ -366,33 +366,34 @@ class CollectionKeyWalkerTest extends TestCase
         $this->assertFalse($col->has('test4', 'test5'));
     }
 
-    /**
-     * @group walker
-     * @group with
-     */
-    public function testCanGetMultipleKeysValues()
-    {
-        $col = new Collection([
-            'objects' => [
-                new MyObject('test', 'example', 'bob', 'bar'),
-                new MyObject('test2', 'example2', 'bob2', 'bar2'),
-                new MyObject('test3', 'example3', 'bob3', 'bar3'),
-            ]
-        ]);
-
-        $expected = [
-            "objects.*.bar" => [
-                0 => "example",
-                1 => "example2",
-                2 => "example3",
-            ],
-            "objects.*.foo" => [
-                0 => "test",
-                1 => "test2",
-                2 => "test3",
-            ],
-        ];
-
-        $this->assertEquals($expected, $col->with('objects.*.bar', 'objects.*.foo')->toArray());
-    }
+//    /**
+//     * Disabling for now as this is basically extract...
+//     * @group walker
+//     * @group with
+//     */
+//    public function testCanGetMultipleKeysValues()
+//    {
+//        $col = new Collection([
+//            'objects' => [
+//                new MyObject('test', 'example', 'bob', 'bar'),
+//                new MyObject('test2', 'example2', 'bob2', 'bar2'),
+//                new MyObject('test3', 'example3', 'bob3', 'bar3'),
+//            ]
+//        ]);
+//
+//        $expected = [
+//            "objects.*.bar" => [
+//                0 => "example",
+//                1 => "example2",
+//                2 => "example3",
+//            ],
+//            "objects.*.foo" => [
+//                0 => "test",
+//                1 => "test2",
+//                2 => "test3",
+//            ],
+//        ];
+//
+//        $this->assertEquals($expected, $col->with('objects.*.bar', 'objects.*.foo')->toArray());
+//    }
 }

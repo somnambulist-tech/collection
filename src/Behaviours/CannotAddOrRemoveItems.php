@@ -24,7 +24,7 @@ trait CannotAddOrRemoveItems
 
     final public function offsetUnset($offset)
     {
-        throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
+        throw CollectionIsFrozenException::cannotUnsetKeyIn(static::class, $offset);
     }
 
     final public function __set($offset, $value)
@@ -34,6 +34,6 @@ trait CannotAddOrRemoveItems
 
     final public function __unset($offset)
     {
-        throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
+        throw CollectionIsFrozenException::cannotUnsetKeyIn(static::class, $offset);
     }
 }
