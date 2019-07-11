@@ -99,7 +99,11 @@ final class ClassUtils
     public static function getPropertyNameIn($subject, string $property): ?string
     {
         foreach ([$property, static::camel($property), static::studly($property)] as $try) {
-            if (is_object($subject) && property_exists($subject, $try)) {
+            if (
+                is_object($subject)
+                &&
+                (property_exists($subject, $try) || method_exists($subject, '__isset') && $subject->__isset($try))
+            ) {
                 return $try;
             }
         }
