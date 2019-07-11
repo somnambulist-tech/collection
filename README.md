@@ -337,66 +337,48 @@ The collection behaviour docs are generated from the source code.
 
 ### Methods by Group
 
- | [Aggregates](docs/aggregates.md) | [Assertable](docs/assertable.md) | [Comparable](docs/comparable.md)  
- | ---                | ---           | ---
- | average            | assert        | diff 
- | max                |               | diffUsing
- | median             |               | diffAssoc
- | min                |               | diffAssocUsing
- | modal              |               | diffKeys
- | sum                |               | diffKeysUsing
- | countBy            |               | intersect
- |                    |               | intersectByKeys
-
- | [Exportable](docs/exportable.md) | [Filterable](docs/queryable.md) | [Mappable](docs/mappable.md)
- | ---                | ---           | ---
- | jsonSerialize      | filter        | collapse
- | toArray            | matching      | flatMap
- | toJson             | notMatching   | flatten
- | toQueryString      | reject        | map
- | toString           | except        | mapInto
- | serialize          | has           | reduce
- | unserialize        | hasAnyOf      |
- |                    | hasNoneOf     |
- |                    | keys          |
- |                    | keysMatching  |
- |                    | only          |
- |                    | with          |
- |                    | without       |
+ | [Aggregates](docs/aggregates.md) | [Assertable](docs/assertable.md) | [Comparable](docs/comparable.md) | [Exportable](docs/exportable.md) | [Filterable](docs/queryable.md) | [Mappable](docs/mappable.md)
+ | ---                | ---           | ---                                                               | ---                | ---           | ---
+ | average            | assert        | diff                                                              | jsonSerialize      | filter        | collapse
+ | max                |               | diffUsing                                                         | toArray            | matching      | flatMap
+ | median             |               | diffAssoc                                                         | toJson             | notMatching   | flatten
+ | min                |               | diffAssocUsing                                                    | toQueryString      | reject        | map
+ | modal              |               | diffKeys                                                          | toString           | except        | mapInto
+ | sum                |               | diffKeysUsing                                                     | serialize          | has           | reduce
+ | countBy            |               | intersect                                                         | unserialize        | hasAnyOf      |
+ |                    |               | intersectByKeys                                                   |                    | hasNoneOf     |
+ |                    |               |                                                                   |                    | keys          |
+ |                    |               |                                                                   |                    | keysMatching  |
+ |                    |               |                                                                   |                    | only          |
+ |                    |               |                                                                   |                    | with          |
+ |                    |               |                                                                   |                    | without       |
  
- | [Mutable](docs/mutateable.md) | [Partitionable](docs/partitionable.md) | [Queryable](docs/queryable.md)
- | ---                | ---           | ---
- | add                | groupBy       | all
- | append             | partition     | contains
- | concat             | slice         | doesNotContain
- | combine            | splice        | extract
- | clear              |               | find
- | combine            |               | findLast
- | fill               |               | first
- | fillKeysWith       |               | get
- | flip               |               | last
- | merge              |               | has
- | pad                |               | removeEmpty
- | pop                |               | removeNulls
- | prepend            |               | sortByKey
- | push               |               | sortByKeyReversed
- | remapKeys          |               | sortByValue
- | remove             |               | sortByValueReversed
- | replace            |               | sortUsing
- | replaceRecursively |               | sortUsingWithKeys
- | reverse            |               | value
- | set                |               | values
- | shift              |               |
- | shuffle            |               |
- | union              |               |
- | unset              |               |
-
- | [Runnable](docs/runnable.md) | [String Helpers](docs/string_helpers.md)
- | ---       | ---
- | each      | capitalize
- | pipe      | lower
- | pipeline  | trim
- | run       | upper
+ | [Mutable](docs/mutateable.md) | [Partitionable](docs/partitionable.md) | [Queryable](docs/queryable.md)  | [Runnable](docs/runnable.md) | [String Helpers](docs/string_helpers.md)
+ | ---                | ---           | ---                                                                 | ---       | ---
+ | add                | groupBy       | all                                                                 | each      | capitalize
+ | append             | partition     | contains                                                            | pipe      | lower
+ | concat             | slice         | doesNotContain                                                      | pipeline  | trim
+ | combine            | splice        | extract                                                             | run       | upper
+ | clear              |               | find                                                                |           | 
+ | combine            |               | findLast                                                            |           | 
+ | fill               |               | first                                                               |           | 
+ | fillKeysWith       |               | get                                                                 |           | 
+ | flip               |               | last                                                                |           | 
+ | merge              |               | has                                                                 |           | 
+ | pad                |               | removeEmpty                                                         |           | 
+ | pop                |               | removeNulls                                                         |           | 
+ | prepend            |               | sortByKey                                                           |           | 
+ | push               |               | sortByKeyReversed                                                   |           | 
+ | remapKeys          |               | sortByValue                                                         |           | 
+ | remove             |               | sortByValueReversed                                                 |           | 
+ | replace            |               | sortUsing                                                           |           | 
+ | replaceRecursively |               | sortUsingWithKeys                                                   |           | 
+ | reverse            |               | value                                                               |           | 
+ | set                |               | values                                                              |           | 
+ | shift              |               |                                                                     |           | 
+ | shuffle            |               |                                                                     |           | 
+ | union              |               |                                                                     |           | 
+ | unset              |               |                                                                     |           | 
 
 ### Magic Methods & PHP Interface Methods
  
