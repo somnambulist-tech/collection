@@ -317,7 +317,7 @@ when extracting from objects.
 
 ## Method Index
 
-The collection behaviour docs are generated from the source code.
+The collection behaviour docs are generated from the source code and are available in the `docs` folder.
 
 ### Factory Methods
 
