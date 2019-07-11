@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Utils;
 
 use Somnambulist\Collection\Contracts\Collection;
+use function is_scalar;
 
 /**
  * Class KeyWalker
@@ -38,7 +39,7 @@ final class KeyWalker
             $key = mb_substr($key, 1);
         }
 
-        if (is_string($key) && Value::hasKey($collection, $key)) {
+        if (is_scalar($key) && Value::hasKey($collection, $key)) {
             return $collection[$key];
         }
 
@@ -86,7 +87,7 @@ final class KeyWalker
             $key = mb_substr($key, 1);
         }
 
-        if (is_string($key) && Value::hasKey($collection, $key)) {
+        if (is_scalar($key) && Value::hasKey($collection, $key)) {
             return true;
         }
 

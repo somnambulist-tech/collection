@@ -23,7 +23,7 @@ class JsonSerializeTest extends TestCase
         $col = new Collection(new TestClass4());
         $arr = $col->jsonSerialize();
 
-        $this->assertIsString($arr);
+        $this->assertIsArray($arr);
         $this->assertEquals([0 => ['foo' => 'bar']], $arr);
     }
 }

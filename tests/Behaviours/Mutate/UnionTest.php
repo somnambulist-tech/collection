@@ -16,7 +16,7 @@ class UnionTest extends TestCase
 {
 
     /**
-     * @group append
+     * @group union
      */
     public function testUnion()
     {
@@ -24,13 +24,14 @@ class UnionTest extends TestCase
         $col2 = ['bar' => 'too'];
 
         $this->assertCount(1, $col);
-        $col->append($col2);
+        $col->union($col2);
+
         $this->assertCount(2, $col);
         $this->assertTrue($col->has('bar'));
     }
 
     /**
-     * @group append
+     * @group union
      */
     public function testUnionCollection()
     {
@@ -38,13 +39,13 @@ class UnionTest extends TestCase
         $col2 = new Collection(['bar' => 'too']);
 
         $this->assertCount(1, $col);
-        $col->append($col2);
+        $col->union($col2);
         $this->assertCount(2, $col);
         $this->assertTrue($col->has('bar'));
     }
 
     /**
-     * @group append
+     * @group union
      */
     public function testUnionArrayObject()
     {
@@ -52,21 +53,40 @@ class UnionTest extends TestCase
         $col2 = new \ArrayObject(['bar' => 'too']);
 
         $this->assertCount(1, $col);
-        $col->append($col2);
+        $col->union($col2);
         $this->assertCount(2, $col);
         $this->assertTrue($col->has('bar'));
     }
 
     /**
-     * @group append
+     * @group union
      */
     public function testUnionNonArray()
     {
-        $col = new Collection(new TestClass4());
+        $col = new Collection([new TestClass4()]);
         $col2 = 'bar';
 
         $this->assertCount(1, $col);
-        $col->append($col2);
-        $this->assertCount(2, $col);
+
+        $col->union($col2);
+
+        $this->assertCount(1, $col);
+    }
+
+    /**
+     * @group union
+     */
+    public function testUnionWithSameKeyKeepsFirstValue()
+    {
+        $col = new Collection($t = new TestClass4());
+        $col2 = 'bar';
+
+        $this->assertCount(1, $col);
+
+        $col->union($col2);
+
+        $this->assertCount(1, $col);
+
+        $this->assertSame($t, $col->first());
     }
 }

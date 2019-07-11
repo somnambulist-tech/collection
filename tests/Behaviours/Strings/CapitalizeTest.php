@@ -15,7 +15,7 @@ class CapitalizeTest extends TestCase
 {
 
     /**
-     * @group text
+     * @group capitalize
      */
     public function testCapitalize()
     {
@@ -25,7 +25,7 @@ class CapitalizeTest extends TestCase
 
         $col = $col->capitalize();
 
-        $this->assertContains('Foo_bar', $col);
+        $this->assertContains('Foo_Bar', $col);
         $this->assertContains('Foo Bar', $col);
         $this->assertContains('Baz', $col);
     }
