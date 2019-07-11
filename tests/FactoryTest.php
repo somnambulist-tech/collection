@@ -26,7 +26,7 @@ class FactoryTest extends TestCase
         $this->assertContains('red', $col);
     }
 
-    public function testCollectionFromString()
+    public function testCreateFromString()
     {
         $col = Factory::createFromString('foo=1&bar=baz&baz=2,3,4');
 
@@ -49,7 +49,7 @@ class FactoryTest extends TestCase
         $this->assertEquals(['foo','bar','baz'], $col['in']->toArray());
     }
 
-    public function testCollectionFromUrl()
+    public function testCreateFromUrl()
     {
         $col = Factory::createFromUrl('http://username:password@hostname:9090/path?arg=value#anchor');
 
@@ -63,7 +63,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('value', $col->get('query')->get('arg'));
     }
 
-    public function testCollectionFromUrlQuery()
+    public function testCreateFromUrlQuery()
     {
         $col = Factory::createFromUrlQuery('single=value&arg[]=value&arg[]=value2&foo&bar');
 
@@ -73,7 +73,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('', $col->get('bar'));
     }
 
-    public function testCollectionFromIniString()
+    public function testCreateFromIniString()
     {
         // from: http://ca.php.net/manual/en/function.parse-ini-string.php#111845
         $ini = '

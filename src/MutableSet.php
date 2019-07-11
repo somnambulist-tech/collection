@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection;
 
+use JsonSerializable;
 use Somnambulist\Collection\Behaviours\CannotAddDuplicateItems;
 use Somnambulist\Collection\Behaviours\Freeze;
+use Somnambulist\Collection\Contracts\CanAggregateItems;
+use Somnambulist\Collection\Contracts\CanManipulateStrings;
 use Somnambulist\Collection\Contracts\Assertable as IsAssertable;
-use Somnambulist\Collection\Contracts\Comparable as IsDiffable;
+use Somnambulist\Collection\Contracts\Comparable as IsComparable;
 use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
 use Somnambulist\Collection\Contracts\Freezable as IsFreezable;
 use Somnambulist\Collection\Contracts\Mappable as IsMappable;
@@ -43,8 +46,22 @@ use Somnambulist\Collection\Utils\Value;
  *
  * @package    Somnambulist\Collection
  * @subpackage Somnambulist\Collection\MutableSet
+ *
+ * @property-read RunProxy $run
  */
-class MutableSet extends AbstractCollection implements IsAssertable, IsMutable, IsFilterable, IsMappable, IsDiffable, IsFreezable, IsSerializable, IsSortable
+class MutableSet extends AbstractCollection implements
+    CanAggregateItems,
+    CanManipulateStrings,
+    IsAssertable,
+    IsComparable,
+    IsFilterable,
+    IsFreezable,
+    IsMappable,
+    IsMutable,
+    IsRunnable,
+    IsSerializable,
+    IsSortable,
+    JsonSerializable
 {
 
     use CannotAddDuplicateItems;

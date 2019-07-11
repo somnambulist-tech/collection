@@ -4,6 +4,7 @@
 - [\Somnambulist\Collection\Behaviours\Export\ExportToString](#class-somnambulistcollectionbehavioursexportexporttostring)
 - [\Somnambulist\Collection\Behaviours\Export\ExportToJson](#class-somnambulistcollectionbehavioursexportexporttojson)
 - [\Somnambulist\Collection\Behaviours\Export\ExportToArray](#class-somnambulistcollectionbehavioursexportexporttoarray)
+- [\Somnambulist\Collection\Behaviours\Export\JsonSerialize](#class-somnambulistcollectionbehavioursexportjsonserialize)
 - [\Somnambulist\Collection\Behaviours\Export\ExportToQueryString](#class-somnambulistcollectionbehavioursexportexporttoquerystring)
 
 <hr />
@@ -47,6 +48,16 @@
 | Visibility | Function |
 |:-----------|:---------|
 | public | <strong>toArray()</strong> : <em>array</em><br /><em>Convert the collection and any nested data to an array Note: some objects may fail to convert to arrays if they do not have appropriate export / array methods.</em> |
+
+<hr />
+
+### Class: \Somnambulist\Collection\Behaviours\Export\JsonSerialize
+
+> Trait JsonSerialize
+
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>JsonSerialize()</strong> : <em>array</em><br /><em>Returns the collection in a form suitable for encoding to JSON</em> |
 
 <hr />
 

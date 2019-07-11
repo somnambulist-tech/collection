@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Utils;
 
+use Somnambulist\Collection\Contracts\Collection;
 use Somnambulist\Collection\Contracts\Runnable;
 
 /**
@@ -33,6 +34,19 @@ final class RunProxy
         $this->collection = $collection;
     }
 
+    /**
+     * Call the specified method on all items in the collection
+     *
+     * Arguments are automatically expanded.
+     *
+     * Note: return type is the static::class collection instance of the wrapped
+     * collection class.
+     *
+     * @param string $name
+     * @param array  $arguments
+     *
+     * @return Collection
+     */
     public function __call($name, $arguments)
     {
         return $this->collection->run($name, ...$arguments);

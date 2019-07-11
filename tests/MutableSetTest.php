@@ -18,7 +18,7 @@ use stdClass;
  * Class MutableCollectionTest
  *
  * @package    Somnambulist\Collection\Tests
- * @subpackage Somnambulist\Collection\Tests\MutableCollectionTest
+ * @subpackage Somnambulist\Collection\Tests\Behaviours\Pipes\MutableCollectionTest
  * @group mutable-set
  */
 class MutableSetTest extends TestCase

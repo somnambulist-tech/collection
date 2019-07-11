@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection;
 
+use JsonSerializable;
 use Somnambulist\Collection\Behaviours\CannotAddOrRemoveItems;
-use Somnambulist\Collection\Contracts\Comparable as IsDiffable;
+use Somnambulist\Collection\Contracts\CanAggregateItems;
+use Somnambulist\Collection\Contracts\Comparable as IsComparable;
 use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
 use Somnambulist\Collection\Contracts\Immutable as IsImmutable;
 use Somnambulist\Collection\Contracts\Mappable as IsMappable;
@@ -27,8 +29,18 @@ use Somnambulist\Collection\Utils\Value;
  *
  * @package    Somnambulist\Collection
  * @subpackage Somnambulist\Collection\FrozenCollection
+ *
+ * @property-read RunProxy $run
  */
-class FrozenCollection extends AbstractCollection implements IsImmutable, IsFilterable, IsMappable, IsDiffable, IsSerializable
+class FrozenCollection extends AbstractCollection implements
+    CanAggregateItems,
+    IsComparable,
+    IsFilterable,
+    IsImmutable,
+    IsMappable,
+    IsRunnable,
+    IsSerializable,
+    JsonSerializable
 {
 
     use CannotAddOrRemoveItems;

@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection;
 
+use JsonSerializable;
 use Somnambulist\Collection\Behaviours\CanAddAndRemoveItems;
 use Somnambulist\Collection\Behaviours\Freeze;
-use Somnambulist\Collection\Contracts\Comparable as IsDiffable;
+use Somnambulist\Collection\Contracts\CanAggregateItems;
+use Somnambulist\Collection\Contracts\CanManipulateStrings;
+use Somnambulist\Collection\Contracts\Assertable as IsAssertable;
+use Somnambulist\Collection\Contracts\Comparable as IsComparable;
 use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
 use Somnambulist\Collection\Contracts\Freezable as IsFreezable;
 use Somnambulist\Collection\Contracts\Mappable as IsMappable;
@@ -32,8 +36,22 @@ use Somnambulist\Collection\Utils\Value;
  *
  * @package    Somnambulist\Collection
  * @subpackage Somnambulist\Collection\MutableCollection
+ *
+ * @property-read RunProxy $run
  */
-class MutableCollection extends AbstractCollection implements IsMutable, IsFilterable, IsMappable, IsDiffable, IsFreezable, IsRunnable, IsSerializable, IsSortable
+class MutableCollection extends AbstractCollection implements
+    CanAggregateItems,
+    CanManipulateStrings,
+    IsAssertable,
+    IsComparable,
+    IsFilterable,
+    IsFreezable,
+    IsMappable,
+    IsMutable,
+    IsRunnable,
+    IsSerializable,
+    IsSortable,
+    JsonSerializable
 {
 
     use CanAddAndRemoveItems;
