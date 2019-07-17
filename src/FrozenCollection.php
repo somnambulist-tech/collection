@@ -21,6 +21,7 @@ use Somnambulist\Collection\Groups\Filterable;
 use Somnambulist\Collection\Groups\ImmutableQueryable;
 use Somnambulist\Collection\Groups\Mappable;
 use Somnambulist\Collection\Groups\Runnable;
+use Somnambulist\Collection\Utils\MapProxy;
 use Somnambulist\Collection\Utils\RunProxy;
 use Somnambulist\Collection\Utils\Value;
 
@@ -30,6 +31,7 @@ use Somnambulist\Collection\Utils\Value;
  * @package    Somnambulist\Collection
  * @subpackage Somnambulist\Collection\FrozenCollection
  *
+ * @property-read MapProxy $map
  * @property-read RunProxy $run
  */
 class FrozenCollection extends AbstractCollection implements
@@ -72,6 +74,9 @@ class FrozenCollection extends AbstractCollection implements
     {
         if ('run' === $name && $this instanceof IsRunnable) {
             return new RunProxy($this);
+        }
+        if ('map' === $name && $this instanceof IsMappable) {
+            return new MapProxy($this);
         }
 
         return $this->offsetGet($name);

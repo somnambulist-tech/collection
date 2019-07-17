@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+2019-07-17 - 3.0.2
+------------------
+
+ * added magic ->map->{method}() calling to run a method on the objects in the collection
+
+2019-07-11 - 3.0.1
+------------------
+
+ * added support for magic property detection via __isset() checks
+
 2019-07-09 - 3.0.0
 ------------------
 

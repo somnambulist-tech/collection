@@ -90,6 +90,13 @@ interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayabl
     public function map(callable $callable);
 
     /**
+     * @param mixed $items
+     *
+     * @return static
+     */
+    public function new($items);
+
+    /**
      * @param string         $key
      * @param mixed|callable $default
      *

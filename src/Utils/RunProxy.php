@@ -8,13 +8,13 @@ use Somnambulist\Collection\Contracts\Collection;
 use Somnambulist\Collection\Contracts\Runnable;
 
 /**
- * Class Proxy
+ * Class RunProxy
  *
  * Buffer to allow running methods on the collection without the collection needing
  * an __call method.
  *
  * @package    Somnambulist\Collection\Utils
- * @subpackage Somnambulist\Collection\Utils\Proxy
+ * @subpackage Somnambulist\Collection\Utils\RunProxy
  */
 final class RunProxy
 {
