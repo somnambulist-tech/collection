@@ -35,7 +35,6 @@ trait Mutable
 {
 
     use AppendValues;
-    use CombineValues;
     use Clear;
     use CombineValues;
     use Fill;

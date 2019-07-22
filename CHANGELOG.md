@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2019-07-17 - 3.0.3
+------------------
+
+ * bug fix - trait was duplicated in Group\Mutable
+
 2019-07-17 - 3.0.2
 ------------------
 
