@@ -8,8 +8,6 @@ use Somnambulist\Collection\Behaviours\Mutate\ShuffleNewCollection;
 use Somnambulist\Collection\Behaviours\Query\All;
 use Somnambulist\Collection\Behaviours\Query\Contains;
 use Somnambulist\Collection\Behaviours\Query\Extract;
-use Somnambulist\Collection\Behaviours\Query\FilterByKey;
-use Somnambulist\Collection\Behaviours\Query\FilterValues;
 use Somnambulist\Collection\Behaviours\Query\Find;
 use Somnambulist\Collection\Behaviours\Query\First;
 use Somnambulist\Collection\Behaviours\Query\GetValueWithDotNotation;
@@ -34,8 +32,6 @@ trait ImmutableQueryable
     use All;
     use Contains;
     use Extract;
-    use FilterValues;
-    use FilterByKey;
     use Find;
     use First;
     use GetValueWithDotNotation;

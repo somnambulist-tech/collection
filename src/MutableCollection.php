@@ -22,6 +22,7 @@ use Somnambulist\Collection\Groups\Aggregates;
 use Somnambulist\Collection\Groups\Assertable;
 use Somnambulist\Collection\Groups\Comparable;
 use Somnambulist\Collection\Groups\Exportable;
+use Somnambulist\Collection\Groups\Filterable;
 use Somnambulist\Collection\Groups\Mappable;
 use Somnambulist\Collection\Groups\Mutable;
 use Somnambulist\Collection\Groups\Partitionable;
@@ -61,6 +62,7 @@ class MutableCollection extends AbstractCollection implements
     use Assertable;
     use Comparable;
     use Exportable;
+    use Filterable;
     use Freeze;
     use Mappable;
     use Mutable;
