@@ -223,17 +223,15 @@ returns true only if none of the values are present.
 During refactoring it became apparent that there were multiple methods doing the same job
 as `map`. Previously though the implementation of `map` did not provide keys, however by
 switching to the Laravel method, now transform and variations can all be performed through
-map making all those other versions redundant. The side-effect of this though, is that `map`
-now passes 2 arguments to callables meaning single argument functions can no longer be used.
+map making all those other versions redundant.
 
-Previous:
+As of 3.1.0 single argument functions are once again supported by the `map()` method.
+
 ```php
 Collection::collect([...])->map('trim')->...do more stuff
 ```
-V3:
-```php
-Collection::collect([...])->map(function ($value, $key) { return trim($value); })->...do more stuff
-```
+
+Note: single argument callables will be wrapped in a closure that accepts both arguments. 
 
 `pipe` has been re-implemented to be consistent with Laravels Collection and the previous
 functionality has been named `pipeline`. The behaviour of `pipeline` has not changed. `pipe`

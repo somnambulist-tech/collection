@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2019-08-05 - 3.1.0
+------------------
+
+ * Allow map() to accept single argument functions again
+ 
 2019-07-23 - 3.0.4
 ------------------
 

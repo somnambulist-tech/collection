@@ -35,7 +35,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>map(</strong><em>\callable</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\MapReduce\static</em><br /><em>Apply the callback to all elements in the collection Note: the callable must accept 2 arguments: the value and the key. For single argument functions (e.g. strrev) it must be wrapped in a Closure. For trim and variants that have multiple arguments, again, ensure the function is wrapped in a closure; otherwise the behaviour will be undefined.</em> |
+| public | <strong>map(</strong><em>\callable</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\MapReduce\static</em><br /><em>Apply the callback to all elements in the collection Note: the callable should accept 2 arguments, the value and the key. For single argument callables only the value will be passed in. The argument count of the callable will attempt to be found. This works on methods, functions and static callable (Class::method).</em> |
 | public | <strong>transform(</strong><em>\callable</em> <strong>$transformer</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\MapReduce\static</em><br /><em>Alias of map()</em> |
 
 <hr />

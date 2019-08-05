@@ -16,6 +16,7 @@ class TrimTest extends TestCase
 
     /**
      * @group text
+     * @group trim
      */
     public function testTrim()
     {

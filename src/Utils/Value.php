@@ -7,6 +7,8 @@ namespace Somnambulist\Collection\Utils;
 use ArrayAccess;
 use ArrayObject;
 use JsonSerializable;
+use ReflectionFunction;
+use ReflectionMethod;
 use Somnambulist\Collection\Contracts\Arrayable;
 use Somnambulist\Collection\Contracts\Collection;
 use Somnambulist\Collection\MutableCollection;
@@ -14,10 +16,12 @@ use stdClass;
 use Traversable;
 use function array_key_exists;
 use function array_merge;
+use function explode;
 use function is_array;
 use function is_null;
 use function is_string;
 use function iterator_to_array;
+use function strpos;
 
 /**
  * Class Value
@@ -287,5 +291,23 @@ final class Value
     public static function isAccessibleByKey($value): bool
     {
         return is_array($value) || $value instanceof ArrayAccess;
+    }
+
+    /**
+     * @link https://stackoverflow.com/questions/13071186/how-to-get-the-number-of-parameters-of-a-run-time-determined-callable
+     *
+     * @param callable $callable
+     *
+     * @return int
+     */
+    public static function getArgumentCountForCallable(callable $callable): int
+    {
+        if (is_string($callable) && false !== strpos($callable, '::')) {
+            $callable = explode('::', $callable);
+        }
+
+        $ref = is_array($callable) ? new ReflectionMethod($callable[0], $callable[1]) : new ReflectionFunction($callable);
+
+        return $ref->getNumberOfRequiredParameters();
     }
 }

@@ -24,8 +24,6 @@ trait Trim
      */
     public function trim()
     {
-        return $this->map(function ($item) {
-            return trim($item);
-        });
+        return $this->map('trim');
     }
 }
