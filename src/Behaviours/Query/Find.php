@@ -30,7 +30,7 @@ trait Find
             };
         }
 
-        return $this->filter($criteria)->first();
+        return $this->filter($criteria)->first() ?? false;
     }
 
     /**
@@ -42,6 +42,6 @@ trait Find
      */
     public function findLast($criteria)
     {
-        return $this->filter($criteria)->last();
+        return $this->filter($criteria)->last() ?? false;
     }
 }

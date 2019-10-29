@@ -28,4 +28,12 @@ class LastTest extends TestCase
 
         $this->assertEquals('test-abc', $col->last());
     }
+
+    /**
+     * @group accessors
+     */
+    public function testLastReturnsNullOnEmpty()
+    {
+        $this->assertNull((new Collection())->last());
+    }
 }

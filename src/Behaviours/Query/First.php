@@ -18,12 +18,12 @@ trait First
 {
 
     /**
-     * Returns the first element from the collection
+     * Returns the first element from the collection; or null if empty
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function first()
     {
-        return reset($this->items);
+        return reset($this->items) ?: null;
     }
 }

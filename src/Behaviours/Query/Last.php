@@ -18,12 +18,12 @@ trait Last
 {
 
     /**
-     * Returns the first element of the Collection
+     * Returns the last element of the Collection or null if empty
      *
      * @return mixed
      */
     public function last()
     {
-        return end($this->items);
+        return end($this->items) ?: null;
     }
 }

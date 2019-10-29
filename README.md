@@ -71,6 +71,14 @@ Remember that the Collection could be a Set or Frozen, so often it is necessary 
 on the values and then create a new collection after processing. See the current implementations
 for examples.
 
+## Important Changes in 3.X series
+
+### >=3.2 first/last return type change
+
+From 3.2.0 the methods `first` and `last` will now return `null` if the collection is empty
+instead of false. `find` and `findLast` will still return boolean `false`. This change was
+made to make the `null` return value more consistent.
+
 ## Important BC Breaks with 2.2
 
 ### Value conversion to collections on create

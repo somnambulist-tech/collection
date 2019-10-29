@@ -28,4 +28,12 @@ class FirstTest extends TestCase
 
         $this->assertEquals('test', $col->first());
     }
+
+    /**
+     * @group accessors
+     */
+    public function testFirstReturnsNullOnEmpty()
+    {
+        $this->assertNull((new Collection)->first());
+    }
 }
