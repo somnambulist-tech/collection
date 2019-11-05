@@ -371,17 +371,17 @@ The collection behaviour docs are generated from the source code and are availab
  | fillKeysWith       |               | get                                                                 |           | 
  | flip               |               | last                                                                |           | 
  | merge              |               | has                                                                 |           | 
- | pad                |               | removeEmpty                                                         |           | 
- | pop                |               | removeNulls                                                         |           | 
- | prepend            |               | sortByKey                                                           |           | 
- | push               |               | sortByKeyReversed                                                   |           | 
- | remapKeys          |               | sortByValue                                                         |           | 
- | remove             |               | sortByValueReversed                                                 |           | 
- | replace            |               | sortUsing                                                           |           | 
- | replaceRecursively |               | sortUsingWithKeys                                                   |           | 
- | reverse            |               | value                                                               |           | 
- | set                |               | values                                                              |           | 
- | shift              |               |                                                                     |           | 
+ | pad                |               | random                                                              |           | 
+ | pop                |               | removeEmpty                                                         |           | 
+ | prepend            |               | removeNulls                                                         |           | 
+ | push               |               | sortByKey                                                           |           | 
+ | remapKeys          |               | sortByKeyReversed                                                   |           | 
+ | remove             |               | sortByValue                                                         |           | 
+ | replace            |               | sortByValueReversed                                                 |           | 
+ | replaceRecursively |               | sortUsing                                                           |           | 
+ | reverse            |               | sortUsingWithKeys                                                   |           | 
+ | set                |               | value                                                               |           | 
+ | shift              |               | values                                                              |           | 
  | shuffle            |               |                                                                     |           | 
  | union              |               |                                                                     |           | 
  | unset              |               |                                                                     |           | 

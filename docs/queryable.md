@@ -14,6 +14,7 @@
 - [\Somnambulist\Collection\Behaviours\Query\Find](#class-somnambulistcollectionbehavioursqueryfind)
 - [\Somnambulist\Collection\Behaviours\Query\FilterByKey](#class-somnambulistcollectionbehavioursqueryfilterbykey)
 - [\Somnambulist\Collection\Behaviours\Query\SortValues](#class-somnambulistcollectionbehavioursquerysortvalues)
+- [\Somnambulist\Collection\Behaviours\Query\RandomValue](#class-somnambulistcollectionbehavioursqueryrandomvalue)
 - [\Somnambulist\Collection\Behaviours\Query\Last](#class-somnambulistcollectionbehavioursquerylast)
 - [\Somnambulist\Collection\Behaviours\Query\HasKeyWithDotNotation](#class-somnambulistcollectionbehavioursqueryhaskeywithdotnotation)
 - [\Somnambulist\Collection\Behaviours\Query\Contains](#class-somnambulistcollectionbehavioursquerycontains)
@@ -177,13 +178,23 @@
 
 <hr />
 
+### Class: \Somnambulist\Collection\Behaviours\Query\RandomValue
+
+> Trait RandomValue
+
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>random()</strong> : <em>mixed</em><br /><em>Shuffles the collection and picks the first element from it</em> |
+
+<hr />
+
 ### Class: \Somnambulist\Collection\Behaviours\Query\Last
 
 > Trait Last
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>last()</strong> : <em>mixed</em><br /><em>Returns the first element of the Collection</em> |
+| public | <strong>last()</strong> : <em>mixed</em><br /><em>Returns the last element of the Collection or null if empty</em> |
 
 <hr />
 
@@ -217,7 +228,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>first()</strong> : <em>mixed</em><br /><em>Returns the first element from the collection</em> |
+| public | <strong>first()</strong> : <em>mixed/null</em><br /><em>Returns the first element from the collection; or null if empty</em> |
 
 <hr />
 

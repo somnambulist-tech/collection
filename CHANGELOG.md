@@ -4,6 +4,11 @@ Change Log
 2019-08-05 - 3.2.0
 ------------------
 
+ * Added `random` for getting the first element from a `shuffle`'d collection
+
+2019-08-05 - 3.2.0
+------------------
+
  * Minor BC break on `first` and `last`; now return `null` if the key is not found
  * Added additional `find` tests and `find` / `findLast` return false if not found
  

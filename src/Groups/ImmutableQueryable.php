@@ -14,6 +14,7 @@ use Somnambulist\Collection\Behaviours\Query\GetValueWithDotNotation;
 use Somnambulist\Collection\Behaviours\Query\HasKeyWithDotNotation;
 use Somnambulist\Collection\Behaviours\Query\Keys;
 use Somnambulist\Collection\Behaviours\Query\Last;
+use Somnambulist\Collection\Behaviours\Query\RandomValue;
 use Somnambulist\Collection\Behaviours\Query\Unique;
 use Somnambulist\Collection\Behaviours\Query\Value;
 use Somnambulist\Collection\Behaviours\Query\Values;
@@ -38,6 +39,7 @@ trait ImmutableQueryable
     use HasKeyWithDotNotation;
     use Keys;
     use Last;
+    use RandomValue;
     use ShuffleNewCollection;
     use Unique;
     use Value;

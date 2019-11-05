@@ -13,6 +13,7 @@ use Somnambulist\Collection\Behaviours\Query\GetValueWithDotNotation;
 use Somnambulist\Collection\Behaviours\Query\HasKeyWithDotNotation;
 use Somnambulist\Collection\Behaviours\Query\Keys;
 use Somnambulist\Collection\Behaviours\Query\Last;
+use Somnambulist\Collection\Behaviours\Query\RandomValue;
 use Somnambulist\Collection\Behaviours\Query\RemoveEmpty;
 use Somnambulist\Collection\Behaviours\Query\RemoveNulls;
 use Somnambulist\Collection\Behaviours\Query\SortKeys;
@@ -41,6 +42,7 @@ trait Queryable
     use HasKeyWithDotNotation;
     use Keys;
     use Last;
+    use RandomValue;
     use RemoveEmpty;
     use RemoveNulls;
     use SortKeys;
