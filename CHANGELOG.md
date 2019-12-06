@@ -1,12 +1,12 @@
 Change Log
 ==========
 
-2019-08-05 - 3.2.1
+2019-08-05 - 3.2.2
 ------------------
 
  * Fix missing constructor on `SimpleCollection`
 
-2019-08-05 - 3.2.0
+2019-08-05 - 3.2.1
 ------------------
 
  * Added `random` for getting the first element from a `shuffle`'d collection
