@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection;
 
 use Somnambulist\Collection\Behaviours;
+use Somnambulist\Collection\Utils\Value;
 
 /**
  * Class SimpleCollection
@@ -48,4 +49,13 @@ class SimpleCollection extends AbstractCollection
     use Behaviours\Export\ExportToArray;
     use Behaviours\Export\ExportToJson;
 
+    /**
+     * Constructor.
+     *
+     * @param mixed $items
+     */
+    public function __construct($items = [])
+    {
+        $this->items = Value::toArray($items);
+    }
 }

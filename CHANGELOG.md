@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2019-08-05 - 3.2.1
+------------------
+
+ * Fix missing constructor on `SimpleCollection`
+
 2019-08-05 - 3.2.0
 ------------------
 
