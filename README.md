@@ -1,5 +1,8 @@
 # Somnambulist Collection Library
 
+[![GitHub Actions Build Status](https://github.com/somnambulist-tech/collection/workflows/tests/badge.svg)](https://github.com/somnambulist-tech/collection/actions?query=workflow%3Atests)
+
+
 Somnambulist Collection provides a framework for making collections and pseudo sets of your own.
 It has been completely re-worked from the previous versions into a set of behaviours (traits) and
 some common interfaces grouped around function.
