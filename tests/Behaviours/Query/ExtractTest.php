@@ -5,6 +5,7 @@ namespace Somnambulist\Collection\Tests\Behaviours\Query;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\MutableCollection as Collection;
 use Somnambulist\Collection\Tests\Fixtures\MyObject;
+use Somnambulist\Collection\Tests\Fixtures\ProductId;
 
 /**
  * Class ExtractTest
@@ -40,6 +41,22 @@ class ExtractTest extends TestCase
         $collection = new Collection([
             ['product_id' => 'prod-100', 'name' => 'Desk'],
             ['product_id' => 'prod-200', 'name' => 'Chair'],
+        ]);
+
+        $result = $collection->extract('name', 'product_id');
+
+        $this->assertEquals(['prod-100' => 'Desk', 'prod-200' => 'Chair'], $result->toArray());
+    }
+
+    /**
+     * @group accessors
+     * @group extract
+     */
+    public function testExtractWithKeyHandlesObjects()
+    {
+        $collection = new Collection([
+            ['product_id' => new ProductId('prod-100'), 'name' => 'Desk'],
+            ['product_id' => new ProductId('prod-200'), 'name' => 'Chair'],
         ]);
 
         $result = $collection->extract('name', 'product_id');

@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2020-03-06 - 3.2.3
+------------------
+
+ * Fix bug in extract if objects used as keys
+
 2019-08-05 - 3.2.2
 ------------------
 

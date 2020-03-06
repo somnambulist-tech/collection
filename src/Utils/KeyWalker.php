@@ -142,7 +142,7 @@ final class KeyWalker
             if (is_null($key)) {
                 $results[] = $itemValue;
             } else {
-                $itemKey = static::get($item, $key, $default);
+                $itemKey = (string)static::get($item, $key, $default);
 
                 $results[$itemKey] = $itemValue;
             }
