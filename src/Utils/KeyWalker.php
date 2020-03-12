@@ -6,6 +6,7 @@ namespace Somnambulist\Collection\Utils;
 
 use Somnambulist\Collection\Contracts\Collection;
 use function is_scalar;
+use function method_exists;
 
 /**
  * Class KeyWalker
@@ -58,7 +59,7 @@ final class KeyWalker
                 return in_array('*', $key) ? Value::flatten($result) : $result;
             }
 
-            if (ClassUtils::hasProperty($collection, $segment)) {
+            if (ClassUtils::hasProperty($collection, $segment) || method_exists($collection, $segment)) {
                 $collection = ClassUtils::getProperty($collection, $segment);
             } else {
                 return Value::get($default);

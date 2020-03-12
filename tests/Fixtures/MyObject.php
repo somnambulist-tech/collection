@@ -50,4 +50,9 @@ class MyObject
     {
         return $this->example;
     }
+
+    public function customTitle()
+    {
+        return sprintf('%s - %s :: %s = %s', $this->foo, $this->bar, $this->baz, $this->example);
+    }
 }

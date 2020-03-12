@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2020-03-12 - 3.2.4
+------------------
+
+ * Fix bug in `KeyWalker` where methods with no properties could not be accessed
+
 2020-03-06 - 3.2.3
 ------------------
 

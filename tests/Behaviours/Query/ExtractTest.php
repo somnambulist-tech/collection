@@ -114,4 +114,22 @@ class ExtractTest extends TestCase
 
         $this->assertEquals(['bar', 'bar2', 'bar3'], $result->toArray());
     }
+
+    /**
+     * @group accessors
+     * @group extract
+     * @group cur
+     */
+    public function testExtractMethodValueFromObject()
+    {
+        $collection = new Collection([
+            new MyObject('test', 'example', 'bob', 'bar'),
+            new MyObject('test2', 'example2', 'bob2', 'bar2'),
+            new MyObject('test3', 'example3', 'bob3', 'bar3'),
+        ]);
+
+        $result = $collection->extract('customTitle');
+
+        $this->assertEquals(['test - example :: bob = bar', 'test2 - example2 :: bob2 = bar2', 'test3 - example3 :: bob3 = bar3'], $result->toArray());
+    }
 }
