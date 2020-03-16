@@ -2,7 +2,6 @@
 
 [![GitHub Actions Build Status](https://github.com/somnambulist-tech/collection/workflows/tests/badge.svg)](https://github.com/somnambulist-tech/collection/actions?query=workflow%3Atests)
 
-
 Somnambulist Collection provides a framework for making collections and pseudo sets of your own.
 It has been completely re-worked from the previous versions into a set of behaviours (traits) and
 some common interfaces grouped around function.
@@ -76,6 +75,17 @@ for examples.
 
 ## Important Changes in 3.X series
 
+### >=3.3 AbstractCollection::$collectionClass / Freeze::$freezableCLass changed
+
+From 3.3.0 the referenced properties have been changed to non-static as the previous behaviour
+was ambiguous and would result in inconsistent types when new collections were made, or a
+collection was frozen. Calls to the previous static methods should be made on the collection
+instance.
+
+Additionally: if needing to override the behaviour, it is best done in the constructor of any
+inherited collection class e.g. `MyCollection extends MutableCollection` then override the
+constructor and set the collectionClass / freezableClass as needed.
+
 ### >=3.2 first/last return type change
 
 From 3.2.0 the methods `first` and `last` will now return `null` if the collection is empty
@@ -89,7 +99,7 @@ made to make the `null` return value more consistent.
 The level of conversion attempted when creating a collection with value (`Collection::collect`)
 has changed. Previously toJson / asJson would be called, converting anything with those to
 arrays. These methods are no longer called and the objects will be preserved. This is to prevent
-Model objects having attributes extracted, or potentially expensive serialization processed
+Model objects having attributes extracted, or potentially expensive serialization processes
 being triggered.
 
 Additionally: performing a recursive, `deep`, conversion has been removed. Now only the top 
@@ -101,7 +111,7 @@ Previously the v2 collection was a mix of set and collection in that you can cre
 the same value, but could not add the same value multiple times - unless using merge, append
 or other creative ways of joining data together.
 
-With V3 this distinction is now made clear with both a MutableCollection AND a MutableSet. Now
+With v3 this distinction is now made clear with both a MutableCollection AND a MutableSet. Now
 the MutableSet _does_ enforce value uniqueness and this extends to: merge, combine, union,
 append, prepend and in fact any attempt to mutate the set where you can add values. Attempting
 to add duplicate values raises an exception, instead of doing nothing.  
@@ -116,10 +126,11 @@ In fact any Collection interface class can be used; including your own.
 
 ```php
 // change collection type
-MutableSet::setCollectionClass(MyCollection::class);
+$collection = new MutableSet();
+$collection->setCollectionClass(MyCollection::class);
 
 // get the current collection class
-MutableSet::getCollectionClass();
+$collection->getCollectionClass();
 ```
 
 ### Reduction in methods on FrozenCollection (ImmutableCollection)
@@ -139,16 +150,18 @@ free.
 Similarly to the mutable collections; the class used as the frozen collection can be changed
 for an alternative implementation.
 
+__Note:__ since v3.3 these methods and property are now per instance and not global.
+
 ```php
 // change class
-FrozenCollection::setFreezableClass(SomeClass::class);
+$collection = new MutableCollection();
+$collection->setFreezableClass(SomeClassImplementingImmutableInterface::class);
 
 // get the current class
-FrozenCollection::getFreezableClass();
+$collection->getFreezableClass();
 ```
 
-By default if not set, this will automatically use the `static::class` name; so the current
-class implementation.
+By default the frozen class is set to `Somnambulist\Collection\FrozenCollection::class`.
 
 ### Array wrapping now optional (default enabled)
 

@@ -43,7 +43,7 @@ abstract class AbstractCollection implements Collection
      *
      * @var string
      */
-    protected static $collectionClass;
+    protected $collectionClass;
 
     /**
      * @var array
@@ -68,18 +68,6 @@ abstract class AbstractCollection implements Collection
     public static function create($items = [])
     {
         return new static($items);
-    }
-
-    public static function getCollectionClass(): string
-    {
-        return static::$collectionClass;
-    }
-
-    public static function setCollectionClass(string $class): void
-    {
-        ClassUtils::assertClassImplements($class, Collection::class);
-
-        static::$collectionClass = $class;
     }
 
     public static function disableArrayWrapping(): void
@@ -146,11 +134,25 @@ abstract class AbstractCollection implements Collection
      */
     public function new($items)
     {
-        if (is_null(static::$collectionClass)) {
-            static::$collectionClass = static::class;
+        $class = $this->getCollectionClass();
+
+        return new $class($items);
+    }
+
+    public function getCollectionClass(): string
+    {
+        if (is_null($this->collectionClass)) {
+            $this->collectionClass = static::class;
         }
 
-        return new static::$collectionClass($items);
+        return $this->collectionClass;
+    }
+
+    public function setCollectionClass(string $class): void
+    {
+        ClassUtils::assertClassImplements($class, Collection::class);
+
+        $this->collectionClass = $class;
     }
 
     public function offsetExists($offset)

@@ -80,7 +80,7 @@ class MutableSet extends AbstractCollection implements
     use Runnable;
     use StringHelpers;
 
-    protected static $collectionClass = MutableCollection::class;
+    protected $collectionClass = MutableCollection::class;
 
     /**
      * Constructor.

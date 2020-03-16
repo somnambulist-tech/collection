@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use Somnambulist\Collection\Contracts\Immutable;
 use Somnambulist\Collection\FrozenCollection;
 use Somnambulist\Collection\Utils\ClassUtils;
+use function is_null;
 
 /**
  * Trait Freeze
@@ -30,22 +31,28 @@ trait Freeze
      *
      * @var string
      */
-    protected static $freezableClass = FrozenCollection::class;
+    protected $freezableClass = FrozenCollection::class;
 
-    public static function getFreezableClass(): string
+    public function getFreezableClass(): string
     {
-        return static::$freezableClass;
+        if (is_null($this->freezableClass)) {
+            $this->freezableClass = FrozenCollection::class;
+        }
+
+        return $this->freezableClass;
     }
 
-    public static function setFreezableClass(string $class): void
+    public function setFreezableClass(string $class): void
     {
         ClassUtils::assertClassImplements($class, Immutable::class);
 
-        self::$freezableClass = $class;
+        $this->freezableClass = $class;
     }
 
     public function freeze(): Immutable
     {
-        return new self::$freezableClass($this->items);
+        $class = $this->getFreezableClass();
+
+        return new $class($this->items);
     }
 }

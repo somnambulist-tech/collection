@@ -1,10 +1,30 @@
 Change Log
 ==========
 
+2020-03-12 - 3.3.0
+------------------
+
+ * API BC break static vs non-static
+ * Fix bug with `AbstractCollection::$collectionClass` causing ambiguous behaviour.
+   
+   The previous behaviour used a static property that was set on the first operation that
+   required a new collection instance. If an extended collection was used, then this type
+   would be set and all collection instances would now be that type. Instead this should
+   have been an instance property based on the currently instantiated class. The result
+   of the previous behaviour would be type errors if inheriting the default collections and
+   adding custom methods that used return type hints.
+   
+   While this fix is an API break, this was deemed necessary to prevent the current behaviour.
+   
+ * Fix bug with `Freeze::$freezableClass` causing ambiguous behaviour.
+   
+   For the same reasons as the previous fix, this makes the freezeableClass non-static and an
+   instance property instead of being a global.
+
 2020-03-12 - 3.2.5
 ------------------
 
- * Fix doubly loaded trait on MutableSet (`capitalize`)  
+ * Fix doubly loaded trait on MutableSet (`capitalize`)
 
 2020-03-12 - 3.2.4
 ------------------
