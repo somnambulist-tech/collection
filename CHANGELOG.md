@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2020-03-12 - 3.2.5
+------------------
+
+ * Fix doubly loaded trait on MutableSet (`capitalize`)  
+
 2020-03-12 - 3.2.4
 ------------------
 

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Groups;
 
 use Somnambulist\Collection\Behaviours\Mutate\AppendOnlyUniqueValues;
-use Somnambulist\Collection\Behaviours\Mutate\CombineOnlyUniqueValues;
 use Somnambulist\Collection\Behaviours\Mutate\Clear;
+use Somnambulist\Collection\Behaviours\Mutate\CombineOnlyUniqueValues;
 use Somnambulist\Collection\Behaviours\Mutate\MergeOnlyUniqueValues;
 use Somnambulist\Collection\Behaviours\Mutate\Pop;
 use Somnambulist\Collection\Behaviours\Mutate\PrependOnlyUniqueValues;
@@ -18,7 +18,6 @@ use Somnambulist\Collection\Behaviours\Mutate\Shift;
 use Somnambulist\Collection\Behaviours\Mutate\Shuffle;
 use Somnambulist\Collection\Behaviours\Mutate\UnionOnlyUniqueValues;
 use Somnambulist\Collection\Behaviours\Mutate\UnsetKey;
-use Somnambulist\Collection\Behaviours\Strings\Capitalize;
 
 /**
  * Trait MutableSet
@@ -33,7 +32,6 @@ trait MutableSet
 
     use AppendOnlyUniqueValues;
     use CombineOnlyUniqueValues;
-    use Capitalize;
     use MergeOnlyUniqueValues;
     use Pop;
     use PrependOnlyUniqueValues;
