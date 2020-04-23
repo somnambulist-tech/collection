@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours\Mutate;
 
 use function array_pop;
+use function is_array;
 
 /**
  * Trait Pop
@@ -26,6 +27,12 @@ trait Pop
      */
     public function pop()
     {
-        return array_pop($this->items);
+        $value = array_pop($this->items);
+
+        if (self::isArrayWrappingEnabled() && is_array($value)) {
+            $value = $this->new($value);
+        }
+
+        return $value;
     }
 }

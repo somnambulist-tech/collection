@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Behaviours\Mutate;
 
 use function array_shift;
+use function is_array;
 
 /**
  * Trait Shift
@@ -26,6 +27,12 @@ trait Shift
      */
     public function shift()
     {
-        return array_shift($this->items);
+        $value = array_shift($this->items);
+
+        if (self::isArrayWrappingEnabled() && is_array($value)) {
+            $value = $this->new($value);
+        }
+
+        return $value;
     }
 }

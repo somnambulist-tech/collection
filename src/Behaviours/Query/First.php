@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours\Query;
 
+use function array_search;
+use function is_array;
 use function reset;
 
 /**
@@ -24,6 +26,12 @@ trait First
      */
     public function first()
     {
-        return reset($this->items) ?: null;
+        $value = reset($this->items) ?: null;
+
+        if (self::isArrayWrappingEnabled() && is_array($value)) {
+            $value = $this->items[array_search($value, $this->items)] = $this->new($value);
+        }
+
+        return $value;
     }
 }

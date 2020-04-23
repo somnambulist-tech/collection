@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+2020-04-23 - 3.3.1
+------------------
+
+ * Fix first/last do not wrap arrays when nested arrays are in the collection
+ * Fix pop/shift do not wrap arrays when used with nested arrays
+   
+   Note: this could be considered an API BC break, however the expected behaviour is for any
+   operation returning data from the collection to honour the "wrapArrays" setting.
+
 2020-03-12 - 3.3.0
 ------------------
 
@@ -8,8 +17,8 @@ Change Log
  * Fix bug with `AbstractCollection::$collectionClass` causing ambiguous behaviour.
    
    The previous behaviour used a static property that was set on the first operation that
-   required a new collection instance. If an extended collection was used, then this type
-   would be set and all collection instances would now be that type. Instead this should
+   required a new collection instance. If an extended collection is in use, then this type
+   would be set and all collection instances would now be that type. Instead: this should
    have been an instance property based on the currently instantiated class. The result
    of the previous behaviour would be type errors if inheriting the default collections and
    adding custom methods that used return type hints.
@@ -19,7 +28,7 @@ Change Log
  * Fix bug with `Freeze::$freezableClass` causing ambiguous behaviour.
    
    For the same reasons as the previous fix, this makes the freezeableClass non-static and an
-   instance property instead of being a global.
+   instance property instead of being global.
 
 2020-03-12 - 3.2.5
 ------------------
