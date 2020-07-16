@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2020-07-16 - 3.3.2
+------------------
+
+ * Fix explode() requires a string and will fail if given an int (in KeyWalker)
+
 2020-04-23 - 3.3.1
 ------------------
 

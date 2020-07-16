@@ -35,6 +35,22 @@ class HasTest extends TestCase
     /**
      * @group collection
      */
+    public function testHasByInt()
+    {
+        $col = new Collection([
+            'test-1',
+            'test-2',
+            'test-abc',
+            'test-abe',
+        ]);
+
+        $this->assertTrue($col->has(3));
+        $this->assertFalse($col->has(678));
+    }
+
+    /**
+     * @group collection
+     */
     public function testHasValueFor()
     {
         $col = new Collection([

@@ -44,7 +44,7 @@ final class KeyWalker
             return $collection[$key];
         }
 
-        $key = is_array($key) ? $key : explode('.', $key);
+        $key = is_array($key) ? $key : explode('.', (string)$key);
 
         while (!is_null($segment = array_shift($key))) {
             if ($segment === '*') {
@@ -92,7 +92,7 @@ final class KeyWalker
             return true;
         }
 
-        $key = is_array($key) ? $key : explode('.', $key);
+        $key = is_array($key) ? $key : explode('.', (string)$key);
 
         while (!is_null($segment = array_shift($key))) {
             if ($segment === '*') {
@@ -163,7 +163,7 @@ final class KeyWalker
     protected static function extractKeyValueParameters($value, $key): array
     {
         $value = is_string($value) ? explode('.', $value) : $value;
-        $key   = is_null($key) || is_array($key) ? $key : explode('.', $key);
+        $key   = is_null($key) || is_array($key) ? $key : explode('.', (string)$key);
 
         return [$value, $key];
     }

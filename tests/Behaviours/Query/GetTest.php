@@ -33,6 +33,22 @@ class GetTest extends TestCase
     /**
      * @group accessors
      */
+    public function testGetByInt()
+    {
+        $col = new Collection([
+            'test1',
+            'test2',
+            'test3',
+            'test4',
+        ]);
+
+        $this->assertEquals('test3', $col->get(2));
+        $this->assertNull($col->get(1234));
+    }
+
+    /**
+     * @group accessors
+     */
     public function testGetWithDefaultClosure()
     {
         $col = new Collection([
