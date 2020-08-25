@@ -14,11 +14,18 @@ interface Filterable
 {
 
     /**
-     * @param mixed $criteria PHP callable, closure or function
+     * Filters the collection using the callback
+     *
+     * The callback receives both the value and the key.
+     *
+     * @link https://www.php.net/array_filter
+     *
+     * @param mixed $criteria PHP callable, closure or function, or property name to filter on
+     * @param mixed $test The value to filter for
      *
      * @return static
      */
-    public function filter($criteria = null);
+    public function filter($criteria = null, $test = null);
 
     /**
      * Alias of filter to add but requires the callable

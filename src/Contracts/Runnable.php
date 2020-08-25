@@ -21,7 +21,7 @@ interface Runnable
      * @param string|Closure $method
      * @param mixed          ...$arguments
      *
-     * @return static
+     * @return Collection
      * @throws RuntimeException
      * @throws BadMethodCallException
      */

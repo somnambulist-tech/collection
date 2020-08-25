@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Groups;
 
 use Somnambulist\Collection\Behaviours\Aggregate\AggregateValues;
-use Somnambulist\Collection\Behaviours\Aggregate\CountyBy;
+use Somnambulist\Collection\Behaviours\Aggregate\CountBy;
 
 /**
  * Trait Aggregates
@@ -17,6 +17,6 @@ trait Aggregates
 {
 
     use AggregateValues;
-    use CountyBy;
+    use CountBy;
 
 }

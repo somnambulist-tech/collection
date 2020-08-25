@@ -16,13 +16,13 @@ use function sprintf;
 class CollectionIsFrozenException extends DomainException
 {
 
-    public static function cannotSetKeyIn(string $class, $offset): self
+    public static function cannotSetKeyIn(string $class, $key): self
     {
-        return new self(sprintf('%s is immutable: %s cannot be set', $class, $offset));
+        return new self(sprintf('%s is immutable: %s cannot be set', $class, $key));
     }
 
-    public static function cannotUnsetKeyIn(string $class, $offset): self
+    public static function cannotUnsetKeyIn(string $class, $key): self
     {
-        return new self(sprintf('%s is immutable: %s cannot be unset', $class, $offset));
+        return new self(sprintf('%s is immutable: %s cannot be unset', $class, $key));
     }
 }

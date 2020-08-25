@@ -21,12 +21,14 @@ trait CombineValues
     /**
      * Create a collection by using this collection for keys and another for its values
      *
-     * @param mixed $values
+     * @link https://www.php.net/array_combine
+     *
+     * @param mixed $items
      *
      * @return static
      */
-    public function combine($values)
+    public function combine($items)
     {
-        return $this->new(array_combine($this->items, Value::toArray($values)));
+        return $this->new(array_combine($this->items, Value::toArray($items)));
     }
 }

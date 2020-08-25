@@ -68,12 +68,12 @@ interface Mutable extends Collection
     public function remove($value);
 
     /**
-     * @param string $offset
+     * @param string $key
      * @param mixed  $value
      *
      * @return static
      */
-    public function set($offset, $value);
+    public function set($key, $value);
 
     /**
      * @return static
@@ -88,10 +88,10 @@ interface Mutable extends Collection
     public function union($items);
 
     /**
-     * @param string $offset
+     * @param string $key
      *
      * @return static
      */
-    public function unset($offset);
+    public function unset($key);
 
 }

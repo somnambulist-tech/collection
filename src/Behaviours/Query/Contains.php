@@ -20,6 +20,8 @@ trait Contains
     /**
      * Returns true if value is in the collection
      *
+     * @link https://www.php.net/in_array
+     *
      * @param mixed $value
      *
      * @return bool

@@ -26,8 +26,6 @@ trait RemoveEmpty
      */
     public function removeEmpty(array $empty = [false, null, ''])
     {
-        return $this->filter(function ($item) use ($empty) {
-            return !in_array($item, $empty, true);
-        });
+        return $this->filter(fn ($item) => !in_array($item, $empty, true));
     }
 }

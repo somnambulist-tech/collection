@@ -22,7 +22,8 @@ use Somnambulist\Collection\Behaviours\Query\Values;
 /**
  * Trait ImmutableQueryable
  *
- * Groups a set of traits for getting or checking items in a Collection.
+ * Groups a set of traits for getting or checking items in a Collection but does not
+ * allow modifications to the collection.
  *
  * @package    Somnambulist\Collection\Groups
  * @subpackage Somnambulist\Collection\Groups\ImmutableQueryable

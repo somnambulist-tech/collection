@@ -16,16 +16,12 @@ use Somnambulist\Collection\Behaviours\Query\Last;
 use Somnambulist\Collection\Behaviours\Query\RandomValue;
 use Somnambulist\Collection\Behaviours\Query\RemoveEmpty;
 use Somnambulist\Collection\Behaviours\Query\RemoveNulls;
-use Somnambulist\Collection\Behaviours\Query\SortKeys;
-use Somnambulist\Collection\Behaviours\Query\SortValues;
 use Somnambulist\Collection\Behaviours\Query\Unique;
 use Somnambulist\Collection\Behaviours\Query\Value;
 use Somnambulist\Collection\Behaviours\Query\Values;
 
 /**
  * Trait Queryable
- *
- * Groups a set of traits for getting or checking items in a Collection.
  *
  * @package    Somnambulist\Collection\Groups
  * @subpackage Somnambulist\Collection\Groups\Queryable
@@ -45,8 +41,6 @@ trait Queryable
     use RandomValue;
     use RemoveEmpty;
     use RemoveNulls;
-    use SortKeys;
-    use SortValues;
     use Unique;
     use Value;
     use Values;

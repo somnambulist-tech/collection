@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours\Query;
 
-use function krsort;
-use function ksort;
+use function sprintf;
+use function trigger_error;
+use const E_USER_DEPRECATED;
 
 /**
  * Trait SortKeys
@@ -29,9 +30,9 @@ trait SortKeys
      */
     public function sortByKey($type = SORT_REGULAR)
     {
-        ksort($this->items, $type);
+        trigger_error(sprintf('%s is deprecated, use sortBy()', __METHOD__), E_USER_DEPRECATED);
 
-        return $this;
+        return $this->sortBy('key', 'asc', $type);
     }
 
     /**
@@ -45,8 +46,8 @@ trait SortKeys
      */
     public function sortByKeyReversed($type = SORT_REGULAR)
     {
-        krsort($this->items, $type);
+        trigger_error(sprintf('%s is deprecated, use sortBy()', __METHOD__), E_USER_DEPRECATED);
 
-        return $this;
+        return $this->sortBy('key', 'desc', $type);
     }
 }

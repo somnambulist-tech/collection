@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours\Query;
 
+use Somnambulist\Collection\Utils\ClassUtils;
+use Somnambulist\Collection\Utils\KeyWalker;
 use function array_filter;
+use function is_callable;
 
 /**
  * Trait FilterValues
@@ -20,16 +23,25 @@ trait FilterValues
     /**
      * Filters the collection using the callback
      *
-     * The callback receives both the value and the key.
+     * The callback receives both the value and the key. If a key name and value are given,
+     * will filter all items at that key with the value provided. Key can be an object method,
+     * property or array key.
      *
      * @link https://www.php.net/array_filter
      *
-     * @param mixed $criteria PHP callable, closure or function
+     * @param mixed $criteria PHP callable, closure or function, or property name to filter on
+     * @param mixed $test The value to filter for
      *
      * @return static
      */
-    public function filter($criteria = null)
+    public function filter($criteria = null, $test = null)
     {
+        if ($criteria && $test) {
+            $criteria = function ($value, $key) use ($criteria, $test) {
+                return KeyWalker::get($value, $criteria) === $test;
+            };
+        }
+
         return $this->new(array_filter($this->items, $criteria, ARRAY_FILTER_USE_BOTH));
     }
 
@@ -58,7 +70,7 @@ trait FilterValues
      */
     public function notMatching(callable $criteria)
     {
-        return $this->filter(function ($value, $key) use ($criteria) { return !$criteria($value, $key); });
+        return $this->filter(fn ($value, $key) => !$criteria($value, $key));
     }
 
     /**

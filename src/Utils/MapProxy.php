@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Somnambulist\Collection\Utils;
 
 use Somnambulist\Collection\Contracts\Collection;
-use Somnambulist\Collection\Contracts\Runnable;
 
 /**
  * Class MapProxy
@@ -20,16 +19,8 @@ use Somnambulist\Collection\Contracts\Runnable;
 final class MapProxy
 {
 
-    /**
-     * @var Runnable
-     */
-    private $collection;
+    private Collection $collection;
 
-    /**
-     * Constructor.
-     *
-     * @param Collection $collection
-     */
     public function __construct(Collection $collection)
     {
         $this->collection = $collection;
@@ -47,8 +38,6 @@ final class MapProxy
      */
     public function __call($name, $arguments)
     {
-        return $this->collection->map(function ($value, $key) use ($name, $arguments) {
-            return $value->{$name}(...$arguments);
-        });
+        return $this->collection->map(fn ($value, $key) => $value->{$name}(...$arguments));
     }
 }

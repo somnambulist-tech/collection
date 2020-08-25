@@ -21,6 +21,8 @@ trait PrependOnlyUniqueValues
     /**
      * Prepends the elements to the beginning of the collection
      *
+     * @link https://www.php.net/array_unshift
+     *
      * @param mixed ...$value
      *
      * @return static
@@ -30,9 +32,9 @@ trait PrependOnlyUniqueValues
         foreach ($value as $item) {
             if ($this->contains($item)) {
                 throw DuplicateItemException::found($value, $this->keys($item)->first());
-            } else {
-                array_unshift($this->items, $item);
             }
+
+            array_unshift($this->items, $item);
         }
 
         return $this;

@@ -22,6 +22,8 @@ trait ExportToQueryString
      *
      * Note: should only be used with elements that can be cast to scalars.
      *
+     * @link https://www.php.net/http_build_query
+     *
      * @param string $separator
      * @param int    $encoding
      *

@@ -24,8 +24,6 @@ trait RemoveNulls
      */
     public function removeNulls()
     {
-        return $this->filter(function ($item) {
-            return !is_null($item);
-        });
+        return $this->filter(fn ($item) => !is_null($item));
     }
 }

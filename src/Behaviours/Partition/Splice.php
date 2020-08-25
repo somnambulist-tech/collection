@@ -21,6 +21,8 @@ trait Splice
     /**
      * Splice a portion of the underlying collection
      *
+     * @link https://www.php.net/array_splice
+     *
      * @param int      $offset
      * @param int|null $length
      * @param mixed    $replacement

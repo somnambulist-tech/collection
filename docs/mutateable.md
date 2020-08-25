@@ -47,7 +47,6 @@
 | Visibility | Function |
 |:-----------|:---------|
 | public | <strong>remove(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Remove the value from the collection</em> |
-| public | <strong>removeElement(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Removes $value from the Collection</em> |
 
 <hr />
 
@@ -88,7 +87,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>combine(</strong><em>mixed</em> <strong>$values</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
+| public | <strong>combine(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
 
 <hr />
 
@@ -108,7 +107,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>pad(</strong><em>integer</em> <strong>$size</strong>, <em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Pads the Collection to size using value as the value of the new elements</em> |
+| public | <strong>pad(</strong><em>integer/\int</em> <strong>$size</strong>, <em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Pads the Collection to size using value as the value of the new elements</em> |
 
 <hr />
 
@@ -173,7 +172,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>set(</strong><em>string</em> <strong>$offset</strong>, <em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Add the value at the specified offset to the collection</em> |
+| public | <strong>set(</strong><em>string</em> <strong>$key</strong>, <em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Add the value at the specified key/offset to the collection</em> |
 
 <hr />
 
@@ -233,7 +232,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>combine(</strong><em>mixed</em> <strong>$values</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
+| public | <strong>combine(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
 
 <hr />
 
@@ -263,7 +262,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>unset(</strong><em>string</em> <strong>$offset</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Remove the key from the collection</em> |
+| public | <strong>unset(</strong><em>string</em> <strong>$key</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Mutate\static</em><br /><em>Remove the key from the collection</em> |
 
 <hr />
 

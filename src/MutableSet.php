@@ -6,7 +6,8 @@ namespace Somnambulist\Collection;
 
 use JsonSerializable;
 use Somnambulist\Collection\Behaviours\CannotAddDuplicateItems;
-use Somnambulist\Collection\Behaviours\Freeze;
+use Somnambulist\Collection\Behaviours\Freezeable;
+use Somnambulist\Collection\Behaviours\Proxyable;
 use Somnambulist\Collection\Contracts\CanAggregateItems;
 use Somnambulist\Collection\Contracts\CanManipulateStrings;
 use Somnambulist\Collection\Contracts\Assertable as IsAssertable;
@@ -28,6 +29,7 @@ use Somnambulist\Collection\Groups\MutableSet as Mutable;
 use Somnambulist\Collection\Groups\Partitionable;
 use Somnambulist\Collection\Groups\Queryable;
 use Somnambulist\Collection\Groups\Runnable;
+use Somnambulist\Collection\Groups\Sortable;
 use Somnambulist\Collection\Groups\StringHelpers;
 use Somnambulist\Collection\Utils\MapProxy;
 use Somnambulist\Collection\Utils\RunProxy;
@@ -72,42 +74,22 @@ class MutableSet extends AbstractCollection implements
     use Comparable;
     use Exportable;
     use Filterable;
-    use Freeze;
+    use Freezeable;
     use Mappable;
     use Mutable;
     use Partitionable;
+    use Proxyable;
     use Queryable;
     use Runnable;
+    use Sortable;
     use StringHelpers;
 
-    protected $collectionClass = MutableCollection::class;
+    protected ?string $collectionClass = MutableCollection::class;
 
-    /**
-     * Constructor.
-     *
-     * @param array $items
-     */
     public function __construct($items = [])
     {
         foreach (Value::toArray($items) as $key => $value) {
             $this->set($key, $value);
         }
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return mixed|static
-     */
-    public function __get($name)
-    {
-        if ('run' === $name && $this instanceof IsRunnable) {
-            return new RunProxy($this);
-        }
-        if ('map' === $name && $this instanceof IsMappable) {
-            return new MapProxy($this);
-        }
-
-        return $this->offsetGet($name);
     }
 }

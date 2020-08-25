@@ -25,8 +25,6 @@ trait Capitalize
      */
     public function capitalize()
     {
-        return $this->map(function ($item) {
-            return (function_exists('mb_convert_case')) ? mb_convert_case($item, MB_CASE_TITLE) : ucwords($item);
-        });
+        return $this->map(fn ($item) => function_exists('mb_convert_case') ? mb_convert_case($item, MB_CASE_TITLE) : ucwords($item));
     }
 }

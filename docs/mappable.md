@@ -36,7 +36,6 @@
 | Visibility | Function |
 |:-----------|:---------|
 | public | <strong>map(</strong><em>\callable</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\MapReduce\static</em><br /><em>Apply the callback to all elements in the collection Note: the callable should accept 2 arguments, the value and the key. For single argument callables only the value will be passed in. The argument count of the callable will attempt to be found. This works on methods, functions and static callable (Class::method).</em> |
-| public | <strong>transform(</strong><em>\callable</em> <strong>$transformer</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\MapReduce\static</em><br /><em>Alias of map()</em> |
 
 <hr />
 

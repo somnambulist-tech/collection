@@ -25,8 +25,6 @@ trait Upper
      */
     public function upper()
     {
-        return $this->map(function ($item) {
-            return (function_exists('mb_strtoupper')) ? mb_strtoupper($item) : strtoupper($item);
-        });
+        return $this->map(fn ($item) => function_exists('mb_strtoupper') ? mb_strtoupper($item) : strtoupper($item));
     }
 }

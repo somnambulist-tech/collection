@@ -22,6 +22,8 @@ trait Intersect
     /**
      * Intersect the collection with the given items.
      *
+     * @link https://www.php.net/array_intersect
+     *
      * @param mixed $items
      *
      * @return static
@@ -33,6 +35,8 @@ trait Intersect
 
     /**
      * Intersect the collection with the given items by key.
+     *
+     * @link https://www.php.net/array_intersect_key
      *
      * @param mixed $items
      *

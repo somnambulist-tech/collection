@@ -16,13 +16,13 @@ trait UnsetKey
     /**
      * Remove the key from the collection
      *
-     * @param string $offset
+     * @param string $key
      *
      * @return static
      */
-    public function unset($offset)
+    public function unset($key)
     {
-        $this->offsetUnset($offset);
+        $this->offsetUnset($key);
 
         return $this;
     }

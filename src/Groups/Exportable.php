@@ -14,8 +14,6 @@ use Somnambulist\Collection\Behaviours\Export\Serializable;
 /**
  * Trait Exportable
  *
- * Methods for exporting the collection to various formats
- *
  * @package    Somnambulist\Collection\Groups
  * @subpackage Somnambulist\Collection\Groups\Exportable
  */

@@ -14,6 +14,7 @@
 - [\Somnambulist\Collection\Behaviours\Query\Find](#class-somnambulistcollectionbehavioursqueryfind)
 - [\Somnambulist\Collection\Behaviours\Query\FilterByKey](#class-somnambulistcollectionbehavioursqueryfilterbykey)
 - [\Somnambulist\Collection\Behaviours\Query\SortValues](#class-somnambulistcollectionbehavioursquerysortvalues)
+- [\Somnambulist\Collection\Behaviours\Query\Sort](#class-somnambulistcollectionbehavioursquerysort)
 - [\Somnambulist\Collection\Behaviours\Query\RandomValue](#class-somnambulistcollectionbehavioursqueryrandomvalue)
 - [\Somnambulist\Collection\Behaviours\Query\Last](#class-somnambulistcollectionbehavioursquerylast)
 - [\Somnambulist\Collection\Behaviours\Query\HasKeyWithDotNotation](#class-somnambulistcollectionbehavioursqueryhaskeywithdotnotation)
@@ -40,7 +41,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>filter(</strong><em>mixed</em> <strong>$criteria=null</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Filters the collection using the callback The callback receives both the value and the key.</em> |
+| public | <strong>filter(</strong><em>mixed</em> <strong>$criteria=null</strong>, <em>mixed</em> <strong>$test=null</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Filters the collection using the callback The callback receives both the value and the key. If a key name and value are given, will filter all items at that key with the value provided. Key can be an object method, property or array key.</em> |
 | public | <strong>matching(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Alias of filter but requires the callable</em> |
 | public | <strong>notMatching(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Returns items that do NOT pass the test callable The callable is wrapped and checked if it returns false. For example: your callable is a closure that `return Str::contains($value->name(), 'bob');`, then `notMatching` will return all items that do not match that criteria.</em> |
 | public | <strong>reject(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Alias of notMatching</em> |
@@ -171,10 +172,21 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>sortByValue(</strong><em>integer</em> <strong>$type=2</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sorts the Collection by value using asort preserving keys, returns the Collection</em> |
-| public | <strong>sortByValueReversed(</strong><em>integer</em> <strong>$type=2</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sorts the Collection by value using arsort preserving keys, returns the Collection</em> |
-| public | <strong>sortUsing(</strong><em>mixed</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by a user defined function</em> |
-| public | <strong>sortUsingWithKeys(</strong><em>mixed</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by a user defined function</em> |
+| public | <strong>sortByValue(</strong><em>mixed</em> <strong>$type=2</strong>)</strong> : <em>void</em> |
+| public | <strong>sortByValueReversed(</strong><em>mixed</em> <strong>$type=2</strong>)</strong> : <em>void</em> |
+| public | <strong>sortUsing(</strong><em>mixed</em> <strong>$callable</strong>)</strong> : <em>void</em> |
+| public | <strong>sortUsingWithKeys(</strong><em>mixed</em> <strong>$callable</strong>)</strong> : <em>void</em> |
+
+<hr />
+
+### Class: \Somnambulist\Collection\Behaviours\Query\Sort
+
+> Trait Sort
+
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>sort(</strong><em>mixed</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by a user defined function, preserves key association</em> |
+| public | <strong>sortBy(</strong><em>\string</em> <strong>$type</strong>, <em>\string</em> <strong>$dir=`'asc'`</strong>, <em>\int</em> <strong>$comparison=2</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the collection by `value` or `key` ordered `asc` (A-Z) or `desc` (Z-A)</em> |
 
 <hr />
 

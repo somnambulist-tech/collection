@@ -1,7 +1,7 @@
 ## Table of contents
 
 - [\Somnambulist\Collection\Behaviours\Aggregate\AggregateValues](#class-somnambulistcollectionbehavioursaggregateaggregatevalues)
-- [\Somnambulist\Collection\Behaviours\Aggregate\CountyBy](#class-somnambulistcollectionbehavioursaggregatecountyby)
+- [\Somnambulist\Collection\Behaviours\Aggregate\CountBy](#class-somnambulistcollectionbehavioursaggregatecountby)
 
 <hr />
 
@@ -20,9 +20,9 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Aggregate\CountyBy
+### Class: \Somnambulist\Collection\Behaviours\Aggregate\CountBy
 
-> Trait CountyBy
+> Trait CountBy
 
 | Visibility | Function |
 |:-----------|:---------|

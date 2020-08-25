@@ -32,9 +32,7 @@ use function strpos;
 final class Value
 {
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Provides a callable for fetching data from a collection item
@@ -186,10 +184,10 @@ final class Value
         foreach ($value as $key => $item) {
             if (is_array($item)) {
                 $items[$key] = new $type(static::toCollection($item));
-            } elseif ($value instanceof Traversable) {
-                $items[$key] = new $type(static::toCollection(iterator_to_array($value)));
             } elseif ($value instanceof ArrayObject) {
                 $items[$key] = new $type(static::toCollection($value->getArrayCopy()));
+            } elseif ($value instanceof Traversable) {
+                $items[$key] = new $type(static::toCollection(iterator_to_array($value)));
             } else {
                 $items[$key] = $value;
             }
@@ -244,64 +242,33 @@ final class Value
         return static::isCallable($value) ? $value(...$arguments) : $value;
     }
 
-    /**
-     * Returns true if the key exists in the array'ish
-     *
-     * @param mixed      $array
-     * @param string|int $key
-     *
-     * @return bool
-     */
     public static function hasKey($array, $key): bool
     {
         if ($array instanceof ArrayAccess) {
             return $array->offsetExists($key);
         }
 
-        return array_key_exists($key, $array);
+        return self::isTraversable($array) && array_key_exists($key, $array);
     }
 
-    /**
-     * Returns true if value is callable, but not a string callable
-     *
-     * @param mixed $value
-     *
-     * @return bool
-     */
     public static function isCallable($value): bool
     {
         return !is_string($value) && is_callable($value);
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
     public static function isTraversable($value): bool
     {
         return is_array($value) || $value instanceof Traversable;
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
     public static function isAccessibleByKey($value): bool
     {
         return is_array($value) || $value instanceof ArrayAccess;
     }
 
-    /**
-     * @link https://stackoverflow.com/questions/13071186/how-to-get-the-number-of-parameters-of-a-run-time-determined-callable
-     *
-     * @param callable $callable
-     *
-     * @return int
-     */
     public static function getArgumentCountForCallable(callable $callable): int
     {
+        // Ref: https://stackoverflow.com/questions/13071186/how-to-get-the-number-of-parameters-of-a-run-time-determined-callable
         if (is_string($callable) && false !== strpos($callable, '::')) {
             $callable = explode('::', $callable);
         }

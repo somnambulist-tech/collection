@@ -22,6 +22,8 @@ trait DiffKeys
     /**
      * Get the items in the collection whose keys are not present in the given items.
      *
+     * @link https://www.php.net/array_diff_key
+     *
      * @param mixed $items
      *
      * @return static
@@ -33,6 +35,8 @@ trait DiffKeys
 
     /**
      * Get the items in the collection whose keys are not present in the given items.
+     *
+     * @link https://www.php.net/array_diff_ukey
      *
      * @param mixed    $items
      * @param callable $callback

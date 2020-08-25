@@ -25,8 +25,6 @@ trait Lower
      */
     public function lower()
     {
-        return $this->map(function ($item) {
-            return (function_exists('mb_strtolower')) ? mb_strtolower($item) : strtolower($item);
-        });
+        return $this->map(fn ($item) => function_exists('mb_strtolower') ? mb_strtolower($item) : strtolower($item));
     }
 }

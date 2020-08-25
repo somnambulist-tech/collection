@@ -8,7 +8,6 @@ use Somnambulist\Collection\Utils\Value;
 use function array_combine;
 use function array_keys;
 use function array_map;
-use function trigger_error;
 
 /**
  * Trait Map
@@ -48,19 +47,5 @@ trait Map
         $items = array_map($callable, $this->items, $keys);
 
         return $this->new(array_combine($keys, $items));
-    }
-
-    /**
-     * Alias of map()
-     *
-     * @param callable $transformer
-     *
-     * @return static
-     */
-    public function transform(callable $transformer)
-    {
-        trigger_error(__METHOD__ . ' is deprecated, use map() instead', E_USER_DEPRECATED);
-
-        return $this->map($transformer);
     }
 }

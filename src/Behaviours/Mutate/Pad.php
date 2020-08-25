@@ -27,7 +27,7 @@ trait Pad
      *
      * @return static
      */
-    public function pad($size, $value)
+    public function pad(int $size, $value)
     {
         $this->items = array_pad($this->items, $size, $value);
 

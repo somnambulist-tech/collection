@@ -14,8 +14,6 @@ use Somnambulist\Collection\Behaviours\MapReduce\Reduce;
 /**
  * Trait Mappable
  *
- * Methods for mapping and reducing items.
- *
  * @package    Somnambulist\Collection\Groups
  * @subpackage Somnambulist\Collection\Groups\Mappable
  */

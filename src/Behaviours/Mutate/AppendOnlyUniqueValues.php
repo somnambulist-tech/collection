@@ -47,9 +47,9 @@ trait AppendOnlyUniqueValues
         foreach ($value as $item) {
             if ($this->contains($item)) {
                 throw DuplicateItemException::found($value, $this->keys($item)->first());
-            } else {
-                array_push($this->items, $item);
             }
+
+            array_push($this->items, $item);
         }
 
 

@@ -22,19 +22,21 @@ trait CombineOnlyUniqueValues
     /**
      * Create a collection by using this collection for keys and another for its values
      *
-     * @param mixed $values
+     * @link https://www.php.net/array_combine
+     *
+     * @param mixed $items
      *
      * @return static
      */
-    public function combine($values)
+    public function combine($items)
     {
-        $values = Value::toArray($values);
-        $unique = array_unique($values);
+        $items  = Value::toArray($items);
+        $unique = array_unique($items);
 
-        if (count($values) !== count($unique)) {
+        if (count($items) !== count($unique)) {
             throw DuplicateItemException::preparedValuesContainDuplicates(__FUNCTION__);
         }
 
-        return $this->new(array_combine($this->items, $values));
+        return $this->new(array_combine($this->items, $items));
     }
 }

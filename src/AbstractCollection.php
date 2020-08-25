@@ -32,7 +32,7 @@ abstract class AbstractCollection implements Collection
      *
      * @var bool
      */
-    private static $wrapArrays = true;
+    private static bool $wrapArrays = true;
 
     /**
      * The type of collection to create when new collections are needed
@@ -41,30 +41,19 @@ abstract class AbstractCollection implements Collection
      * can result in duplicate values and that is the expected behaviour, but allowing a
      * different type of collection is useful e.g.: return a limited set after filtering.
      *
-     * @var string
-     */
-    protected $collectionClass;
-
-    /**
-     * @var array
-     */
-    protected $items = [];
-
-    /**
-     * @param mixed $items
+     * Note: automatically set on first call to {@link new()} if not already defined.
      *
-     * @return static
+     * @var string|null
      */
+    protected ?string $collectionClass = null;
+
+    protected array $items = [];
+
     public static function collect($items = [])
     {
         return new static($items);
     }
 
-    /**
-     * @param mixed $items
-     *
-     * @return static
-     */
     public static function create($items = [])
     {
         return new static($items);
@@ -85,11 +74,6 @@ abstract class AbstractCollection implements Collection
         return self::$wrapArrays;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return mixed|static
-     */
     public function __get($name)
     {
         return $this->offsetGet($name);
@@ -108,9 +92,6 @@ abstract class AbstractCollection implements Collection
         return $object;
     }
 
-    /**
-     * @return int
-     */
     public function count()
     {
         return count($this->items);

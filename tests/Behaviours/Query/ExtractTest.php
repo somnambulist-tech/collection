@@ -118,7 +118,6 @@ class ExtractTest extends TestCase
     /**
      * @group accessors
      * @group extract
-     * @group cur
      */
     public function testExtractMethodValueFromObject()
     {

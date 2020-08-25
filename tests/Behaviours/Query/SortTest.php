@@ -4,14 +4,16 @@ namespace Somnambulist\Collection\Tests\Behaviours\Query;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Collection\Tests\Fixtures\SortableObject;
+use function strcmp;
 
 /**
- * Class SortValuesTest
+ * Class SortTest
  *
  * @package    Somnambulist\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Query\SortValuesTest
+ * @subpackage Somnambulist\Collection\Tests\Behaviours\Query\SortTest
  */
-class SortValuesTest extends TestCase
+class SortTest extends TestCase
 {
 
     /**
@@ -28,7 +30,7 @@ class SortValuesTest extends TestCase
             'btest' => 'testp',
         ]);
 
-        $col->sortByValue();
+        $col->sortBy('value');
 
         $expected = [
             'ztest' => 'test',
@@ -56,7 +58,7 @@ class SortValuesTest extends TestCase
             'btest' => 'testp',
         ]);
 
-        $col->sortByValueReversed();
+        $col->sortBy('value', 'desc');
 
         $expected = [
             'gtest' => 'tests',
@@ -73,7 +75,45 @@ class SortValuesTest extends TestCase
     /**
      * @group sort
      */
-    public function testSortUsing()
+    public function testSortByKey()
+    {
+        $col = new Collection([
+            'ztest' => 'test',
+            'atest' => 'test',
+            'gtest' => 'test',
+            'etest' => 'test',
+            'utest' => 'test',
+            'btest' => 'test',
+        ]);
+
+        $col->sortBy('key');
+
+        $this->assertEquals(['atest', 'btest', 'etest', 'gtest', 'utest', 'ztest'], $col->keys()->toArray());
+    }
+
+    /**
+     * @group sort
+     */
+    public function testSortByKeyReversed()
+    {
+        $col = new Collection([
+            'ztest' => 'test',
+            'atest' => 'test',
+            'gtest' => 'test',
+            'etest' => 'test',
+            'utest' => 'test',
+            'btest' => 'test',
+        ]);
+
+        $col->sortBy('key', 'desc');
+
+        $this->assertEquals(['ztest', 'utest', 'gtest', 'etest', 'btest', 'atest'], $col->keys()->toArray());
+    }
+
+    /**
+     * @group sort
+     */
+    public function testSort()
     {
         $col = new Collection([
             'ztest' => 'test',
@@ -84,17 +124,15 @@ class SortValuesTest extends TestCase
             'btest' => 'testp',
         ]);
 
-        $col->sortUsing(function ($a, $b) {
-            return strcmp($a, $b);
-        });
+        $col->sort(fn ($a, $b) => strcmp($a, $b));
 
         $expected = [
-            'test',
-            'testa',
-            'testd',
-            'teste',
-            'testp',
-            'tests',
+            'ztest' => 'test',
+            'atest' => 'testa',
+            'etest' => 'testd',
+            'utest' => 'teste',
+            'btest' => 'testp',
+            'gtest' => 'tests',
         ];
 
         $this->assertEquals($expected, $col->toArray());
@@ -103,7 +141,7 @@ class SortValuesTest extends TestCase
     /**
      * @group sort
      */
-    public function testSortKeepingKeysUsing()
+    public function testSortMaintainsKeyAssociation()
     {
         $col = new Collection([
             'ztest' => 'test',
@@ -114,9 +152,7 @@ class SortValuesTest extends TestCase
             'btest' => 'testp',
         ]);
 
-        $col->sortUsingWithKeys(function ($a, $b) {
-            return strcmp($a, $b);
-        });
+        $col->sort(fn ($a, $b) => strcmp($a, $b));
 
         $expected = [
             'ztest' => 'test',
@@ -128,5 +164,27 @@ class SortValuesTest extends TestCase
         ];
 
         $this->assertEquals($expected, $col->toArray());
+    }
+
+    /**
+     * @group sort
+     */
+    public function testSortBySpecifyingMethodOrProperty()
+    {
+        $col = new Collection([
+            $a = new SortableObject('foo'),
+            $b = new SortableObject('bar'),
+            $c = new SortableObject('baz'),
+            $d = new SortableObject('aardvark'),
+            $e = new SortableObject('test'),
+        ]);
+
+        $col->sort('name');
+
+        $expected = [
+            $d, $b, $c, $a, $e
+        ];
+
+        $this->assertSame($expected, $col->values()->toArray());
     }
 }

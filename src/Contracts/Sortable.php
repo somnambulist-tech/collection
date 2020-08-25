@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Contracts;
 
+use const SORT_STRING;
+
 /**
  * Interface Sortable
  *
@@ -16,66 +18,50 @@ interface Sortable
     /**
      * Sort the Collection by a user defined function
      *
-     * @link https://www.php.net/usort
-     *
-     * @param mixed $callable Any valid PHP callable e.g. function, closure, method
-     *
-     * @return static
-     */
-    public function sortUsing($callable);
-
-    /**
-     * Sort the Collection by a user defined function
-     *
      * @link https://www.php.net/uasort
      *
      * @param mixed $callable Any valid PHP callable e.g. function, closure, method
      *
      * @return static
      */
+    public function sort($callable);
+
+    /**
+     * @param string $type Either values or keys, default values
+     * @param string $dir  Either asc or desc, default asc
+     * @param int    $comparison One of the SORT_ constants, default being SORT_STRING
+     *
+     * @return static
+     */
+    public function sortBy(string $type, string $dir = 'asc', int $comparison = SORT_STRING);
+
+    /**
+     * @deprecated Use sort(), deprecated in 4.0; will be removed in 5.0
+     */
+    public function sortUsing($callable);
+
+    /**
+     * @deprecated Use sort(), deprecated in 4.0; will be removed in 5.0
+     */
     public function sortUsingWithKeys($callable);
 
     /**
-     * Sorts the Collection by value using asort preserving keys, returns the Collection
-     *
-     * @link https://www.php.net/asort
-     *
-     * @param integer $type Any valid SORT_ constant
-     *
-     * @return static
+     * @deprecated Use sortBy('value'), will be removed in 5.0
      */
     public function sortByValue($type = SORT_STRING);
 
     /**
-     * Sorts the Collection by value using arsort preserving keys, returns the Collection
-     *
-     * @link https://www.php.net/arsort
-     *
-     * @param integer $type Any valid SORT_ constant
-     *
-     * @return static
+     * @deprecated Use sortBy('value', 'desc'), will be removed in 5.0
      */
     public function sortByValueReversed($type = SORT_STRING);
 
     /**
-     * Sort the Collection by designated keys
-     *
-     * @link https://www.php.net/ksort
-     *
-     * @param null|integer $type Any valid SORT_ constant
-     *
-     * @return static
+     * @deprecated Use sortBy('key'), will be removed in 5.0
      */
     public function sortByKey($type = null);
 
     /**
-     * Sort the Collection by designated keys in reverse order
-     *
-     * @link https://www.php.net/krsort
-     *
-     * @param null|integer $type Any valid SORT_ constant
-     *
-     * @return static
+     * @deprecated Use sortBy('key', 'desc'), will be removed in 5.0
      */
     public function sortByKeyReversed($type = null);
 }

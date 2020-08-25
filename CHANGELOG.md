@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+2020-08-25
+----------
+
+ * Raise minimum PHP version to 7.4
+ * Remove all deprecated methods
+ * Refactor sorting methods and deprecate previous methods
+ * Move major version changes into separate files
+
 2020-07-16 - 3.3.2
 ------------------
 

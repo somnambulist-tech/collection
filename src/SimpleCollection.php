@@ -42,6 +42,7 @@ class SimpleCollection extends AbstractCollection
     use Behaviours\Query\HasKey;
     use Behaviours\Query\Last;
     use Behaviours\Query\Keys;
+    use Behaviours\Query\Sort;
     use Behaviours\Query\Unique;
     use Behaviours\Query\Value;
     use Behaviours\Query\Values;
@@ -49,11 +50,6 @@ class SimpleCollection extends AbstractCollection
     use Behaviours\Export\ExportToArray;
     use Behaviours\Export\ExportToJson;
 
-    /**
-     * Constructor.
-     *
-     * @param mixed $items
-     */
     public function __construct($items = [])
     {
         $this->items = Value::toArray($items);

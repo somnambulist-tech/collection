@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace Somnambulist\Collection\Behaviours;
 
-use InvalidArgumentException;
 use Somnambulist\Collection\Contracts\Immutable;
 use Somnambulist\Collection\FrozenCollection;
 use Somnambulist\Collection\Utils\ClassUtils;
-use function is_null;
 
 /**
- * Trait Freeze
+ * Trait Freezeable
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Freeze
+ * @subpackage Somnambulist\Collection\Behaviours\Freezeable
  *
  * @property array $items
  */
-trait Freeze
+trait Freezeable
 {
 
     /**
@@ -31,14 +29,10 @@ trait Freeze
      *
      * @var string
      */
-    protected $freezableClass = FrozenCollection::class;
+    protected string $freezableClass = FrozenCollection::class;
 
     public function getFreezableClass(): string
     {
-        if (is_null($this->freezableClass)) {
-            $this->freezableClass = FrozenCollection::class;
-        }
-
         return $this->freezableClass;
     }
 

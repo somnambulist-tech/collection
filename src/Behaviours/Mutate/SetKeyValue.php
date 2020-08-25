@@ -16,16 +16,16 @@ trait SetKeyValue
 {
 
     /**
-     * Add the value at the specified offset to the collection
+     * Add the value at the specified key/offset to the collection
      *
-     * @param string $offset
+     * @param string $key
      * @param mixed  $value
      *
      * @return static
      */
-    public function set($offset, $value)
+    public function set($key, $value)
     {
-        $this->offsetSet($offset, $value);
+        $this->offsetSet($key, $value);
 
         return $this;
     }

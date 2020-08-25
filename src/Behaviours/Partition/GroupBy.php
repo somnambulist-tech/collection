@@ -40,8 +40,8 @@ trait GroupBy
             $groups[$group][] = $value;
         }
 
-        foreach ($groups as $group => $values) {
-            $groups[$group] = $this->new($values);
+        foreach ($groups as $group => $items) {
+            $groups[$group] = $this->new($items);
         }
 
         return $this->new($groups);

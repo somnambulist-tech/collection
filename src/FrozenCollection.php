@@ -6,6 +6,7 @@ namespace Somnambulist\Collection;
 
 use JsonSerializable;
 use Somnambulist\Collection\Behaviours\CannotAddOrRemoveItems;
+use Somnambulist\Collection\Behaviours\Proxyable;
 use Somnambulist\Collection\Contracts\CanAggregateItems;
 use Somnambulist\Collection\Contracts\Comparable as IsComparable;
 use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
@@ -13,6 +14,7 @@ use Somnambulist\Collection\Contracts\Immutable as IsImmutable;
 use Somnambulist\Collection\Contracts\Mappable as IsMappable;
 use Somnambulist\Collection\Contracts\Runnable as IsRunnable;
 use Somnambulist\Collection\Contracts\Serializable as IsSerializable;
+use Somnambulist\Collection\Contracts\Sortable as IsSortable;
 use Somnambulist\Collection\Groups\Aggregates;
 use Somnambulist\Collection\Groups\Assertable;
 use Somnambulist\Collection\Groups\Comparable;
@@ -21,6 +23,7 @@ use Somnambulist\Collection\Groups\Filterable;
 use Somnambulist\Collection\Groups\ImmutableQueryable;
 use Somnambulist\Collection\Groups\Mappable;
 use Somnambulist\Collection\Groups\Runnable;
+use Somnambulist\Collection\Groups\Sortable;
 use Somnambulist\Collection\Utils\MapProxy;
 use Somnambulist\Collection\Utils\RunProxy;
 use Somnambulist\Collection\Utils\Value;
@@ -42,6 +45,7 @@ class FrozenCollection extends AbstractCollection implements
     IsMappable,
     IsRunnable,
     IsSerializable,
+    IsSortable,
     JsonSerializable
 {
 
@@ -54,31 +58,11 @@ class FrozenCollection extends AbstractCollection implements
     use ImmutableQueryable;
     use Mappable;
     use Runnable;
+    use Proxyable;
+    use Sortable;
 
-    /**
-     * Constructor.
-     *
-     * @param mixed $items
-     */
     public function __construct($items = [])
     {
         $this->items = Value::toArray($items);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return mixed|static
-     */
-    public function __get($name)
-    {
-        if ('run' === $name && $this instanceof IsRunnable) {
-            return new RunProxy($this);
-        }
-        if ('map' === $name && $this instanceof IsMappable) {
-            return new MapProxy($this);
-        }
-
-        return $this->offsetGet($name);
     }
 }

@@ -6,6 +6,7 @@ namespace Somnambulist\Collection\Tests\Behaviours\Compare;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Collection\MutableCollection as Collection;
+use function strcmp;
 
 /**
  * Class DiffTest
@@ -39,6 +40,21 @@ class DiffTest extends TestCase
         $col2 = Collection::collect(['green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan' => 8]);
 
         $diff = $col1->diffKeys($col2);
+
+        $this->assertCount(2, $diff);
+        $this->assertArrayHasKey('red', $diff);
+        $this->assertArrayHasKey('purple', $diff);
+    }
+
+    /**
+     * @group diff
+     */
+    public function testDiffKeysUsing()
+    {
+        $col1 = Collection::collect(['blue' => 1, 'red' => 2, 'green' => 3, 'purple' => 4]);
+        $col2 = Collection::collect(['green' => 5, 'blue' => 6, 'yellow' => 7, 'cyan' => 8]);
+
+        $diff = $col1->diffKeysUsing($col2, fn ($a, $b) => strcmp($a, $b));
 
         $this->assertCount(2, $diff);
         $this->assertArrayHasKey('red', $diff);

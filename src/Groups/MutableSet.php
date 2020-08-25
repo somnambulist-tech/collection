@@ -22,7 +22,8 @@ use Somnambulist\Collection\Behaviours\Mutate\UnsetKey;
 /**
  * Trait MutableSet
  *
- * Combines many traits that can mutate the collection into a single trait.
+ * Combines many traits that can mutate the collection into a single trait and
+ * constrains them to unique values.
  *
  * @package    Somnambulist\Collection\Groups
  * @subpackage Somnambulist\Collection\Groups\MutableSet

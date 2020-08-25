@@ -19,16 +19,8 @@ use Somnambulist\Collection\Contracts\Runnable;
 final class RunProxy
 {
 
-    /**
-     * @var Runnable
-     */
-    private $collection;
+    private Runnable $collection;
 
-    /**
-     * Constructor.
-     *
-     * @param $collection
-     */
     public function __construct(Runnable $collection)
     {
         $this->collection = $collection;

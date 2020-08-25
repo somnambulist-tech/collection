@@ -51,7 +51,6 @@ interface Comparable
     public function diffKeys($items);
 
     /**
-     *
      * @param mixed    $items
      * @param callable $callback
      *

@@ -51,9 +51,7 @@ trait AggregateValues
         $callback = Value::accessor($key);
 
         return $this
-            ->filter(function ($value) {
-                return !is_null($value);
-            })
+            ->filter(fn ($value) => !is_null($value))
             ->reduce(function ($result, $item) use ($callback) {
                 $value = $callback($item);
 
@@ -91,9 +89,7 @@ trait AggregateValues
         $callback = Value::accessor($key);
 
         return $this
-            ->filter(function ($value) {
-                return !is_null($value);
-            })
+            ->filter(fn ($value) => !is_null($value))
             ->reduce(function ($result, $item) use ($callback) {
                 $value = $callback($item);
 
@@ -121,17 +117,17 @@ trait AggregateValues
     {
         $callback = Value::accessor($key);
 
-        $values = [];
+        $items = [];
 
         foreach ($this->items as $key => $value) {
-            $values[] = $callback($value);
+            $items[] = $callback($value);
         }
 
-        $counts = array_count_values($values);
+        $counts = array_count_values($items);
         arsort($counts);
         $modes = array_keys($counts, current($counts), true);
 
-        if (count($values) === count($counts)) {
+        if (count($items) === count($counts)) {
             return false;
         }
 
@@ -155,8 +151,6 @@ trait AggregateValues
     {
         $callback = Value::accessor($key);
 
-        return $this->reduce(function ($result, $item) use ($callback) {
-            return $result + $callback($item);
-        }, 0);
+        return $this->reduce(fn ($result, $item) => $result + $callback($item), 0);
     }
 }

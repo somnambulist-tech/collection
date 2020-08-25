@@ -73,8 +73,12 @@ final class ClassUtils
      */
     public static function getAccessMethodFor($subject, $test): ?string
     {
+        if (!is_object($subject)) {
+            return null;
+        }
+
         foreach ([$test, 'get' . static::studly($test), static::camel($test)] as $try) {
-            if (is_object($subject) && method_exists($subject, $try)) {
+            if (method_exists($subject, $try)) {
                 return $try;
             }
         }
@@ -98,12 +102,12 @@ final class ClassUtils
      */
     public static function getPropertyNameIn($subject, string $property): ?string
     {
+        if (!is_object($subject)) {
+            return null;
+        }
+
         foreach ([$property, static::camel($property), static::studly($property)] as $try) {
-            if (
-                is_object($subject)
-                &&
-                (property_exists($subject, $try) || method_exists($subject, '__isset') && $subject->__isset($try))
-            ) {
+            if (property_exists($subject, $try) || method_exists($subject, '__isset') && $subject->__isset($try)) {
                 return $try;
             }
         }

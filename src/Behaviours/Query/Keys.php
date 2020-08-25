@@ -23,6 +23,8 @@ trait Keys
      * If a value is provided, then all keys with this value will be returned. Searching
      * is always by strict match.
      *
+     * @link https://www.php.net/array_keys
+     *
      * @param mixed $value Get all keys where the value matches
      *
      * @return static
@@ -30,11 +32,9 @@ trait Keys
     public function keys($value = null)
     {
         if (null === $value) {
-            $keys = array_keys($this->items);
-        } else {
-            $keys = array_keys($this->items, $value, true);
+            return $this->new(array_keys($this->items));
         }
 
-        return $this->new($keys);
+        return $this->new(array_keys($this->items, $value, true));
     }
 }

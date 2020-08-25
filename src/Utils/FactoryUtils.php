@@ -16,9 +16,7 @@ use Somnambulist\Collection\MutableCollection;
 final class FactoryUtils
 {
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Creates a new collection instance with a nested array from the key
@@ -32,10 +30,6 @@ final class FactoryUtils
     public static function createWithNestedArrayFromKey(string $key, $value, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
-
-        if (is_null($key)) {
-            return new $type($value);
-        }
 
         $array = [];
         $keys  = explode('.', $key);
@@ -81,15 +75,16 @@ final class FactoryUtils
 
         $collection = [];
 
-        if ( strlen(trim($string)) > 0 ) {
+        if (strlen(trim($string)) > 0) {
             static::explode($string, $separator, $type)
                 ->each(function ($item) use ($type, $assignment, $options, &$collection) {
                     if (false === strpos($item, $assignment)) {
                         $collection[trim($item)] = true;
+
                         return;
                     }
 
-                    list($key, $value) = explode($assignment, $item);
+                    [$key, $value] = explode($assignment, $item);
 
                     if (false !== strpos($value, $options)) {
                         $value = static::explode($value, $options, $type)->map('trim')->toArray();

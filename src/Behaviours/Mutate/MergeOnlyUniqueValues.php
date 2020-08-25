@@ -31,14 +31,14 @@ trait MergeOnlyUniqueValues
      */
     public function merge($value)
     {
-        $values = Value::toArray($value);
-        $unique = array_unique($values);
+        $items  = Value::toArray($value);
+        $unique = array_unique($items);
 
-        if (count($values) !== count($unique)) {
+        if (count($items) !== count($unique)) {
             throw DuplicateItemException::preparedValuesContainDuplicates(__FUNCTION__);
         }
 
-        foreach ($values as $key => $value) {
+        foreach ($items as $key => $value) {
             $this->offsetSet((is_numeric($key) ? null : $key), $value);
         }
 

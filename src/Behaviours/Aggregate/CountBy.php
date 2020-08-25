@@ -7,14 +7,14 @@ namespace Somnambulist\Collection\Behaviours\Aggregate;
 use function is_null;
 
 /**
- * Trait CountyBy
+ * Trait CountBy
  *
  * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Aggregate\CountyBy
+ * @subpackage Somnambulist\Collection\Behaviours\Aggregate\CountBy
  *
  * @property array $items
  */
-trait CountyBy
+trait CountBy
 {
 
     /**
@@ -32,8 +32,6 @@ trait CountyBy
             };
         }
 
-        return $this->new($this->groupBy($callback)->map(function ($value) {
-            return $value->count();
-        }));
+        return $this->new($this->groupBy($callback)->map(fn ($value) => $value->count()));
     }
 }
