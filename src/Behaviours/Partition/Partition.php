@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
-namespace Somnambulist\Collection\Behaviours\Partition;
-
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Utils\Value;
 
 /**
  * Trait Partition
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Partition\Partition
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Partition\Partition
  *
  * @property array $items
  */

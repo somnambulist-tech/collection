@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours;
+namespace Somnambulist\Components\Collection\Behaviours;
 
 /**
  * Trait CanAddAndRemoveItems
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\CanAddAndRemoveItems
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\CanAddAndRemoveItems
  *
  * @property array $items
  */

@@ -1,30 +1,28 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Query\All;
-use Somnambulist\Collection\Behaviours\Query\Contains;
-use Somnambulist\Collection\Behaviours\Query\Extract;
-use Somnambulist\Collection\Behaviours\Query\Find;
-use Somnambulist\Collection\Behaviours\Query\First;
-use Somnambulist\Collection\Behaviours\Query\GetValueWithDotNotation;
-use Somnambulist\Collection\Behaviours\Query\HasKeyWithDotNotation;
-use Somnambulist\Collection\Behaviours\Query\Keys;
-use Somnambulist\Collection\Behaviours\Query\Last;
-use Somnambulist\Collection\Behaviours\Query\RandomValue;
-use Somnambulist\Collection\Behaviours\Query\RemoveEmpty;
-use Somnambulist\Collection\Behaviours\Query\RemoveNulls;
-use Somnambulist\Collection\Behaviours\Query\Unique;
-use Somnambulist\Collection\Behaviours\Query\Value;
-use Somnambulist\Collection\Behaviours\Query\Values;
+use Somnambulist\Components\Collection\Behaviours\Query\All;
+use Somnambulist\Components\Collection\Behaviours\Query\Contains;
+use Somnambulist\Components\Collection\Behaviours\Query\Extract;
+use Somnambulist\Components\Collection\Behaviours\Query\Find;
+use Somnambulist\Components\Collection\Behaviours\Query\First;
+use Somnambulist\Components\Collection\Behaviours\Query\GetValueWithDotNotation;
+use Somnambulist\Components\Collection\Behaviours\Query\HasKeyWithDotNotation;
+use Somnambulist\Components\Collection\Behaviours\Query\Keys;
+use Somnambulist\Components\Collection\Behaviours\Query\Last;
+use Somnambulist\Components\Collection\Behaviours\Query\RandomValue;
+use Somnambulist\Components\Collection\Behaviours\Query\RemoveEmpty;
+use Somnambulist\Components\Collection\Behaviours\Query\RemoveNulls;
+use Somnambulist\Components\Collection\Behaviours\Query\Unique;
+use Somnambulist\Components\Collection\Behaviours\Query\Value;
+use Somnambulist\Components\Collection\Behaviours\Query\Values;
 
 /**
  * Trait Queryable
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Queryable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Queryable
  */
 trait Queryable
 {

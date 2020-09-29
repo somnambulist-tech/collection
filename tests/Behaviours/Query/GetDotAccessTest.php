@@ -1,17 +1,17 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\MyObject;
-use Somnambulist\Collection\Tests\Fixtures\MyObject2;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\MyObject;
+use Somnambulist\Components\Collection\Tests\Fixtures\MyObject2;
 
 /**
  * Class GetDotAccessTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Query\GetDotAccessTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\GetDotAccessTest
  */
 class GetDotAccessTest extends TestCase
 {

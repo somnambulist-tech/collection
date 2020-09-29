@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Contracts;
+namespace Somnambulist\Components\Collection\Contracts;
 
 /**
  * Interface Mappable
  *
- * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\Mappable
+ * @package    Somnambulist\Components\Collection\Contracts
+ * @subpackage Somnambulist\Components\Collection\Contracts\Mappable
  */
 interface Mappable
 {
@@ -26,11 +24,11 @@ interface Mappable
     public function flatten();
 
     /**
-     * @param callable $callable
+     * @param callable|string $callable
      *
      * @return static
      */
-    public function map(callable $callable);
+    public function map($callable);
 
     /**
      * Reduces the Collection to a single value, returning it, or $initial if no value
@@ -42,5 +40,5 @@ interface Mappable
      *
      * @return mixed
      */
-    public function reduce($callback, $initial = null);
+    public function reduce(callable $callback, $initial = null);
 }

@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
 use function array_keys;
 
 /**
  * Trait Keys
  *
- * @package    Somnambulist\Collection\Behaviours\Query
- * @subpackage Somnambulist\Collection\Behaviours\Query\Keys
+ * @package    Somnambulist\Components\Collection\Behaviours\Query
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Keys
  *
  * @property array $items
  */

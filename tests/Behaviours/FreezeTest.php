@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours;
+namespace Somnambulist\Components\Collection\Tests\Behaviours;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\FrozenCollection as Immutable;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\FrozenCollection as Immutable;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class FreezeTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours
- * @subpackage Somnambulist\Collection\Tests\Behaviours\FreezeTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\FreezeTest
  */
 class FreezeTest extends TestCase
 {

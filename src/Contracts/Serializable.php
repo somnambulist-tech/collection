@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Contracts;
+namespace Somnambulist\Components\Collection\Contracts;
 
 /**
  * Interface Serializable
  *
- * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\Serializable
+ * @package    Somnambulist\Components\Collection\Contracts
+ * @subpackage Somnambulist\Components\Collection\Contracts\Serializable
  */
 interface Serializable
 {

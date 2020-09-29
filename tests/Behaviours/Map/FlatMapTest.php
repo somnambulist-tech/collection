@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Map;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class FlatMapTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Map
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Map\FlatMapTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Map
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Map\FlatMapTest
  */
 class FlatMapTest extends TestCase
 {

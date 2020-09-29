@@ -1,12 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Aggregate;
 
-namespace Somnambulist\Collection\Behaviours\Aggregate;
-
-use Somnambulist\Collection\Utils\Value;
-use function array_keys;
+use Somnambulist\Components\Collection\Utils\Value;
 use function array_count_values;
+use function array_keys;
 use function arsort;
 use function count;
 use function current;
@@ -15,8 +13,8 @@ use function is_null;
 /**
  * Trait AggregateValues
  *
- * @package    Somnambulist\Collection\Behaviours\Aggregate
- * @subpackage Somnambulist\Collection\Behaviours\Aggregate\AggregateValues
+ * @package    Somnambulist\Components\Collection\Behaviours\Aggregate
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Aggregate\AggregateValues
  *
  * @property array $items
  */

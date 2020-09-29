@@ -1,15 +1,15 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class MergeTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Mutate
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Mutate\MergeTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Mutate
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Mutate\MergeTest
  */
 class MergeTest extends TestCase
 {

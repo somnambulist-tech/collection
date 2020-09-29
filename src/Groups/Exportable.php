@@ -1,21 +1,19 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Export\ExportToArray;
-use Somnambulist\Collection\Behaviours\Export\ExportToJson;
-use Somnambulist\Collection\Behaviours\Export\ExportToQueryString;
-use Somnambulist\Collection\Behaviours\Export\ExportToString;
-use Somnambulist\Collection\Behaviours\Export\JsonSerialize;
-use Somnambulist\Collection\Behaviours\Export\Serializable;
+use Somnambulist\Components\Collection\Behaviours\Export\ExportToArray;
+use Somnambulist\Components\Collection\Behaviours\Export\ExportToJson;
+use Somnambulist\Components\Collection\Behaviours\Export\ExportToQueryString;
+use Somnambulist\Components\Collection\Behaviours\Export\ExportToString;
+use Somnambulist\Components\Collection\Behaviours\Export\JsonSerialize;
+use Somnambulist\Components\Collection\Behaviours\Export\Serializable;
 
 /**
  * Trait Exportable
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Exportable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Exportable
  */
 trait Exportable
 {

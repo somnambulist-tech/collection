@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Collection\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
 /**
  * Trait RandomValue
  *
- * @package Somnambulist\Collection\Behaviours\Query
- * @subpackage Somnambulist\Collection\Behaviours\Query\RandomValue
+ * @package Somnambulist\Components\Collection\Behaviours\Query
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\RandomValue
  */
 trait RandomValue
 {

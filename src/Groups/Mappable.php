@@ -1,21 +1,19 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\MapReduce\Collapse;
-use Somnambulist\Collection\Behaviours\MapReduce\FlatMap;
-use Somnambulist\Collection\Behaviours\MapReduce\Flatten;
-use Somnambulist\Collection\Behaviours\MapReduce\Map;
-use Somnambulist\Collection\Behaviours\MapReduce\MapInto;
-use Somnambulist\Collection\Behaviours\MapReduce\Reduce;
+use Somnambulist\Components\Collection\Behaviours\MapReduce\Collapse;
+use Somnambulist\Components\Collection\Behaviours\MapReduce\FlatMap;
+use Somnambulist\Components\Collection\Behaviours\MapReduce\Flatten;
+use Somnambulist\Components\Collection\Behaviours\MapReduce\Map;
+use Somnambulist\Components\Collection\Behaviours\MapReduce\MapInto;
+use Somnambulist\Components\Collection\Behaviours\MapReduce\Reduce;
 
 /**
  * Trait Mappable
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Mappable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Mappable
  */
 trait Mappable
 {

@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Utils;
 
-namespace Somnambulist\Collection\Utils;
-
-use Somnambulist\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
  * Class MapProxy
@@ -13,8 +11,8 @@ use Somnambulist\Collection\Contracts\Collection;
  * This creates a `map()` call that calls the requested method, collects the results and
  * returns them in a new collection instance created via `new()`.
  *
- * @package    Somnambulist\Collection\Utils
- * @subpackage Somnambulist\Collection\Utils\MapProxy
+ * @package    Somnambulist\Components\Collection\Utils
+ * @subpackage Somnambulist\Components\Collection\Utils\MapProxy
  */
 final class MapProxy
 {

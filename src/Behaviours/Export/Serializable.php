@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Behaviours\Export;
 
 use function array_key_exists;
 use function is_array;
@@ -12,8 +10,8 @@ use function unserialize;
 /**
  * Trait Serializable
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Export\Serializable
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Export\Serializable
  *
  * @property array $items
  */

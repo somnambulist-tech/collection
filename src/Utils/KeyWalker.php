@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Utils;
 
-namespace Somnambulist\Collection\Utils;
-
-use Somnambulist\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function is_scalar;
 use function method_exists;
 
@@ -14,8 +12,8 @@ use function method_exists;
  * Adds support for walking a Collection (or array) via dot notation.
  * Based on Laravels data_get / Arr::get.
  *
- * @package    Somnambulist\Collection\Utils
- * @subpackage Somnambulist\Collection\Utils\KeyWalker
+ * @package    Somnambulist\Components\Collection\Utils
+ * @subpackage Somnambulist\Components\Collection\Utils\KeyWalker
  */
 final class KeyWalker
 {

@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours;
 
-namespace Somnambulist\Collection\Behaviours;
-
-use Somnambulist\Collection\Exceptions\CollectionIsFrozenException;
+use Somnambulist\Components\Collection\Exceptions\CollectionIsFrozenException;
 
 /**
  * Trait CannotAddOrRemoveItems
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\CannotAddOrRemoveItems
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\CannotAddOrRemoveItems
  *
  * @property array $items
  */

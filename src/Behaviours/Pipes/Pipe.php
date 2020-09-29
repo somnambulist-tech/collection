@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Pipes;
+namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 
 /**
  * Trait Pipe
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Pipes\Pipe
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Pipes\Pipe
  *
  * @property array $items
  */

@@ -1,17 +1,17 @@
 <?php
 
-namespace Somnambulist\Collection\Tests;
+namespace Somnambulist\Components\Collection\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\Exceptions\CollectionIsFrozenException;
-use Somnambulist\Collection\FrozenCollection as Immutable;
-use Somnambulist\Collection\Tests\Fixtures\TestClass4;
+use Somnambulist\Components\Collection\Exceptions\CollectionIsFrozenException;
+use Somnambulist\Components\Collection\FrozenCollection as Immutable;
+use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 /**
  * Class ImmutableCollectionTest
  *
- * @package    Somnambulist\Collection\Tests
- * @subpackage Somnambulist\Collection\Tests\ImmutableCollectionTest
+ * @package    Somnambulist\Components\Collection\Tests
+ * @subpackage Somnambulist\Components\Collection\Tests\ImmutableCollectionTest
  * @group frozen-collection
  */
 class ImmutableCollectionTest extends TestCase

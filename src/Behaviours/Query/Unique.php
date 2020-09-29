@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
 use function array_unique;
 
 /**
  * Trait Unique
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Unique
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Unique
  *
  * @property array $items
  */

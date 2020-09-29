@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 use function array_replace;
 use function array_replace_recursive;
@@ -10,8 +8,8 @@ use function array_replace_recursive;
 /**
  * Trait ReplaceValues
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Mutate\ReplaceValues
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\ReplaceValues
  *
  * @property array $items
  */

@@ -1,15 +1,15 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class ToQueryStringTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Export
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Export\ToQueryStringTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Export
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Export\ToQueryStringTest
  */
 class ToQueryStringTest extends TestCase
 {

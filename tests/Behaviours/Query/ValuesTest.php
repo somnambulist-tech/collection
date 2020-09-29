@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class ValuesTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Query\ValuesTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\ValuesTest
  */
 class ValuesTest extends TestCase
 {

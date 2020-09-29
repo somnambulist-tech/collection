@@ -1,13 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Utils;
+namespace Somnambulist\Components\Collection\Utils;
 
 use Closure;
 use InvalidArgumentException;
 use RuntimeException;
-use Somnambulist\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function get_class;
 use function is_object;
 use function lcfirst;
@@ -20,8 +18,8 @@ use function ucwords;
 /**
  * Class ClassUtils
  *
- * @package    Somnambulist\Collection\Utils
- * @subpackage Somnambulist\Collection\Utils\ClassUtils
+ * @package    Somnambulist\Components\Collection\Utils
+ * @subpackage Somnambulist\Components\Collection\Utils\ClassUtils
  */
 final class ClassUtils
 {

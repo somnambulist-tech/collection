@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Contracts;
+namespace Somnambulist\Components\Collection\Contracts;
 
 /**
  * Interface Diffable
  *
- * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\Diffable
+ * @package    Somnambulist\Components\Collection\Contracts
+ * @subpackage Somnambulist\Components\Collection\Contracts\Diffable
  */
 interface Comparable
 {

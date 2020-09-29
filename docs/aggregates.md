@@ -1,11 +1,11 @@
 ## Table of contents
 
-- [\Somnambulist\Collection\Behaviours\Aggregate\AggregateValues](#class-somnambulistcollectionbehavioursaggregateaggregatevalues)
-- [\Somnambulist\Collection\Behaviours\Aggregate\CountBy](#class-somnambulistcollectionbehavioursaggregatecountby)
+- [\Somnambulist\Components\Collection\Behaviours\Aggregate\AggregateValues](#class-somnambulistcomponentscollectionbehavioursaggregateaggregatevalues)
+- [\Somnambulist\Components\Collection\Behaviours\Aggregate\CountBy](#class-somnambulistcomponentscollectionbehavioursaggregatecountby)
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Aggregate\AggregateValues
+### Class: \Somnambulist\Components\Collection\Behaviours\Aggregate\AggregateValues
 
 > Trait AggregateValues
 
@@ -20,11 +20,11 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Aggregate\CountBy
+### Class: \Somnambulist\Components\Collection\Behaviours\Aggregate\CountBy
 
 > Trait CountBy
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>countBy(</strong><em>callable/null</em> <strong>$callback=null</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Aggregate\static</em><br /><em>Count the number of items in the collection using a given test</em> |
+| public | <strong>countBy(</strong><em>\callable</em> <strong>$callback=null</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Aggregate\static</em><br /><em>Count the number of items in the collection using a given test</em> |
 

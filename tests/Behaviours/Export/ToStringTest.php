@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class ToStringTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Export
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Export\ToStringTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Export
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Export\ToStringTest
  */
 class ToStringTest extends TestCase
 {

@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Behaviours\Export;
 
 use function json_encode;
 
 /**
  * Trait ExportToJson
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Export\ExportToJson
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Export\ExportToJson
  *
  * @property array $items
  */

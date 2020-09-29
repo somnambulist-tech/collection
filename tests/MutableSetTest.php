@@ -1,16 +1,16 @@
 <?php
 
-namespace Somnambulist\Collection\Tests;
+namespace Somnambulist\Components\Collection\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\Exceptions\DuplicateItemException;
-use Somnambulist\Collection\MutableSet as Collection;
+use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
+use Somnambulist\Components\Collection\MutableSet as Collection;
 
 /**
  * Class MutableCollectionTest
  *
- * @package    Somnambulist\Collection\Tests
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Pipes\MutableCollectionTest
+ * @package    Somnambulist\Components\Collection\Tests
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Pipes\MutableCollectionTest
  * @group mutable-set
  */
 class MutableSetTest extends TestCase

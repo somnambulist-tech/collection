@@ -1,84 +1,84 @@
 ## Table of contents
 
-- [\Somnambulist\Collection\Behaviours\Query\RemoveEmpty](#class-somnambulistcollectionbehavioursqueryremoveempty)
-- [\Somnambulist\Collection\Behaviours\Query\FilterValues](#class-somnambulistcollectionbehavioursqueryfiltervalues)
-- [\Somnambulist\Collection\Behaviours\Query\Extract](#class-somnambulistcollectionbehavioursqueryextract)
-- [\Somnambulist\Collection\Behaviours\Query\Keys](#class-somnambulistcollectionbehavioursquerykeys)
-- [\Somnambulist\Collection\Behaviours\Query\Values](#class-somnambulistcollectionbehavioursqueryvalues)
-- [\Somnambulist\Collection\Behaviours\Query\GetValue](#class-somnambulistcollectionbehavioursquerygetvalue)
-- [\Somnambulist\Collection\Behaviours\Query\All](#class-somnambulistcollectionbehavioursqueryall)
-- [\Somnambulist\Collection\Behaviours\Query\Unique](#class-somnambulistcollectionbehavioursqueryunique)
-- [\Somnambulist\Collection\Behaviours\Query\HasKey](#class-somnambulistcollectionbehavioursqueryhaskey)
-- [\Somnambulist\Collection\Behaviours\Query\Value](#class-somnambulistcollectionbehavioursqueryvalue)
-- [\Somnambulist\Collection\Behaviours\Query\GetValueWithDotNotation](#class-somnambulistcollectionbehavioursquerygetvaluewithdotnotation)
-- [\Somnambulist\Collection\Behaviours\Query\Find](#class-somnambulistcollectionbehavioursqueryfind)
-- [\Somnambulist\Collection\Behaviours\Query\FilterByKey](#class-somnambulistcollectionbehavioursqueryfilterbykey)
-- [\Somnambulist\Collection\Behaviours\Query\SortValues](#class-somnambulistcollectionbehavioursquerysortvalues)
-- [\Somnambulist\Collection\Behaviours\Query\Sort](#class-somnambulistcollectionbehavioursquerysort)
-- [\Somnambulist\Collection\Behaviours\Query\RandomValue](#class-somnambulistcollectionbehavioursqueryrandomvalue)
-- [\Somnambulist\Collection\Behaviours\Query\Last](#class-somnambulistcollectionbehavioursquerylast)
-- [\Somnambulist\Collection\Behaviours\Query\HasKeyWithDotNotation](#class-somnambulistcollectionbehavioursqueryhaskeywithdotnotation)
-- [\Somnambulist\Collection\Behaviours\Query\Contains](#class-somnambulistcollectionbehavioursquerycontains)
-- [\Somnambulist\Collection\Behaviours\Query\First](#class-somnambulistcollectionbehavioursqueryfirst)
-- [\Somnambulist\Collection\Behaviours\Query\RemoveNulls](#class-somnambulistcollectionbehavioursqueryremovenulls)
-- [\Somnambulist\Collection\Behaviours\Query\SortKeys](#class-somnambulistcollectionbehavioursquerysortkeys)
+- [\Somnambulist\Components\Collection\Behaviours\Query\RemoveEmpty](#class-somnambulistcomponentscollectionbehavioursqueryremoveempty)
+- [\Somnambulist\Components\Collection\Behaviours\Query\FilterValues](#class-somnambulistcomponentscollectionbehavioursqueryfiltervalues)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Extract](#class-somnambulistcomponentscollectionbehavioursqueryextract)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Keys](#class-somnambulistcomponentscollectionbehavioursquerykeys)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Values](#class-somnambulistcomponentscollectionbehavioursqueryvalues)
+- [\Somnambulist\Components\Collection\Behaviours\Query\GetValue](#class-somnambulistcomponentscollectionbehavioursquerygetvalue)
+- [\Somnambulist\Components\Collection\Behaviours\Query\All](#class-somnambulistcomponentscollectionbehavioursqueryall)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Unique](#class-somnambulistcomponentscollectionbehavioursqueryunique)
+- [\Somnambulist\Components\Collection\Behaviours\Query\HasKey](#class-somnambulistcomponentscollectionbehavioursqueryhaskey)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Value](#class-somnambulistcomponentscollectionbehavioursqueryvalue)
+- [\Somnambulist\Components\Collection\Behaviours\Query\GetValueWithDotNotation](#class-somnambulistcomponentscollectionbehavioursquerygetvaluewithdotnotation)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Find](#class-somnambulistcomponentscollectionbehavioursqueryfind)
+- [\Somnambulist\Components\Collection\Behaviours\Query\FilterByKey](#class-somnambulistcomponentscollectionbehavioursqueryfilterbykey)
+- [\Somnambulist\Components\Collection\Behaviours\Query\SortValues](#class-somnambulistcomponentscollectionbehavioursquerysortvalues)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Sort](#class-somnambulistcomponentscollectionbehavioursquerysort)
+- [\Somnambulist\Components\Collection\Behaviours\Query\RandomValue](#class-somnambulistcomponentscollectionbehavioursqueryrandomvalue)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Last](#class-somnambulistcomponentscollectionbehavioursquerylast)
+- [\Somnambulist\Components\Collection\Behaviours\Query\HasKeyWithDotNotation](#class-somnambulistcomponentscollectionbehavioursqueryhaskeywithdotnotation)
+- [\Somnambulist\Components\Collection\Behaviours\Query\Contains](#class-somnambulistcomponentscollectionbehavioursquerycontains)
+- [\Somnambulist\Components\Collection\Behaviours\Query\First](#class-somnambulistcomponentscollectionbehavioursqueryfirst)
+- [\Somnambulist\Components\Collection\Behaviours\Query\RemoveNulls](#class-somnambulistcomponentscollectionbehavioursqueryremovenulls)
+- [\Somnambulist\Components\Collection\Behaviours\Query\SortKeys](#class-somnambulistcomponentscollectionbehavioursquerysortkeys)
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\RemoveEmpty
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\RemoveEmpty
 
 > Trait RemoveEmpty
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>removeEmpty(</strong><em>array</em> <strong>$empty=array()</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Removes values that are matched as empty through an equivalence check</em> |
+| public | <strong>removeEmpty(</strong><em>array</em> <strong>$empty=array()</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Removes values that are matched as empty through an equivalence check</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\FilterValues
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\FilterValues
 
 > Trait FilterValues
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>filter(</strong><em>mixed</em> <strong>$criteria=null</strong>, <em>mixed</em> <strong>$test=null</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Filters the collection using the callback The callback receives both the value and the key. If a key name and value are given, will filter all items at that key with the value provided. Key can be an object method, property or array key.</em> |
-| public | <strong>matching(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Alias of filter but requires the callable</em> |
-| public | <strong>notMatching(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Returns items that do NOT pass the test callable The callable is wrapped and checked if it returns false. For example: your callable is a closure that `return Str::contains($value->name(), 'bob');`, then `notMatching` will return all items that do not match that criteria.</em> |
-| public | <strong>reject(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Alias of notMatching</em> |
+| public | <strong>filter(</strong><em>mixed</em> <strong>$criteria=null</strong>, <em>mixed</em> <strong>$test=null</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Filters the collection using the callback The callback receives both the value and the key. If a key name and value are given, will filter all items at that key with the value provided. Key can be an object method, property or array key.</em> |
+| public | <strong>matching(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Alias of filter but requires the callable</em> |
+| public | <strong>notMatching(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Returns items that do NOT pass the test callable The callable is wrapped and checked if it returns false. For example: your callable is a closure that `return Str::contains($value->name(), 'bob');`, then `notMatching` will return all items that do not match that criteria.</em> |
+| public | <strong>reject(</strong><em>\callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Alias of notMatching</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Extract
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Extract
 
 > Trait Extract
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>extract(</strong><em>string</em> <strong>$element</strong>, <em>string/null</em> <strong>$withKey=null</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Extract the values for all items with an element named $element, optionally indexed by $withKey</em> |
+| public | <strong>extract(</strong><em>string</em> <strong>$element</strong>, <em>string/null</em> <strong>$withKey=null</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Extract the values for all items with an element named $element, optionally indexed by $withKey</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Keys
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Keys
 
 > Trait Keys
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>keys(</strong><em>mixed</em> <strong>$value=null</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection containing just the keys as values If a value is provided, then all keys with this value will be returned. Searching is always by strict match.</em> |
+| public | <strong>keys(</strong><em>mixed</em> <strong>$value=null</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection containing just the keys as values If a value is provided, then all keys with this value will be returned. Searching is always by strict match.</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Values
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Values
 
 > Trait Values
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>values()</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection containing just the values without the previous keys</em> |
+| public | <strong>values()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection containing just the values without the previous keys</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\GetValue
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\GetValue
 
 > Trait GetValue
 
@@ -88,7 +88,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\All
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\All
 
 > Trait All
 
@@ -98,17 +98,17 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Unique
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Unique
 
 > Trait Unique
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>unique(</strong><em>integer</em> <strong>$type=2</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Creates a new Collection containing only unique values</em> |
+| public | <strong>unique(</strong><em>integer</em> <strong>$type=2</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Creates a new Collection containing only unique values</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\HasKey
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\HasKey
 
 > Trait HasKey
 
@@ -119,7 +119,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Value
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Value
 
 > Trait Value
 
@@ -129,7 +129,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\GetValueWithDotNotation
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\GetValueWithDotNotation
 
 > Trait GetValueWithDotNotation
 
@@ -139,34 +139,34 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Find
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Find
 
 > Trait Find
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>find(</strong><em>callable</em> <strong>$criteria</strong>)</strong> : <em>mixed</em><br /><em>Finds the first item matching the criteria</em> |
-| public | <strong>findLast(</strong><em>callable</em> <strong>$criteria</strong>)</strong> : <em>mixed</em><br /><em>Finds the last item matching the criteria</em> |
+| public | <strong>find(</strong><em>callable/mixed</em> <strong>$criteria</strong>)</strong> : <em>mixed</em><br /><em>Finds the first item matching the criteria</em> |
+| public | <strong>findLast(</strong><em>callable/mixed</em> <strong>$criteria</strong>)</strong> : <em>mixed</em><br /><em>Finds the last item matching the criteria</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\FilterByKey
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\FilterByKey
 
 > Trait FilterByKey
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>except(</strong><em>mixed</em> <strong>$ignore</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Alias of without()</em> |
+| public | <strong>except(</strong><em>mixed</em> <strong>$ignore</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Alias of without()</em> |
 | public | <strong>hasAnyOf(</strong><em>mixed</em> <strong>$key</strong>)</strong> : <em>bool</em><br /><em>Returns true if any of the keys are present in the collection</em> |
 | public | <strong>hasNoneOf(</strong><em>mixed</em> <strong>$key</strong>)</strong> : <em>bool</em><br /><em>Returns true if NONE of the keys are present in the collection</em> |
-| public | <strong>keysMatching(</strong><em>string/callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Find keys matching the criteria, returning a new collection of the keys</em> |
-| public | <strong>only(</strong><em>mixed</em> <strong>$keys</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Alias of with()</em> |
-| public | <strong>with(</strong><em>mixed</em> <strong>$keys</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection with only the specified keys</em> |
-| public | <strong>without(</strong><em>mixed</em> <strong>$keys</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection WITHOUT the specified keys</em> |
+| public | <strong>keysMatching(</strong><em>string/callable</em> <strong>$criteria</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Find keys matching the criteria, returning a new collection of the keys</em> |
+| public | <strong>only(</strong><em>mixed</em> <strong>$keys</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Alias of with()</em> |
+| public | <strong>with(</strong><em>mixed</em> <strong>$keys</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection with only the specified keys</em> |
+| public | <strong>without(</strong><em>mixed</em> <strong>$keys</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Returns a new collection WITHOUT the specified keys</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\SortValues
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\SortValues
 
 > Trait SortValues
 
@@ -179,18 +179,18 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Sort
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Sort
 
 > Trait Sort
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>sort(</strong><em>mixed</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by a user defined function, preserves key association</em> |
-| public | <strong>sortBy(</strong><em>\string</em> <strong>$type</strong>, <em>\string</em> <strong>$dir=`'asc'`</strong>, <em>\int</em> <strong>$comparison=2</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the collection by `value` or `key` ordered `asc` (A-Z) or `desc` (Z-A)</em> |
+| public | <strong>sort(</strong><em>mixed</em> <strong>$callable</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by a user defined function, preserves key association</em> |
+| public | <strong>sortBy(</strong><em>\string</em> <strong>$type</strong>, <em>\string</em> <strong>$dir=`'asc'`</strong>, <em>\int</em> <strong>$comparison=2</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Sort the collection by `value` or `key` ordered `asc` (A-Z) or `desc` (Z-A)</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\RandomValue
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\RandomValue
 
 > Trait RandomValue
 
@@ -200,7 +200,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Last
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Last
 
 > Trait Last
 
@@ -210,7 +210,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\HasKeyWithDotNotation
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\HasKeyWithDotNotation
 
 > Trait HasKeyWithDotNotation
 
@@ -221,7 +221,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\Contains
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\Contains
 
 > Trait Contains
 
@@ -234,7 +234,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\First
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\First
 
 > Trait First
 
@@ -244,22 +244,22 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\RemoveNulls
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\RemoveNulls
 
 > Trait RemoveNulls
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>removeNulls()</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Removes any null items from the Collection, returning a new collection</em> |
+| public | <strong>removeNulls()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Removes any null items from the Collection, returning a new collection</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Query\SortKeys
+### Class: \Somnambulist\Components\Collection\Behaviours\Query\SortKeys
 
 > Trait SortKeys
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>sortByKey(</strong><em>null/integer</em> <strong>$type</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by designated keys</em> |
-| public | <strong>sortByKeyReversed(</strong><em>null/integer</em> <strong>$type</strong>)</strong> : <em>\Somnambulist\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by designated keys in reverse order</em> |
+| public | <strong>sortByKey(</strong><em>null/integer</em> <strong>$type</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by designated keys</em> |
+| public | <strong>sortByKeyReversed(</strong><em>null/integer</em> <strong>$type</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Query\static</em><br /><em>Sort the Collection by designated keys in reverse order</em> |
 

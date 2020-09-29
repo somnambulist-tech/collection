@@ -1,19 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Behaviours\Export;
 
 use Closure;
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Utils\Value;
 use function implode;
 use function sprintf;
 
 /**
  * Trait ExportToString
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Export\ExportToString
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Export\ExportToString
  *
  * @property array $items
  */

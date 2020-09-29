@@ -1,18 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Compare;
 
-namespace Somnambulist\Collection\Behaviours\Compare;
-
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Utils\Value;
 use function array_intersect;
 use function array_intersect_key;
 
 /**
  * Trait Intersect
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Compare\Intersect
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Compare\Intersect
  *
  * @property array $items
  */

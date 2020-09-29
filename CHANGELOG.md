@@ -1,10 +1,15 @@
 Change Log
 ==========
 
-2020-10-05
-----------
+2020-10-05 - 4.0.1
+------------------
 
  * Fix bug in `pipeline` using the wrong key for items
+
+2020-09-29
+----------
+
+ * Re-namespace to `Somnambulist\Components`
 
 2020-08-26 - 4.0.0
 ------------------

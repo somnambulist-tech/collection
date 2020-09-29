@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 use function array_pop;
 use function is_array;
@@ -10,8 +8,8 @@ use function is_array;
 /**
  * Trait Pop
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Mutate\Pop
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\Pop
  *
  * @property array $items
  */

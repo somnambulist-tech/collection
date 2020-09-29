@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Behaviours\Export;
 
 /**
  * Trait JsonSerialize
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Export\JsonSerialize
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Export\JsonSerialize
  *
  * @property array $items
  */

@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
 use function array_search;
 use function is_array;
@@ -11,8 +9,8 @@ use function reset;
 /**
  * Trait First
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Query\First
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\First
  *
  * @property array $items
  */

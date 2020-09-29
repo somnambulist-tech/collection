@@ -1,15 +1,15 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class AllTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Query\AllTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\AllTest
  */
 class AllTest extends TestCase
 {

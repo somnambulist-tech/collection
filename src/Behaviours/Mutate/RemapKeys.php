@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 /**
  * Trait RemapKeys
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Mutate\RemapKeys
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\RemapKeys
  *
  * @property array $items
  */

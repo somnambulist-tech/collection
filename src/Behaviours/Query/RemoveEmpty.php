@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
 use function in_array;
 
 /**
  * Trait RemoveEmpty
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Query\RemoveEmpty
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\RemoveEmpty
  *
  * @property array $items
  */

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Map;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\MyStaticObject;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\MyStaticObject;
 use function strrev;
 
 /**
  * Class MapTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Map
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Map\MapTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Map
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Map\MapTest
  */
 class MapTest extends TestCase
 {
@@ -92,7 +92,7 @@ class MapTest extends TestCase
             ['foo3', 'bar6'],
         ]);
 
-        $ret = $col->map('Somnambulist\Collection\Tests\Fixtures\MyStaticObject::make');
+        $ret = $col->map('Somnambulist\Components\Collection\Tests\Fixtures\MyStaticObject::make');
 
         $this->assertCount(3, $ret);
         foreach ($ret as $value) {

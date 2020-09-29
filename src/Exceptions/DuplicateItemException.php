@@ -1,20 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Exceptions;
+namespace Somnambulist\Components\Collection\Exceptions;
 
 use DomainException;
-use function gettype;
 use function get_class;
+use function gettype;
 use function is_object;
 use function sprintf;
 
 /**
  * Class DuplicateItemException
  *
- * @package    Somnambulist\Collection\Exceptions
- * @subpackage Somnambulist\Collection\Exceptions\DuplicateItemException
+ * @package    Somnambulist\Components\Collection\Exceptions
+ * @subpackage Somnambulist\Components\Collection\Exceptions\DuplicateItemException
  */
 class DuplicateItemException extends DomainException
 {

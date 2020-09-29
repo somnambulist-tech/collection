@@ -1,12 +1,12 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Fixtures;
+namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
 /**
  * Class MyObject
  *
- * @package    Somnambulist\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Collection\Tests\Fixtures\MyObject
+ * @package    Somnambulist\Components\Collection\Tests\Fixtures
+ * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\MyObject
  */
 class MyObject
 {

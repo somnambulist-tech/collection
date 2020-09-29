@@ -1,16 +1,16 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\TestClass4;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 /**
  * Class FindTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Query\FindTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\FindTest
  */
 class FindTest extends TestCase
 {

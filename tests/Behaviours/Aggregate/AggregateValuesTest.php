@@ -1,15 +1,15 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Aggregate;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Aggregate;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class AggregateValuesTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Aggregate
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Aggregate\AggregateValuesTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Aggregate
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Aggregate\AggregateValuesTest
  */
 class AggregateValuesTest extends TestCase
 {

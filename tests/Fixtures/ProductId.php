@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Fixtures;
+namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
 /**
  * Class ProductId
  *
- * @package    Somnambulist\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Collection\Tests\Fixtures\ProductId
+ * @package    Somnambulist\Components\Collection\Tests\Fixtures
+ * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\ProductId
  */
 class ProductId
 {

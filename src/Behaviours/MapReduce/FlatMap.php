@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\MapReduce;
+namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 
 /**
  * Trait FlatMap
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\MapReduce\FlatMap
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\MapReduce\FlatMap
  *
  * @property array $items
  */

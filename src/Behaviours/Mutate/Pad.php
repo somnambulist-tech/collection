@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 use function array_pad;
 
 /**
  * Trait Pad
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Mutate\Pad
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\Pad
  *
  * @property array $items
  */

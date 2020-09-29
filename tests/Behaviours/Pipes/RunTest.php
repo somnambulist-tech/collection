@@ -1,15 +1,15 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Pipes;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class RunTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Pipes
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Pipes\RunTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Pipes
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Pipes\RunTest
  */
 class RunTest extends TestCase
 {

@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\MapReduce;
+namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 
 use function array_reduce;
 
 /**
  * Trait Reduce
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\MapReduce\Reduce
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\MapReduce\Reduce
  *
  * @property array $items
  */
@@ -27,7 +25,7 @@ trait Reduce
      *
      * @return mixed
      */
-    public function reduce($callback, $initial = null)
+    public function reduce(callable $callback, $initial = null)
     {
         return array_reduce($this->items, $callback, $initial);
     }

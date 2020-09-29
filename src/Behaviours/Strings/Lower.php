@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Strings;
+namespace Somnambulist\Components\Collection\Behaviours\Strings;
 
 use function mb_strtolower;
 use function strtolower;
@@ -10,8 +8,8 @@ use function strtolower;
 /**
  * Trait Lower
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Strings\Lower
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Strings\Lower
  *
  * @property array $items
  */

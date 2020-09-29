@@ -1,38 +1,36 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection;
+namespace Somnambulist\Components\Collection;
 
 use JsonSerializable;
-use Somnambulist\Collection\Behaviours\CannotAddOrRemoveItems;
-use Somnambulist\Collection\Behaviours\Proxyable;
-use Somnambulist\Collection\Contracts\CanAggregateItems;
-use Somnambulist\Collection\Contracts\Comparable as IsComparable;
-use Somnambulist\Collection\Contracts\Filterable as IsFilterable;
-use Somnambulist\Collection\Contracts\Immutable as IsImmutable;
-use Somnambulist\Collection\Contracts\Mappable as IsMappable;
-use Somnambulist\Collection\Contracts\Runnable as IsRunnable;
-use Somnambulist\Collection\Contracts\Serializable as IsSerializable;
-use Somnambulist\Collection\Contracts\Sortable as IsSortable;
-use Somnambulist\Collection\Groups\Aggregates;
-use Somnambulist\Collection\Groups\Assertable;
-use Somnambulist\Collection\Groups\Comparable;
-use Somnambulist\Collection\Groups\Exportable;
-use Somnambulist\Collection\Groups\Filterable;
-use Somnambulist\Collection\Groups\ImmutableQueryable;
-use Somnambulist\Collection\Groups\Mappable;
-use Somnambulist\Collection\Groups\Runnable;
-use Somnambulist\Collection\Groups\Sortable;
-use Somnambulist\Collection\Utils\MapProxy;
-use Somnambulist\Collection\Utils\RunProxy;
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Behaviours\CannotAddOrRemoveItems;
+use Somnambulist\Components\Collection\Behaviours\Proxyable;
+use Somnambulist\Components\Collection\Contracts\CanAggregateItems;
+use Somnambulist\Components\Collection\Contracts\Comparable as IsComparable;
+use Somnambulist\Components\Collection\Contracts\Filterable as IsFilterable;
+use Somnambulist\Components\Collection\Contracts\Immutable as IsImmutable;
+use Somnambulist\Components\Collection\Contracts\Mappable as IsMappable;
+use Somnambulist\Components\Collection\Contracts\Runnable as IsRunnable;
+use Somnambulist\Components\Collection\Contracts\Serializable as IsSerializable;
+use Somnambulist\Components\Collection\Contracts\Sortable as IsSortable;
+use Somnambulist\Components\Collection\Groups\Aggregates;
+use Somnambulist\Components\Collection\Groups\Assertable;
+use Somnambulist\Components\Collection\Groups\Comparable;
+use Somnambulist\Components\Collection\Groups\Exportable;
+use Somnambulist\Components\Collection\Groups\Filterable;
+use Somnambulist\Components\Collection\Groups\ImmutableQueryable;
+use Somnambulist\Components\Collection\Groups\Mappable;
+use Somnambulist\Components\Collection\Groups\Runnable;
+use Somnambulist\Components\Collection\Groups\Sortable;
+use Somnambulist\Components\Collection\Utils\MapProxy;
+use Somnambulist\Components\Collection\Utils\RunProxy;
+use Somnambulist\Components\Collection\Utils\Value;
 
 /**
  * Class FrozenCollection
  *
- * @package    Somnambulist\Collection
- * @subpackage Somnambulist\Collection\FrozenCollection
+ * @package    Somnambulist\Components\Collection
+ * @subpackage Somnambulist\Components\Collection\FrozenCollection
  *
  * @property-read MapProxy $map
  * @property-read RunProxy $run

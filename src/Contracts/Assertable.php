@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Contracts;
 
-namespace Somnambulist\Collection\Contracts;
-
-use Somnambulist\Collection\Exceptions\AssertionFailedException;
+use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
 
 /**
  * Interface Assertable
  *
- * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\Assertable
+ * @package    Somnambulist\Components\Collection\Contracts
+ * @subpackage Somnambulist\Components\Collection\Contracts\Assertable
  */
 interface Assertable
 {

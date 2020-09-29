@@ -1,13 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Pipes\Pipeline;
-use Somnambulist\Collection\Behaviours\Pipes\RunCallableOnValues;
-use Somnambulist\Collection\Behaviours\Pipes\Pipe;
-use Somnambulist\Collection\Behaviours\Pipes\RunMethodOnValues;
+use Somnambulist\Components\Collection\Behaviours\Pipes\Pipe;
+use Somnambulist\Components\Collection\Behaviours\Pipes\Pipeline;
+use Somnambulist\Components\Collection\Behaviours\Pipes\RunCallableOnValues;
+use Somnambulist\Components\Collection\Behaviours\Pipes\RunMethodOnValues;
 
 /**
  * Trait Runnable
@@ -15,8 +13,8 @@ use Somnambulist\Collection\Behaviours\Pipes\RunMethodOnValues;
  * Groups methods that call functions, methods or allow callables to operate
  * on the collection e.g. run(), pipe() etc.
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Runnable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Runnable
  */
 trait Runnable
 {

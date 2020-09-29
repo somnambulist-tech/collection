@@ -1,17 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
-namespace Somnambulist\Collection\Behaviours\Mutate;
-
-use Somnambulist\Collection\Exceptions\DuplicateItemException;
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
+use Somnambulist\Components\Collection\Utils\Value;
 
 /**
  * Trait MergeOnlyUniqueValues
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Mutate\MergeOnlyUniqueValues
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\MergeOnlyUniqueValues
  *
  * @property array $items
  */

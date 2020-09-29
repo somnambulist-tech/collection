@@ -1,12 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection;
+namespace Somnambulist\Components\Collection;
 
 use ArrayIterator;
-use Somnambulist\Collection\Contracts\Collection;
-use Somnambulist\Collection\Utils\ClassUtils;
+use Somnambulist\Components\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Utils\ClassUtils;
 use function array_key_exists;
 use function count;
 use function is_array;
@@ -15,8 +13,8 @@ use function is_null;
 /**
  * Class AbstractCollection
  *
- * @package    Somnambulist\Collection
- * @subpackage Somnambulist\Collection\AbstractCollection
+ * @package    Somnambulist\Components\Collection
+ * @subpackage Somnambulist\Components\Collection\AbstractCollection
  */
 abstract class AbstractCollection implements Collection
 {

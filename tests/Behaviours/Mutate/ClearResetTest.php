@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\TestClass4;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 /**
  * Class ClearResetTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Mutate
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Mutate\ClearResetTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Mutate
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Mutate\ClearResetTest
  */
 class ClearResetTest extends TestCase
 {

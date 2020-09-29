@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Pipes;
+namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 
 use BadMethodCallException;
 use Closure;
@@ -15,8 +13,8 @@ use function method_exists;
 /**
  * Trait RunMethodOnValues
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Pipes\RunMethodOnValues
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Pipes\RunMethodOnValues
  *
  * @property array $items
  */

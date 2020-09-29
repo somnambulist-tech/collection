@@ -1,19 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
-namespace Somnambulist\Collection\Behaviours\Query;
-
-use Somnambulist\Collection\Utils\ClassUtils;
-use Somnambulist\Collection\Utils\KeyWalker;
+use Somnambulist\Components\Collection\Utils\KeyWalker;
 use function array_filter;
-use function is_callable;
 
 /**
  * Trait FilterValues
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Query\FilterValues
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\FilterValues
  *
  * @property array $items
  */

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
 use PHPUnit\Framework\TestCase;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 use function serialize;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\TestClass4;
 use function unserialize;
 
 /**
  * Class SerializeTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Export
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Export\SerializeTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Export
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Export\SerializeTest
  */
 class SerializeTest extends TestCase
 {

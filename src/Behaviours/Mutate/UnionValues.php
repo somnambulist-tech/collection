@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
-namespace Somnambulist\Collection\Behaviours\Mutate;
-
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Utils\Value;
 
 /**
  * Trait UnionValues
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Mutate\UnionValues
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\UnionValues
  *
  * @property array $items
  */

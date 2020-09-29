@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Export;
 
-namespace Somnambulist\Collection\Behaviours\Export;
-
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Utils\Value;
 
 /**
  * Trait ExportToArray
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Export\ExportToArray
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Export\ExportToArray
  *
  * @property array $items
  */

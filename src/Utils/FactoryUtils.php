@@ -1,17 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Utils;
 
-namespace Somnambulist\Collection\Utils;
-
-use Somnambulist\Collection\Contracts\Collection;
-use Somnambulist\Collection\MutableCollection;
+use Somnambulist\Components\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\MutableCollection;
 
 /**
  * Class FactoryUtils
  *
- * @package    Somnambulist\Collection\Utils
- * @subpackage Somnambulist\Collection\Utils\FactoryUtils
+ * @package    Somnambulist\Components\Collection\Utils
+ * @subpackage Somnambulist\Components\Collection\Utils\FactoryUtils
  */
 final class FactoryUtils
 {

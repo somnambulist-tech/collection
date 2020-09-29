@@ -1,18 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
-namespace Somnambulist\Collection\Behaviours\Query;
-
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Utils\Value;
 use function in_array;
 use function preg_match;
 
 /**
  * Trait FilterByKey
  *
- * @package    Somnambulist\Collection\Behaviours\Search
- * @subpackage Somnambulist\Collection\Behaviours\Search\FilterByKey
+ * @package    Somnambulist\Components\Collection\Behaviours\Search
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Search\FilterByKey
  *
  * @property array $items
  */

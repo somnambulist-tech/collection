@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Contracts;
+namespace Somnambulist\Components\Collection\Contracts;
 
 use const SORT_STRING;
 
 /**
  * Interface Sortable
  *
- * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\Sortable
+ * @package    Somnambulist\Components\Collection\Contracts
+ * @subpackage Somnambulist\Components\Collection\Contracts\Sortable
  */
 interface Sortable
 {

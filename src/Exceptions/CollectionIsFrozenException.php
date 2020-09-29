@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Exceptions;
+namespace Somnambulist\Components\Collection\Exceptions;
 
 use DomainException;
 use function sprintf;
@@ -10,8 +8,8 @@ use function sprintf;
 /**
  * Class CollectionIsFrozenException
  *
- * @package    Somnambulist\Collection\Exceptions
- * @subpackage Somnambulist\Collection\Exceptions\CollectionIsFrozenException
+ * @package    Somnambulist\Components\Collection\Exceptions
+ * @subpackage Somnambulist\Components\Collection\Exceptions\CollectionIsFrozenException
  */
 class CollectionIsFrozenException extends DomainException
 {

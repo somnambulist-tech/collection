@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours;
 
-namespace Somnambulist\Collection\Behaviours;
-
-use Somnambulist\Collection\Exceptions\DuplicateItemException;
+use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 
 /**
  * Trait CannotAddDuplicateItems
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\CannotAddDuplicateItems
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\CannotAddDuplicateItems
  *
  * @property array $items
  */

@@ -1,16 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Strings;
-
-use function trim;
+namespace Somnambulist\Components\Collection\Behaviours\Strings;
 
 /**
  * Trait Trim
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Strings\Trim
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Strings\Trim
  *
  * @property array $items
  */

@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Exceptions;
+namespace Somnambulist\Components\Collection\Exceptions;
 
 use Exception;
 use function get_class;
@@ -13,8 +11,8 @@ use function sprintf;
 /**
  * Class AssertionFailedException
  *
- * @package    Somnambulist\Collection\Exceptions
- * @subpackage Somnambulist\Collection\Exceptions\AssertionFailedException
+ * @package    Somnambulist\Components\Collection\Exceptions
+ * @subpackage Somnambulist\Components\Collection\Exceptions\AssertionFailedException
  */
 class AssertionFailedException extends Exception
 {

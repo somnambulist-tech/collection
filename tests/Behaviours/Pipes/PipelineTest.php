@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Pipes;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class PipelineTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Pipes
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Pipes\PipelineTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Pipes
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Pipes\PipelineTest
  */
 class PipelineTest extends TestCase
 {

@@ -1,19 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Partition\GroupBy;
-use Somnambulist\Collection\Behaviours\Partition\Partition;
-use Somnambulist\Collection\Behaviours\Partition\Slice;
-use Somnambulist\Collection\Behaviours\Partition\Splice;
+use Somnambulist\Components\Collection\Behaviours\Partition\GroupBy;
+use Somnambulist\Components\Collection\Behaviours\Partition\Partition;
+use Somnambulist\Components\Collection\Behaviours\Partition\Slice;
+use Somnambulist\Components\Collection\Behaviours\Partition\Splice;
 
 /**
  * Trait Partitionable
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Partitionable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Partitionable
  */
 trait Partitionable
 {

@@ -1,15 +1,15 @@
 ## Table of contents
 
-- [\Somnambulist\Collection\Behaviours\Export\Serializable](#class-somnambulistcollectionbehavioursexportserializable)
-- [\Somnambulist\Collection\Behaviours\Export\ExportToString](#class-somnambulistcollectionbehavioursexportexporttostring)
-- [\Somnambulist\Collection\Behaviours\Export\ExportToJson](#class-somnambulistcollectionbehavioursexportexporttojson)
-- [\Somnambulist\Collection\Behaviours\Export\ExportToArray](#class-somnambulistcollectionbehavioursexportexporttoarray)
-- [\Somnambulist\Collection\Behaviours\Export\JsonSerialize](#class-somnambulistcollectionbehavioursexportjsonserialize)
-- [\Somnambulist\Collection\Behaviours\Export\ExportToQueryString](#class-somnambulistcollectionbehavioursexportexporttoquerystring)
+- [\Somnambulist\Components\Collection\Behaviours\Export\Serializable](#class-somnambulistcomponentscollectionbehavioursexportserializable)
+- [\Somnambulist\Components\Collection\Behaviours\Export\ExportToString](#class-somnambulistcomponentscollectionbehavioursexportexporttostring)
+- [\Somnambulist\Components\Collection\Behaviours\Export\ExportToJson](#class-somnambulistcomponentscollectionbehavioursexportexporttojson)
+- [\Somnambulist\Components\Collection\Behaviours\Export\ExportToArray](#class-somnambulistcomponentscollectionbehavioursexportexporttoarray)
+- [\Somnambulist\Components\Collection\Behaviours\Export\JsonSerialize](#class-somnambulistcomponentscollectionbehavioursexportjsonserialize)
+- [\Somnambulist\Components\Collection\Behaviours\Export\ExportToQueryString](#class-somnambulistcomponentscollectionbehavioursexportexporttoquerystring)
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Export\Serializable
+### Class: \Somnambulist\Components\Collection\Behaviours\Export\Serializable
 
 > Trait Serializable
 
@@ -20,18 +20,18 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Export\ExportToString
+### Class: \Somnambulist\Components\Collection\Behaviours\Export\ExportToString
 
 > Trait ExportToString
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>implode(</strong><em>string</em> <strong>$glue=`','`</strong>, <em>null/string/\Somnambulist\Collection\Behaviours\Export\Closure</em> <strong>$value=null</strong>, <em>null/string</em> <strong>$withKeys=null</strong>)</strong> : <em>string</em><br /><em>Implodes all the values into a single string, objects should support __toString If a specific value is specified it will be pulled from any sub-arrays or objects; alternatively it can be a closure to fetch specific properties from any objects in the collection. If $withKeys is set to a string, it will prefix the string value with the key and the $withKeys string.</em> |
+| public | <strong>implode(</strong><em>string</em> <strong>$glue=`','`</strong>, <em>null/string/\Somnambulist\Components\Collection\Behaviours\Export\Closure</em> <strong>$value=null</strong>, <em>null/string</em> <strong>$withKeys=null</strong>)</strong> : <em>string</em><br /><em>Implodes all the values into a single string, objects should support __toString If a specific value is specified it will be pulled from any sub-arrays or objects; alternatively it can be a closure to fetch specific properties from any objects in the collection. If $withKeys is set to a string, it will prefix the string value with the key and the $withKeys string.</em> |
 | public | <strong>toString()</strong> : <em>string</em><br /><em>Converts the collection to a JSON string</em> |
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Export\ExportToJson
+### Class: \Somnambulist\Components\Collection\Behaviours\Export\ExportToJson
 
 > Trait ExportToJson
 
@@ -41,7 +41,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Export\ExportToArray
+### Class: \Somnambulist\Components\Collection\Behaviours\Export\ExportToArray
 
 > Trait ExportToArray
 
@@ -51,7 +51,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Export\JsonSerialize
+### Class: \Somnambulist\Components\Collection\Behaviours\Export\JsonSerialize
 
 > Trait JsonSerialize
 
@@ -61,7 +61,7 @@
 
 <hr />
 
-### Class: \Somnambulist\Collection\Behaviours\Export\ExportToQueryString
+### Class: \Somnambulist\Components\Collection\Behaviours\Export\ExportToQueryString
 
 > Trait ExportToQueryString
 

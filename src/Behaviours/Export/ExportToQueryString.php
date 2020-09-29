@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Behaviours\Export;
 
 use function http_build_query;
 
 /**
  * Trait ExportToQueryString
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Export\ExportToQueryString
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Export\ExportToQueryString
  *
  * @property array $items
  */

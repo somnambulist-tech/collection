@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Partition;
+namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
 use function array_splice;
 use function func_num_args;
@@ -10,8 +8,8 @@ use function func_num_args;
 /**
  * Trait Splice
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Partition\Splice
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Partition\Splice
  *
  * @property array $items
  */

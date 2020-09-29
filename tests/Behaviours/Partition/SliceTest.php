@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Partition;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Partition;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class SliceTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Partition
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Partition\SliceTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Partition
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Partition\SliceTest
  */
 class SliceTest extends TestCase
 {

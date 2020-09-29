@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Strings;
+namespace Somnambulist\Components\Collection\Behaviours\Strings;
 
 use function mb_convert_case;
 use function ucwords;
@@ -10,8 +8,8 @@ use function ucwords;
 /**
  * Trait Capitalize
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Strings\Capitalize
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Strings\Capitalize
  *
  * @property array $items
  */

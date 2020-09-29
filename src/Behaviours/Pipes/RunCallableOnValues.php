@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Pipes;
+namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 
 /**
  * Trait RunCallableOnValues
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Pipes\RunCallableOnValues
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Pipes\RunCallableOnValues
  *
  * @property array $items
  */

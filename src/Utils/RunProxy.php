@@ -1,11 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Utils;
 
-namespace Somnambulist\Collection\Utils;
-
-use Somnambulist\Collection\Contracts\Collection;
-use Somnambulist\Collection\Contracts\Runnable;
+use Somnambulist\Components\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Contracts\Runnable;
 
 /**
  * Class RunProxy
@@ -13,8 +11,8 @@ use Somnambulist\Collection\Contracts\Runnable;
  * Buffer to allow running methods on the collection without the collection needing
  * an __call method.
  *
- * @package    Somnambulist\Collection\Utils
- * @subpackage Somnambulist\Collection\Utils\RunProxy
+ * @package    Somnambulist\Components\Collection\Utils
+ * @subpackage Somnambulist\Components\Collection\Utils\RunProxy
  */
 final class RunProxy
 {

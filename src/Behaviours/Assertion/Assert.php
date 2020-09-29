@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Assertion;
 
-namespace Somnambulist\Collection\Behaviours\Assertion;
-
-use Somnambulist\Collection\Exceptions\AssertionFailedException;
+use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
 
 /**
  * Trait Assert
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Assertion\Assert
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Assertion\Assert
  *
  * @property array $items
  */

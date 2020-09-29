@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Utils;
+namespace Somnambulist\Components\Collection\Tests\Utils;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\Tests\Fixtures\ObjectWithMagicProperties;
-use Somnambulist\Collection\Utils\ClassUtils;
+use Somnambulist\Components\Collection\Tests\Fixtures\ObjectWithMagicProperties;
+use Somnambulist\Components\Collection\Utils\ClassUtils;
 
 /**
  * Class ValueTest
  *
- * @package    Somnambulist\Collection\Tests\Utils
- * @subpackage Somnambulist\Collection\Tests\Utils\ValueTest
+ * @package    Somnambulist\Components\Collection\Tests\Utils
+ * @subpackage Somnambulist\Components\Collection\Tests\Utils\ValueTest
  */
 class ClassUtilsTest extends TestCase
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace Somnambulist\Collection\Tests;
+namespace Somnambulist\Components\Collection\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Utils\FactoryUtils as Factory;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Utils\FactoryUtils as Factory;
 
 /**
  * Class FactoryTest
  *
- * @package    Somnambulist\Collection\Tests
- * @subpackage Somnambulist\Collection\Tests\FactoryTest
+ * @package    Somnambulist\Components\Collection\Tests
+ * @subpackage Somnambulist\Components\Collection\Tests\FactoryTest
  */
 class FactoryTest extends TestCase
 {

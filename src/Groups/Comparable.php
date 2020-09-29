@@ -1,18 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Compare\DiffKeys;
-use Somnambulist\Collection\Behaviours\Compare\DiffValues;
-use Somnambulist\Collection\Behaviours\Compare\Intersect;
+use Somnambulist\Components\Collection\Behaviours\Compare\DiffKeys;
+use Somnambulist\Components\Collection\Behaviours\Compare\DiffValues;
+use Somnambulist\Components\Collection\Behaviours\Compare\Intersect;
 
 /**
  * Trait Comparable
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Comparable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Comparable
  */
 trait Comparable
 {

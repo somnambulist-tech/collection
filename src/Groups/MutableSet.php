@@ -1,23 +1,21 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Mutate\AppendOnlyUniqueValues;
-use Somnambulist\Collection\Behaviours\Mutate\Clear;
-use Somnambulist\Collection\Behaviours\Mutate\CombineOnlyUniqueValues;
-use Somnambulist\Collection\Behaviours\Mutate\MergeOnlyUniqueValues;
-use Somnambulist\Collection\Behaviours\Mutate\Pop;
-use Somnambulist\Collection\Behaviours\Mutate\PrependOnlyUniqueValues;
-use Somnambulist\Collection\Behaviours\Mutate\RemapKeys;
-use Somnambulist\Collection\Behaviours\Mutate\RemoveValue;
-use Somnambulist\Collection\Behaviours\Mutate\Reverse;
-use Somnambulist\Collection\Behaviours\Mutate\SetKeyValue;
-use Somnambulist\Collection\Behaviours\Mutate\Shift;
-use Somnambulist\Collection\Behaviours\Mutate\Shuffle;
-use Somnambulist\Collection\Behaviours\Mutate\UnionOnlyUniqueValues;
-use Somnambulist\Collection\Behaviours\Mutate\UnsetKey;
+use Somnambulist\Components\Collection\Behaviours\Mutate\AppendOnlyUniqueValues;
+use Somnambulist\Components\Collection\Behaviours\Mutate\Clear;
+use Somnambulist\Components\Collection\Behaviours\Mutate\CombineOnlyUniqueValues;
+use Somnambulist\Components\Collection\Behaviours\Mutate\MergeOnlyUniqueValues;
+use Somnambulist\Components\Collection\Behaviours\Mutate\Pop;
+use Somnambulist\Components\Collection\Behaviours\Mutate\PrependOnlyUniqueValues;
+use Somnambulist\Components\Collection\Behaviours\Mutate\RemapKeys;
+use Somnambulist\Components\Collection\Behaviours\Mutate\RemoveValue;
+use Somnambulist\Components\Collection\Behaviours\Mutate\Reverse;
+use Somnambulist\Components\Collection\Behaviours\Mutate\SetKeyValue;
+use Somnambulist\Components\Collection\Behaviours\Mutate\Shift;
+use Somnambulist\Components\Collection\Behaviours\Mutate\Shuffle;
+use Somnambulist\Components\Collection\Behaviours\Mutate\UnionOnlyUniqueValues;
+use Somnambulist\Components\Collection\Behaviours\Mutate\UnsetKey;
 
 /**
  * Trait MutableSet
@@ -25,8 +23,8 @@ use Somnambulist\Collection\Behaviours\Mutate\UnsetKey;
  * Combines many traits that can mutate the collection into a single trait and
  * constrains them to unique values.
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\MutableSet
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\MutableSet
  */
 trait MutableSet
 {

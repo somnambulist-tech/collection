@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
-namespace Somnambulist\Collection\Behaviours\Query;
-
-use Somnambulist\Collection\Utils\Value as ValueHelper;
+use Somnambulist\Components\Collection\Utils\Value as ValueHelper;
 
 /**
  * Trait Value
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Query\Value
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Value
  *
  * @property array $items
  */

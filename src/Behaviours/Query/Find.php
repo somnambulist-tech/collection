@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Query;
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
 /**
  * Trait Find
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Query\Find
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Find
  *
  * @property array $items
  */
@@ -18,7 +16,7 @@ trait Find
     /**
      * Finds the first item matching the criteria
      *
-     * @param callable $criteria A callable or an element to match
+     * @param callable|mixed $criteria A callable or an element to match
      *
      * @return mixed
      */
@@ -36,7 +34,7 @@ trait Find
     /**
      * Finds the last item matching the criteria
      *
-     * @param callable $criteria A callable or an element to match
+     * @param callable|mixed $criteria A callable or an element to match
      *
      * @return mixed
      */

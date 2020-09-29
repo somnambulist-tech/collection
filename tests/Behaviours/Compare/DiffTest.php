@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Compare;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Compare;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 use function strcmp;
 
 /**
  * Class DiffTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Compare
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Compare\DiffTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Compare
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Compare\DiffTest
  */
 class DiffTest extends TestCase
 {

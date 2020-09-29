@@ -1,15 +1,15 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Partition;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Partition;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class PartitionTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Partition
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Partition\PartitionTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Partition
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Partition\PartitionTest
  */
 class PartitionTest extends TestCase
 {
@@ -20,7 +20,7 @@ class PartitionTest extends TestCase
     public function testPartition()
     {
         $collection = new Collection(range(1, 10));
-        list($firstPartition, $secondPartition) = $collection->partition(function ($i) {
+        [$firstPartition, $secondPartition] = $collection->partition(function ($i) {
             return $i <= 5;
         });
         $this->assertEquals([1, 2, 3, 4, 5], $firstPartition->values()->toArray());
@@ -35,7 +35,7 @@ class PartitionTest extends TestCase
         $courses = new Collection([
             ['free' => true, 'title' => 'Basic'], ['free' => false, 'title' => 'Premium'],
         ]);
-        list($free, $premium) = $courses->partition('free');
+        [$free, $premium] = $courses->partition('free');
         $this->assertSame([['free' => true, 'title' => 'Basic']], $free->values()->toArray());
         $this->assertSame([['free' => false, 'title' => 'Premium']], $premium->values()->toArray());
     }
@@ -48,7 +48,7 @@ class PartitionTest extends TestCase
         $courses = new Collection([
             'a' => ['free' => true], 'b' => ['free' => false], 'c' => ['free' => true],
         ]);
-        list($free, $premium) = $courses->partition('free');
+        [$free, $premium] = $courses->partition('free');
         $this->assertSame(['a' => ['free' => true], 'c' => ['free' => true]], $free->toArray());
         $this->assertSame(['b' => ['free' => false]], $premium->toArray());
     }

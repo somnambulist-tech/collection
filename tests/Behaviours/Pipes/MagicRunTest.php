@@ -1,16 +1,16 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Pipes;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\TestClass4;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 /**
  * Class MagicRunTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Pipes
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Pipes\MagicRunTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Pipes
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Pipes\MagicRunTest
  */
 class MagicRunTest extends TestCase
 {

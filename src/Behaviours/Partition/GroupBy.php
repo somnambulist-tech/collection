@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Partition;
+namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
 /**
  * Trait GroupBy
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Partition\GroupBy
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Partition\GroupBy
  *
  * @property array $items
  */

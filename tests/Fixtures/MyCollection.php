@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Fixtures;
+namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
-use Somnambulist\Collection\MutableCollection;
+use Somnambulist\Components\Collection\MutableCollection;
 
 /**
  * Class MyCollection
  *
- * @package    Somnambulist\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Collection\Tests\Fixtures\MyCollection
+ * @package    Somnambulist\Components\Collection\Tests\Fixtures
+ * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\MyCollection
  */
 class MyCollection extends MutableCollection
 {

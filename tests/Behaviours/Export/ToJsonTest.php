@@ -1,16 +1,16 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Export;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\TestClass4;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 /**
  * Class ToJsonTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Export
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Export\ToJsonTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Export
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Export\ToJsonTest
  */
 class ToJsonTest extends TestCase
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class FlipTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Mutate
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Mutate\FlipTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Mutate
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Mutate\FlipTest
  */
 class FlipTest extends TestCase
 {

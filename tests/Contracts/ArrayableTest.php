@@ -1,17 +1,17 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Contracts;
+namespace Somnambulist\Components\Collection\Tests\Contracts;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\Contracts\Arrayable;
-use Somnambulist\Collection\Groups\Exportable;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Contracts\Arrayable;
+use Somnambulist\Components\Collection\Groups\Exportable;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 /**
  * Class ArrayableTest
  *
- * @package    Somnambulist\Collection\Tests\Contracts
- * @subpackage Somnambulist\Collection\Tests\Contracts\ArrayableTest
+ * @package    Somnambulist\Components\Collection\Tests\Contracts
+ * @subpackage Somnambulist\Components\Collection\Tests\Contracts\ArrayableTest
  */
 class ArrayableTest extends TestCase
 {

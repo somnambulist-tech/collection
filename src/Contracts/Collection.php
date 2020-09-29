@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Contracts;
+namespace Somnambulist\Components\Collection\Contracts;
 
 use ArrayAccess;
 use Countable;
@@ -11,8 +9,8 @@ use IteratorAggregate;
 /**
  * Interface Collection
  *
- * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\Collection
+ * @package    Somnambulist\Components\Collection\Contracts
+ * @subpackage Somnambulist\Components\Collection\Contracts\Collection
  */
 interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayable, Jsonable
 {

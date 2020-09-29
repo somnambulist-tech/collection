@@ -85,7 +85,7 @@ $collection->setFreezableClass(SomeClassImplementingImmutableInterface::class);
 $collection->getFreezableClass();
 ```
 
-By default the frozen class is: `Somnambulist\Collection\FrozenCollection::class`.
+By default the frozen class is: `Somnambulist\Components\Collection\FrozenCollection::class`.
 
 ### Array wrapping now optional (default enabled)
 

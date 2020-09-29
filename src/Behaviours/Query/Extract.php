@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
-namespace Somnambulist\Collection\Behaviours\Query;
-
-use Somnambulist\Collection\Utils\KeyWalker;
+use Somnambulist\Components\Collection\Utils\KeyWalker;
 
 /**
  * Trait Extract
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Query\Extract
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Extract
  *
  * @property array $items
  */

@@ -1,17 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Utils;
+namespace Somnambulist\Components\Collection\Utils;
 
 use ArrayAccess;
 use ArrayObject;
 use JsonSerializable;
 use ReflectionFunction;
 use ReflectionMethod;
-use Somnambulist\Collection\Contracts\Arrayable;
-use Somnambulist\Collection\Contracts\Collection;
-use Somnambulist\Collection\MutableCollection;
+use Somnambulist\Components\Collection\Contracts\Arrayable;
+use Somnambulist\Components\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\MutableCollection;
 use stdClass;
 use Traversable;
 use function array_key_exists;
@@ -26,8 +24,8 @@ use function strpos;
 /**
  * Class Value
  *
- * @package    Somnambulist\Collection\Utils
- * @subpackage Somnambulist\Collection\Utils\Value
+ * @package    Somnambulist\Components\Collection\Utils
+ * @subpackage Somnambulist\Components\Collection\Utils\Value
  */
 final class Value
 {
@@ -266,7 +264,7 @@ final class Value
         return is_array($value) || $value instanceof ArrayAccess;
     }
 
-    public static function getArgumentCountForCallable(callable $callable): int
+    public static function getArgumentCountForCallable($callable): int
     {
         // Ref: https://stackoverflow.com/questions/13071186/how-to-get-the-number-of-parameters-of-a-run-time-determined-callable
         if (is_string($callable) && false !== strpos($callable, '::')) {

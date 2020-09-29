@@ -1,18 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Query\Sort;
-use Somnambulist\Collection\Behaviours\Query\SortKeys;
-use Somnambulist\Collection\Behaviours\Query\SortValues;
+use Somnambulist\Components\Collection\Behaviours\Query\Sort;
+use Somnambulist\Components\Collection\Behaviours\Query\SortKeys;
+use Somnambulist\Components\Collection\Behaviours\Query\SortValues;
 
 /**
  * Trait Sortable
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Sortable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Sortable
  */
 trait Sortable
 {

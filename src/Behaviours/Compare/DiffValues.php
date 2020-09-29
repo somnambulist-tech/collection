@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Compare;
 
-namespace Somnambulist\Collection\Behaviours\Compare;
-
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Utils\Value;
 use function array_diff;
 use function array_diff_assoc;
 use function array_diff_uassoc;
@@ -13,8 +11,8 @@ use function array_udiff;
 /**
  * Trait DiffValues
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Compare\DiffValues
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Compare\DiffValues
  *
  * @property array $items
  */

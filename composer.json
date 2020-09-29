@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Somnambulist\\Collection\\": "src/"
+            "Somnambulist\\Components\\Collection\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Somnambulist\\Collection\\Tests\\": "tests/"
+            "Somnambulist\\Components\\Collection\\Tests\\": "tests/"
         }
     }
 }

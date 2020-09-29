@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Collection\Tests;
+namespace Somnambulist\Components\Collection\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\FrozenCollection;
-use Somnambulist\Collection\MutableCollection;
-use Somnambulist\Collection\Tests\Fixtures\MyCollection;
-use Somnambulist\Collection\Tests\Fixtures\MyFrozenCollection;
+use Somnambulist\Components\Collection\FrozenCollection;
+use Somnambulist\Components\Collection\MutableCollection;
+use Somnambulist\Components\Collection\Tests\Fixtures\MyCollection;
+use Somnambulist\Components\Collection\Tests\Fixtures\MyFrozenCollection;
 use function strpos;
 
 /**
  * Class ExtendedCollectionTest
  *
- * @package    Somnambulist\Collection\Tests
- * @subpackage Somnambulist\Collection\Tests\ExtendedCollectionTest
+ * @package    Somnambulist\Components\Collection\Tests
+ * @subpackage Somnambulist\Components\Collection\Tests\ExtendedCollectionTest
  */
 class ExtendedCollectionTest extends TestCase
 {

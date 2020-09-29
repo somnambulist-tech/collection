@@ -1,19 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection;
 
-namespace Somnambulist\Collection;
-
-use Somnambulist\Collection\Behaviours;
-use Somnambulist\Collection\Utils\Value;
+use Somnambulist\Components\Collection\Behaviours;
+use Somnambulist\Components\Collection\Utils\Value;
 
 /**
  * Class SimpleCollection
  *
  * A basic collection class that operates on it's own keys. Values can be duplicated.
  *
- * @package    Somnambulist\Collection
- * @subpackage Somnambulist\Collection\SimpleCollection
+ * @package    Somnambulist\Components\Collection
+ * @subpackage Somnambulist\Components\Collection\SimpleCollection
  */
 class SimpleCollection extends AbstractCollection
 {

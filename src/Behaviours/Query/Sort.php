@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours\Query;
 
-namespace Somnambulist\Collection\Behaviours\Query;
-
-use Somnambulist\Collection\Utils\KeyWalker;
+use Somnambulist\Components\Collection\Utils\KeyWalker;
 use function is_callable;
 use function uasort;
 use const SORT_STRING;
@@ -12,8 +10,8 @@ use const SORT_STRING;
 /**
  * Trait Sort
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Query\Sort
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Sort
  *
  * @property array $items
  */

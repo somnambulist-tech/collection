@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Collection\Behaviours;
+namespace Somnambulist\Components\Collection\Behaviours;
 
 use InvalidArgumentException;
-use Somnambulist\Collection\Utils\MapProxy;
-use Somnambulist\Collection\Utils\RunProxy;
+use Somnambulist\Components\Collection\Utils\MapProxy;
+use Somnambulist\Components\Collection\Utils\RunProxy;
 use function array_key_exists;
 use function is_callable;
 
 /**
  * Trait Proxyable
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Proxyable
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Proxyable
  *
  * @property array $items
  */

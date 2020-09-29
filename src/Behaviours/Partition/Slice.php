@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Behaviours\Partition;
+namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
 use function array_slice;
 
 /**
  * Trait Slice
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Partition\Slice
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Partition\Slice
  *
  * @property array $items
  */

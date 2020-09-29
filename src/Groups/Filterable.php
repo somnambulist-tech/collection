@@ -1,17 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Groups;
 
-namespace Somnambulist\Collection\Groups;
-
-use Somnambulist\Collection\Behaviours\Query\FilterValues;
-use Somnambulist\Collection\Behaviours\Query\FilterByKey;
+use Somnambulist\Components\Collection\Behaviours\Query\FilterByKey;
+use Somnambulist\Components\Collection\Behaviours\Query\FilterValues;
 
 /**
  * Trait Filterable
  *
- * @package    Somnambulist\Collection\Groups
- * @subpackage Somnambulist\Collection\Groups\Filterable
+ * @package    Somnambulist\Components\Collection\Groups
+ * @subpackage Somnambulist\Components\Collection\Groups\Filterable
  */
 trait Filterable
 {

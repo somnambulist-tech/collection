@@ -1,20 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Somnambulist\Collection\Contracts;
+namespace Somnambulist\Components\Collection\Contracts;
 
 /**
  * Interface Mutable
  *
- * @package    Somnambulist\Collection\Contracts
- * @subpackage Somnambulist\Collection\Contracts\Mutable
+ * @package    Somnambulist\Components\Collection\Contracts
+ * @subpackage Somnambulist\Components\Collection\Contracts\Mutable
  */
 interface Mutable extends Collection
 {
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return static
      */

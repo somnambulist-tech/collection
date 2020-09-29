@@ -1,18 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace Somnambulist\Components\Collection\Behaviours;
 
-namespace Somnambulist\Collection\Behaviours;
-
-use Somnambulist\Collection\Contracts\Immutable;
-use Somnambulist\Collection\FrozenCollection;
-use Somnambulist\Collection\Utils\ClassUtils;
+use Somnambulist\Components\Collection\Contracts\Immutable;
+use Somnambulist\Components\Collection\FrozenCollection;
+use Somnambulist\Components\Collection\Utils\ClassUtils;
 
 /**
  * Trait Freezeable
  *
- * @package    Somnambulist\Collection\Behaviours
- * @subpackage Somnambulist\Collection\Behaviours\Freezeable
+ * @package    Somnambulist\Components\Collection\Behaviours
+ * @subpackage Somnambulist\Components\Collection\Behaviours\Freezeable
  *
  * @property array $items
  */

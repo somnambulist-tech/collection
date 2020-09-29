@@ -1,16 +1,16 @@
 <?php
 
-namespace Somnambulist\Collection\Tests\Behaviours\Mutate;
+namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\Tests\Fixtures\TestClass4;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 /**
  * Class UnionTest
  *
- * @package    Somnambulist\Collection\Tests\Behaviours\Mutate
- * @subpackage Somnambulist\Collection\Tests\Behaviours\Mutate\UnionTest
+ * @package    Somnambulist\Components\Collection\Tests\Behaviours\Mutate
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Mutate\UnionTest
  */
 class UnionTest extends TestCase
 {
