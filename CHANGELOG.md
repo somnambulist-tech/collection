@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+2020-10-05
+----------
+
+ * Fix bug in `pipeline` using the wrong key for items
+
+2020-08-26 - 4.0.0
+------------------
+
+ * Release 4.0.0 as stable
+
 2020-08-25
 ----------
 

@@ -53,8 +53,8 @@ trait Pipeline
                 };
             }
 
-            foreach ($items as $item) {
-                $new[$key] = $through($operator, $item, $key);
+            foreach ($items as $k => $item) {
+                $new[$k] = $through($operator, $item, $k);
             }
 
             $items = $new;

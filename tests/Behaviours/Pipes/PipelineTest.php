@@ -45,9 +45,12 @@ class PipelineTest extends TestCase
         $events = new Collection([
             new Collection(['name' => 'event 1', 'payload' => [], 'context' => new Collection()]),
             new Collection(['name' => 'event 2', 'payload' => [], 'context' => new Collection()]),
+            new Collection(['name' => 'event 3', 'payload' => [], 'context' => new Collection()]),
         ]);
 
         $decorated = $pipeline->pipeline($events, 'decorate');
+
+        $this->assertCount(3, $decorated);
 
         foreach ($decorated as $event) {
             $this->assertCount(2, $event->get('context'));
@@ -85,11 +88,14 @@ class PipelineTest extends TestCase
         $events = new Collection([
             new Collection(['name' => 'event 1', 'payload' => [], 'context' => new Collection()]),
             new Collection(['name' => 'event 2', 'payload' => [], 'context' => new Collection()]),
+            new Collection(['name' => 'event 3', 'payload' => [], 'context' => new Collection()]),
         ]);
 
         $decorated = $col->pipeline($events, function ($operator, $item, $key) {
             return $operator->decorate($item);
         });
+
+        $this->assertCount(3, $decorated);
 
         foreach ($decorated as $event) {
             $this->assertCount(2, $event->get('context'));
@@ -98,4 +104,45 @@ class PipelineTest extends TestCase
         }
     }
 
+    /**
+     * @group collection
+     * @group pipeline
+     */
+    public function testPipelinePreservesKeys()
+    {
+        $ud = new class {
+            public function decorate(Collection $object)
+            {
+                $object->get('context')->set('user', 'ROOT');
+
+                return $object;
+            }
+        };
+        $sd = new class {
+            public function decorate(Collection $object)
+            {
+                $object->get('context')->set('server', 'testing.example.example');
+
+                return $object;
+            }
+        };
+
+        $col = new Collection();
+        $col->add($ud)->add($sd);
+
+        $events = new Collection([
+            'key1' => new Collection(['name' => 'event 1', 'payload' => [], 'context' => new Collection()]),
+            'foo' => new Collection(['name' => 'event 2', 'payload' => [], 'context' => new Collection()]),
+            'bar' => new Collection(['name' => 'event 3', 'payload' => [], 'context' => new Collection()]),
+        ]);
+
+        $decorated = $col->pipeline($events, function ($operator, $item, $key) {
+            return $operator->decorate($item);
+        });
+
+        $this->assertCount(3, $decorated);
+        $this->assertArrayHasKey('key1', $decorated);
+        $this->assertArrayHasKey('foo', $decorated);
+        $this->assertArrayHasKey('bar', $decorated);
+    }
 }
