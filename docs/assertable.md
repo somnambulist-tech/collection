@@ -10,5 +10,5 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>assert(</strong><em>\callable</em> <strong>$callback</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Assertion\static</em><br /><em>Run the test for all items in the collection; failures raise an exception</em> |
+| public | <strong>assert(</strong><em>\callable</em> <strong>$callback</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Run the test for all items in the collection; failures raise an exception</em> |
 

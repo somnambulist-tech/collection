@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function shuffle;
 
 /**
@@ -20,9 +21,9 @@ trait Shuffle
      *
      * @link https://www.php.net/shuffle
      *
-     * @return static
+     * @return Collection|static
      */
-    public function shuffle()
+    public function shuffle(): Collection|static
     {
         shuffle($this->items);
 

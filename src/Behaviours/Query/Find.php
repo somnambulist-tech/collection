@@ -20,7 +20,7 @@ trait Find
      *
      * @return mixed
      */
-    public function find($criteria)
+    public function find(string|callable $criteria): mixed
     {
         if (!is_callable($criteria)) {
             $criteria = function ($value, $key) use ($criteria) {
@@ -38,7 +38,7 @@ trait Find
      *
      * @return mixed
      */
-    public function findLast($criteria)
+    public function findLast(string|callable $criteria): mixed
     {
         return $this->filter($criteria)->last() ?? false;
     }

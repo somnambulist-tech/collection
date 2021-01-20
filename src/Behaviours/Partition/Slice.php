@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_slice;
 
 /**
@@ -26,9 +27,9 @@ trait Slice
      * @param int|null $limit
      * @param bool     $keys
      *
-     * @return static
+     * @return Collection|static
      */
-    public function slice($offset, $limit = null, $keys = true)
+    public function slice(int $offset, int $limit = null, bool $keys = true): Collection|static
     {
         return $this->new(array_slice($this->items, $offset, $limit, $keys));
     }

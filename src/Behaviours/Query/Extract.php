@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\KeyWalker;
 
 /**
@@ -21,9 +22,9 @@ trait Extract
      * @param string      $element
      * @param string|null $withKey
      *
-     * @return static
+     * @return Collection|static
      */
-    public function extract($element, $withKey = null)
+    public function extract(string $element, string $withKey = null): Collection|static
     {
         return $this->new(KeyWalker::extract($this, $element, $withKey));
     }

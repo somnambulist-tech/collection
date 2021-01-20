@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait RemoveValue
  *
@@ -18,9 +20,9 @@ trait RemoveValue
      *
      * @param mixed $value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function remove($value)
+    public function remove(mixed $value): Collection|static
     {
         $this->keys($value)->each(fn ($key) => $this->offsetUnset($key));
 

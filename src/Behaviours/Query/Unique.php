@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_unique;
 
 /**
@@ -22,9 +23,9 @@ trait Unique
      *
      * @param integer $type Sort flags to use on values, default SORT_STRING
      *
-     * @return static
+     * @return Collection|static
      */
-    public function unique($type = SORT_STRING)
+    public function unique(int $type = SORT_STRING): Collection|static
     {
         return $this->new(array_unique($this->items, $type));
     }

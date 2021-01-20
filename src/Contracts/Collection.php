@@ -15,96 +15,32 @@ use IteratorAggregate;
 interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayable, Jsonable
 {
 
-    /**
-     * @return array
-     */
     public function all(): array;
 
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    public function contains($value): bool;
+    public function contains(mixed $value): bool;
 
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    public function doesNotContain($value): bool;
+    public function doesNotContain(mixed $value): bool;
 
-    /**
-     * @param callable $callback Receives: ($value, $key)
-     *
-     * @return static
-     */
-    public function each(callable $callback);
+    public function each(callable $callback): Collection|static;
 
-    /**
-     * @param mixed $criteria PHP callable, closure or function
-     *
-     * @return static
-     */
-    public function filter($criteria = null);
+    public function filter(string|callable $criteria = null, mixed $test = null): Collection|static;
 
-    /**
-     * @return mixed
-     */
-    public function first();
+    public function first(): mixed;
 
-    /**
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    public function get($key, $default = null);
+    public function get(int|string $key, mixed $default = null): mixed;
 
-    /**
-     * @param string ...$key
-     *
-     * @return bool
-     */
-    public function has(...$key): bool;
+    public function has(int|string ...$key): bool;
 
-    /**
-     * @param mixed $search
-     *
-     * @return static
-     */
-    public function keys($search = null);
+    public function keys(mixed $search = null): Collection|static;
 
-    /**
-     * @return mixed
-     */
-    public function last();
+    public function last(): mixed;
 
-    /**
-     * @param callable $callable
-     *
-     * @return static
-     */
-    public function map(callable $callable);
+    public function map(callable $callable): Collection|static;
 
-    /**
-     * @param mixed $items
-     *
-     * @return static
-     */
-    public function new($items);
+    public function new(mixed $items): Collection|static;
 
-    /**
-     * @param string         $key
-     * @param mixed|callable $default
-     *
-     * @return mixed
-     */
-    public function value($key, $default = null);
+    public function value(int|string $key, mixed $default = null): mixed;
 
-    /**
-     * @return static
-     */
-    public function values();
+    public function values(): Collection|static;
 
 }

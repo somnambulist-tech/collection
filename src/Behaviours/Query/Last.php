@@ -22,7 +22,7 @@ trait Last
      *
      * @return mixed
      */
-    public function last()
+    public function last(): mixed
     {
         $value = end($this->items) ?: null;
 

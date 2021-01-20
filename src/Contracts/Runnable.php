@@ -3,7 +3,6 @@
 namespace Somnambulist\Components\Collection\Contracts;
 
 use BadMethodCallException;
-use Closure;
 use RuntimeException;
 
 /**
@@ -16,12 +15,12 @@ interface Runnable
 {
 
     /**
-     * @param string|Closure $method
+     * @param string|callable $method
      * @param mixed          ...$arguments
      *
-     * @return Collection
+     * @return Collection|static
      * @throws RuntimeException
      * @throws BadMethodCallException
      */
-    public function run($method, ...$arguments);
+    public function run(string|callable $method, mixed ...$arguments): Collection|static;
 }

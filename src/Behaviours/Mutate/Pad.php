@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_pad;
 
 /**
@@ -23,9 +24,9 @@ trait Pad
      * @param integer $size
      * @param mixed   $value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function pad(int $size, $value)
+    public function pad(int $size, mixed $value): Collection|static
     {
         $this->items = array_pad($this->items, $size, $value);
 

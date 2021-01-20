@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Aggregate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function is_null;
 
 /**
@@ -20,9 +21,9 @@ trait CountBy
      *
      * @param callable|null $callback
      *
-     * @return static
+     * @return Collection|static
      */
-    public function countBy(callable $callback = null)
+    public function countBy(callable $callback = null): Collection|static
     {
         if (is_null($callback)) {
             $callback = function ($value) {

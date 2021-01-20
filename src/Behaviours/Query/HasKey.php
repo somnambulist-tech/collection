@@ -18,7 +18,7 @@ trait HasKey
      *
      * @return bool
      */
-    public function has(...$key): bool
+    public function has(int|string ...$key): bool
     {
         $result = true;
 
@@ -35,11 +35,11 @@ trait HasKey
      * Empty in this case is not an empty string, null, zero or false. It should not
      * be used to check for null or boolean values.
      *
-     * @param string $key
+     * @param int|string $key
      *
      * @return boolean
      */
-    public function hasValueFor($key)
+    public function hasValueFor(int|string $key): bool
     {
         return ($this->has($key) && $this->get($key));
     }

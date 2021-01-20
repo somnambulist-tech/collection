@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
@@ -18,9 +19,9 @@ trait Collapse
     /**
      * Collapse the collection of items into a single array
      *
-     * @return static
+     * @return Collection|static
      */
-    public function collapse()
+    public function collapse(): Collection|static
     {
         return $this->new(Value::collapse($this->items));
     }

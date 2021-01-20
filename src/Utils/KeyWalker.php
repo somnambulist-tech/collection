@@ -25,9 +25,9 @@ final class KeyWalker
      * @param string           $key
      * @param null|mixed       $default
      *
-     * @return array|mixed
+     * @return mixed
      */
-    public static function get($collection, $key, $default = null)
+    public static function get(mixed $collection, mixed $key, mixed $default = null): mixed
     {
         if (is_null($key)) {
             return $collection;
@@ -47,12 +47,12 @@ final class KeyWalker
                     return Value::get($default);
                 }
 
-                $result = static::extract($collection, $key, null, $default);
+                $result = self::extract($collection, $key, null, $default);
 
                 return in_array('*', $key) ? Value::flatten($result) : $result;
             }
 
-            if (ClassUtils::hasProperty($collection, $segment) || method_exists($collection, $segment)) {
+            if (ClassUtils::hasProperty($collection, $segment) || (is_object($collection) && method_exists($collection, $segment))) {
                 $collection = ClassUtils::getProperty($collection, $segment);
             } else {
                 return Value::get($default);
@@ -68,9 +68,9 @@ final class KeyWalker
      * @param Collection|array $collection
      * @param string           $key
      *
-     * @return array|mixed
+     * @return bool
      */
-    public static function has($collection, $key): bool
+    public static function has(mixed $collection, mixed $key): bool
     {
         if (is_null($key)) {
             return false;
@@ -90,7 +90,7 @@ final class KeyWalker
                     return false;
                 }
 
-                $result = static::extract($collection, $key, null, '__somnambulist_collection_value_exists_key_not_found');
+                $result = self::extract($collection, $key, null, '__somnambulist_collection_value_exists_key_not_found');
 
                 foreach ($result as &$value) {
                     $value = !('__somnambulist_collection_value_exists_key_not_found' === $value);
@@ -119,19 +119,19 @@ final class KeyWalker
      *
      * @return array
      */
-    public static function extract($collection, $value, $key = null, $default = null)
+    public static function extract(mixed $collection, mixed $value, mixed $key = null, mixed $default = null): array
     {
         $results = [];
 
-        [$value, $key] = static::extractKeyValueParameters($value, $key);
+        [$value, $key] = self::extractKeyValueParameters($value, $key);
 
         foreach ($collection as $item) {
-            $itemValue = static::get($item, $value, $default);
+            $itemValue = self::get($item, $value, $default);
 
             if (is_null($key)) {
                 $results[] = $itemValue;
             } else {
-                $itemKey = (string)static::get($item, $key, $default);
+                $itemKey = (string)self::get($item, $key, $default);
 
                 $results[$itemKey] = $itemValue;
             }
@@ -148,7 +148,7 @@ final class KeyWalker
      *
      * @return array
      */
-    protected static function extractKeyValueParameters($value, $key): array
+    protected static function extractKeyValueParameters(mixed $value, mixed $key): array
     {
         $value = is_string($value) ? explode('.', $value) : $value;
         $key   = is_null($key) || is_array($key) ? $key : explode('.', (string)$key);

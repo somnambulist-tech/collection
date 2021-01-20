@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyObject;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyObject2;
+use TypeError;
 
 /**
  * Class GetDotAccessTest
@@ -122,7 +123,7 @@ class GetDotAccessTest extends TestCase
     /**
      * @group walker
      */
-    public function testGetWithNullReturnsAll()
+    public function testGetWithNullRaisesTypeError()
     {
         $col = new Collection([
             'users' => [
@@ -141,6 +142,8 @@ class GetDotAccessTest extends TestCase
             ]
         ]);
 
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage('Argument #1 ($key) must be of type string|int, null given');
         $this->assertEquals($col, $col->get(null));
     }
 

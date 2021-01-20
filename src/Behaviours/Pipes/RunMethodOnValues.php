@@ -5,6 +5,7 @@ namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 use BadMethodCallException;
 use Closure;
 use RuntimeException;
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function get_class;
 use function gettype;
 use function is_object;
@@ -30,14 +31,14 @@ trait RunMethodOnValues
      * run() can only be used with a Collection that contains objects or when the method is a
      * Closure. If a non-object type is encountered an Exception will be raised.
      *
-     * @param string|Closure $method
-     * @param mixed          ...$arguments
+     * @param string|callable $method
+     * @param mixed           ...$arguments
      *
-     * @return static
+     * @return Collection|static
      * @throws RuntimeException
      * @throws BadMethodCallException
      */
-    public function run($method, ...$arguments)
+    public function run(string|callable $method, mixed ...$arguments): Collection|static
     {
         foreach ($this->items as $key => $value) {
             if ($method instanceof Closure) {

@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function in_array;
 
 /**
@@ -20,9 +21,9 @@ trait RemoveEmpty
      *
      * @param array $empty Array of values considered to be "empty"
      *
-     * @return static
+     * @return Collection|static
      */
-    public function removeEmpty(array $empty = [false, null, ''])
+    public function removeEmpty(array $empty = [false, null, '']): Collection|static
     {
         return $this->filter(fn ($item) => !in_array($item, $empty, true));
     }

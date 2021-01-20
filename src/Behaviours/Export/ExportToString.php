@@ -2,7 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Export;
 
-use Closure;
 use Somnambulist\Components\Collection\Utils\Value;
 use function implode;
 use function sprintf;
@@ -28,13 +27,13 @@ trait ExportToString
      * If $withKeys is set to a string, it will prefix the string value with the key
      * and the $withKeys string.
      *
-     * @param string              $glue
-     * @param null|string|Closure $value
-     * @param null|string         $withKeys
+     * @param string               $glue
+     * @param null|string|callable $value
+     * @param null|string          $withKeys
      *
      * @return string
      */
-    public function implode($glue = ',', $value = null, $withKeys = null): string
+    public function implode(string $glue = ',', string|callable $value = null, string $withKeys = null): string
     {
         $elements = [];
 

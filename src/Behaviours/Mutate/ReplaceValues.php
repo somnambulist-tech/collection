@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_replace;
 use function array_replace_recursive;
 
@@ -21,9 +22,9 @@ trait ReplaceValues
      *
      * @param array ...$items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function replace(...$items)
+    public function replace(array ...$items): Collection|static
     {
         $this->items = array_replace($this->items, ...$items);
 
@@ -35,9 +36,9 @@ trait ReplaceValues
      *
      * @param array ...$items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function replaceRecursively(...$items)
+    public function replaceRecursively(array ...$items): Collection|static
     {
         $this->items = array_replace_recursive($this->items, ...$items);
 

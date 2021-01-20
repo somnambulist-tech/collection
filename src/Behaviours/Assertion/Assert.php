@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Assertion;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
 
 /**
@@ -20,10 +21,10 @@ trait Assert
      *
      * @param callable $callback
      *
-     * @return static
+     * @return Collection|static
      * @throws AssertionFailedException
      */
-    public function assert(callable $callback)
+    public function assert(callable $callback): Collection|static
     {
         foreach ($this->items as $key => $value) {
             if (false === $callback($value, $key)) {

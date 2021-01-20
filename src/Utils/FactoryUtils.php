@@ -4,6 +4,7 @@ namespace Somnambulist\Components\Collection\Utils;
 
 use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\MutableCollection;
+use function str_contains;
 
 /**
  * Class FactoryUtils
@@ -25,7 +26,7 @@ final class FactoryUtils
      *
      * @return Collection
      */
-    public static function createWithNestedArrayFromKey(string $key, $value, string $type = MutableCollection::class): Collection
+    public static function createWithNestedArrayFromKey(string $key, mixed $value, string $type = MutableCollection::class): Collection
     {
         ClassUtils::assertClassImplements($type, Collection::class);
 
@@ -74,9 +75,9 @@ final class FactoryUtils
         $collection = [];
 
         if (strlen(trim($string)) > 0) {
-            static::explode($string, $separator, $type)
+            self::explode($string, $separator, $type)
                 ->each(function ($item) use ($type, $assignment, $options, &$collection) {
-                    if (false === strpos($item, $assignment)) {
+                    if (false === str_contains($item, $assignment)) {
                         $collection[trim($item)] = true;
 
                         return;
@@ -84,8 +85,8 @@ final class FactoryUtils
 
                     [$key, $value] = explode($assignment, $item);
 
-                    if (false !== strpos($value, $options)) {
-                        $value = static::explode($value, $options, $type)->map('trim')->toArray();
+                    if (false !== str_contains($value, $options)) {
+                        $value = self::explode($value, $options, $type)->map('trim')->toArray();
                     }
 
                     $collection[trim($key)] = $value;
@@ -135,7 +136,7 @@ final class FactoryUtils
         ClassUtils::assertClassImplements($type, Collection::class);
 
         $url          = parse_url($url);
-        $url['query'] = static::createFromUrlQuery($url['query'], $type);
+        $url['query'] = self::createFromUrlQuery($url['query'], $type);
 
         return new $type($url);
     }

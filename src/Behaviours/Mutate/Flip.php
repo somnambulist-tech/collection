@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_flip;
 
 /**
@@ -22,9 +23,9 @@ trait Flip
      *
      * @link https://www.php.net/array_flip
      *
-     * @return static
+     * @return Collection|static
      */
-    public function flip()
+    public function flip(): Collection|static
     {
         return $this->new(array_flip($this->items));
     }

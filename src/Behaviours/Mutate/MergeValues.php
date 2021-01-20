@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 use function array_merge;
 
@@ -27,9 +28,9 @@ trait MergeValues
      *
      * @param mixed $value The value to merge into this collection
      *
-     * @return static
+     * @return Collection|static
      */
-    public function merge($value)
+    public function merge(mixed $value): Collection|static
     {
         $this->items = array_merge($this->items, Value::toArray($value));
 

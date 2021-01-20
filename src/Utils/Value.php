@@ -19,7 +19,7 @@ use function is_array;
 use function is_null;
 use function is_string;
 use function iterator_to_array;
-use function strpos;
+use function str_contains;
 
 /**
  * Class Value
@@ -41,9 +41,9 @@ final class Value
      *
      * @return callable
      */
-    public static function accessor($value): callable
+    public static function accessor(mixed $value): callable
     {
-        if (static::isCallable($value)) {
+        if (self::isCallable($value)) {
             return $value;
         }
 
@@ -61,7 +61,7 @@ final class Value
      *
      * @return array
      */
-    public static function collapse($value): array
+    public static function collapse(mixed $value): array
     {
         $results = [];
 
@@ -90,7 +90,7 @@ final class Value
      *
      * @return array
      */
-    public static function toArray($value): array
+    public static function toArray(mixed $value): array
     {
         if (is_null($value)) {
             return [];
@@ -128,9 +128,9 @@ final class Value
      *
      * @param mixed $value
      *
-     * @return array|mixed
+     * @return mixed
      */
-    public static function exportToArray($value)
+    public static function exportToArray(mixed $value): mixed
     {
         if ($value instanceof Collection) {
             return $value->toArray();
@@ -157,7 +157,7 @@ final class Value
 
             // last ditch, all() usually returns an array of items
             if (method_exists($value, 'all')) {
-                return static::exportToArray($value->all());
+                return self::exportToArray($value->all());
             }
         }
 
@@ -175,17 +175,17 @@ final class Value
      *
      * @return Collection
      */
-    public static function toCollection($value, $type = MutableCollection::class): Collection
+    public static function toCollection(mixed $value, string $type = MutableCollection::class): Collection
     {
         $items = [];
 
         foreach ($value as $key => $item) {
             if (is_array($item)) {
-                $items[$key] = new $type(static::toCollection($item));
+                $items[$key] = new $type(self::toCollection($item));
             } elseif ($value instanceof ArrayObject) {
-                $items[$key] = new $type(static::toCollection($value->getArrayCopy()));
+                $items[$key] = new $type(self::toCollection($value->getArrayCopy()));
             } elseif ($value instanceof Traversable) {
-                $items[$key] = new $type(static::toCollection(iterator_to_array($value)));
+                $items[$key] = new $type(self::toCollection(iterator_to_array($value)));
             } else {
                 $items[$key] = $value;
             }
@@ -206,17 +206,17 @@ final class Value
      *
      * @return array
      */
-    public static function flatten($value, $dotKeys = false, $prefix = null): array
+    public static function flatten(mixed $value, bool $dotKeys = false, string $prefix = null): array
     {
         $return = [];
 
         foreach ($value as $key => $values) {
             if (is_array($values)) {
                 $prefix .= $key . '.';
-                $return = array_merge($return, static::flatten($values, $dotKeys, $prefix));
+                $return = array_merge($return, self::flatten($values, $dotKeys, $prefix));
             } elseif ($values instanceof Collection) {
                 $prefix .= $key . '.';
-                $return = array_merge($return, static::flatten($values->all(), $dotKeys, $prefix));
+                $return = array_merge($return, self::flatten($values->all(), $dotKeys, $prefix));
             } else {
                 $return[($dotKeys ? $prefix : '') . $key] = $values;
             }
@@ -235,9 +235,9 @@ final class Value
      *
      * @return mixed
      */
-    public static function get($value, ...$arguments)
+    public static function get(mixed $value, mixed ...$arguments): mixed
     {
-        return static::isCallable($value) ? $value(...$arguments) : $value;
+        return self::isCallable($value) ? $value(...$arguments) : $value;
     }
 
     public static function hasKey($array, $key): bool
@@ -249,17 +249,17 @@ final class Value
         return self::isTraversable($array) && array_key_exists($key, $array);
     }
 
-    public static function isCallable($value): bool
+    public static function isCallable(mixed $value): bool
     {
         return !is_string($value) && is_callable($value);
     }
 
-    public static function isTraversable($value): bool
+    public static function isTraversable(mixed $value): bool
     {
         return is_array($value) || $value instanceof Traversable;
     }
 
-    public static function isAccessibleByKey($value): bool
+    public static function isAccessibleByKey(mixed $value): bool
     {
         return is_array($value) || $value instanceof ArrayAccess;
     }
@@ -267,7 +267,7 @@ final class Value
     public static function getArgumentCountForCallable($callable): int
     {
         // Ref: https://stackoverflow.com/questions/13071186/how-to-get-the-number-of-parameters-of-a-run-time-determined-callable
-        if (is_string($callable) && false !== strpos($callable, '::')) {
+        if (is_string($callable) && false !== str_contains($callable, '::')) {
             $callable = explode('::', $callable);
         }
 

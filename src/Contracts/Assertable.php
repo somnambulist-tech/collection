@@ -2,8 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Contracts;
 
-use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
-
 /**
  * Interface Assertable
  *
@@ -13,11 +11,5 @@ use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
 interface Assertable
 {
 
-    /**
-     * @param callable $callback
-     *
-     * @return static
-     * @throws AssertionFailedException
-     */
-    public function assert(callable $callback);
+    public function assert(callable $callback): Collection|static;
 }

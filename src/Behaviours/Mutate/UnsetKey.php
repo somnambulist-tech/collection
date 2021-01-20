@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait UnsetKey
  *
@@ -14,11 +16,11 @@ trait UnsetKey
     /**
      * Remove the key from the collection
      *
-     * @param string $key
+     * @param int|string $key
      *
-     * @return static
+     * @return Collection|static
      */
-    public function unset($key)
+    public function unset(int|string $key): Collection|static
     {
         $this->offsetUnset($key);
 

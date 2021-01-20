@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_unshift;
 
 /**
@@ -22,9 +23,9 @@ trait PrependValues
      *
      * @param mixed ...$value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function prepend(...$value)
+    public function prepend(mixed ...$value): Collection|static
     {
         array_unshift($this->items, ...$value);
 

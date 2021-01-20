@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
@@ -38,9 +39,9 @@ trait Pipeline
      * @param iterable        $items
      * @param string|callable $through Method name to call on the operator, or a closure
      *
-     * @return static
+     * @return Collection|static
      */
-    public function pipeline(iterable $items, $through)
+    public function pipeline(iterable $items, string|callable $through): Collection|static
     {
         foreach ($this->items as $key => $operator) {
             $new = [];

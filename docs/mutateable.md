@@ -33,10 +33,10 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>add(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Append the value to the collection</em> |
-| public | <strong>append(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Add elements to the end of the collection</em> |
-| public | <strong>concat(</strong><em>\iterable</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Push all of the given items onto the collection.</em> |
-| public | <strong>push(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Alias of append</em> |
+| public | <strong>add(</strong><em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Append the value to the collection</em> |
+| public | <strong>append(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Add elements to the end of the collection</em> |
+| public | <strong>concat(</strong><em>\iterable</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Push all of the given items onto the collection.</em> |
+| public | <strong>push(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Alias of append</em> |
 
 <hr />
 
@@ -46,7 +46,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>remove(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Remove the value from the collection</em> |
+| public | <strong>remove(</strong><em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Remove the value from the collection</em> |
 
 <hr />
 
@@ -56,8 +56,8 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>clear()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Clear all elements from the collection</em> |
-| public | <strong>reset()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Alias of clear</em> |
+| public | <strong>clear()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Clear all elements from the collection</em> |
+| public | <strong>reset()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Alias of clear</em> |
 
 <hr />
 
@@ -67,7 +67,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>shuffle()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Shuffle the items in the collection; returning a new collection.</em> |
+| public | <strong>shuffle()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Shuffle the items in the collection; returning a new collection.</em> |
 
 <hr />
 
@@ -77,7 +77,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>merge(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Merges the supplied array into the current Collection Note: should only be used with Collections of the same data, may cause strange results otherwise. This method will re-index keys and overwrite existing values. If you wish to preserve keys and values see {@link append}.</em> |
+| public | <strong>merge(</strong><em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Merges the supplied array into the current Collection Note: should only be used with Collections of the same data, may cause strange results otherwise. This method will re-index keys and overwrite existing values. If you wish to preserve keys and values see {@link append}.</em> |
 
 <hr />
 
@@ -87,7 +87,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>combine(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
+| public | <strong>combine(</strong><em>\mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
 
 <hr />
 
@@ -97,7 +97,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>shift()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Remove the first value from the collection</em> |
+| public | <strong>shift()</strong> : <em>mixed</em><br /><em>Remove the first value from the collection</em> |
 
 <hr />
 
@@ -107,7 +107,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>pad(</strong><em>integer/\int</em> <strong>$size</strong>, <em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Pads the Collection to size using value as the value of the new elements</em> |
+| public | <strong>pad(</strong><em>integer/\int</em> <strong>$size</strong>, <em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Pads the Collection to size using value as the value of the new elements</em> |
 
 <hr />
 
@@ -117,10 +117,10 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>add(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Append the value to the collection</em> |
-| public | <strong>append(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Add elements to the end of the collection</em> |
-| public | <strong>concat(</strong><em>\iterable</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Push all of the given items onto the collection.</em> |
-| public | <strong>push(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Alias of append</em> |
+| public | <strong>add(</strong><em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Append the value to the collection</em> |
+| public | <strong>append(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Add elements to the end of the collection</em> |
+| public | <strong>concat(</strong><em>\iterable</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Push all of the given items onto the collection.</em> |
+| public | <strong>push(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Alias of append</em> |
 
 <hr />
 
@@ -130,8 +130,8 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>replace(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em> |
-| public | <strong>replaceRecursively(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em> |
+| public | <strong>replace(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em> |
+| public | <strong>replaceRecursively(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em> |
 
 <hr />
 
@@ -141,8 +141,8 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>fill(</strong><em>int</em> <strong>$start</strong>, <em>int</em> <strong>$count</strong>, <em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Fill an array with values beginning at index defined by start for count members Start can be a negative number. Count can be zero or more.</em> |
-| public | <strong>fillKeysWith(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>For all values in the current Collection, use as a key and assign $value to them This should only be used with scalar values that can be used as array keys. A new Collection is returned with all previous values as keys, assigned the value.</em> |
+| public | <strong>fill(</strong><em>\int</em> <strong>$start</strong>, <em>\int</em> <strong>$count</strong>, <em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Fill an array with values beginning at index defined by start for count members Start can be a negative number. Count can be zero or more.</em> |
+| public | <strong>fillKeysWith(</strong><em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>For all values in the current Collection, use as a key and assign $value to them This should only be used with scalar values that can be used as array keys. A new Collection is returned with all previous values as keys, assigned the value.</em> |
 
 <hr />
 
@@ -152,7 +152,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>shuffle()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Shuffle the items in the collection; does NOT return a new collection.</em> |
+| public | <strong>shuffle()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Shuffle the items in the collection; does NOT return a new collection.</em> |
 
 <hr />
 
@@ -162,7 +162,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>flip()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Exchange all values for keys and return new Collection Note: this should only be used with elements that can be used as valid PHP array keys.</em> |
+| public | <strong>flip()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Exchange all values for keys and return new Collection Note: this should only be used with elements that can be used as valid PHP array keys.</em> |
 
 <hr />
 
@@ -172,7 +172,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>set(</strong><em>string</em> <strong>$key</strong>, <em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Add the value at the specified key/offset to the collection</em> |
+| public | <strong>set(</strong><em>int/string/\int</em> <strong>$key</strong>, <em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Add the value at the specified key/offset to the collection</em> |
 
 <hr />
 
@@ -182,7 +182,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>reverse()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Reverses the data in the Collection maintaining any keys</em> |
+| public | <strong>reverse()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Reverses the data in the Collection maintaining any keys</em> |
 
 <hr />
 
@@ -202,7 +202,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>remapKeys(</strong><em>array</em> <strong>$map</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>From the provided map of key -> new_key; change the current key to new_key The previous key is unset from the collection.</em> |
+| public | <strong>remapKeys(</strong><em>array</em> <strong>$map</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>From the provided map of key -> new_key; change the current key to new_key The previous key is unset from the collection.</em> |
 
 <hr />
 
@@ -212,7 +212,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>merge(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Merges the supplied array into the current Collection Note: should only be used with Collections of the same data, may cause strange results otherwise. This method will re-index keys and overwrite existing values. If you wish to preserve keys and values see {@link append}.</em> |
+| public | <strong>merge(</strong><em>\mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Merges the supplied array into the current Collection Note: should only be used with Collections of the same data, may cause strange results otherwise. This method will re-index keys and overwrite existing values. If you wish to preserve keys and values see {@link append}.</em> |
 
 <hr />
 
@@ -222,7 +222,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>union(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Union the collection with the given items.</em> |
+| public | <strong>union(</strong><em>\mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Union the collection with the given items.</em> |
 
 <hr />
 
@@ -232,7 +232,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>combine(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
+| public | <strong>combine(</strong><em>\mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Create a collection by using this collection for keys and another for its values</em> |
 
 <hr />
 
@@ -242,7 +242,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>prepend(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Prepends the elements to the beginning of the collection</em> |
+| public | <strong>prepend(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Prepends the elements to the beginning of the collection</em> |
 
 <hr />
 
@@ -252,7 +252,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>prepend(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Prepends the elements to the beginning of the collection</em> |
+| public | <strong>prepend(</strong><em>mixed</em> <strong>$value</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Prepends the elements to the beginning of the collection</em> |
 
 <hr />
 
@@ -262,7 +262,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>unset(</strong><em>string</em> <strong>$key</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Remove the key from the collection</em> |
+| public | <strong>unset(</strong><em>int/string/\int</em> <strong>$key</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Remove the key from the collection</em> |
 
 <hr />
 
@@ -272,5 +272,5 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>union(</strong><em>mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Mutate\static</em><br /><em>Union the collection with the given items.</em> |
+| public | <strong>union(</strong><em>\mixed</em> <strong>$items</strong>)</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Union the collection with the given items.</em> |
 

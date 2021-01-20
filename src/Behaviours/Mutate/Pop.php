@@ -23,7 +23,7 @@ trait Pop
      *
      * @return mixed
      */
-    public function pop()
+    public function pop(): mixed
     {
         $value = array_pop($this->items);
 

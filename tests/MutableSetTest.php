@@ -5,6 +5,7 @@ namespace Somnambulist\Components\Collection\Tests;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 use Somnambulist\Components\Collection\MutableSet as Collection;
+use function str_repeat;
 
 /**
  * Class MutableCollectionTest
@@ -88,5 +89,27 @@ class MutableSetTest extends TestCase
         $this->expectException(DuplicateItemException::class);
 
         (new Collection(['value1', 'value2', 'value3']))->union(['value1', 'value1']);
+    }
+
+    /**
+     * @group collection
+     * @dataProvider methods
+     */
+    public function testMutatingMethodsReturnCollectionInstance(string $method, ...$args)
+    {
+        $col = new Collection(['value1', 'value2', 'value3']);
+        $ret = $col->$method(...$args);
+
+        $this->assertInstanceOf($col->getCollectionClass(), $ret);
+    }
+
+    public function methods(): array
+    {
+        return [
+            ['keys',],
+            ['values',],
+            ['filter', fn ($v, $k) => $v],
+            ['map', fn ($v, $k) => str_repeat($v, $k)],
+        ];
     }
 }

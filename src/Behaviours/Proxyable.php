@@ -24,7 +24,7 @@ trait Proxyable
         'map' => MapProxy::class,
     ];
 
-    public function __get($name)
+    public function __get($name): mixed
     {
         if ($this->hasProxy($name)) {
             return new $this->proxies[$name]($this);

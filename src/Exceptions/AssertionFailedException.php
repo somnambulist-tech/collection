@@ -17,23 +17,10 @@ use function sprintf;
 class AssertionFailedException extends Exception
 {
 
-    /**
-     * @var mixed
-     */
-    private $key;
+    private mixed $key;
+    private mixed $value;
 
-    /**
-     * @var mixed
-     */
-    private $value;
-
-    /**
-     * Constructor.
-     *
-     * @param mixed $value
-     * @param mixed $key
-     */
-    public function __construct($value, $key)
+    public function __construct(mixed $value, int|string $key)
     {
         $this->key   = $key;
         $this->value = $value;
@@ -46,23 +33,17 @@ class AssertionFailedException extends Exception
         );
     }
 
-    public static function assertionFailedFor($value, $key)
+    public static function assertionFailedFor(mixed $value, int|string $key): static
     {
         return new self($value, $key);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getKey()
+    public function getKey(): mixed
     {
         return $this->key;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }

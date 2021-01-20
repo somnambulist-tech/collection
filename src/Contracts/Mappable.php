@@ -11,34 +11,11 @@ namespace Somnambulist\Components\Collection\Contracts;
 interface Mappable
 {
 
-    /**
-     * Collapse the collection of items into a single array
-     *
-     * @return static
-     */
-    public function collapse();
+    public function collapse(): Collection|static;
 
-    /**
-     * @return static
-     */
-    public function flatten();
+    public function flatten(): Collection|static;
 
-    /**
-     * @param callable|string $callable
-     *
-     * @return static
-     */
-    public function map($callable);
+    public function map(string|callable $callable): Collection|static;
 
-    /**
-     * Reduces the Collection to a single value, returning it, or $initial if no value
-     *
-     * @link https://www.php.net/array_reduce
-     *
-     * @param callable $callback Receives mixed $carry, mixed $value
-     * @param mixed    $initial  (optional) Default value to return if no result
-     *
-     * @return mixed
-     */
-    public function reduce(callable $callback, $initial = null);
+    public function reduce(callable $callback, mixed $initial = null): mixed;
 }

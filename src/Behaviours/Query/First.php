@@ -20,9 +20,9 @@ trait First
     /**
      * Returns the first element from the collection; or null if empty
      *
-     * @return mixed|null
+     * @return mixed
      */
-    public function first()
+    public function first(): mixed
     {
         $value = reset($this->items) ?: null;
 

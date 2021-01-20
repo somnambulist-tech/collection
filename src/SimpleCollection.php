@@ -48,7 +48,7 @@ class SimpleCollection extends AbstractCollection
     use Behaviours\Export\ExportToArray;
     use Behaviours\Export\ExportToJson;
 
-    public function __construct($items = [])
+    public function __construct(mixed $items = [])
     {
         $this->items = Value::toArray($items);
     }

@@ -11,45 +11,15 @@ namespace Somnambulist\Components\Collection\Contracts;
 interface CanAggregateItems
 {
 
-    /**
-     * @param null|string|callable $key
-     *
-     * @return float|int
-     */
-    public function average($key = null);
+    public function average(string|callable $key = null): float|int;
 
-    /**
-     * @param null|string|callable $key
-     *
-     * @return float|int
-     */
-    public function max($key = null);
+    public function max(string|callable $key = null): mixed;
 
-    /**
-     * @param null|string|callable $key
-     *
-     * @return float|int
-     */
-    public function median($key = null);
+    public function median(string|callable $key = null): float|int;
 
-    /**
-     * @param null|string|callable $key
-     *
-     * @return float|int
-     */
-    public function min($key = null);
+    public function min(string|callable $key = null): mixed;
 
-    /**
-     * @param null|string|callable $key
-     *
-     * @return float|int
-     */
-    public function modal($key = null);
+    public function modal(string|callable $key = null): mixed;
 
-    /**
-     * @param null|string|callable $key
-     *
-     * @return float|int
-     */
-    public function sum($key = null);
+    public function sum(string|callable $key = null): float|int;
 }

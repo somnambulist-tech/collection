@@ -3,8 +3,6 @@
 namespace Somnambulist\Components\Collection\Groups;
 
 use Somnambulist\Components\Collection\Behaviours\Query\Sort;
-use Somnambulist\Components\Collection\Behaviours\Query\SortKeys;
-use Somnambulist\Components\Collection\Behaviours\Query\SortValues;
 
 /**
  * Trait Sortable
@@ -16,7 +14,5 @@ trait Sortable
 {
 
     use Sort;
-    use SortKeys;
-    use SortValues;
 
 }

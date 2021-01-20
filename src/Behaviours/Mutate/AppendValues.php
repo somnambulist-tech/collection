@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_push;
 
 /**
@@ -20,9 +21,9 @@ trait AppendValues
      *
      * @param mixed $value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function add($value)
+    public function add(mixed $value): Collection|static
     {
         $this->append($value);
 
@@ -36,9 +37,9 @@ trait AppendValues
      *
      * @param mixed ...$value One or values to add
      *
-     * @return static
+     * @return Collection|static
      */
-    public function append(...$value)
+    public function append(mixed ...$value): Collection|static
     {
         array_push($this->items, ...$value);
 
@@ -50,9 +51,9 @@ trait AppendValues
      *
      * @param iterable $items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function concat(iterable $items)
+    public function concat(iterable $items): Collection|static
     {
         foreach ($items as $item) {
             $this->push($item);
@@ -66,9 +67,9 @@ trait AppendValues
      *
      * @param mixed ...$value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function push(...$value)
+    public function push(mixed ...$value): Collection|static
     {
         return $this->append(...$value);
     }

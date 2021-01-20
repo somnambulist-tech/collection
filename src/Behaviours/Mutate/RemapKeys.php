@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait RemapKeys
  *
@@ -20,9 +22,9 @@ trait RemapKeys
      *
      * @param array $map
      *
-     * @return static
+     * @return Collection|static
      */
-    public function remapKeys(array $map)
+    public function remapKeys(array $map): Collection|static
     {
         foreach ($this->items as $key => $value) {
             if (isset($map[$key])) {

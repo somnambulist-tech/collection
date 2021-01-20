@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Export;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_key_exists;
 use function is_array;
 use function serialize;
@@ -33,14 +34,16 @@ trait Serializable
      *
      * @param string $serialized
      *
-     * @return void
+     * @return Collection|static
      */
-    public function unserialize($serialized)
+    public function unserialize(string $serialized): Collection|static
     {
         $data = unserialize($serialized);
 
         if (is_array($data) && array_key_exists('items', $data)) {
             $this->items = $data['items'];
         }
+
+        return $this;
     }
 }

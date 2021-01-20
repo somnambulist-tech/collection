@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Strings;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function mb_strtoupper;
 use function strtoupper;
 
@@ -19,9 +20,9 @@ trait Upper
     /**
      * Returns a new collection will all values mapped to UPPER case
      *
-     * @return static
+     * @return Collection|static
      */
-    public function upper()
+    public function upper(): Collection|static
     {
         return $this->map(fn ($item) => function_exists('mb_strtoupper') ? mb_strtoupper($item) : strtoupper($item));
     }

@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait Clear
  *
@@ -16,9 +18,9 @@ trait Clear
     /**
      * Clear all elements from the collection
      *
-     * @return static
+     * @return Collection|static
      */
-    public function clear()
+    public function clear(): Collection|static
     {
         $this->items = [];
 
@@ -28,9 +30,9 @@ trait Clear
     /**
      * Alias of clear
      *
-     * @return static
+     * @return Collection|static
      */
-    public function reset()
+    public function reset(): Collection|static
     {
         return $this->clear();
     }

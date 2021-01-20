@@ -59,7 +59,7 @@ class FrozenCollection extends AbstractCollection implements
     use Proxyable;
     use Sortable;
 
-    public function __construct($items = [])
+    public function __construct(mixed $items = [])
     {
         $this->items = Value::toArray($items);
     }

@@ -11,10 +11,5 @@ namespace Somnambulist\Components\Collection\Contracts;
 interface Jsonable
 {
 
-    /**
-     * @param int $options Any valid combination of JSON_* constants
-     *
-     * @return string
-     */
     public function toJson(int $options = 0): string;
 }

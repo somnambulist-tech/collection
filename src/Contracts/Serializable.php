@@ -13,10 +13,5 @@ interface Serializable
 
     public function serialize(): string;
 
-    /**
-     * @param string $serialized
-     *
-     * @return static
-     */
-    public function unserialize($serialized);
+    public function unserialize(string $serialized): Collection|static;
 }

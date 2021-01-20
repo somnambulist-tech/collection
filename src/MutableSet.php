@@ -84,7 +84,7 @@ class MutableSet extends AbstractCollection implements
 
     protected ?string $collectionClass = MutableCollection::class;
 
-    public function __construct($items = [])
+    public function __construct(mixed $items = [])
     {
         foreach (Value::toArray($items) as $key => $value) {
             $this->set($key, $value);

@@ -15,12 +15,12 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "ext-json": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~9.3",
-        "symfony/var-dumper": "~5",
+        "phpunit/phpunit": "~9.5",
+        "symfony/var-dumper": "~5.2",
         "victorjonsson/markdowndocs": "^1.3"
     },
     "autoload": {

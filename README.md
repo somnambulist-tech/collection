@@ -43,6 +43,7 @@ suggest a better name!
 
  * [V3 Deprecations, API changes](CHANGELOG_V3.md)
  * [V4 Deprecations, API changes](CHANGELOG_V4.md)
+ * [V5 Deprecations, API changes](CHANGELOG_V5.md)
 
 ## Requirements
 
@@ -98,18 +99,18 @@ $collection->map()->filter()...
 Freeze changes to a collection:
 
 ```php
-$locked = $collection->freeze()
+$locked = $collection->freeze();
 
 // raises exception
-$locked->shift()
+$locked->shift();
 ```
 Use a custom Immutable collection class:
 ```php
 MutableCollection::setFreezeableClass();
-$locked = $collection->freeze()
+$locked = $collection->freeze();
 
 // raises exception
-$locked->shift()
+$locked->shift();
 ```
 
 ### Dot Access

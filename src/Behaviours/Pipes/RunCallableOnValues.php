@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait RunCallableOnValues
  *
@@ -18,9 +20,9 @@ trait RunCallableOnValues
      *
      * @param callable $callback Receives: ($value, $key)
      *
-     * @return static
+     * @return Collection|static
      */
-    public function each(callable $callback)
+    public function each(callable $callback): Collection|static
     {
         foreach ($this->items as $key => $value) {
             if (false === $callback($value, $key)) {

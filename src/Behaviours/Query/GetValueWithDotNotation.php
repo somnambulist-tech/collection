@@ -27,12 +27,12 @@ trait GetValueWithDotNotation
      * Note: if the key exists it's VALUE is returned! This means it could be null / false. If
      * you need to ensure a particular value, use {@link value()} instead.
      *
-     * @param string $key
-     * @param mixed  $default
+     * @param int|string $key
+     * @param mixed      $default
      *
      * @return mixed
      */
-    public function get($key, $default = null)
+    public function get(int|string $key, mixed $default = null): mixed
     {
         return KeyWalker::get($this, $key, $default);
     }

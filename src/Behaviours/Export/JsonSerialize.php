@@ -18,7 +18,7 @@ trait JsonSerialize
      *
      * @return array
      */
-    public function JsonSerialize()
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }

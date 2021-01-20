@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Compare;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 use function array_diff_key;
 use function array_diff_ukey;
@@ -24,9 +25,9 @@ trait DiffKeys
      *
      * @param mixed $items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function diffKeys($items)
+    public function diffKeys(mixed $items): Collection|static
     {
         return $this->new(array_diff_key($this->items, Value::toArray($items)));
     }
@@ -39,9 +40,9 @@ trait DiffKeys
      * @param mixed    $items
      * @param callable $callback
      *
-     * @return static
+     * @return Collection|static
      */
-    public function diffKeysUsing($items, callable $callback)
+    public function diffKeysUsing(mixed $items, callable $callback): Collection|static
     {
         return $this->new(array_diff_ukey($this->items, Value::toArray($items), $callback));
     }

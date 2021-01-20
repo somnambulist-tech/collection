@@ -33,7 +33,7 @@ final class ClassUtils
 
     public static function camel($string): string
     {
-        return lcfirst(static::studly($string));
+        return lcfirst(self::studly($string));
     }
 
     public static function capitalize($string): string
@@ -43,7 +43,7 @@ final class ClassUtils
 
     public static function studly($string): string
     {
-        return str_replace(' ', '', static::capitalize($string));
+        return str_replace(' ', '', self::capitalize($string));
     }
 
     public static function assertClassImplements($class, $interface)
@@ -69,13 +69,13 @@ final class ClassUtils
      *
      * @return string|null
      */
-    public static function getAccessMethodFor($subject, $test): ?string
+    public static function getAccessMethodFor(mixed $subject, string $test): ?string
     {
         if (!is_object($subject)) {
             return null;
         }
 
-        foreach ([$test, 'get' . static::studly($test), static::camel($test)] as $try) {
+        foreach ([$test, 'get' . self::studly($test), self::camel($test)] as $try) {
             if (method_exists($subject, $try)) {
                 return $try;
             }
@@ -96,15 +96,15 @@ final class ClassUtils
      * @param object|array $subject
      * @param string       $property
      *
-     * @return string
+     * @return string|null
      */
-    public static function getPropertyNameIn($subject, string $property): ?string
+    public static function getPropertyNameIn(mixed $subject, string $property): ?string
     {
         if (!is_object($subject)) {
             return null;
         }
 
-        foreach ([$property, static::camel($property), static::studly($property)] as $try) {
+        foreach ([$property, self::camel($property), self::studly($property)] as $try) {
             if (property_exists($subject, $try) || method_exists($subject, '__isset') && $subject->__isset($try)) {
                 return $try;
             }
@@ -124,7 +124,7 @@ final class ClassUtils
      *
      * @return mixed
      */
-    public static function getProperty($subject, string $property)
+    public static function getProperty(mixed $subject, string $property): mixed
     {
         if (Value::isTraversable($subject) && Value::hasKey($subject, $property)) {
             return $subject[$property];
@@ -134,7 +134,7 @@ final class ClassUtils
             return $subject->{$property};
         }
 
-        if (!$subject instanceof Collection && null !== $method = static::getAccessMethodFor($subject, $property)) {
+        if (!$subject instanceof Collection && null !== $method = self::getAccessMethodFor($subject, $property)) {
             return $subject->{$method}();
         }
 
@@ -147,13 +147,13 @@ final class ClassUtils
      *
      * @return bool
      */
-    public static function hasProperty($subject, string $property): bool
+    public static function hasProperty(mixed $subject, string $property): bool
     {
         if (Value::isTraversable($subject) && Value::hasKey($subject, $property)) {
             return true;
         }
 
-        return null !== static::getPropertyNameIn($subject, $property);
+        return null !== self::getPropertyNameIn($subject, $property);
     }
 
     /**
@@ -163,14 +163,14 @@ final class ClassUtils
      * @param string       $property
      * @param mixed        $value
      */
-    public static function setProperty(&$subject, string $property, $value): void
+    public static function setProperty(mixed &$subject, string $property, mixed $value): void
     {
         if (Value::isTraversable($subject) && Value::hasKey($subject, $property)) {
             $sub[$property] = $value;
             return;
         }
 
-        if (null !== $prop = static::getPropertyNameIn($subject, $property)) {
+        if (null !== $prop = self::getPropertyNameIn($subject, $property)) {
             Closure::bind(function () use ($prop, $value) {
                 $this->{$prop} = $value;
             }, $subject, $subject)();

@@ -19,12 +19,12 @@ trait GetValue
      * Note: if the key is null or false, the value will be returned. If you must have a non
      * falsey value, use {@link value()} instead.
      *
-     * @param string $key
-     * @param mixed  $default
+     * @param int|string $key
+     * @param mixed      $default
      *
      * @return mixed
      */
-    public function get($key, $default = null)
+    public function get(int|string $key, mixed $default = null): mixed
     {
         if ($this->offsetExists($key)) {
             return $this->offsetGet($key);

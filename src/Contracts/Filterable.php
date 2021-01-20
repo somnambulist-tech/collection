@@ -11,82 +11,23 @@ namespace Somnambulist\Components\Collection\Contracts;
 interface Filterable
 {
 
-    /**
-     * Filters the collection using the callback
-     *
-     * The callback receives both the value and the key.
-     *
-     * @link https://www.php.net/array_filter
-     *
-     * @param mixed $criteria PHP callable, closure or function, or property name to filter on
-     * @param mixed $test The value to filter for
-     *
-     * @return static
-     */
-    public function filter($criteria = null, $test = null);
+    public function filter(string|callable $criteria = null, mixed $test = null): Collection|static;
 
-    /**
-     * Alias of filter to add but requires the callable
-     *
-     * @param callable $criteria
-     *
-     * @return static
-     */
-    public function matching(callable $criteria);
+    public function matching(callable $criteria): Collection|static;
 
-    /**
-     * @param callable $criteria
-     *
-     * @return static
-     */
-    public function notMatching(callable $criteria);
+    public function notMatching(callable $criteria): Collection|static;
 
-    /**
-     * @param string ...$key
-     *
-     * @return bool
-     */
-    public function hasAnyOf(...$key): bool;
+    public function hasAnyOf(int|string ...$key): bool;
 
-    /**
-     * @param string ...$key
-     *
-     * @return bool
-     */
-    public function hasNoneOf(...$key): bool;
+    public function hasNoneOf(int|string ...$key): bool;
 
-    /**
-     * @param mixed $search
-     *
-     * @return static
-     */
-    public function keys($search = null);
+    public function keys(mixed $search = null): Collection|static;
 
-    /**
-     * @param string|callable $criteria Regular expression or a closure
-     *
-     * @return static
-     */
-    public function keysMatching($criteria);
+    public function keysMatching(string|callable $criteria): Collection|static;
 
-    /**
-     * @param integer $type
-     *
-     * @return static
-     */
-    public function unique($type = SORT_STRING);
+    public function unique(int $type = SORT_STRING): Collection|static;
 
-    /**
-     * @param string ...$keys
-     *
-     * @return static
-     */
-    public function with(...$keys);
+    public function with(int|string ...$keys): Collection|static;
 
-    /**
-     * @param string ...$keys
-     *
-     * @return static
-     */
-    public function without(...$keys);
+    public function without(int|string ...$keys): Collection|static;
 }

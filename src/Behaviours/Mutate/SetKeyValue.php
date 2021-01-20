@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait SetKeyValue
  *
@@ -16,12 +18,12 @@ trait SetKeyValue
     /**
      * Add the value at the specified key/offset to the collection
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param int|string $key
+     * @param mixed      $value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function set($key, $value)
+    public function set(int|string $key, mixed $value): Collection|static
     {
         $this->offsetSet($key, $value);
 

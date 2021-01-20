@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 use Somnambulist\Components\Collection\Utils\Value;
 use function array_combine;
@@ -24,9 +25,9 @@ trait CombineOnlyUniqueValues
      *
      * @param mixed $items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function combine($items)
+    public function combine(mixed $items): Collection|static
     {
         $items  = Value::toArray($items);
         $unique = array_unique($items);

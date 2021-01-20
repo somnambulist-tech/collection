@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
@@ -20,9 +21,9 @@ trait UnionValues
      *
      * @param mixed $items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function union($items)
+    public function union(mixed $items): Collection|static
     {
         $this->items = $this->items + Value::toArray($items);
 

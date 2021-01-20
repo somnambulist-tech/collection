@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_reverse;
 
 /**
@@ -20,9 +21,9 @@ trait Reverse
      *
      * @link https://www.php.net/array_reverse
      *
-     * @return static
+     * @return Collection|static
      */
-    public function reverse()
+    public function reverse(): Collection|static
     {
         $this->items = array_reverse($this->items, true);
 

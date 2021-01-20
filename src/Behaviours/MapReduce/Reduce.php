@@ -25,7 +25,7 @@ trait Reduce
      *
      * @return mixed
      */
-    public function reduce(callable $callback, $initial = null)
+    public function reduce(callable $callback, mixed $initial = null): mixed
     {
         return array_reduce($this->items, $callback, $initial);
     }

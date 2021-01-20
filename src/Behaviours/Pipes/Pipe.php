@@ -20,7 +20,7 @@ trait Pipe
      *
      * @return mixed
      */
-    public function pipe(callable $callback)
+    public function pipe(callable $callback): mixed
     {
         return $callback($this);
     }

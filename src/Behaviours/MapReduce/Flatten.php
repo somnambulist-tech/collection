@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
@@ -22,9 +23,9 @@ trait Flatten
      * intended to convert a multi-dimensional array into a key => value
      * array. This method is called recursively through the Collection.
      *
-     * @return static
+     * @return Collection|static
      */
-    public function flatten()
+    public function flatten(): Collection|static
     {
         return $this->new(Value::flatten($this->items));
     }
@@ -34,9 +35,9 @@ trait Flatten
      *
      * Key names are flattened into dot notation, though overwrites may still occur.
      *
-     * @return static
+     * @return Collection|static
      */
-    public function flattenWithDotKeys()
+    public function flattenWithDotKeys(): Collection|static
     {
         return $this->new(Value::flatten($this->items, true));
     }

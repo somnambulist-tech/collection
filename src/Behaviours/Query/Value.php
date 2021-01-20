@@ -23,12 +23,12 @@ trait Value
      * has no "truthy" value (null, false, empty string etc). Default can be a callable; this will
      * be passed the value (if any) and the key as arguments.
      *
-     * @param string         $key
+     * @param int|string     $key
      * @param mixed|callable $default
      *
      * @return mixed
      */
-    public function value($key, $default = null)
+    public function value(int|string $key, mixed $default = null): mixed
     {
         if ($value = $this->get($key)) {
             return $value;

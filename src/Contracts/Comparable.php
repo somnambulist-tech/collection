@@ -11,66 +11,19 @@ namespace Somnambulist\Components\Collection\Contracts;
 interface Comparable
 {
 
-    /**
-     * @param mixed $items
-     *
-     * @return static
-     */
-    public function diff($items);
+    public function diff(mixed $items): Collection|static;
 
-    /**
-     * @param mixed    $items
-     * @param callable $callback
-     *
-     * @return static
-     */
-    public function diffUsing($items, callable $callback);
+    public function diffUsing(mixed $items, callable $callback): Collection|static;
 
-    /**
-     * @param mixed $items
-     *
-     * @return static
-     */
-    public function diffAssoc($items);
+    public function diffAssoc(mixed $items): Collection|static;
 
-    /**
-     * @param mixed    $items
-     * @param callable $callback
-     *
-     * @return static
-     */
-    public function diffAssocUsing($items, callable $callback);
+    public function diffAssocUsing(mixed $items, callable $callback): Collection|static;
 
-    /**
-     * @param mixed $items
-     *
-     * @return static
-     */
-    public function diffKeys($items);
+    public function diffKeys(mixed $items): Collection|static;
 
-    /**
-     * @param mixed    $items
-     * @param callable $callback
-     *
-     * @return static
-     */
-    public function diffKeysUsing($items, callable $callback);
+    public function diffKeysUsing(mixed $items, callable $callback): Collection|static;
 
-    /**
-     * Intersect the collection with the given items.
-     *
-     * @param mixed $items
-     *
-     * @return static
-     */
-    public function intersect($items);
+    public function intersect(mixed $items): Collection|static;
 
-    /**
-     * Intersect the collection with the given items by key.
-     *
-     * @param mixed $items
-     *
-     * @return static
-     */
-    public function intersectByKeys($items);
+    public function intersectByKeys(mixed $items): Collection|static;
 }

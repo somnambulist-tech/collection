@@ -11,85 +11,28 @@ namespace Somnambulist\Components\Collection\Contracts;
 interface Mutable extends Collection
 {
 
-    /**
-     * @param mixed $value
-     *
-     * @return static
-     */
-    public function add($value);
+    public function add(mixed $value): Collection|static;
 
-    /**
-     * @param mixed ...$value One or values to add
-     *
-     * @return static
-     */
-    public function append(...$value);
+    public function append(mixed ...$value): Collection|static;
 
-    /**
-     * @return static
-     */
-    public function clear();
+    public function clear(): Collection|static;
 
-    /**
-     * @param iterable $items
-     *
-     * @return static
-     */
-    public function concat(iterable $items);
+    public function concat(iterable $items): Collection|static;
 
-    /**
-     * @param mixed $value The value to merge into this collection
-     *
-     * @return static
-     */
-    public function merge($value);
+    public function merge(mixed $value): Collection|static;
 
-    /**
-     * @param mixed ...$value
-     *
-     * @return static
-     */
-    public function prepend(...$value);
+    public function prepend(mixed ...$value): Collection|static;
 
-    /**
-     * @param mixed ...$value
-     *
-     * @return static
-     */
-    public function push(...$value);
+    public function push(mixed ...$value): Collection|static;
 
-    /**
-     * @param string $value
-     *
-     * @return static
-     */
-    public function remove($value);
+    public function remove(int|string $value): Collection|static;
 
-    /**
-     * @param string $key
-     * @param mixed  $value
-     *
-     * @return static
-     */
-    public function set($key, $value);
+    public function set(int|string $key, mixed $value): Collection|static;
 
-    /**
-     * @return static
-     */
-    public function shift();
+    public function shift(): mixed;
 
-    /**
-     * @param mixed $items
-     *
-     * @return static
-     */
-    public function union($items);
+    public function union(mixed $items): Collection|static;
 
-    /**
-     * @param string $key
-     *
-     * @return static
-     */
-    public function unset($key);
+    public function unset(int|string $key): Collection|static;
 
 }

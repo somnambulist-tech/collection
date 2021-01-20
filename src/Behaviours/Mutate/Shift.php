@@ -21,9 +21,9 @@ trait Shift
      *
      * @link https://www.php.net/array_shift
      *
-     * @return static
+     * @return mixed
      */
-    public function shift()
+    public function shift(): mixed
     {
         $value = array_shift($this->items);
 

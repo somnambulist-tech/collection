@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+2021-01-20
+----------
+
+ * Add union return types and better type hints
+ * Update docs
+
+2021-01-18
+----------
+
+ * Update for PHP8
+ * Update docs
+ * Remove deprecated v4.X methods
+
 2020-10-05 - 4.0.1
 ------------------
 

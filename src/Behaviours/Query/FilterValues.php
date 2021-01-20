@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\KeyWalker;
 use function array_filter;
 
@@ -28,9 +29,9 @@ trait FilterValues
      * @param mixed $criteria PHP callable, closure or function, or property name to filter on
      * @param mixed $test The value to filter for
      *
-     * @return static
+     * @return Collection|static
      */
-    public function filter($criteria = null, $test = null)
+    public function filter(string|callable $criteria = null, mixed $test = null): Collection|static
     {
         if ($criteria && $test) {
             $criteria = function ($value, $key) use ($criteria, $test) {
@@ -46,9 +47,9 @@ trait FilterValues
      *
      * @param callable $criteria
      *
-     * @return static
+     * @return Collection|static
      */
-    public function matching(callable $criteria)
+    public function matching(callable $criteria): Collection|static
     {
         return $this->filter($criteria);
     }
@@ -62,9 +63,9 @@ trait FilterValues
      *
      * @param callable $criteria
      *
-     * @return static
+     * @return Collection|static
      */
-    public function notMatching(callable $criteria)
+    public function notMatching(callable $criteria): Collection|static
     {
         return $this->filter(fn ($value, $key) => !$criteria($value, $key));
     }
@@ -74,9 +75,9 @@ trait FilterValues
      *
      * @param callable $criteria
      *
-     * @return static
+     * @return Collection|static
      */
-    public function reject(callable $criteria)
+    public function reject(callable $criteria): Collection|static
     {
         return $this->notMatching($criteria);
     }

@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
@@ -22,9 +23,9 @@ trait Partition
      *
      * @param callable|string $callback
      *
-     * @return static[static, static]
+     * @return Collection|static[static, static]
      */
-    public function partition($callback)
+    public function partition(string|callable $callback): Collection|static
     {
         $partitions = [[], []];
         $callback   = Value::accessor($callback);

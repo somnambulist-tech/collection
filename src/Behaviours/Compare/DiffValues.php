@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Compare;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 use function array_diff;
 use function array_diff_assoc;
@@ -26,9 +27,9 @@ trait DiffValues
      *
      * @param mixed $items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function diff($items)
+    public function diff(mixed $items): Collection|static
     {
         return $this->new(array_diff($this->items, Value::toArray($items)));
     }
@@ -41,9 +42,9 @@ trait DiffValues
      * @param mixed    $items
      * @param callable $callback
      *
-     * @return static
+     * @return Collection|static
      */
-    public function diffUsing($items, callable $callback)
+    public function diffUsing(mixed $items, callable $callback): Collection|static
     {
         return $this->new(array_udiff($this->items, Value::toArray($items), $callback));
     }
@@ -55,9 +56,9 @@ trait DiffValues
      *
      * @param mixed $items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function diffAssoc($items)
+    public function diffAssoc(mixed $items): Collection|static
     {
         return $this->new(array_diff_assoc($this->items, Value::toArray($items)));
     }
@@ -70,9 +71,9 @@ trait DiffValues
      * @param mixed    $items
      * @param callable $callback
      *
-     * @return static
+     * @return Collection|static
      */
-    public function diffAssocUsing($items, callable $callback)
+    public function diffAssocUsing(mixed $items, callable $callback): Collection|static
     {
         return $this->new(array_diff_uassoc($this->items, Value::toArray($items), $callback));
     }

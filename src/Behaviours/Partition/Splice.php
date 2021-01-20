@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_splice;
 use function func_num_args;
 
@@ -25,9 +26,9 @@ trait Splice
      * @param int|null $length
      * @param mixed    $replacement
      *
-     * @return static
+     * @return Collection|static
      */
-    public function splice($offset, $length = null, $replacement = [])
+    public function splice(int $offset, int $length = null, $replacement = []): Collection|static
     {
         if (func_num_args() === 1) {
             return $this->new(array_splice($this->items, $offset));

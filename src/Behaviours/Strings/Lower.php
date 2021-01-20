@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Strings;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function mb_strtolower;
 use function strtolower;
 
@@ -19,9 +20,9 @@ trait Lower
     /**
      * Returns a new collection will all values mapped to lower case
      *
-     * @return static
+     * @return Collection|static
      */
-    public function lower()
+    public function lower(): Collection|static
     {
         return $this->map(fn ($item) => function_exists('mb_strtolower') ? mb_strtolower($item) : strtolower($item));
     }

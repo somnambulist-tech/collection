@@ -47,12 +47,12 @@ abstract class AbstractCollection implements Collection
 
     protected array $items = [];
 
-    public static function collect($items = [])
+    public static function collect(mixed $items = []): Collection|static
     {
         return new static($items);
     }
 
-    public static function create($items = [])
+    public static function create(mixed $items = []): Collection|static
     {
         return new static($items);
     }
@@ -72,17 +72,17 @@ abstract class AbstractCollection implements Collection
         return self::$wrapArrays;
     }
 
-    public function __get($name)
+    public function __get($name): mixed
     {
         return $this->offsetGet($name);
     }
 
-    public function __isset($name)
+    public function __isset($name): bool
     {
         return $this->offsetExists($name);
     }
 
-    public static function __set_state($array)
+    public static function __set_state($array): object
     {
         $object        = new static();
         $object->items = $array['items'];
@@ -90,12 +90,12 @@ abstract class AbstractCollection implements Collection
         return $object;
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
 
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->items);
     }
@@ -109,9 +109,9 @@ abstract class AbstractCollection implements Collection
      *
      * @param array|mixed $items
      *
-     * @return static|Collection
+     * @return Collection|static
      */
-    public function new($items)
+    public function new(mixed $items): Collection|static
     {
         $class = $this->getCollectionClass();
 
@@ -134,12 +134,12 @@ abstract class AbstractCollection implements Collection
         $this->collectionClass = $class;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->items);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         $value = $this->items[$offset];
 

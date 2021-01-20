@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_keys;
 
 /**
@@ -25,9 +26,9 @@ trait Keys
      *
      * @param mixed $value Get all keys where the value matches
      *
-     * @return static
+     * @return Collection|static
      */
-    public function keys($value = null)
+    public function keys(mixed $value = null): Collection|static
     {
         if (null === $value) {
             return $this->new(array_keys($this->items));

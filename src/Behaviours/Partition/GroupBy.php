@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Partition;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait GroupBy
  *
@@ -22,9 +24,9 @@ trait GroupBy
      *
      * @param callable $criteria
      *
-     * @return static
+     * @return Collection|static
      */
-    public function groupBy(callable $criteria)
+    public function groupBy(callable $criteria): Collection|static
     {
         $groups = [];
 

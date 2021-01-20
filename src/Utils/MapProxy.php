@@ -34,7 +34,7 @@ final class MapProxy
      *
      * @return Collection
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         return $this->collection->map(fn ($value, $key) => $value->{$name}(...$arguments));
     }

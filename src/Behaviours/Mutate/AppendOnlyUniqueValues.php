@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 use function array_push;
 
@@ -21,9 +22,9 @@ trait AppendOnlyUniqueValues
      *
      * @param mixed $value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function add($value)
+    public function add(mixed $value): Collection|static
     {
         $this->append($value);
 
@@ -37,9 +38,9 @@ trait AppendOnlyUniqueValues
      *
      * @param mixed ...$value One or values to add
      *
-     * @return static
+     * @return Collection|static
      */
-    public function append(...$value)
+    public function append(mixed ...$value): Collection|static
     {
         foreach ($value as $item) {
             if ($this->contains($item)) {
@@ -58,9 +59,9 @@ trait AppendOnlyUniqueValues
      *
      * @param iterable $items
      *
-     * @return static
+     * @return Collection|static
      */
-    public function concat(iterable $items)
+    public function concat(iterable $items): Collection|static
     {
         foreach ($items as $item) {
             $this->push($item);
@@ -74,9 +75,9 @@ trait AppendOnlyUniqueValues
      *
      * @param mixed ...$value
      *
-     * @return static
+     * @return Collection|static
      */
-    public function push(...$value)
+    public function push(mixed ...$value): Collection|static
     {
         return $this->append(...$value);
     }

@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Strings;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait Trim
  *
@@ -16,9 +18,9 @@ trait Trim
     /**
      * Trims all values using trim(), returning a new Collection
      *
-     * @return static
+     * @return Collection|static
      */
-    public function trim()
+    public function trim(): Collection|static
     {
         return $this->map('trim');
     }

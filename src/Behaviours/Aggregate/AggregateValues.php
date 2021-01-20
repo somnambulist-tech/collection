@@ -28,7 +28,7 @@ trait AggregateValues
      *
      * @return float|int
      */
-    public function average($key = null)
+    public function average(string|callable $key = null): float|int
     {
         $sum = $this->sum($key);
 
@@ -42,9 +42,9 @@ trait AggregateValues
      *
      * @param null|string|callable $key
      *
-     * @return float|int
+     * @return mixed int/float or an array of the key => value that is the max value
      */
-    public function max($key = null)
+    public function max(string|callable $key = null): mixed
     {
         $callback = Value::accessor($key);
 
@@ -65,7 +65,7 @@ trait AggregateValues
      *
      * @return float|int
      */
-    public function median($key = null)
+    public function median(string|callable $key = null): float|int
     {
         $min = $this->min($key);
         $max = $this->max($key);
@@ -80,9 +80,9 @@ trait AggregateValues
      *
      * @param null|string|callable $key
      *
-     * @return float|int
+     * @return mixed int/float or an array of the key => value that is the min value
      */
-    public function min($key = null)
+    public function min(string|callable $key = null): mixed
     {
         $callback = Value::accessor($key);
 
@@ -109,9 +109,9 @@ trait AggregateValues
      *
      * @param null|string|callable $key
      *
-     * @return mixed
+     * @return mixed int/float or an array of the key => value that are the modal values
      */
-    public function modal($key = null)
+    public function modal(string|callable $key = null): mixed
     {
         $callback = Value::accessor($key);
 
@@ -145,7 +145,7 @@ trait AggregateValues
      *
      * @return float|int
      */
-    public function sum($key = null)
+    public function sum(string|callable $key = null): float|int
     {
         $callback = Value::accessor($key);
 

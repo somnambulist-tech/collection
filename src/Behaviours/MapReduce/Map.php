@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 use function array_combine;
 use function array_keys;
@@ -31,9 +32,9 @@ trait Map
      *
      * @param callable|string $callable A callable or string name of a function
      *
-     * @return static
+     * @return Collection|static
      */
-    public function map($callable)
+    public function map(string|callable $callable): Collection|static
     {
         if (1 === Value::getArgumentCountForCallable($callable)) {
             $callable = function ($value, $key) use ($callable) {

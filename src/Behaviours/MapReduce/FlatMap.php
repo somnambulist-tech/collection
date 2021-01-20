@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait FlatMap
  *
@@ -20,9 +22,9 @@ trait FlatMap
      *
      * @param callable $callable
      *
-     * @return static
+     * @return Collection|static
      */
-    public function flatMap(callable $callable)
+    public function flatMap(callable $callable): Collection|static
     {
         return $this->map($callable)->collapse();
     }

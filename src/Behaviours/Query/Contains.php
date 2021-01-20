@@ -24,7 +24,7 @@ trait Contains
      *
      * @return bool
      */
-    public function contains($value): bool
+    public function contains(mixed $value): bool
     {
         return in_array($value, $this->items, true);
     }
@@ -41,7 +41,7 @@ trait Contains
      *
      * @return bool
      */
-    public function doesNotInclude($value): bool
+    public function doesNotInclude(mixed $value): bool
     {
         return $this->doesNotContain($value);
     }
@@ -53,7 +53,7 @@ trait Contains
      *
      * @return bool
      */
-    public function includes($value): bool
+    public function includes(mixed $value): bool
     {
         return $this->contains($value);
     }

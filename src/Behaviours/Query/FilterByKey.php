@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 use function in_array;
 use function preg_match;
@@ -20,11 +21,11 @@ trait FilterByKey
     /**
      * Alias of without()
      *
-     * @param mixed ...$ignore
+     * @param string ...$ignore
      *
-     * @return static
+     * @return Collection|static
      */
-    public function except(...$ignore)
+    public function except(int|string ...$ignore): Collection|static
     {
         return $this->without(...$ignore);
     }
@@ -36,7 +37,7 @@ trait FilterByKey
      *
      * @return bool
      */
-    public function hasAnyOf(...$key): bool
+    public function hasAnyOf(int|string ...$key): bool
     {
         foreach ($key as $test) {
             if ($this->has($test)) {
@@ -54,7 +55,7 @@ trait FilterByKey
      *
      * @return bool
      */
-    public function hasNoneOf(...$key): bool
+    public function hasNoneOf(int|string ...$key): bool
     {
         $result = true;
 
@@ -70,9 +71,9 @@ trait FilterByKey
      *
      * @param string|callable $criteria Regular expression or a closure
      *
-     * @return static
+     * @return Collection|static
      */
-    public function keysMatching($criteria)
+    public function keysMatching(string|callable $criteria): Collection|static
     {
         $matches = [];
 
@@ -94,11 +95,11 @@ trait FilterByKey
     /**
      * Alias of with()
      *
-     * @param mixed ...$keys
+     * @param string ...$keys
      *
-     * @return static
+     * @return Collection|static
      */
-    public function only(...$keys)
+    public function only(int|string ...$keys): Collection|static
     {
         return $this->with(...$keys);
     }
@@ -108,9 +109,9 @@ trait FilterByKey
      *
      * @param string ...$keys
      *
-     * @return static
+     * @return Collection|static
      */
-    public function with(...$keys)
+    public function with(int|string ...$keys): Collection|static
     {
         return $this->filter(function ($value, $key) use ($keys) {
             return in_array($key, $keys, true);
@@ -122,9 +123,9 @@ trait FilterByKey
      *
      * @param string ...$keys
      *
-     * @return static
+     * @return Collection|static
      */
-    public function without(...$keys)
+    public function without(int|string ...$keys): Collection|static
     {
         return $this->filter(function ($value, $key) use ($keys) {
             return !in_array($key, $keys, true);

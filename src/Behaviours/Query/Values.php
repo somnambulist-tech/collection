@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_values;
 
 /**
@@ -18,9 +19,9 @@ trait Values
     /**
      * Returns a new collection containing just the values without the previous keys
      *
-     * @return static
+     * @return Collection|static
      */
-    public function values()
+    public function values(): Collection|static
     {
         return $this->new(array_values($this->items));
     }

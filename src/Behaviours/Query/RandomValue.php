@@ -16,7 +16,7 @@ trait RandomValue
      *
      * @return mixed
      */
-    public function random()
+    public function random(): mixed
     {
         return $this->shuffle()->first();
     }

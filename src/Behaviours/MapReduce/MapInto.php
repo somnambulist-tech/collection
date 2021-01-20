@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 
+use Somnambulist\Components\Collection\Contracts\Collection;
+
 /**
  * Trait MapInto
  *
@@ -20,9 +22,9 @@ trait MapInto
      *
      * @param string $class
      *
-     * @return static
+     * @return Collection|static
      */
-    public function mapInto(string $class)
+    public function mapInto(string $class): Collection|static
     {
         return $this->map(function ($value, $key) use ($class) {
             return new $class($value, $key);

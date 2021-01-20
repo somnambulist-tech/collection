@@ -13,7 +13,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>upper()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Strings\static</em><br /><em>Returns a new collection will all values mapped to UPPER case</em> |
+| public | <strong>upper()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Returns a new collection will all values mapped to UPPER case</em> |
 
 <hr />
 
@@ -23,7 +23,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>lower()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Strings\static</em><br /><em>Returns a new collection will all values mapped to lower case</em> |
+| public | <strong>lower()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Returns a new collection will all values mapped to lower case</em> |
 
 <hr />
 
@@ -33,7 +33,7 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>trim()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Strings\static</em><br /><em>Trims all values using trim(), returning a new Collection</em> |
+| public | <strong>trim()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Trims all values using trim(), returning a new Collection</em> |
 
 <hr />
 
@@ -43,5 +43,5 @@
 
 | Visibility | Function |
 |:-----------|:---------|
-| public | <strong>capitalize()</strong> : <em>\Somnambulist\Components\Collection\Behaviours\Strings\static</em><br /><em>Returns a new collection will all string values capitalized</em> |
+| public | <strong>capitalize()</strong> : <em>\Somnambulist\Components\Collection\Collection/static</em><br /><em>Returns a new collection will all string values capitalized</em> |
 
