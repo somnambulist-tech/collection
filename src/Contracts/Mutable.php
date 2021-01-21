@@ -25,7 +25,7 @@ interface Mutable extends Collection
 
     public function push(mixed ...$value): Collection|static;
 
-    public function remove(int|string $value): Collection|static;
+    public function remove(mixed $value): Collection|static;
 
     public function set(int|string $key, mixed $value): Collection|static;
 

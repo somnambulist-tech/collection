@@ -1,8 +1,13 @@
 Change Log
 ==========
 
-2021-01-20
-----------
+2021-01-21 - 5.0.1
+------------------
+
+ * Fix type hint on `remove()` should be mixed in interface
+
+2021-01-20 - 5.0.0
+------------------
 
  * Add union return types and better type hints
  * Update docs
