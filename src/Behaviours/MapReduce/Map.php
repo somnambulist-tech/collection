@@ -37,9 +37,7 @@ trait Map
     public function map(string|callable $callable): Collection|static
     {
         if (1 === Value::getArgumentCountForCallable($callable)) {
-            $callable = function ($value, $key) use ($callable) {
-                return $callable($value);
-            };
+            $callable = fn ($value, $key) => $callable($value);
         }
 
         $keys  = array_keys($this->items);

@@ -166,14 +166,12 @@ final class ClassUtils
     public static function setProperty(mixed &$subject, string $property, mixed $value): void
     {
         if (Value::isTraversable($subject) && Value::hasKey($subject, $property)) {
-            $sub[$property] = $value;
+            $subject[$property] = $value;
             return;
         }
 
         if (null !== $prop = self::getPropertyNameIn($subject, $property)) {
-            Closure::bind(function () use ($prop, $value) {
-                $this->{$prop} = $value;
-            }, $subject, $subject)();
+            Closure::bind(fn () => $this->{$prop} = $value, $subject, $subject)();
 
             return;
         }

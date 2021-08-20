@@ -26,9 +26,7 @@ trait CountBy
     public function countBy(callable $callback = null): Collection|static
     {
         if (is_null($callback)) {
-            $callback = function ($value) {
-                return $value;
-            };
+            $callback = fn ($value) => $value;
         }
 
         return $this->new($this->groupBy($callback)->map(fn ($value) => $value->count()));

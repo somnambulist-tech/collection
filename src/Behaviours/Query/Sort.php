@@ -31,9 +31,7 @@ trait Sort
     public function sort(string|callable $callable): Collection|static
     {
         if (!is_callable($callable)) {
-            $callable = function ($a, $b) use ($callable) {
-                return KeyWalker::get($a, $callable) <=> KeyWalker::get($b, $callable);
-            };
+            $callable = fn ($a, $b) => KeyWalker::get($a, $callable) <=> KeyWalker::get($b, $callable);
         }
 
         uasort($this->items, $callable);

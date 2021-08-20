@@ -31,6 +31,18 @@ trait FilterByKey
     }
 
     /**
+     * Alias for has(...$key)
+     *
+     * @param string ...$key
+     *
+     * @return bool
+     */
+    public function hasAllOf(int|string ...$key): bool
+    {
+        return $this->has(...$key);
+    }
+
+    /**
      * Returns true if any of the keys are present in the collection
      *
      * @param string ...$key
@@ -78,9 +90,7 @@ trait FilterByKey
         $matches = [];
 
         if (!Value::isCallable($criteria)) {
-            $criteria = function ($key) use ($criteria) {
-                return 1 === preg_match($criteria, $key);
-            };
+            $criteria = fn ($key) => 1 === preg_match($criteria, $key);
         }
 
         foreach ($this->keys() as $key) {
@@ -113,9 +123,7 @@ trait FilterByKey
      */
     public function with(int|string ...$keys): Collection|static
     {
-        return $this->filter(function ($value, $key) use ($keys) {
-            return in_array($key, $keys, true);
-        });
+        return $this->filter(fn ($value, $key) => in_array($key, $keys, true));
     }
 
     /**
@@ -127,8 +135,6 @@ trait FilterByKey
      */
     public function without(int|string ...$keys): Collection|static
     {
-        return $this->filter(function ($value, $key) use ($keys) {
-            return !in_array($key, $keys, true);
-        });
+        return $this->filter(fn ($value, $key) => !in_array($key, $keys, true));
     }
 }

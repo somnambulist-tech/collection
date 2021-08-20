@@ -9,12 +9,12 @@ use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\FilterableObject;
 
 /**
- * Class FilterTest
+ * Class FilterValuesTest
  *
  * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\FilterTest
+ * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\FilterValuesTest
  */
-class FilterTest extends TestCase
+class FilterValuesTest extends TestCase
 {
 
     /**
@@ -69,6 +69,23 @@ class FilterTest extends TestCase
 
         $this->assertCount(1, $ret);
         $this->assertEquals('bob', $ret->keys()[0]);
+    }
+
+    /**
+     * @group collection
+     */
+    public function testMatchingRule()
+    {
+        $col = new Collection([
+            'foo' => 'bar',
+            'baz' => 'bar',
+            'bob' => 'baz',
+        ]);
+
+        $ret = $col->matchingRule('/foo|baz/');
+
+        $this->assertCount(2, $ret);
+        $this->assertArrayNotHasKey('bob', $ret->keys()->toArray());
     }
 
     /**

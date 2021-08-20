@@ -2,6 +2,8 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use Somnambulist\Components\Collection\Utils\Value;
+
 /**
  * Trait GetValue
  *
@@ -17,7 +19,7 @@ trait GetValue
      * Get the value at the specified key, if the _KEY_ does NOT exist, return the default
      *
      * Note: if the key is null or false, the value will be returned. If you must have a non
-     * falsey value, use {@link value()} instead.
+     * falsey value, use {@link value()} instead. Default may be a callback.
      *
      * @param int|string $key
      * @param mixed      $default
@@ -30,6 +32,6 @@ trait GetValue
             return $this->offsetGet($key);
         }
 
-        return $default;
+        return Value::get($default);
     }
 }

@@ -47,9 +47,7 @@ trait Pipeline
             $new = [];
 
             if (!Value::isCallable($through)) {
-                $through = function ($operator, $item, $key) use ($through) {
-                    return $operator->{$through}($item);
-                };
+                $through = fn ($operator, $item, $key) => $operator->{$through}($item);
             }
 
             foreach ($items as $k => $item) {

@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+2021-08-20 - 5.1.0
+------------------
+
+ * Add `hasAllOf` as alias of `has()` for checking if all keys exist in collection
+ * Add `matchingRule` to filter values for keys matching a regex expression
+ * Fix invalid variable usage in `ClassUtils::setProperty()`
+ * Fix `get()` to execute callables as defaults
+ * Update closures to use short arrow syntax where possible
+
 2021-01-21 - 5.0.1
 ------------------
 

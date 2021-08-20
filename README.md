@@ -200,13 +200,15 @@ The collection behaviour docs are generated from the source code and are availab
  | min                |               | diffAssocUsing                                                    | toQueryString      | reject        | map
  | modal              |               | diffKeys                                                          | toString           | except        | mapInto
  | sum                |               | diffKeysUsing                                                     | serialize          | has           | reduce
- | countBy            |               | intersect                                                         | unserialize        | hasAnyOf      |
- |                    |               | intersectByKeys                                                   |                    | hasNoneOf     |
+ | countBy            |               | intersect                                                         | unserialize        | hasAllOf      |
+ |                    |               | intersectByKeys                                                   |                    | hasAnyOf      |
+ |                    |               |                                                                   |                    | hasNoneOf     |
  |                    |               |                                                                   |                    | keys          |
  |                    |               |                                                                   |                    | keysMatching  |
  |                    |               |                                                                   |                    | only          |
  |                    |               |                                                                   |                    | with          |
  |                    |               |                                                                   |                    | without       |
+ |                    |               |                                                                   |                    | matchingRule  |
  
  | [Mutable](docs/mutateable.md) | [Partitionable](docs/partitionable.md) | [Queryable](docs/queryable.md)  | [Runnable](docs/runnable.md) | [String Helpers](docs/string_helpers.md)
  | ---                | ---           | ---                                                                 | ---       | ---

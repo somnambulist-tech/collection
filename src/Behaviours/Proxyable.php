@@ -50,9 +50,7 @@ trait Proxyable
     public function registerProxy(string $name, $class): void
     {
         if (!is_callable($class)) {
-            $class = function ($subject) use ($class) {
-                return new $class($subject);
-            };
+            $class = fn ($subject) => new $class($subject);
         }
 
         $this->proxies[$name] = $class;

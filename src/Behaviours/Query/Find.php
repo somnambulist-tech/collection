@@ -14,7 +14,7 @@ trait Find
 {
 
     /**
-     * Finds the first item matching the criteria
+     * Finds the first item matching the criteria, false if not found
      *
      * @param callable|mixed $criteria A callable or an element to match
      *
@@ -23,16 +23,14 @@ trait Find
     public function find(string|callable $criteria): mixed
     {
         if (!is_callable($criteria)) {
-            $criteria = function ($value, $key) use ($criteria) {
-                return $value === $criteria;
-            };
+            $criteria = fn ($value, $key) => $value === $criteria;
         }
 
         return $this->filter($criteria)->first() ?? false;
     }
 
     /**
-     * Finds the last item matching the criteria
+     * Finds the last item matching the criteria, false if not found
      *
      * @param callable|mixed $criteria A callable or an element to match
      *

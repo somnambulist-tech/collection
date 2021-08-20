@@ -5,6 +5,7 @@ namespace Somnambulist\Components\Collection\Behaviours\Query;
 use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\KeyWalker;
 use function array_filter;
+use function preg_match;
 
 /**
  * Trait FilterValues
@@ -34,12 +35,22 @@ trait FilterValues
     public function filter(string|callable $criteria = null, mixed $test = null): Collection|static
     {
         if ($criteria && $test) {
-            $criteria = function ($value, $key) use ($criteria, $test) {
-                return KeyWalker::get($value, $criteria) === $test;
-            };
+            $criteria = fn ($value, $key) => KeyWalker::get($value, $criteria) === $test;
         }
 
         return $this->new(array_filter($this->items, $criteria, ARRAY_FILTER_USE_BOTH));
+    }
+
+    /**
+     * Returns a new collection containing all values whose keys match the regex rule
+     *
+     * @param string $rule
+     *
+     * @return Collection|$this
+     */
+    public function matchingRule(string $rule): Collection|static
+    {
+        return $this->filter(fn ($value, $key) => 1 === preg_match($rule, $key));
     }
 
     /**

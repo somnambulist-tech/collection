@@ -47,9 +47,7 @@ final class Value
             return $value;
         }
 
-        return function ($item) use ($value) {
-            return KeyWalker::get($item, $value);
-        };
+        return fn ($item) => KeyWalker::get($item, $value);
     }
 
     /**

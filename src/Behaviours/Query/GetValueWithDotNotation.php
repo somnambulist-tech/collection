@@ -24,7 +24,7 @@ trait GetValueWithDotNotation
      *
      * If the key is not found, then default will be returned that can be a closure.
      *
-     * Note: if the key exists it's VALUE is returned! This means it could be null / false. If
+     * Note: if the key exists its VALUE is returned! This means it could be null / false. If
      * you need to ensure a particular value, use {@link value()} instead.
      *
      * @param int|string $key

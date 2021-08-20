@@ -26,8 +26,6 @@ trait MapInto
      */
     public function mapInto(string $class): Collection|static
     {
-        return $this->map(function ($value, $key) use ($class) {
-            return new $class($value, $key);
-        });
+        return $this->map(fn ($value, $key) => new $class($value, $key));
     }
 }
