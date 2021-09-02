@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use OutOfBoundsException;
 use function array_search;
 use function end;
 use function is_array;
@@ -31,5 +32,16 @@ trait Last
         }
 
         return $value;
+    }
+
+    /**
+     * Returns the last element or fails with an exception
+     *
+     * @return mixed
+     * @throws OutOfBoundsException
+     */
+    public function lastOrFail(): mixed
+    {
+        return $this->last() ?? throw new OutOfBoundsException('No last element found in collection');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
+use OutOfBoundsException;
 use function array_search;
 use function is_array;
 use function reset;
@@ -31,5 +32,16 @@ trait First
         }
 
         return $value;
+    }
+
+    /**
+     * Returns the first element, or fails with an exception
+     *
+     * @return mixed
+     * @throws OutOfBoundsException
+     */
+    public function firstOrFail(): mixed
+    {
+        return $this->first() ?? throw new OutOfBoundsException('No first element found in collection');
     }
 }

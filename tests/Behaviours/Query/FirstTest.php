@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
@@ -35,6 +36,16 @@ class FirstTest extends TestCase
     public function testFirstReturnsNullOnEmpty()
     {
         $this->assertNull((new Collection)->first());
+    }
+
+    /**
+     * @group accessors
+     */
+    public function testFirstOrFail()
+    {
+        $this->expectException(OutOfBoundsException::class);
+
+        $this->assertNull((new Collection)->firstOrFail());
     }
 
     /**

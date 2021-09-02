@@ -8,7 +8,7 @@ use Somnambulist\Components\Collection\Utils\Value;
 /**
  * Class SimpleCollection
  *
- * A basic collection class that operates on it's own keys. Values can be duplicated.
+ * A basic collection class that operates on its own keys. Values can be duplicated.
  *
  * @package    Somnambulist\Components\Collection
  * @subpackage Somnambulist\Components\Collection\SimpleCollection
