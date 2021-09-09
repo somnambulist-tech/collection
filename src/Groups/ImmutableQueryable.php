@@ -13,6 +13,8 @@ use Somnambulist\Components\Collection\Behaviours\Query\HasKeyWithDotNotation;
 use Somnambulist\Components\Collection\Behaviours\Query\Keys;
 use Somnambulist\Components\Collection\Behaviours\Query\Last;
 use Somnambulist\Components\Collection\Behaviours\Query\RandomValue;
+use Somnambulist\Components\Collection\Behaviours\Query\RemoveEmpty;
+use Somnambulist\Components\Collection\Behaviours\Query\RemoveNulls;
 use Somnambulist\Components\Collection\Behaviours\Query\Unique;
 use Somnambulist\Components\Collection\Behaviours\Query\Value;
 use Somnambulist\Components\Collection\Behaviours\Query\Values;
@@ -39,6 +41,8 @@ trait ImmutableQueryable
     use Keys;
     use Last;
     use RandomValue;
+    use RemoveEmpty;
+    use RemoveNulls;
     use ShuffleNewCollection;
     use Unique;
     use Value;

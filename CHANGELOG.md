@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2021-08-20 - 5.2.1
+------------------
+
+ * Fix `FrozenCollection` should have `removeEmpty` and `removeNulls` as they return new collections
+
 2021-08-20 - 5.2.0
 ------------------
 
