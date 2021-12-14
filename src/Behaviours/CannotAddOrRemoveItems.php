@@ -15,22 +15,22 @@ use Somnambulist\Components\Collection\Exceptions\CollectionIsFrozenException;
 trait CannotAddOrRemoveItems
 {
 
-    final public function offsetSet($offset, $value)
+    final public function offsetSet($offset, $value): void
     {
         throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
     }
 
-    final public function offsetUnset($offset)
+    final public function offsetUnset($offset): void
     {
         throw CollectionIsFrozenException::cannotUnsetKeyIn(static::class, $offset);
     }
 
-    final public function __set($offset, $value)
+    final public function __set($offset, $value): void
     {
         throw CollectionIsFrozenException::cannotSetKeyIn(static::class, $offset);
     }
 
-    final public function __unset($offset)
+    final public function __unset($offset): void
     {
         throw CollectionIsFrozenException::cannotUnsetKeyIn(static::class, $offset);
     }

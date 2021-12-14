@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+2021-12-14 - 5.2.2
+------------------
+
+ * Minor return type hint updates for deprecation notices
+
 2021-09-09 - 5.2.1
 ------------------
 

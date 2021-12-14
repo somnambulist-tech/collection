@@ -15,7 +15,7 @@ use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 trait CannotAddDuplicateItems
 {
 
-    final public function offsetSet($offset, $value)
+    final public function offsetSet($offset, $value): void
     {
         if ($this->contains($value)) {
             throw DuplicateItemException::found($value, array_search($value, $this->items));
@@ -28,7 +28,7 @@ trait CannotAddDuplicateItems
         }
     }
 
-    final public function offsetUnset($offset)
+    final public function offsetUnset($offset): void
     {
         if ($this->offsetExists($offset)) {
             $this->items[$offset] = null;
@@ -36,12 +36,12 @@ trait CannotAddDuplicateItems
         }
     }
 
-    final public function __set($offset, $value)
+    final public function __set($offset, $value): void
     {
         $this->offsetSet($offset, $value);
     }
 
-    final public function __unset($offset)
+    final public function __unset($offset): void
     {
         $this->offsetUnset($offset);
     }

@@ -13,7 +13,7 @@ namespace Somnambulist\Components\Collection\Behaviours;
 trait CanAddAndRemoveItems
 {
 
-    final public function offsetSet($offset, $value)
+    final public function offsetSet($offset, $value): void
     {
         if (null === $offset) {
             $this->items[] = $value;
@@ -22,7 +22,7 @@ trait CanAddAndRemoveItems
         }
     }
 
-    final public function offsetUnset($offset)
+    final public function offsetUnset($offset): void
     {
         if ($this->offsetExists($offset)) {
             $this->items[$offset] = null;
@@ -30,12 +30,12 @@ trait CanAddAndRemoveItems
         }
     }
 
-    final public function __set($offset, $value)
+    final public function __set($offset, $value): void
     {
         $this->offsetSet($offset, $value);
     }
 
-    final public function __unset($offset)
+    final public function __unset($offset): void
     {
         $this->offsetUnset($offset);
     }
