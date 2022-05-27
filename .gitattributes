@@ -5,6 +5,7 @@
 /composer.lock export-ignore
 /tests export-ignore
 /phpunit.xml export-ignore
+/phpunit.xml.dist export-ignore
 /CHANGELOG.md export-ignore
 /README.md export-ignore
 /docs export-ignore

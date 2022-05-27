@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+2022-05-27 - 5.3.0
+------------------
+
+ * Add `when()` for testing and mutating the collection by callbacks
+ * Add `doesNotHave()` alias of `hasNoneOf()` for testing keys
+ * Add Symfony phpunit/bridge to aid deprecations
+
 2021-12-14 - 5.2.2
 ------------------
 

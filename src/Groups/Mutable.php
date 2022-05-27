@@ -20,6 +20,7 @@ use Somnambulist\Components\Collection\Behaviours\Mutate\Shift;
 use Somnambulist\Components\Collection\Behaviours\Mutate\Shuffle;
 use Somnambulist\Components\Collection\Behaviours\Mutate\UnionValues;
 use Somnambulist\Components\Collection\Behaviours\Mutate\UnsetKey;
+use Somnambulist\Components\Collection\Behaviours\Mutate\When;
 
 /**
  * Trait Mutable
@@ -50,5 +51,6 @@ trait Mutable
     use Shuffle;
     use UnionValues;
     use UnsetKey;
+    use When;
 
 }

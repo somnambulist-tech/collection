@@ -79,6 +79,18 @@ trait FilterByKey
     }
 
     /**
+     * Alias of hasNoneOf
+     *
+     * @param int|string ...$key
+     *
+     * @return bool
+     */
+    public function doesNotHave(int|string ...$key): bool
+    {
+        return $this->hasNoneOf(...$key);
+    }
+
+    /**
      * Find keys matching the criteria, returning a new collection of the keys
      *
      * @param string|callable $criteria Regular expression or a closure

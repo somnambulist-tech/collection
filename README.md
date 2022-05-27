@@ -236,6 +236,7 @@ The collection behaviour docs are generated from the source code and are availab
  | shuffle            |               |                                                                     |           | 
  | union              |               |                                                                     |           | 
  | unset              |               |                                                                     |           | 
+ | when               |               |                                                                     |           | 
 
 ### Magic Methods & PHP Interface Methods
  
