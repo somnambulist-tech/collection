@@ -1,6 +1,6 @@
 # Somnambulist Collection Library
 
-[![GitHub Actions Build Status](https://img.shields.io/github/workflow/status/somnambulist-tech/collection/tests?logo=github)](https://github.com/somnambulist-tech/collection/actions?query=workflow%3Atests)
+[![GitHub Actions Build Status](https://img.shields.io/github/actions/workflow/status/somnambulist-tech/collection/tests.yml?logo=github&branch=master)](https://github.com/somnambulist-tech/collection/actions?query=workflow%3Atests)
 [![Issues](https://img.shields.io/github/issues/somnambulist-tech/collection?logo=github)](https://github.com/somnambulist-tech/collection/issues)
 [![License](https://img.shields.io/github/license/somnambulist-tech/collection?logo=github)](https://github.com/somnambulist-tech/collection/blob/master/LICENSE)
 [![PHP Version](https://img.shields.io/packagist/php-v/somnambulist/collection?logo=php&logoColor=white)](https://packagist.org/packages/somnambulist/collection)
