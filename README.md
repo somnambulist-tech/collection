@@ -51,7 +51,7 @@ suggest a better name!
 
 ## Requirements
 
- * PHP 7.4+
+ * PHP 8.0+
  * ext-json for JSON export
 
 ## Installation
@@ -67,7 +67,7 @@ In all cases, fork the repository, make a branch then submit a PR - the usual Gi
 
 Please consider the following:
 
- * the minimum version of PHP is 7.4
+ * the minimum version of PHP is 8.0
  * traits should not specify a return type but must include a docblock return type
  * return types for the Collection must be `static` to allow runtime resolution
  * all trait methods must have docblocks - these are converted to docs
