@@ -9,11 +9,6 @@ use function serialize;
 use function unserialize;
 
 /**
- * Trait Serializable
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Export\Serializable
- *
  * @property array $items
  */
 trait Serializable

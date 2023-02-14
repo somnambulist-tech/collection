@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Trait Flatten
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\MapReduce\Flatten
- *
  * @property array $items
  */
 trait Flatten

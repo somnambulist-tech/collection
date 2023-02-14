@@ -8,11 +8,6 @@ use Somnambulist\Components\Collection\Utils\Value;
 use function array_combine;
 
 /**
- * Trait CombineOnlyUniqueValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\CombineOnlyUniqueValues
- *
  * @property array $items
  */
 trait CombineOnlyUniqueValues

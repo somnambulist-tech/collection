@@ -7,11 +7,6 @@ use function array_fill;
 use function array_fill_keys;
 
 /**
- * Trait Fill
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\Fill
- *
  * @property array $items
  */
 trait Fill

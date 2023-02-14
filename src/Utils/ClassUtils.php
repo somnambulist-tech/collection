@@ -15,12 +15,6 @@ use function sprintf;
 use function str_replace;
 use function ucwords;
 
-/**
- * Class ClassUtils
- *
- * @package    Somnambulist\Components\Collection\Utils
- * @subpackage Somnambulist\Components\Collection\Utils\ClassUtils
- */
 final class ClassUtils
 {
 

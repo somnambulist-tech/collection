@@ -1,18 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class RemoveTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Mutate
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Mutate\RemoveTest
- */
 class RemoveTest extends TestCase
 {
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours;
 
@@ -9,15 +9,8 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass2;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass3;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
-/**
- * Class ConstructorTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Collection
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\ConstructorTest
- */
 class ConstructorTest extends TestCase
 {
-
     /**
      * @group constructor
      */

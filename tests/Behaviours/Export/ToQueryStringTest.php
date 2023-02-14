@@ -1,16 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class ToQueryStringTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Export
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Export\ToQueryStringTest
- */
 class ToQueryStringTest extends TestCase
 {
 

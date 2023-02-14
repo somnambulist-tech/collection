@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
-/**
- * Class SortableObject
- *
- * @package    Somnambulist\Components\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\SortableObject
- */
 class SortableObject
 {
 

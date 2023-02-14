@@ -6,11 +6,6 @@ use function array_shift;
 use function is_array;
 
 /**
- * Trait Shift
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\Shift
- *
  * @property array $items
  */
 trait Shift

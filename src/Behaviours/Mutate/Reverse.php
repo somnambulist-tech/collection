@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_reverse;
 
 /**
- * Trait Reverse
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\Reverse
- *
  * @property array $items
  */
 trait Reverse

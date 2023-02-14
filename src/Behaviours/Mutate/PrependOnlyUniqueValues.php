@@ -7,11 +7,6 @@ use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 use function array_unshift;
 
 /**
- * Trait PrependOnlyUniqueValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\PrependOnlyUniqueValues
- *
  * @property array $items
  */
 trait PrependOnlyUniqueValues

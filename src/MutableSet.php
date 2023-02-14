@@ -34,7 +34,7 @@ use Somnambulist\Components\Collection\Utils\RunProxy;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Class MutableSet
+ * MutableSet
  *
  * Note: this is not a true set, in that string keys are allowed.
  *
@@ -44,9 +44,6 @@ use Somnambulist\Components\Collection\Utils\Value;
  *
  * Certain mutations cannot be used in a Set, e.g. pad, fill, fillKeys as they
  * generate the same value for every key.
- *
- * @package    Somnambulist\Components\Collection
- * @subpackage Somnambulist\Components\Collection\MutableSet
  *
  * @property-read MapProxy $map
  * @property-read RunProxy $run

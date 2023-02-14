@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Contracts;
 
-/**
- * Interface Freezable
- *
- * @package    Somnambulist\Components\Collection\Contracts
- * @subpackage Somnambulist\Components\Collection\Contracts\Freezable
- */
 interface Freezable
 {
 

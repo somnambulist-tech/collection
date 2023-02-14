@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Contracts;
 
@@ -7,12 +7,6 @@ use Somnambulist\Components\Collection\Contracts\Arrayable;
 use Somnambulist\Components\Collection\Groups\Exportable;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class ArrayableTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Contracts
- * @subpackage Somnambulist\Components\Collection\Tests\Contracts\ArrayableTest
- */
 class ArrayableTest extends TestCase
 {
 

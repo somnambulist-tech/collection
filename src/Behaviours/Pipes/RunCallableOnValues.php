@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
- * Trait RunCallableOnValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Pipes\RunCallableOnValues
- *
  * @property array $items
  */
 trait RunCallableOnValues

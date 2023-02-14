@@ -1,17 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
 use function array_key_exists;
 
-/**
- * Class ObjectWithMagicProperties
- *
- * @package    Somnambulist\Components\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\ObjectWithMagicProperties
- */
 class ObjectWithMagicProperties
 {
 

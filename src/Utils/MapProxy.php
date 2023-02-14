@@ -5,14 +5,11 @@ namespace Somnambulist\Components\Collection\Utils;
 use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
- * Class MapProxy
+ * MapProxy
  *
  * Run a method on the collection objects, returning the output from calling that method.
  * This creates a `map()` call that calls the requested method, collects the results and
  * returns them in a new collection instance created via `new()`.
- *
- * @package    Somnambulist\Components\Collection\Utils
- * @subpackage Somnambulist\Components\Collection\Utils\MapProxy
  */
 final class MapProxy
 {

@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
@@ -9,12 +7,6 @@ use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyStaticObject;
 use function strrev;
 
-/**
- * Class MapTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Map
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Map\MapTest
- */
 class MapTest extends TestCase
 {
 

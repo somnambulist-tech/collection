@@ -7,11 +7,6 @@ use function mb_strtoupper;
 use function strtoupper;
 
 /**
- * Trait Upper
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Strings\upper
- *
  * @property array $items
  */
 trait Upper

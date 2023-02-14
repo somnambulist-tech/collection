@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Strings;
 use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
- * Trait Trim
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Strings\Trim
- *
  * @property array $items
  */
 trait Trim

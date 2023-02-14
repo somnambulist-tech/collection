@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
-/**
- * Trait HasKey
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\HasKey
- */
 trait HasKey
 {
 

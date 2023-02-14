@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Query;
 use Somnambulist\Components\Collection\Utils\KeyWalker;
 
 /**
- * Trait GetValueWithDotNotation
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\GetValueWithDotNotation
- *
  * @property array $items
  */
 trait GetValueWithDotNotation

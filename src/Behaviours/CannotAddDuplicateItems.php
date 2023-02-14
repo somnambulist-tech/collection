@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours;
 use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 
 /**
- * Trait CannotAddDuplicateItems
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\CannotAddDuplicateItems
- *
  * @property array $items
  */
 trait CannotAddDuplicateItems

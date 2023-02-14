@@ -3,11 +3,6 @@
 namespace Somnambulist\Components\Collection\Behaviours\Export;
 
 /**
- * Trait JsonSerialize
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Export\JsonSerialize
- *
  * @property array $items
  */
 trait JsonSerialize

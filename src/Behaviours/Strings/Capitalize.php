@@ -7,11 +7,6 @@ use function mb_convert_case;
 use function ucwords;
 
 /**
- * Trait Capitalize
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Strings\Capitalize
- *
  * @property array $items
  */
 trait Capitalize

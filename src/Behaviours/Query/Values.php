@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_values;
 
 /**
- * Trait Values
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Values
- *
  * @property array $items
  */
 trait Values

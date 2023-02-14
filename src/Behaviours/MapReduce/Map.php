@@ -9,11 +9,6 @@ use function array_keys;
 use function array_map;
 
 /**
- * Trait Map
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\MapReduce\Map
- *
  * @property array $items
  */
 trait Map

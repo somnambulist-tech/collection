@@ -6,11 +6,6 @@ use function array_pop;
 use function is_array;
 
 /**
- * Trait Pop
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\Pop
- *
  * @property array $items
  */
 trait Pop

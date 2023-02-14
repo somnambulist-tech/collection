@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
- * Trait RemoveValue
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\RemoveValue
- *
  * @property array $items
  */
 trait RemoveValue

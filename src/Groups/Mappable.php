@@ -9,12 +9,6 @@ use Somnambulist\Components\Collection\Behaviours\MapReduce\Map;
 use Somnambulist\Components\Collection\Behaviours\MapReduce\MapInto;
 use Somnambulist\Components\Collection\Behaviours\MapReduce\Reduce;
 
-/**
- * Trait Mappable
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\Mappable
- */
 trait Mappable
 {
 

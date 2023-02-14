@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_unshift;
 
 /**
- * Trait PrependValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\PrependValues
- *
  * @property array $items
  */
 trait PrependValues

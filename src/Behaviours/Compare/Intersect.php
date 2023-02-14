@@ -8,11 +8,6 @@ use function array_intersect;
 use function array_intersect_key;
 
 /**
- * Trait Intersect
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Compare\Intersect
- *
  * @property array $items
  */
 trait Intersect

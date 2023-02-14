@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Contracts;
 
-/**
- * Interface Jsonable
- *
- * @package    Somnambulist\Components\Collection\Contracts
- * @subpackage Somnambulist\Components\Collection\Contracts\Jsonable
- */
 interface Jsonable
 {
 

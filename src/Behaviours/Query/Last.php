@@ -8,11 +8,6 @@ use function end;
 use function is_array;
 
 /**
- * Trait Last
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Last
- *
  * @property array $items
  */
 trait Last

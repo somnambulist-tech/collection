@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Trait Pipeline
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Pipes\Pipeline
- *
  * @property array $items
  */
 trait Pipeline

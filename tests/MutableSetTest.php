@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests;
 
@@ -8,15 +8,10 @@ use Somnambulist\Components\Collection\MutableSet as Collection;
 use function str_repeat;
 
 /**
- * Class MutableCollectionTest
- *
- * @package    Somnambulist\Components\Collection\Tests
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Pipes\MutableCollectionTest
  * @group mutable-set
  */
 class MutableSetTest extends TestCase
 {
-
     /**
      * @group collection
      */

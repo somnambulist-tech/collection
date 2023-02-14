@@ -3,11 +3,6 @@
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
 /**
- * Trait Find
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Find
- *
  * @property array $items
  */
 trait Find

@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Assertion;
 
@@ -8,12 +6,6 @@ use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class AssertTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Assertion
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Assertion\AssertTest
- */
 class AssertTest extends TestCase
 {
 

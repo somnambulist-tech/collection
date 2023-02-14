@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests;
 
@@ -8,15 +8,10 @@ use Somnambulist\Components\Collection\FrozenCollection as Immutable;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 /**
- * Class ImmutableCollectionTest
- *
- * @package    Somnambulist\Components\Collection\Tests
- * @subpackage Somnambulist\Components\Collection\Tests\ImmutableCollectionTest
  * @group frozen-collection
  */
 class ImmutableCollectionTest extends TestCase
 {
-
     public function testCollect()
     {
         $col = Immutable::collect(['foo' => 'bar']);

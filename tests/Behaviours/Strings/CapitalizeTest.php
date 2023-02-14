@@ -1,16 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Strings;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class CapitalizeTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Strings
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Strings\CapitalizeTest
- */
 class CapitalizeTest extends TestCase
 {
 

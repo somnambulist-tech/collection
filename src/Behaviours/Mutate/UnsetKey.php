@@ -4,12 +4,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 use Somnambulist\Components\Collection\Contracts\Collection;
 
-/**
- * Trait UnsetKey
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\UnsetKey
- */
 trait UnsetKey
 {
 

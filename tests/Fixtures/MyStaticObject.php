@@ -1,15 +1,7 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
-/**
- * Class MyStaticObject
- *
- * @package    Somnambulist\Components\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\MyStaticObject
- */
 class MyStaticObject
 {
 

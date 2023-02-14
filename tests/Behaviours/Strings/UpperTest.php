@@ -1,16 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Strings;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class UpperTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Strings
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Strings\UpperTest
- */
 class UpperTest extends TestCase
 {
 

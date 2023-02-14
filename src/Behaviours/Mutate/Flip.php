@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_flip;
 
 /**
- * Trait Flip
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\Flip
- *
  * @property array $items
  */
 trait Flip

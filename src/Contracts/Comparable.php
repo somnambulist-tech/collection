@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Contracts;
 
-/**
- * Interface Diffable
- *
- * @package    Somnambulist\Components\Collection\Contracts
- * @subpackage Somnambulist\Components\Collection\Contracts\Diffable
- */
 interface Comparable
 {
 

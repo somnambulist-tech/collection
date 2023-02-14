@@ -1,18 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class ReduceTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Map
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Map\ReduceTest
- */
 class ReduceTest extends TestCase
 {
 

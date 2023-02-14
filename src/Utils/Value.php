@@ -21,15 +21,8 @@ use function is_string;
 use function iterator_to_array;
 use function str_contains;
 
-/**
- * Class Value
- *
- * @package    Somnambulist\Components\Collection\Utils
- * @subpackage Somnambulist\Components\Collection\Utils\Value
- */
 final class Value
 {
-
     private function __construct() {}
 
     /**

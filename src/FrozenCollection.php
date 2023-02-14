@@ -27,11 +27,6 @@ use Somnambulist\Components\Collection\Utils\RunProxy;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Class FrozenCollection
- *
- * @package    Somnambulist\Components\Collection
- * @subpackage Somnambulist\Components\Collection\FrozenCollection
- *
  * @property-read MapProxy $map
  * @property-read RunProxy $run
  */

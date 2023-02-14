@@ -6,12 +6,6 @@ use ArrayAccess;
 use Countable;
 use IteratorAggregate;
 
-/**
- * Interface Collection
- *
- * @package    Somnambulist\Components\Collection\Contracts
- * @subpackage Somnambulist\Components\Collection\Contracts\Collection
- */
 interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayable, Jsonable
 {
 

@@ -34,11 +34,6 @@ use Somnambulist\Components\Collection\Utils\RunProxy;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Class MutableCollection
- *
- * @package    Somnambulist\Components\Collection
- * @subpackage Somnambulist\Components\Collection\MutableCollection
- *
  * @property-read MapProxy $map
  * @property-read RunProxy $run
  */

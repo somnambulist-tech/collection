@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Partition;
 use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
- * Trait GroupBy
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Partition\GroupBy
- *
  * @property array $items
  */
 trait GroupBy

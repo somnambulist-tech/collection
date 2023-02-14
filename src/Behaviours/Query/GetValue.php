@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Query;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Trait GetValue
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\GetValue
- *
  * @property array $items
  */
 trait GetValue

@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function in_array;
 
 /**
- * Trait RemoveEmpty
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\RemoveEmpty
- *
  * @property array $items
  */
 trait RemoveEmpty

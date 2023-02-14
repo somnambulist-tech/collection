@@ -7,11 +7,6 @@ use function array_splice;
 use function func_num_args;
 
 /**
- * Trait Splice
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Partition\Splice
- *
  * @property array $items
  */
 trait Splice

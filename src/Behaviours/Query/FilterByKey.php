@@ -8,11 +8,6 @@ use function in_array;
 use function preg_match;
 
 /**
- * Trait FilterByKey
- *
- * @package    Somnambulist\Components\Collection\Behaviours\Search
- * @subpackage Somnambulist\Components\Collection\Behaviours\Search\FilterByKey
- *
  * @property array $items
  */
 trait FilterByKey

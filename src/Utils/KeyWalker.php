@@ -7,17 +7,12 @@ use function is_scalar;
 use function method_exists;
 
 /**
- * Class KeyWalker
- *
  * Adds support for walking a Collection (or array) via dot notation.
- * Based on Laravels data_get / Arr::get.
  *
- * @package    Somnambulist\Components\Collection\Utils
- * @subpackage Somnambulist\Components\Collection\Utils\KeyWalker
+ * Based on Laravels data_get / Arr::get.
  */
 final class KeyWalker
 {
-
     /**
      * Walks the collection accessing nested members defined in the key by dot notation
      *

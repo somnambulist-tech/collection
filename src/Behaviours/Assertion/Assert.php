@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
 
 /**
- * Trait Assert
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Assertion\Assert
- *
  * @property array $items
  */
 trait Assert

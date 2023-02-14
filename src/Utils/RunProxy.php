@@ -6,17 +6,13 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Contracts\Runnable;
 
 /**
- * Class RunProxy
+ * RunProxy
  *
  * Buffer to allow running methods on the collection without the collection needing
  * an __call method.
- *
- * @package    Somnambulist\Components\Collection\Utils
- * @subpackage Somnambulist\Components\Collection\Utils\RunProxy
  */
 final class RunProxy
 {
-
     private Runnable $collection;
 
     public function __construct(Runnable $collection)

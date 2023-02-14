@@ -11,11 +11,6 @@ use function current;
 use function is_null;
 
 /**
- * Trait AggregateValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours\Aggregate
- * @subpackage Somnambulist\Components\Collection\Behaviours\Aggregate\AggregateValues
- *
  * @property array $items
  */
 trait AggregateValues

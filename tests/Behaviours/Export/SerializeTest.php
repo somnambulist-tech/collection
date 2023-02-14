@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
@@ -10,12 +8,6 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 use function serialize;
 use function unserialize;
 
-/**
- * Class SerializeTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Export
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Export\SerializeTest
- */
 class SerializeTest extends TestCase
 {
 

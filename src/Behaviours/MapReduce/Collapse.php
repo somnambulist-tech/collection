@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Trait Collapse
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\MapReduce\Collapse
- *
  * @property array $items
  */
 trait Collapse

@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 use function array_reduce;
 
 /**
- * Trait Reduce
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\MapReduce\Reduce
- *
  * @property array $items
  */
 trait Reduce

@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Contracts;
 
-/**
- * Interface CanManipulateStrings
- *
- * @package    Somnambulist\Components\Collection\Contracts
- * @subpackage Somnambulist\Components\Collection\Contracts\CanManipulateStrings
- */
 interface CanManipulateStrings
 {
 

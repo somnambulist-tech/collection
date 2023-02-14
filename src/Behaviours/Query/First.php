@@ -8,11 +8,6 @@ use function is_array;
 use function reset;
 
 /**
- * Trait First
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\First
- *
  * @property array $items
  */
 trait First

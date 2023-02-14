@@ -18,12 +18,6 @@ use Somnambulist\Components\Collection\Behaviours\Query\Unique;
 use Somnambulist\Components\Collection\Behaviours\Query\Value;
 use Somnambulist\Components\Collection\Behaviours\Query\Values;
 
-/**
- * Trait Queryable
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\Queryable
- */
 trait Queryable
 {
 

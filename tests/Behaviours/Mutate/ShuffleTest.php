@@ -1,18 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class ShuffleTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Mutate
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Mutate\ShuffleTest
- */
 class ShuffleTest extends TestCase
 {
 

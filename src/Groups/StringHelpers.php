@@ -7,12 +7,6 @@ use Somnambulist\Components\Collection\Behaviours\Strings\Lower;
 use Somnambulist\Components\Collection\Behaviours\Strings\Trim;
 use Somnambulist\Components\Collection\Behaviours\Strings\Upper;
 
-/**
- * Trait StringHelpers
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\StringHelpers
- */
 trait StringHelpers
 {
 

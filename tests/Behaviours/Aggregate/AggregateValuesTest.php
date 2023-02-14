@@ -1,19 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Aggregate;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class AggregateValuesTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Aggregate
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Aggregate\AggregateValuesTest
- */
 class AggregateValuesTest extends TestCase
 {
-
     /**
      * @group aggregate
      */

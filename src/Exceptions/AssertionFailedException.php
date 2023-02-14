@@ -8,12 +8,6 @@ use function gettype;
 use function is_object;
 use function sprintf;
 
-/**
- * Class AssertionFailedException
- *
- * @package    Somnambulist\Components\Collection\Exceptions
- * @subpackage Somnambulist\Components\Collection\Exceptions\AssertionFailedException
- */
 class AssertionFailedException extends Exception
 {
 

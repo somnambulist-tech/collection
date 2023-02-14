@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
- * Trait SetKeyValue
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\SetKeyValue
- *
  * @property array $items
  */
 trait SetKeyValue

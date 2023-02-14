@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Export;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Trait ExportToArray
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Export\ExportToArray
- *
  * @property array $items
  */
 trait ExportToArray

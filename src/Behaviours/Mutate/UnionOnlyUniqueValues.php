@@ -7,11 +7,6 @@ use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Trait UnionOnlyUniqueValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\UnionOnlyUniqueValues
- *
  * @property array $items
  */
 trait UnionOnlyUniqueValues

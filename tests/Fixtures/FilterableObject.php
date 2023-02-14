@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
-/**
- * Class FilterableObject
- *
- * @package    Somnambulist\Components\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\FilterableObject
- */
 class FilterableObject
 {
 

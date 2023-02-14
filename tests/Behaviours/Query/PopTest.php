@@ -1,16 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class PopTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\PopTest
- */
 class PopTest extends TestCase
 {
 

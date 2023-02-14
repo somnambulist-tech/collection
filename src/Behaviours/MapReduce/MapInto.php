@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\MapReduce;
 use Somnambulist\Components\Collection\Contracts\Collection;
 
 /**
- * Trait MapInto
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\MapReduce\MapInto
- *
  * @property array $items
  */
 trait MapInto

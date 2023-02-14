@@ -19,13 +19,10 @@ use Somnambulist\Components\Collection\Behaviours\Mutate\UnsetKey;
 use Somnambulist\Components\Collection\Behaviours\Mutate\When;
 
 /**
- * Trait MutableSet
+ * MutableSet
  *
  * Combines many traits that can mutate the collection into a single trait and
  * constrains them to unique values.
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\MutableSet
  */
 trait MutableSet
 {

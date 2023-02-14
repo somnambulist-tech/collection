@@ -6,12 +6,9 @@ use Somnambulist\Components\Collection\Behaviours;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**
- * Class SimpleCollection
+ * SimpleCollection
  *
  * A basic collection class that operates on its own keys. Values can be duplicated.
- *
- * @package    Somnambulist\Components\Collection
- * @subpackage Somnambulist\Components\Collection\SimpleCollection
  */
 class SimpleCollection extends AbstractCollection
 {

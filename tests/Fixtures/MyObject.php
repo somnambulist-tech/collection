@@ -1,13 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Fixtures;
 
-/**
- * Class MyObject
- *
- * @package    Somnambulist\Components\Collection\Tests\Fixtures
- * @subpackage Somnambulist\Components\Collection\Tests\Fixtures\MyObject
- */
 class MyObject
 {
 

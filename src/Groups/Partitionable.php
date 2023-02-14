@@ -7,12 +7,6 @@ use Somnambulist\Components\Collection\Behaviours\Partition\Partition;
 use Somnambulist\Components\Collection\Behaviours\Partition\Slice;
 use Somnambulist\Components\Collection\Behaviours\Partition\Splice;
 
-/**
- * Trait Partitionable
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\Partitionable
- */
 trait Partitionable
 {
 

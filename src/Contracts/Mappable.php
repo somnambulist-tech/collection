@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Contracts;
 
-/**
- * Interface Mappable
- *
- * @package    Somnambulist\Components\Collection\Contracts
- * @subpackage Somnambulist\Components\Collection\Contracts\Mappable
- */
 interface Mappable
 {
 

@@ -3,11 +3,6 @@
 namespace Somnambulist\Components\Collection\Behaviours;
 
 /**
- * Trait CanAddAndRemoveItems
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\CanAddAndRemoveItems
- *
  * @property array $items
  */
 trait CanAddAndRemoveItems

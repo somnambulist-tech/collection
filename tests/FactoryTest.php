@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests;
 
@@ -6,15 +6,8 @@ use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Utils\FactoryUtils as Factory;
 
-/**
- * Class FactoryTest
- *
- * @package    Somnambulist\Components\Collection\Tests
- * @subpackage Somnambulist\Components\Collection\Tests\FactoryTest
- */
 class FactoryTest extends TestCase
 {
-
     public function testExplode()
     {
         $array1 = array("a" => "green", "red", "blue");

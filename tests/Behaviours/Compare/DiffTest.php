@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Compare;
 
@@ -8,12 +6,6 @@ use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use function strcmp;
 
-/**
- * Class DiffTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Compare
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Compare\DiffTest
- */
 class DiffTest extends TestCase
 {
 

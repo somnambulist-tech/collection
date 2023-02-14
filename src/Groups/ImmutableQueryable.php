@@ -20,13 +20,10 @@ use Somnambulist\Components\Collection\Behaviours\Query\Value;
 use Somnambulist\Components\Collection\Behaviours\Query\Values;
 
 /**
- * Trait ImmutableQueryable
+ * ImmutableQueryable
  *
  * Groups a set of traits for getting or checking items in a Collection but does not
  * allow modifications to the collection.
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\ImmutableQueryable
  */
 trait ImmutableQueryable
 {

@@ -8,11 +8,6 @@ use function array_filter;
 use function preg_match;
 
 /**
- * Trait FilterValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\FilterValues
- *
  * @property array $items
  */
 trait FilterValues

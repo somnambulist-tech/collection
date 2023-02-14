@@ -6,11 +6,6 @@ use function is_callable;
 use function is_null;
 
 /**
- * Trait When
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\When
- *
  * @property array $items
  */
 trait When

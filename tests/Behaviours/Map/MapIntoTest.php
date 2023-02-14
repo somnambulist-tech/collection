@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
@@ -8,12 +6,6 @@ use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use function get_class;
 
-/**
- * Class MapIntoTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Map
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Map\MapIntoTest
- */
 class MapIntoTest extends TestCase
 {
 

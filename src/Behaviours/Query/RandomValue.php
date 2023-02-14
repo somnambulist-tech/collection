@@ -2,12 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Behaviours\Query;
 
-/**
- * Trait RandomValue
- *
- * @package Somnambulist\Components\Collection\Behaviours\Query
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\RandomValue
- */
 trait RandomValue
 {
 

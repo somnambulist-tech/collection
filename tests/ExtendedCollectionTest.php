@@ -9,15 +9,8 @@ use Somnambulist\Components\Collection\Tests\Fixtures\MyCollection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyFrozenCollection;
 use function strpos;
 
-/**
- * Class ExtendedCollectionTest
- *
- * @package    Somnambulist\Components\Collection\Tests
- * @subpackage Somnambulist\Components\Collection\Tests\ExtendedCollectionTest
- */
 class ExtendedCollectionTest extends TestCase
 {
-
     public function testPreservesTypeOnNewCollectionMethods()
     {
         $col = new MutableCollection(['foo', 'bar', 'baz', 'baz', 'foobar']);

@@ -8,11 +8,6 @@ use function array_diff_key;
 use function array_diff_ukey;
 
 /**
- * Trait DiffKeys
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Compare\DiffKeys
- *
  * @property array $items
  */
 trait DiffKeys

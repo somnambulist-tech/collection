@@ -9,11 +9,6 @@ use function array_key_exists;
 use function is_callable;
 
 /**
- * Trait Proxyable
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Proxyable
- *
  * @property array $items
  */
 trait Proxyable

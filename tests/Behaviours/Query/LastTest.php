@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
@@ -6,12 +6,6 @@ use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
-/**
- * Class LastTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\LastTest
- */
 class LastTest extends TestCase
 {
 

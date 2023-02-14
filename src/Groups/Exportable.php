@@ -9,12 +9,6 @@ use Somnambulist\Components\Collection\Behaviours\Export\ExportToString;
 use Somnambulist\Components\Collection\Behaviours\Export\JsonSerialize;
 use Somnambulist\Components\Collection\Behaviours\Export\Serializable;
 
-/**
- * Trait Exportable
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\Exportable
- */
 trait Exportable
 {
 

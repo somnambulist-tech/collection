@@ -3,11 +3,6 @@
 namespace Somnambulist\Components\Collection\Behaviours\Pipes;
 
 /**
- * Trait Pipe
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Pipes\Pipe
- *
  * @property array $items
  */
 trait Pipe

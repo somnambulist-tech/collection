@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours\Export;
 use function json_encode;
 
 /**
- * Trait ExportToJson
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Export\ExportToJson
- *
  * @property array $items
  */
 trait ExportToJson

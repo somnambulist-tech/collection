@@ -10,11 +10,6 @@ use function array_diff_uassoc;
 use function array_udiff;
 
 /**
- * Trait DiffValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Compare\DiffValues
- *
  * @property array $items
  */
 trait DiffValues

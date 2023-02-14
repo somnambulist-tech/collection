@@ -6,15 +6,8 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\MutableCollection;
 use function str_contains;
 
-/**
- * Class FactoryUtils
- *
- * @package    Somnambulist\Components\Collection\Utils
- * @subpackage Somnambulist\Components\Collection\Utils\FactoryUtils
- */
 final class FactoryUtils
 {
-
     private function __construct() {}
 
     /**
@@ -112,7 +105,7 @@ final class FactoryUtils
     public static function createFromIniString(
         string $ini,
         bool $sections = false,
-        $mode = INI_SCANNER_NORMAL,
+        int $mode = INI_SCANNER_NORMAL,
         string $type = MutableCollection::class
     ): Collection
     {

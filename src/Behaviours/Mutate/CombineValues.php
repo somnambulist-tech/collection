@@ -7,11 +7,6 @@ use Somnambulist\Components\Collection\Utils\Value;
 use function array_combine;
 
 /**
- * Trait CombineValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\CombineValues
- *
  * @property array $items
  */
 trait CombineValues

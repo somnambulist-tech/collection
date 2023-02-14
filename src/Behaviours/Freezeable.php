@@ -7,11 +7,6 @@ use Somnambulist\Components\Collection\FrozenCollection;
 use Somnambulist\Components\Collection\Utils\ClassUtils;
 
 /**
- * Trait Freezeable
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Freezeable
- *
  * @property array $items
  */
 trait Freezeable

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
@@ -7,12 +7,6 @@ use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyObject;
 use Somnambulist\Components\Collection\Tests\Fixtures\ProductId;
 
-/**
- * Class ExtractTest
- *
- * @package    Somnambulist\Components\Collection\Tests\Behaviours\Query
- * @subpackage Somnambulist\Components\Collection\Tests\Behaviours\Query\ExtractTest
- */
 class ExtractTest extends TestCase
 {
 

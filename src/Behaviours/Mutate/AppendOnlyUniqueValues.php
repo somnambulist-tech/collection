@@ -7,11 +7,6 @@ use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 use function array_push;
 
 /**
- * Trait AppendOnlyUniqueValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\AppendOnlyUniqueValues
- *
  * @property array $items
  */
 trait AppendOnlyUniqueValues

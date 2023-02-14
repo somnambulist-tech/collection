@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function array_slice;
 
 /**
- * Trait Slice
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Partition\Slice
- *
  * @property array $items
  */
 trait Slice

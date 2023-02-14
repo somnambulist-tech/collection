@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function shuffle;
 
 /**
- * Trait ShuffleNewCollection
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\ShuffleNewCollection
- *
  * @property array $items
  */
 trait ShuffleNewCollection

@@ -12,11 +12,6 @@ use function is_object;
 use function method_exists;
 
 /**
- * Trait RunMethodOnValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Pipes\RunMethodOnValues
- *
  * @property array $items
  */
 trait RunMethodOnValues

@@ -23,12 +23,9 @@ use Somnambulist\Components\Collection\Behaviours\Mutate\UnsetKey;
 use Somnambulist\Components\Collection\Behaviours\Mutate\When;
 
 /**
- * Trait Mutable
+ * Mutable
  *
  * Combines many traits that can mutate the collection into a single trait.
- *
- * @package    Somnambulist\Components\Collection\Groups
- * @subpackage Somnambulist\Components\Collection\Groups\Mutable
  */
 trait Mutable
 {

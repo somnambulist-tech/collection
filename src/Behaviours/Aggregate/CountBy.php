@@ -6,11 +6,6 @@ use Somnambulist\Components\Collection\Contracts\Collection;
 use function is_null;
 
 /**
- * Trait CountBy
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Aggregate\CountBy
- *
  * @property array $items
  */
 trait CountBy

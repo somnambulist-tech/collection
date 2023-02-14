@@ -7,11 +7,6 @@ use function array_replace;
 use function array_replace_recursive;
 
 /**
- * Trait ReplaceValues
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Mutate\ReplaceValues
- *
  * @property array $items
  */
 trait ReplaceValues

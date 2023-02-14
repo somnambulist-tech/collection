@@ -7,11 +7,6 @@ use function mb_strtolower;
 use function strtolower;
 
 /**
- * Trait Lower
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Strings\Lower
- *
  * @property array $items
  */
 trait Lower

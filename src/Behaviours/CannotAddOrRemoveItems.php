@@ -5,11 +5,6 @@ namespace Somnambulist\Components\Collection\Behaviours;
 use Somnambulist\Components\Collection\Exceptions\CollectionIsFrozenException;
 
 /**
- * Trait CannotAddOrRemoveItems
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\CannotAddOrRemoveItems
- *
  * @property array $items
  */
 trait CannotAddOrRemoveItems

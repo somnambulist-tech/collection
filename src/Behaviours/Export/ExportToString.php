@@ -7,11 +7,6 @@ use function implode;
 use function sprintf;
 
 /**
- * Trait ExportToString
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Export\ExportToString
- *
  * @property array $items
  */
 trait ExportToString

@@ -10,12 +10,6 @@ use function count;
 use function is_array;
 use function is_null;
 
-/**
- * Class AbstractCollection
- *
- * @package    Somnambulist\Components\Collection
- * @subpackage Somnambulist\Components\Collection\AbstractCollection
- */
 abstract class AbstractCollection implements Collection
 {
 

@@ -9,11 +9,6 @@ use function uasort;
 use const SORT_STRING;
 
 /**
- * Trait Sort
- *
- * @package    Somnambulist\Components\Collection\Behaviours
- * @subpackage Somnambulist\Components\Collection\Behaviours\Query\Sort
- *
  * @property array $items
  */
 trait Sort
