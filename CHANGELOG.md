@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+2024-02-24 - 5.4.0
+------------------
+
+ * Bump minimum PHP to 8.1
+ * Remove all unnecessary docblock comments
+
 2022-05-27 - 5.3.0
 ------------------
 

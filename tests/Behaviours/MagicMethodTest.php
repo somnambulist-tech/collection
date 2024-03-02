@@ -55,6 +55,6 @@ class MagicMethodTest extends TestCase
 
         $this->assertEquals('bar', $col->foo);
         unset($col->foo);
-        $this->assertObjectNotHasAttribute('foo', $col);
+        $this->assertObjectNotHasProperty('foo', $col);
     }
 }

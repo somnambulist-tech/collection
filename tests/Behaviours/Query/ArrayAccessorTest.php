@@ -71,6 +71,6 @@ class ArrayAccessorTest extends TestCase
         $col['bar'] = 'too';
         unset($col['bar']);
 
-        $this->assertObjectNotHasAttribute('bar', $col);
+        $this->assertObjectNotHasProperty('bar', $col);
     }
 }

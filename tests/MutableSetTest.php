@@ -98,7 +98,7 @@ class MutableSetTest extends TestCase
         $this->assertInstanceOf($col->getCollectionClass(), $ret);
     }
 
-    public function methods(): array
+    public static function methods(): array
     {
         return [
             ['keys',],
