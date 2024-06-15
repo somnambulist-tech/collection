@@ -20,7 +20,11 @@ trait UnionValues
      */
     public function union(mixed $items): Collection|static
     {
-        $this->items = $this->items + Value::toArray($items);
+        $items = Value::toArray($items);
+
+        Value::assertAllOfType($items, $this->type);
+
+        $this->items = $this->items + $items;
 
         return $this;
     }

@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+2024-06-10
+----------
+
+ * Add support for a "typed" collection that contains only values of type
+ * Set default collection types to SimpleCollection / MutableCollection to allow for typed collections
+
 2024-02-24 - 5.4.0
 ------------------
 

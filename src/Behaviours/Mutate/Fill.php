@@ -3,6 +3,7 @@
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 use Somnambulist\Components\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Utils\Value;
 use function array_fill;
 use function array_fill_keys;
 
@@ -27,6 +28,8 @@ trait Fill
      */
     public function fill(int $start, int $count, mixed $value): Collection|static
     {
+        Value::assertIsOfType($value, $this->type);
+
         return $this->new(array_fill($start, $count, $value));
     }
 
@@ -44,6 +47,8 @@ trait Fill
      */
     public function fillKeysWith(mixed $value): Collection|static
     {
+        Value::assertIsOfType($value, $this->type);
+
         return $this->new(array_fill_keys($this->values()->toArray(), $value));
     }
 }

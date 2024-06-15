@@ -23,6 +23,10 @@ trait CombineValues
      */
     public function combine(mixed $items): Collection|static
     {
-        return $this->new(array_combine($this->items, Value::toArray($items)));
+        $items = Value::toArray($items);
+
+        Value::assertAllOfType($items, $this->type);
+
+        return $this->new(array_combine($this->items, $items));
     }
 }

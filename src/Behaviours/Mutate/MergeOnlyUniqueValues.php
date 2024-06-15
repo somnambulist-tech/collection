@@ -28,6 +28,8 @@ trait MergeOnlyUniqueValues
         $items  = Value::toArray($value);
         $unique = array_unique($items);
 
+        Value::assertAllOfType($items, $this->type);
+
         if (count($items) !== count($unique)) {
             throw DuplicateItemException::preparedValuesContainDuplicates(__FUNCTION__);
         }

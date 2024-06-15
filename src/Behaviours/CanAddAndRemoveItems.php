@@ -2,6 +2,9 @@
 
 namespace Somnambulist\Components\Collection\Behaviours;
 
+use Somnambulist\Components\Collection\Exceptions\InvalidItemTypeException;
+use Somnambulist\Components\Collection\Utils\Value;
+
 /**
  * @property array $items
  */
@@ -10,6 +13,8 @@ trait CanAddAndRemoveItems
 
     final public function offsetSet($offset, $value): void
     {
+        Value::assertIsOfType($value, $this->type);
+
         if (null === $offset) {
             $this->items[] = $value;
         } else {

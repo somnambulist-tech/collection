@@ -6,5 +6,5 @@ use Somnambulist\Components\Collection\MutableCollection;
 
 class MyCollection extends MutableCollection
 {
-
+    protected ?string $collectionClass = MyCollection::class;
 }

@@ -3,6 +3,8 @@
 namespace Somnambulist\Components\Collection\Behaviours;
 
 use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
+use Somnambulist\Components\Collection\Exceptions\InvalidItemTypeException;
+use Somnambulist\Components\Collection\Utils\Value;
 
 /**
  * @property array $items
@@ -12,6 +14,8 @@ trait CannotAddDuplicateItems
 
     final public function offsetSet($offset, $value): void
     {
+        Value::assertIsOfType($value, $this->type);
+
         if ($this->contains($value)) {
             throw DuplicateItemException::found($value, array_search($value, $this->items));
         }

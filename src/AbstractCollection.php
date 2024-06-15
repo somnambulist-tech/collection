@@ -39,6 +39,13 @@ abstract class AbstractCollection implements Collection
      */
     protected ?string $collectionClass = null;
 
+    /**
+     * The type of values that this collection is restricted to, can use scalar types or class names
+     *
+     * @var string|null
+     */
+    protected ?string $type = null;
+
     protected array $items = [];
 
     public static function collect(mixed $items = []): Collection|static
@@ -80,6 +87,7 @@ abstract class AbstractCollection implements Collection
     {
         $object        = new static();
         $object->items = $array['items'];
+        $object->type =  $array['type'];
 
         return $object;
     }
@@ -126,6 +134,16 @@ abstract class AbstractCollection implements Collection
         ClassUtils::assertClassImplements($class, Collection::class);
 
         $this->collectionClass = $class;
+    }
+
+    public function isTyped(): bool
+    {
+        return $this->type !== null;
+    }
+
+    public function type(): ?string
+    {
+        return $this->type;
     }
 
     public function offsetExists($offset): bool

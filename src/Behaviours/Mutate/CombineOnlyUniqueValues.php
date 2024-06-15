@@ -27,6 +27,8 @@ trait CombineOnlyUniqueValues
         $items  = Value::toArray($items);
         $unique = array_unique($items);
 
+        Value::assertAllOfType($items, $this->type);
+
         if (count($items) !== count($unique)) {
             throw DuplicateItemException::preparedValuesContainDuplicates(__FUNCTION__);
         }

@@ -28,3 +28,23 @@ All features previously marked as deprecated in the 4.X series have been removed
 
  * Keys are typed to `int|string` across the board instead of inferred mixed/string
  * `GetWithDotNotation::get()` no longer supports `null` for all values; use `all()` instead
+
+### 5.5.0 addition of type to collections
+
+From 5.5.0, collections can be extended and the "type" set to restrict the collection to a specific type
+of values. The type can be any of:
+
+ * int
+ * float
+ * bool
+ * string
+ * scalar
+ * array
+ * object or interface class
+
+To accommodate this change, `SimpleCollection` and `MutableCollection` now have the collectionClass set to themselves
+to prevent issues of methods like `map()` causing errors due to returning values not supported by the type.
+
+To set the type: extend the collection type you wish to make type specific, and then set the property `$type` to
+the type you want the collection to contain. This will typically be a class name, though the standard PHP types
+can be used - except for resources.

@@ -27,7 +27,11 @@ trait MergeValues
      */
     public function merge(mixed $value): Collection|static
     {
-        $this->items = array_merge($this->items, Value::toArray($value));
+        $value = Value::toArray($value);
+
+        Value::assertAllOfType($value, $this->type);
+
+        $this->items = array_merge($this->items, $value);
 
         return $this;
     }

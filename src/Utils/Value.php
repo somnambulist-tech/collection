@@ -9,6 +9,7 @@ use ReflectionFunction;
 use ReflectionMethod;
 use Somnambulist\Components\Collection\Contracts\Arrayable;
 use Somnambulist\Components\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Exceptions\InvalidItemTypeException;
 use Somnambulist\Components\Collection\MutableCollection;
 use stdClass;
 use Traversable;
@@ -23,7 +24,9 @@ use function str_contains;
 
 final class Value
 {
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Provides a callable for fetching data from a collection item
@@ -40,7 +43,7 @@ final class Value
             return $value;
         }
 
-        return fn ($item) => KeyWalker::get($item, $value);
+        return fn($item) => KeyWalker::get($item, $value);
     }
 
     /**
@@ -253,6 +256,37 @@ final class Value
     public static function isAccessibleByKey(mixed $value): bool
     {
         return is_array($value) || $value instanceof ArrayAccess;
+    }
+
+    public static function isOfType(mixed $value, string $type): bool
+    {
+        return match ($type) {
+            'array' => is_array($value),
+            'bool' => is_bool($value),
+            'float' => is_float($value),
+            'int' => is_int($value),
+            'scalar' => is_scalar($value),
+            'string' => is_string($value),
+            default => is_a($value, $type, true),
+        };
+    }
+
+    public static function assertIsOfType(mixed $value, ?string $type): void
+    {
+        if (!is_null($type) && !self::isOfType($value, $type)) {
+            throw InvalidItemTypeException::invalidItem($value, $type);
+        }
+    }
+
+    public static function assertAllOfType(iterable $values, ?string $type): void
+    {
+        if (is_null($type)) {
+            return;
+        }
+
+        foreach ($values as $value) {
+            self::assertIsOfType($value, $type);
+        }
     }
 
     public static function getArgumentCountForCallable($callable): int

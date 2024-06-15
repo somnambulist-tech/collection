@@ -68,8 +68,14 @@ class MutableCollection extends AbstractCollection implements
     use Sortable;
     use StringHelpers;
 
+    protected ?string $collectionClass = MutableCollection::class;
+
     public function __construct(mixed $items = [])
     {
-        $this->items = Value::toArray($items);
+        $items = Value::toArray($items);
+
+        Value::assertAllOfType($items, $this->type);
+
+        $this->items = $items;
     }
 }

@@ -23,6 +23,8 @@ trait UnionOnlyUniqueValues
     {
         $items = Value::toArray($items);
 
+        Value::assertAllOfType($items, $this->type);
+
         foreach ($items as $key => $item) {
             if ($this->contains($item)) {
                 throw DuplicateItemException::found($item, $this->keys($item)->first());

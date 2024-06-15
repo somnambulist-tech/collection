@@ -12,7 +12,6 @@ use Somnambulist\Components\Collection\Utils\Value;
  */
 class SimpleCollection extends AbstractCollection
 {
-
     use Behaviours\CanAddAndRemoveItems;
     use Behaviours\Assertion\Assert;
     use Behaviours\MapReduce\Collapse;
@@ -45,8 +44,14 @@ class SimpleCollection extends AbstractCollection
     use Behaviours\Export\ExportToArray;
     use Behaviours\Export\ExportToJson;
 
+    protected ?string $collectionClass = SimpleCollection::class;
+
     public function __construct(mixed $items = [])
     {
-        $this->items = Value::toArray($items);
+        $items = Value::toArray($items);
+
+        Value::assertAllOfType($items, $this->type);
+
+        $this->items = $items;
     }
 }

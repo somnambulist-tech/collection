@@ -3,6 +3,7 @@
 namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 use Somnambulist\Components\Collection\Contracts\Collection;
+use Somnambulist\Components\Collection\Utils\Value;
 use function array_push;
 
 /**
@@ -36,13 +37,15 @@ trait AppendValues
      */
     public function append(mixed ...$value): Collection|static
     {
+        Value::assertAllOfType($value, $this->type);
+
         array_push($this->items, ...$value);
 
         return $this;
     }
 
     /**
-     * Push all of the given items onto the collection.
+     * Push all the given items onto the collection.
      *
      * @param iterable $items
      *
@@ -51,7 +54,7 @@ trait AppendValues
     public function concat(iterable $items): Collection|static
     {
         foreach ($items as $item) {
-            $this->push($item);
+            $this->append($item);
         }
 
         return $this;

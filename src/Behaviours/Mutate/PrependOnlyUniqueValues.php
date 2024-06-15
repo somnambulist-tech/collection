@@ -4,6 +4,7 @@ namespace Somnambulist\Components\Collection\Behaviours\Mutate;
 
 use Somnambulist\Components\Collection\Contracts\Collection;
 use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
+use Somnambulist\Components\Collection\Utils\Value;
 use function array_unshift;
 
 /**
@@ -24,6 +25,8 @@ trait PrependOnlyUniqueValues
     public function prepend(mixed ...$value): Collection|static
     {
         foreach ($value as $item) {
+            Value::assertIsOfType($item, $this->type);
+
             if ($this->contains($item)) {
                 throw DuplicateItemException::found($value, $this->keys($item)->first());
             }
