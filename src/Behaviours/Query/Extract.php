@@ -19,7 +19,7 @@ trait Extract
      *
      * @return Collection|static
      */
-    public function extract(string $element, string $withKey = null): Collection|static
+    public function extract(string $element, ?string $withKey = null): Collection|static
     {
         return $this->new(KeyWalker::extract($this, $element, $withKey));
     }

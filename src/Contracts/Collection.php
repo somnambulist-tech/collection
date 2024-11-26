@@ -17,7 +17,7 @@ interface Collection extends ArrayAccess, IteratorAggregate, Countable, Arrayabl
 
     public function each(callable $callback): Collection|static;
 
-    public function filter(string|callable $criteria = null, mixed $test = null): Collection|static;
+    public function filter(null|string|callable $criteria = null, mixed $test = null): Collection|static;
 
     public function first(): mixed;
 

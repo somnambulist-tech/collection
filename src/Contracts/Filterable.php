@@ -5,7 +5,7 @@ namespace Somnambulist\Components\Collection\Contracts;
 interface Filterable
 {
 
-    public function filter(string|callable $criteria = null, mixed $test = null): Collection|static;
+    public function filter(null|string|callable $criteria = null, mixed $test = null): Collection|static;
 
     public function matching(callable $criteria): Collection|static;
 

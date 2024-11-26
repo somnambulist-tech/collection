@@ -27,7 +27,7 @@ trait FilterValues
      *
      * @return Collection|static
      */
-    public function filter(string|callable $criteria = null, mixed $test = null): Collection|static
+    public function filter(null|string|callable $criteria = null, mixed $test = null): Collection|static
     {
         if ($criteria && $test) {
             $criteria = fn ($value, $key) => KeyWalker::get($value, $criteria) === $test;

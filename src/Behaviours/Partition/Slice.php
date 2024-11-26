@@ -24,7 +24,7 @@ trait Slice
      *
      * @return Collection|static
      */
-    public function slice(int $offset, int $limit = null, bool $keys = true): Collection|static
+    public function slice(int $offset, ?int $limit = null, bool $keys = true): Collection|static
     {
         return $this->new(array_slice($this->items, $offset, $limit, $keys));
     }

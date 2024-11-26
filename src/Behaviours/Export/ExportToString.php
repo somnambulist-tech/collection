@@ -28,7 +28,7 @@ trait ExportToString
      *
      * @return string
      */
-    public function implode(string $glue = ',', string|callable $value = null, string $withKeys = null): string
+    public function implode(string $glue = ',', null|string|callable $value = null, ?string $withKeys = null): string
     {
         $elements = [];
 

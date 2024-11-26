@@ -18,7 +18,7 @@ trait CountBy
      *
      * @return Collection|static
      */
-    public function countBy(callable $callback = null): Collection|static
+    public function countBy(?callable $callback = null): Collection|static
     {
         if (is_null($callback)) {
             $callback = fn ($value) => $value;

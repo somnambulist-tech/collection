@@ -23,7 +23,7 @@ trait Splice
      *
      * @return Collection|static
      */
-    public function splice(int $offset, int $length = null, $replacement = []): Collection|static
+    public function splice(int $offset, ?int $length = null, mixed $replacement = []): Collection|static
     {
         if (func_num_args() === 1) {
             return $this->new(array_splice($this->items, $offset));

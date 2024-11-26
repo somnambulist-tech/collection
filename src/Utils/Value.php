@@ -200,7 +200,7 @@ final class Value
      *
      * @return array
      */
-    public static function flatten(mixed $value, bool $dotKeys = false, string $prefix = null): array
+    public static function flatten(mixed $value, bool $dotKeys = false, ?string $prefix = null): array
     {
         $return = [];
 
