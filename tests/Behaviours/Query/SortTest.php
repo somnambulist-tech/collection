@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\SortableObject;
@@ -10,9 +11,7 @@ use function strcmp;
 class SortTest extends TestCase
 {
 
-    /**
-     * @group sort
-     */
+    #[Group("sort")]
     public function testSortByValue()
     {
         $col = new Collection([
@@ -38,9 +37,7 @@ class SortTest extends TestCase
         $this->assertEquals($expected, $col->toArray());
     }
 
-    /**
-     * @group sort
-     */
+    #[Group("sort")]
     public function testSortByValueReversed()
     {
         $col = new Collection([
@@ -66,9 +63,7 @@ class SortTest extends TestCase
         $this->assertEquals($expected, $col->toArray());
     }
 
-    /**
-     * @group sort
-     */
+    #[Group("sort")]
     public function testSortByKey()
     {
         $col = new Collection([
@@ -85,9 +80,7 @@ class SortTest extends TestCase
         $this->assertEquals(['atest', 'btest', 'etest', 'gtest', 'utest', 'ztest'], $col->keys()->toArray());
     }
 
-    /**
-     * @group sort
-     */
+    #[Group("sort")]
     public function testSortByKeyReversed()
     {
         $col = new Collection([
@@ -104,9 +97,7 @@ class SortTest extends TestCase
         $this->assertEquals(['ztest', 'utest', 'gtest', 'etest', 'btest', 'atest'], $col->keys()->toArray());
     }
 
-    /**
-     * @group sort
-     */
+    #[Group("sort")]
     public function testSort()
     {
         $col = new Collection([
@@ -132,9 +123,7 @@ class SortTest extends TestCase
         $this->assertEquals($expected, $col->toArray());
     }
 
-    /**
-     * @group sort
-     */
+    #[Group("sort")]
     public function testSortMaintainsKeyAssociation()
     {
         $col = new Collection([
@@ -160,9 +149,7 @@ class SortTest extends TestCase
         $this->assertEquals($expected, $col->toArray());
     }
 
-    /**
-     * @group sort
-     */
+    #[Group("sort")]
     public function testSortBySpecifyingMethodOrProperty()
     {
         $col = new Collection([

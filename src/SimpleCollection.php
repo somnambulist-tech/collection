@@ -2,7 +2,6 @@
 
 namespace Somnambulist\Components\Collection;
 
-use Somnambulist\Components\Collection\Behaviours;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**

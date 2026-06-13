@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class KeysMatchingTest extends TestCase
 {
 
-    /**
-     * @group search
-     */
+    #[Group("search")]
     public function testKeysMatching()
     {
         $col = new Collection([

@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class PopTest extends TestCase
 {
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testPop()
     {
         $col = new Collection([
@@ -25,9 +24,7 @@ class PopTest extends TestCase
         $this->assertCount(2, $col);
     }
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testPopWillWrapArrays()
     {
         $col = new Collection([

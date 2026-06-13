@@ -6,7 +6,7 @@ use BadMethodCallException;
 use Closure;
 use RuntimeException;
 use Somnambulist\Components\Collection\Contracts\Collection;
-use function get_class;
+use function get_debug_type;
 use function gettype;
 use function is_object;
 use function method_exists;
@@ -49,7 +49,7 @@ trait RunMethodOnValues
             }
 
             if (!method_exists($value, $method)) {
-                throw new BadMethodCallException(sprintf('Method "%s" not found on object "%s"', $method, get_class($value)));
+                throw new BadMethodCallException(sprintf('Method "%s" not found on object "%s"', $method, get_debug_type($value)));
             }
 
             $value->{$method}(...$arguments);

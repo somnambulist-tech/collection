@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Contracts;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\Contracts\Arrayable;
 use Somnambulist\Components\Collection\Groups\Exportable;
@@ -10,9 +11,7 @@ use Somnambulist\Components\Collection\MutableCollection as Collection;
 class ArrayableTest extends TestCase
 {
 
-    /**
-     * @group export
-     */
+    #[Group("export")]
     public function testToArrayOfCollections()
     {
         $col = new Collection([
@@ -25,9 +24,7 @@ class ArrayableTest extends TestCase
         $this->assertEquals(['foo' => [1, 2, 3, 4], 'bar' => [1, 2, 3, 4]], $arr);
     }
 
-    /**
-     * @group export
-     */
+    #[Group("export")]
     public function testToArrayOfClassImplementingExportable()
     {
         $item = new class implements Arrayable {
@@ -43,9 +40,7 @@ class ArrayableTest extends TestCase
         $this->assertEquals(['key' => 'value'], $item->toArray());
     }
 
-    /**
-     * @group export
-     */
+    #[Group("export")]
     public function testToArrayOfCollectionsCascadesToArrayOfExportable()
     {
         $item = new class implements Arrayable {

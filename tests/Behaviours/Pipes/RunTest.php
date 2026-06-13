@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class RunTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group run
-     */
+    #[Group("collection")]
+    #[Group("run")]
     public function testRun()
     {
         $col = new Collection([
@@ -34,10 +33,8 @@ class RunTest extends TestCase
         }
     }
 
-    /**
-     * @group collection
-     * @group run
-     */
+    #[Group("collection")]
+    #[Group("run")]
     public function testRunWithSingleArg()
     {
         $col = new Collection([

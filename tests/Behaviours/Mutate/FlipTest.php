@@ -2,15 +2,13 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class FlipTest extends TestCase
 {
-
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testFlip()
     {
         $col = new Collection([
@@ -19,5 +17,4 @@ class FlipTest extends TestCase
 
         $this->assertEquals(['foo' => 0, 'bar' => 1, 'baz' => 2], $col->flip()->toArray());
     }
-
 }

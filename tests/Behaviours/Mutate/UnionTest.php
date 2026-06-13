@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 class UnionTest extends TestCase
 {
 
-    /**
-     * @group union
-     */
+    #[Group("union")]
     public function testUnion()
     {
         $col = new Collection(new TestClass4());
@@ -24,9 +23,7 @@ class UnionTest extends TestCase
         $this->assertTrue($col->has('bar'));
     }
 
-    /**
-     * @group union
-     */
+    #[Group("union")]
     public function testUnionCollection()
     {
         $col = new Collection(['foo' => 'bar']);
@@ -38,9 +35,7 @@ class UnionTest extends TestCase
         $this->assertTrue($col->has('bar'));
     }
 
-    /**
-     * @group union
-     */
+    #[Group("union")]
     public function testUnionArrayObject()
     {
         $col = new Collection(new TestClass4());
@@ -52,9 +47,7 @@ class UnionTest extends TestCase
         $this->assertTrue($col->has('bar'));
     }
 
-    /**
-     * @group union
-     */
+    #[Group("union")]
     public function testUnionNonArray()
     {
         $col = new Collection([new TestClass4()]);
@@ -67,9 +60,7 @@ class UnionTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group union
-     */
+    #[Group("union")]
     public function testUnionWithSameKeyKeepsFirstValue()
     {
         $col = new Collection($t = new TestClass4());

@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class ShiftTest extends TestCase
 {
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testShift()
     {
         $col = new Collection([
@@ -25,9 +24,7 @@ class ShiftTest extends TestCase
         $this->assertCount(2, $col);
     }
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testShiftWilLWrapArrays()
     {
         $col = new Collection([

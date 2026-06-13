@@ -3,15 +3,14 @@
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
 use OutOfBoundsException;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class LastTest extends TestCase
 {
 
-    /**
-     * @group accessors
-     */
+    #[Group("accessors")]
     public function testLast()
     {
         $col = new Collection([
@@ -24,17 +23,13 @@ class LastTest extends TestCase
         $this->assertEquals('test-abc', $col->last());
     }
 
-    /**
-     * @group accessors
-     */
+    #[Group("accessors")]
     public function testLastReturnsNullOnEmpty()
     {
         $this->assertNull((new Collection())->last());
     }
 
-    /**
-     * @group accessors
-     */
+    #[Group("accessors")]
     public function testLastOrFail()
     {
         $this->expectException(OutOfBoundsException::class);
@@ -42,9 +37,7 @@ class LastTest extends TestCase
         $this->assertNull((new Collection())->lastOrFail());
     }
 
-    /**
-     * @group accessors
-     */
+    #[Group("accessors")]
     public function testLastWrapsArrays()
     {
         $col = new Collection([
@@ -66,9 +59,7 @@ class LastTest extends TestCase
         $this->assertInstanceOf(Collection::class, $col->get('ele2'));
     }
 
-    /**
-     * @group accessors
-     */
+    #[Group("accessors")]
     public function testLastWrapsArraysWithNumericKeys()
     {
         $col = new Collection([

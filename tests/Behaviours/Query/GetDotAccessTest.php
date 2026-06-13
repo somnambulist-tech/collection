@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyObject;
@@ -11,9 +12,7 @@ use TypeError;
 class GetDotAccessTest extends TestCase
 {
 
-    /**
-     * @group walker
-     */
+    #[Group("walker")]
     public function testGroupDotAccess()
     {
         $col = new Collection([
@@ -40,9 +39,7 @@ class GetDotAccessTest extends TestCase
         $this->assertEquals($expected, $col->get('users.*.name'));
     }
 
-    /**
-     * @group walker
-     */
+    #[Group("walker")]
     public function testSelectWholeSubsetUsingDotAccess()
     {
         $col = new Collection([
@@ -80,9 +77,7 @@ class GetDotAccessTest extends TestCase
         $this->assertEquals($expected, $col->get('users.*'));
     }
 
-    /**
-     * @group walker
-     */
+    #[Group("walker")]
     public function testGroupDotAccessFlattensWhenSelectingAllValues()
     {
         $col = new Collection([
@@ -114,9 +109,7 @@ class GetDotAccessTest extends TestCase
         $this->assertEquals($expected, $col->get('users.*.*'));
     }
 
-    /**
-     * @group walker
-     */
+    #[Group("walker")]
     public function testGetWithNullRaisesTypeError()
     {
         $col = new Collection([
@@ -141,10 +134,8 @@ class GetDotAccessTest extends TestCase
         $this->assertEquals($col, $col->get(null));
     }
 
-    /**
-     * @group walker
-     * @group get
-     */
+    #[Group("walker")]
+    #[Group("get")]
     public function testDirectDotAccess()
     {
         $col = new Collection([
@@ -157,10 +148,8 @@ class GetDotAccessTest extends TestCase
         $this->assertEquals('test1', $col->get('user.name'));
     }
 
-    /**
-     * @group walker
-     * @group get
-     */
+    #[Group("walker")]
+    #[Group("get")]
     public function testObjectDotAccess()
     {
         $col = new Collection([
@@ -176,10 +165,8 @@ class GetDotAccessTest extends TestCase
         $this->assertEquals(['bar', 'bar2', 'bar3'], $col->get('objects.*.example'));
     }
 
-    /**
-     * @group walker
-     * @group get
-     */
+    #[Group("walker")]
+    #[Group("get")]
     public function testObjectAccess()
     {
         $col = new Collection([
@@ -192,10 +179,8 @@ class GetDotAccessTest extends TestCase
         $this->assertEquals($o3, $col->get('test3'));
     }
 
-    /**
-     * @group walker
-     * @group get
-     */
+    #[Group("walker")]
+    #[Group("get")]
     public function testDotAccessWithDefault()
     {
         $col = new Collection([
@@ -210,10 +195,8 @@ class GetDotAccessTest extends TestCase
         }));
     }
 
-    /**
-     * @group walker
-     * @group walker-wildcard
-     */
+    #[Group("walker")]
+    #[Group("walker-wildcard")]
     public function testWildcardDotAccessWithDefault()
     {
         $col = new Collection([
@@ -227,10 +210,8 @@ class GetDotAccessTest extends TestCase
         }));
     }
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForKeys()
     {
         $col = new Collection([
@@ -246,10 +227,8 @@ class GetDotAccessTest extends TestCase
         $this->assertFalse($col->has('objects.*.tester'));
     }
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForMultipleNestedKeys()
     {
         $col = new Collection([
@@ -264,10 +243,8 @@ class GetDotAccessTest extends TestCase
         $this->assertFalse($col->has('objects.*.foo','objects.*.tester'));
     }
 
-    /**
-     * @group walker
-     * @group has-none
-     */
+    #[Group("walker")]
+    #[Group("has-none")]
     public function testCanTestThatNoKeysAreInNestedKeys()
     {
         $col = new Collection([
@@ -282,10 +259,8 @@ class GetDotAccessTest extends TestCase
         $this->assertFalse($col->hasNoneOf('objects.*.tester','objects.*.foo'));
     }
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForMultipleNestedKeysOfMixedObjects()
     {
         $col = new Collection([
@@ -300,10 +275,8 @@ class GetDotAccessTest extends TestCase
         $this->assertFalse($col->has('objects.*.bar','objects.*.example'));
     }
 
-    /**
-     * @group walker
-     * @group has-any
-     */
+    #[Group("walker")]
+    #[Group("has-any")]
     public function testCanTestForAnyMultipleNestedKeysOfMixedObjects()
     {
         $col = new Collection([
@@ -318,10 +291,8 @@ class GetDotAccessTest extends TestCase
         $this->assertTrue($col->hasAnyOf('objects.*.bar','objects.*.example'));
     }
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForMultipleKeys()
     {
         $col = new Collection([

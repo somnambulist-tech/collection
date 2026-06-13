@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 class MagicRunTest extends TestCase
 {
 
-    /**
-     * @group magic
-     */
+    #[Group("magic")]
     public function testCallMethodDirectly()
     {
         $mock1 = $this->createMock(TestClass4::class);

@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Partition;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class SliceTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group slice
-     */
+    #[Group("collection")]
+    #[Group("slice")]
     public function testSlice()
     {
         $col = new Collection([

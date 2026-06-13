@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 class JsonSerializeTest extends TestCase
 {
 
-    /**
-     * @group export
-     */
+    #[Group("export")]
     public function testJsonSerialize()
     {
         $col = new Collection(new TestClass4());

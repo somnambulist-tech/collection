@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Strings;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class TrimTest extends TestCase
 {
 
-    /**
-     * @group text
-     * @group trim
-     */
+    #[Group("text")]
+    #[Group("trim")]
     public function testTrim()
     {
         $col = Collection::collect(['foo  ', '  bar', '  baz  ']);

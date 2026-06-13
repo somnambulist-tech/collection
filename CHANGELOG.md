@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+2026-06-13
+----------
+
+ * Update to PHPUnit 12.4
+ * Some code cleanup
+
 2024-11-27
 ----------
 

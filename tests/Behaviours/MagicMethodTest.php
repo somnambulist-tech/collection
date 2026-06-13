@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 class MagicMethodTest extends TestCase
 {
-    /**
-     * @group magic
-     */
+    #[Group("magic")]
     public function testCanRestoreState()
     {
         $col  = new Collection(new TestClass4());
@@ -23,9 +22,7 @@ class MagicMethodTest extends TestCase
         $this->assertCount(1, $col2);
     }
 
-    /**
-     * @group magic
-     */
+    #[Group("magic")]
     public function testMagicIsset()
     {
         $col = new Collection(['foo' => new TestClass4(), 'baz' => new TestClass4()]);
@@ -34,9 +31,7 @@ class MagicMethodTest extends TestCase
         $this->assertFalse(isset($col->bar));
     }
 
-    /**
-     * @group magic
-     */
+    #[Group("magic")]
     public function testMagicSetGet()
     {
         $col = new Collection();
@@ -45,9 +40,7 @@ class MagicMethodTest extends TestCase
         $this->assertEquals('bar', $col->foo);
     }
 
-    /**
-     * @group magic
-     */
+    #[Group("magic")]
     public function testMagicUnset()
     {
         $col = new Collection();

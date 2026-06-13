@@ -2,7 +2,6 @@
 
 namespace Somnambulist\Components\Collection\Behaviours;
 
-use Somnambulist\Components\Collection\Exceptions\InvalidItemTypeException;
 use Somnambulist\Components\Collection\Utils\Value;
 
 /**

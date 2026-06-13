@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class ReverseTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testReverse()
     {
         $col = new Collection([

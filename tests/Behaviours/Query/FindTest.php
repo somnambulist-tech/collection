@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 class FindTest extends TestCase
 {
 
-    /**
-     * @group search
-     */
+    #[Group("search")]
     public function testFind()
     {
         $col        = new Collection(new TestClass4());
@@ -21,9 +20,7 @@ class FindTest extends TestCase
         $this->assertFalse($col->find('baz'));
     }
 
-    /**
-     * @group search
-     */
+    #[Group("search")]
     public function testFindWithClosure()
     {
         $col        = new Collection(new TestClass4());
@@ -32,9 +29,7 @@ class FindTest extends TestCase
         $this->assertEquals('too', $col->find(function ($value, $key) { return 'bar' === $key; }));
     }
 
-    /**
-     * @group search
-     */
+    #[Group("search")]
     public function testFindLast()
     {
         $col        = new Collection([
@@ -44,9 +39,7 @@ class FindTest extends TestCase
         $this->assertEquals(15, $col->findLast(function ($value, $key) { return $value > 10; }));
     }
 
-    /**
-     * @group search
-     */
+    #[Group("search")]
     public function testFindLastReturnsFalseIfNotFound()
     {
         $col        = new Collection([

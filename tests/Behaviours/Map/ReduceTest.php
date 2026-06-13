@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class ReduceTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testReduce()
     {
         $col = new Collection([

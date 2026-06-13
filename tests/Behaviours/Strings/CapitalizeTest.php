@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Strings;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class CapitalizeTest extends TestCase
 {
 
-    /**
-     * @group capitalize
-     */
+    #[Group("capitalize")]
     public function testCapitalize()
     {
         $col = Collection::collect(['foo_bar', 'foo bar', 'baz']);

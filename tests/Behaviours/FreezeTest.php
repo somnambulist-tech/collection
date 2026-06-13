@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\FrozenCollection as Immutable;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class FreezeTest extends TestCase
 {
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testFreezeReturnsImmutable()
     {
         $col = new Collection();

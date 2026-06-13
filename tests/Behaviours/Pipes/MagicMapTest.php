@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class MagicMapTest extends TestCase
 {
 
-    /**
-     * @group magic
-     */
+    #[Group("magic")]
     public function testCallMethodDirectly()
     {
         $mock1 = new class {
@@ -30,9 +29,7 @@ class MagicMapTest extends TestCase
         $this->assertEquals(['bar' => 'string', 'baz' => 'string'], $col->toArray());
     }
 
-    /**
-     * @group magic
-     */
+    #[Group("magic")]
     public function testCallMethodDirectlyNoKeys()
     {
         $mock1 = new class {

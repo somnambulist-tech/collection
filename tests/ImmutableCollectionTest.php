@@ -2,14 +2,13 @@
 
 namespace Somnambulist\Components\Collection\Tests;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\Exceptions\CollectionIsFrozenException;
 use Somnambulist\Components\Collection\FrozenCollection as Immutable;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
-/**
- * @group frozen-collection
- */
+#[Group("frozen-collection")]
 class ImmutableCollectionTest extends TestCase
 {
     public function testCollect()

@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 class ClearResetTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testClear()
     {
         $col = new Collection(new TestClass4());
@@ -21,9 +20,7 @@ class ClearResetTest extends TestCase
         $this->assertCount(0, $col);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testReset()
     {
         $col = new Collection(new TestClass4());

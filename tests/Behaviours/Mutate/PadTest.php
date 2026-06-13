@@ -3,15 +3,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class PadTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testPad()
     {
         $col = new Collection();

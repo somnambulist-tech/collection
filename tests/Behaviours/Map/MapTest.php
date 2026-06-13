@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyStaticObject;
@@ -10,10 +11,8 @@ use function strrev;
 class MapTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group map
-     */
+    #[Group("collection")]
+    #[Group("map")]
     public function testMap()
     {
         $col = new Collection([
@@ -32,10 +31,8 @@ class MapTest extends TestCase
         }
     }
 
-    /**
-     * @group collection
-     * @group map
-     */
+    #[Group("collection")]
+    #[Group("map")]
     public function testMapWithWrappedSingleArgFunction()
     {
         $col = new Collection([
@@ -52,10 +49,8 @@ class MapTest extends TestCase
         }
     }
 
-    /**
-     * @group collection
-     * @group map
-     */
+    #[Group("collection")]
+    #[Group("map")]
     public function testMapWithSingleArgFunction()
     {
         $col = new Collection([
@@ -72,10 +67,8 @@ class MapTest extends TestCase
         }
     }
 
-    /**
-     * @group collection
-     * @group map
-     */
+    #[Group("collection")]
+    #[Group("map")]
     public function testMapWithStaticCallable()
     {
         $col = new Collection([

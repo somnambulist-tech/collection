@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Partition;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class PartitionTest extends TestCase
 {
 
-    /**
-     * @group partition
-     */
+    #[Group("partition")]
     public function testPartition()
     {
         $collection = new Collection(range(1, 10));
@@ -21,9 +20,7 @@ class PartitionTest extends TestCase
         $this->assertEquals([6, 7, 8, 9, 10], $secondPartition->values()->toArray());
     }
 
-    /**
-     * @group partition
-     */
+    #[Group("partition")]
     public function testPartitionByKey()
     {
         $courses = new Collection([
@@ -34,9 +31,7 @@ class PartitionTest extends TestCase
         $this->assertSame([['free' => false, 'title' => 'Premium']], $premium->values()->toArray());
     }
 
-    /**
-     * @group partition
-     */
+    #[Group("partition")]
     public function testPartitionPreservesKeys()
     {
         $courses = new Collection([
@@ -47,9 +42,7 @@ class PartitionTest extends TestCase
         $this->assertSame(['b' => ['free' => false]], $premium->toArray());
     }
 
-    /**
-     * @group partition
-     */
+    #[Group("partition")]
     public function testPartitionEmptyCollection()
     {
         $collection = new Collection();

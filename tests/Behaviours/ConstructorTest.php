@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass1;
@@ -11,9 +12,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 
 class ConstructorTest extends TestCase
 {
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testCollect()
     {
         $col = Collection::collect(['foo' => 'bar']);
@@ -21,9 +20,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructor()
     {
         $col = new Collection();
@@ -32,9 +29,7 @@ class ConstructorTest extends TestCase
         $this->assertEmpty($col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithArray()
     {
         $col = new Collection(['foo' => 'bar']);
@@ -42,9 +37,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithNull()
     {
         $col = new Collection(null);
@@ -52,9 +45,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(0, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithCollection()
     {
         $col = new Collection(['foo' => 'bar']);
@@ -63,9 +54,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col2);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithStdClass()
     {
         $col = new \stdClass;
@@ -75,9 +64,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col2);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithIterator()
     {
         $col = new \ArrayIterator(['foo' => 'bar']);
@@ -86,9 +73,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col2);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithArrayObject()
     {
         $col = new \ArrayObject(['foo' => 'bar']);
@@ -97,9 +82,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col2);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithScalar()
     {
         $col = new Collection('bar');
@@ -107,9 +90,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithObjectToArray()
     {
         $col = new Collection(new TestClass1());
@@ -117,9 +98,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithObjectAsArray()
     {
         $col = new Collection(new TestClass2());
@@ -127,9 +106,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithObjectToJson()
     {
         $col = new Collection(new TestClass3());
@@ -137,9 +114,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithObjectAsJson()
     {
         $col = new Collection(new TestClass4());
@@ -147,9 +122,7 @@ class ConstructorTest extends TestCase
         $this->assertCount(1, $col);
     }
 
-    /**
-     * @group constructor
-     */
+    #[Group("constructor")]
     public function testConstructorWithNestedObjects()
     {
         $obj  = new \stdClass();

@@ -2,15 +2,13 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class RemoveEmptyTest extends TestCase
 {
-
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testRemoveEmpty()
     {
         $col = Collection::collect(['foo', 'bar', null, 'baz', '', false, 0]);
@@ -21,5 +19,4 @@ class RemoveEmptyTest extends TestCase
 
         $this->assertCount(4, $col);
     }
-
 }

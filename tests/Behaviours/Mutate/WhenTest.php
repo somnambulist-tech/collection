@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class WhenTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testWhen()
     {
         $col = new Collection([
@@ -29,9 +28,7 @@ class WhenTest extends TestCase
         $this->assertCount(1, $col->get('order'));
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testWhenHasElse()
     {
         $col = new Collection([
@@ -55,9 +52,7 @@ class WhenTest extends TestCase
         $this->assertTrue($col->get('order')->doesNotHave('foobar'));
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testWhenWithScalarTest()
     {
         $col = new Collection([
@@ -78,9 +73,7 @@ class WhenTest extends TestCase
         $this->assertTrue($col->get('order')->doesNotHave('foobar'));
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testWhenReturnsInitialCollection()
     {
         $col = new Collection([

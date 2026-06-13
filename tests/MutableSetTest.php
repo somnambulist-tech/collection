@@ -2,19 +2,17 @@
 
 namespace Somnambulist\Components\Collection\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\Exceptions\DuplicateItemException;
 use Somnambulist\Components\Collection\MutableSet as Collection;
 use function str_repeat;
 
-/**
- * @group mutable-set
- */
+#[Group("mutable-set")]
 class MutableSetTest extends TestCase
 {
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testCanAddDifferentValues()
     {
         $col = new Collection();
@@ -23,9 +21,7 @@ class MutableSetTest extends TestCase
         $this->assertCount(2, $col);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testAddDoesNotDuplicateValues()
     {
         $this->expectException(DuplicateItemException::class);
@@ -34,9 +30,7 @@ class MutableSetTest extends TestCase
         $col->add('value')->add('value')->add('value');
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testAppendDoesNotDuplicateValues()
     {
         $this->expectException(DuplicateItemException::class);
@@ -45,9 +39,7 @@ class MutableSetTest extends TestCase
         $col->append('value', 'value', 'value');
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testPrependDoesNotDuplicateValues()
     {
         $this->expectException(DuplicateItemException::class);
@@ -56,9 +48,7 @@ class MutableSetTest extends TestCase
         $col->prepend('value', 'value', 'value');
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testDuplicateItemsOnCreateRaisesException()
     {
         $this->expectException(DuplicateItemException::class);
@@ -66,9 +56,7 @@ class MutableSetTest extends TestCase
         new Collection(['value', 'value', 'value']);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testMergingWithDuplicatesRaisesException()
     {
         $this->expectException(DuplicateItemException::class);
@@ -76,9 +64,7 @@ class MutableSetTest extends TestCase
         (new Collection(['value1', 'value2', 'value3']))->merge(['value2', 'value3']);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testUnionWithDuplicatesRaisesException()
     {
         $this->expectException(DuplicateItemException::class);
@@ -86,10 +72,8 @@ class MutableSetTest extends TestCase
         (new Collection(['value1', 'value2', 'value3']))->union(['value1', 'value1']);
     }
 
-    /**
-     * @group collection
-     * @dataProvider methods
-     */
+    #[Group("collection")]
+    #[DataProvider('methods')]
     public function testMutatingMethodsReturnCollectionInstance(string $method, ...$args)
     {
         $col = new Collection(['value1', 'value2', 'value3']);

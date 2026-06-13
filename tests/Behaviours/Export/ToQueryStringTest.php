@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class ToQueryStringTest extends TestCase
 {
 
-    /**
-     * @group export
-     */
+    #[Group("export")]
     public function testToQueryString()
     {
         $col = new Collection([

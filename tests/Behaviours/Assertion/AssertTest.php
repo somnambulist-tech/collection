@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Assertion;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\Exceptions\AssertionFailedException;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\MutableCollection as Collection;
 class AssertTest extends TestCase
 {
 
-    /**
-     * @group assert
-     */
+    #[Group("assert")]
     public function testAssert()
     {
         $col = new Collection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);

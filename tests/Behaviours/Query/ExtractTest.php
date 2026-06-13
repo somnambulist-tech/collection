@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyObject;
@@ -10,10 +11,8 @@ use Somnambulist\Components\Collection\Tests\Fixtures\ProductId;
 class ExtractTest extends TestCase
 {
 
-    /**
-     * @group accessors
-     * @group extract
-     */
+    #[Group("accessors")]
+    #[Group("extract")]
     public function testExtract()
     {
         $collection = new Collection([
@@ -26,10 +25,8 @@ class ExtractTest extends TestCase
         $this->assertEquals(['Desk', 'Chair'], $result->toArray());
     }
 
-    /**
-     * @group accessors
-     * @group extract
-     */
+    #[Group("accessors")]
+    #[Group("extract")]
     public function testExtractWithKey()
     {
         $collection = new Collection([
@@ -42,10 +39,8 @@ class ExtractTest extends TestCase
         $this->assertEquals(['prod-100' => 'Desk', 'prod-200' => 'Chair'], $result->toArray());
     }
 
-    /**
-     * @group accessors
-     * @group extract
-     */
+    #[Group("accessors")]
+    #[Group("extract")]
     public function testExtractWithKeyHandlesObjects()
     {
         $collection = new Collection([
@@ -58,10 +53,8 @@ class ExtractTest extends TestCase
         $this->assertEquals(['prod-100' => 'Desk', 'prod-200' => 'Chair'], $result->toArray());
     }
 
-    /**
-     * @group accessors
-     * @group extract
-     */
+    #[Group("accessors")]
+    #[Group("extract")]
     public function testExtractPublicObjectProperties()
     {
         $collection = new Collection([
@@ -75,10 +68,8 @@ class ExtractTest extends TestCase
         $this->assertEquals(['test', 'test2', 'test3'], $result->toArray());
     }
 
-    /**
-     * @group accessors
-     * @group extract
-     */
+    #[Group("accessors")]
+    #[Group("extract")]
     public function testExtractViaObjectGetMethod()
     {
         $collection = new Collection([
@@ -92,10 +83,8 @@ class ExtractTest extends TestCase
         $this->assertEquals(['bob', 'bob2', 'bob3'], $result->toArray());
     }
 
-    /**
-     * @group accessors
-     * @group extract
-     */
+    #[Group("accessors")]
+    #[Group("extract")]
     public function testExtractViaObjectMethod()
     {
         $collection = new Collection([
@@ -109,10 +98,8 @@ class ExtractTest extends TestCase
         $this->assertEquals(['bar', 'bar2', 'bar3'], $result->toArray());
     }
 
-    /**
-     * @group accessors
-     * @group extract
-     */
+    #[Group("accessors")]
+    #[Group("extract")]
     public function testExtractMethodValueFromObject()
     {
         $collection = new Collection([

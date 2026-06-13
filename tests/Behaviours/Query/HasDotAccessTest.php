@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\MyObject;
@@ -10,10 +11,8 @@ use Somnambulist\Components\Collection\Tests\Fixtures\MyObject2;
 class HasDotAccessTest extends TestCase
 {
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForKeys()
     {
         $col = new Collection([
@@ -29,10 +28,8 @@ class HasDotAccessTest extends TestCase
         $this->assertFalse($col->has('objects.*.tester'));
     }
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForMultipleNestedKeys()
     {
         $col = new Collection([
@@ -47,10 +44,8 @@ class HasDotAccessTest extends TestCase
         $this->assertFalse($col->has('objects.*.foo','objects.*.tester'));
     }
 
-    /**
-     * @group walker
-     * @group has-none
-     */
+    #[Group("walker")]
+    #[Group("has-none")]
     public function testCanTestThatNoKeysAreInNestedKeys()
     {
         $col = new Collection([
@@ -65,10 +60,8 @@ class HasDotAccessTest extends TestCase
         $this->assertFalse($col->hasNoneOf('objects.*.tester','objects.*.foo'));
     }
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForMultipleNestedKeysOfMixedObjects()
     {
         $col = new Collection([
@@ -83,10 +76,8 @@ class HasDotAccessTest extends TestCase
         $this->assertFalse($col->has('objects.*.bar','objects.*.example'));
     }
 
-    /**
-     * @group walker
-     * @group has-any
-     */
+    #[Group("walker")]
+    #[Group("has-any")]
     public function testCanTestForAnyMultipleNestedKeysOfMixedObjects()
     {
         $col = new Collection([
@@ -101,10 +92,8 @@ class HasDotAccessTest extends TestCase
         $this->assertTrue($col->hasAnyOf('objects.*.bar','objects.*.example'));
     }
 
-    /**
-     * @group walker
-     * @group has
-     */
+    #[Group("walker")]
+    #[Group("has")]
     public function testCanTestForMultipleKeys()
     {
         $col = new Collection([
@@ -116,35 +105,4 @@ class HasDotAccessTest extends TestCase
         $this->assertTrue($col->has('test1', 'test3'));
         $this->assertFalse($col->has('test4', 'test5'));
     }
-
-//    /**
-//     * Disabling for now as this is basically extract...
-//     * @group walker
-//     * @group with
-//     */
-//    public function testCanGetMultipleKeysValues()
-//    {
-//        $col = new Collection([
-//            'objects' => [
-//                new MyObject('test', 'example', 'bob', 'bar'),
-//                new MyObject('test2', 'example2', 'bob2', 'bar2'),
-//                new MyObject('test3', 'example3', 'bob3', 'bar3'),
-//            ]
-//        ]);
-//
-//        $expected = [
-//            "objects.*.bar" => [
-//                0 => "example",
-//                1 => "example2",
-//                2 => "example3",
-//            ],
-//            "objects.*.foo" => [
-//                0 => "test",
-//                1 => "test2",
-//                2 => "test3",
-//            ],
-//        ];
-//
-//        $this->assertEquals($expected, $col->with('objects.*.bar', 'objects.*.foo')->toArray());
-//    }
 }

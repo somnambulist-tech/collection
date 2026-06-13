@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 class ArrayAccessorTest extends TestCase
 {
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testOffsetExists()
     {
         $col = new Collection(new TestClass4());
@@ -21,9 +20,7 @@ class ArrayAccessorTest extends TestCase
         $this->assertFalse(isset($col['dog']));
     }
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testOffsetGetSet()
     {
         $col = new Collection(new TestClass4());
@@ -32,9 +29,7 @@ class ArrayAccessorTest extends TestCase
         $this->assertEquals('too', $col['bar']);
     }
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testOffsetGetArrayWillReturnCollection()
     {
         $col = new Collection(['bar' => ['foo' => 'bar', 'baz' => 'lurman']]);
@@ -46,9 +41,7 @@ class ArrayAccessorTest extends TestCase
     }
 
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testOffsetGetReturnsArrayWhenConversionDisabled()
     {
         Collection::disableArrayWrapping();
@@ -62,9 +55,7 @@ class ArrayAccessorTest extends TestCase
         Collection::enableArrayWrapping();
     }
 
-    /**
-     * @group array
-     */
+    #[Group("array")]
     public function testOffsetUnset()
     {
         $col = new Collection(new TestClass4());

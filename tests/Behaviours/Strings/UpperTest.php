@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Strings;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class UpperTest extends TestCase
 {
 
-    /**
-     * @group text
-     */
+    #[Group("text")]
     public function testUpper()
     {
         $col = Collection::collect(['FOO', 'FooBar', 'baz BaR']);

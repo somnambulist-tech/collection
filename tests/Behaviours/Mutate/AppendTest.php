@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
 class AppendTest extends TestCase
 {
 
-    /**
-     * @group append
-     */
+    #[Group("append")]
     public function testAppend()
     {
         $col = new Collection();
@@ -22,9 +21,7 @@ class AppendTest extends TestCase
         $this->assertEquals([0, 1, 2], $col->keys()->toArray());
     }
 
-    /**
-     * @group append
-     */
+    #[Group("append")]
     public function testAppendCollection()
     {
         $col = new Collection(new TestClass4());

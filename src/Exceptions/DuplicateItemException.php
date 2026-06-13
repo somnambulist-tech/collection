@@ -3,9 +3,7 @@
 namespace Somnambulist\Components\Collection\Exceptions;
 
 use DomainException;
-use function get_class;
-use function gettype;
-use function is_object;
+use function get_debug_type;
 use function sprintf;
 
 class DuplicateItemException extends DomainException
@@ -15,7 +13,7 @@ class DuplicateItemException extends DomainException
     {
         return new self(
             sprintf('The set already contains a value with type "%s" at key "%s"',
-                is_object($value) ? get_class($value) : gettype($value), $key
+                get_debug_type($value), $key
             )
         );
     }

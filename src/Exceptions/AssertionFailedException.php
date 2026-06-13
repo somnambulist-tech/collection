@@ -3,9 +3,7 @@
 namespace Somnambulist\Components\Collection\Exceptions;
 
 use Exception;
-use function get_class;
-use function gettype;
-use function is_object;
+use function get_debug_type;
 use function sprintf;
 
 class AssertionFailedException extends Exception
@@ -21,8 +19,7 @@ class AssertionFailedException extends Exception
 
         parent::__construct(
             sprintf(
-                'Assertion failed for key "%s" with value type "%s"', $key,
-                is_object($value) ? get_class($value) : gettype($value)
+                'Assertion failed for key "%s" with value type "%s"', $key, get_debug_type($value)
             )
         );
     }

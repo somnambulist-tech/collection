@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class ToStringTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group implode
-     */
+    #[Group("collection")]
+    #[Group("implode")]
     public function testImplode()
     {
         $col = new Collection([
@@ -24,10 +23,8 @@ class ToStringTest extends TestCase
         $this->assertEquals('test|||test-abc', $col->implode('|', null));
     }
 
-    /**
-     * @group collection
-     * @group implode
-     */
+    #[Group("collection")]
+    #[Group("implode")]
     public function testImplodeKeysAndValues()
     {
         $col = new Collection([
@@ -40,10 +37,8 @@ class ToStringTest extends TestCase
         $this->assertEquals('test-1=test|test-2=|test-abc=|test-abe=test-abc', $col->implode('|', null, '='));
     }
 
-    /**
-     * @group collection
-     * @group implode
-     */
+    #[Group("collection")]
+    #[Group("implode")]
     public function testImplodeKeys()
     {
         $col = new Collection([

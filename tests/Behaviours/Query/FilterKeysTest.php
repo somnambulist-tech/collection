@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class FilterKeysTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group with
-     */
+    #[Group("collection")]
+    #[Group("with")]
     public function testOnlyAndWith()
     {
         $col1 = Collection::collect([
@@ -29,10 +28,8 @@ class FilterKeysTest extends TestCase
         $this->assertEquals(['red' => 2, 'green' => 3, 'blue' => 1], $diff->toArray());
     }
 
-    /**
-     * @group collection
-     * @group with
-     */
+    #[Group("collection")]
+    #[Group("with")]
     public function testOnlyWithMixedKeys()
     {
         $col1 = Collection::collect([
@@ -45,10 +42,8 @@ class FilterKeysTest extends TestCase
         $this->assertEquals(['red' => 2, 'green' => 3], $diff->toArray());
     }
 
-    /**
-     * @group collection
-     * @group without
-     */
+    #[Group("collection")]
+    #[Group("without")]
     public function testExcept()
     {
         $col = new Collection(['bar' => 'too', 'baz' => 34, 'bob' => 'example', 'test' => 'case']);
@@ -61,10 +56,8 @@ class FilterKeysTest extends TestCase
         $this->assertArrayHasKey('bob', $col2);
     }
 
-    /**
-     * @group collection
-     * @group without
-     */
+    #[Group("collection")]
+    #[Group("without")]
     public function testWithoutWithMixedKeys()
     {
         $col = new Collection(['bar' => 'too', 0 => 34, 'bob' => 'example', 'test' => 'case']);

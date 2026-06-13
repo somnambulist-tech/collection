@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class RemoveTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testRemove()
     {
         $col = new Collection();
@@ -23,9 +22,7 @@ class RemoveTest extends TestCase
         $this->assertCount(0, $col);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testRemoveElement()
     {
         $col = new Collection();

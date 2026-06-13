@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass1;
@@ -10,10 +11,8 @@ use stdClass;
 class FlattenTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group flatten
-     */
+    #[Group("collection")]
+    #[Group("flatten")]
     public function testFlatten()
     {
         $obj      = new stdClass();
@@ -29,10 +28,8 @@ class FlattenTest extends TestCase
         $this->assertEquals([0 => ['foo' => 'bar'], 'bar' => 'baz', 'you' => 'me'], $tmp->toArray());
     }
 
-    /**
-     * @group collection
-     * @group flatten
-     */
+    #[Group("collection")]
+    #[Group("flatten")]
     public function testFlattenWithDotKeys()
     {
         $obj      = new stdClass();

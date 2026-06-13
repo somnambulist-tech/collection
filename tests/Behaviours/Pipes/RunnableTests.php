@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass3;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\TestClass3;
 class RunnableTests extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testCallAndCollect()
     {
         $col = new Collection([
@@ -31,9 +30,7 @@ class RunnableTests extends TestCase
         $this->assertEquals($expected, $ret);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testEach()
     {
         $col = new Collection([

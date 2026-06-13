@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Export;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\TestClass4;
@@ -11,9 +12,7 @@ use function unserialize;
 class SerializeTest extends TestCase
 {
 
-    /**
-     * @group serialize
-     */
+    #[Group("serialize")]
     public function testSerialize()
     {
         $col = new Collection(new TestClass4());

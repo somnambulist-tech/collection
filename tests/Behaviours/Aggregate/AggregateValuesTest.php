@@ -2,14 +2,13 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Aggregate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class AggregateValuesTest extends TestCase
 {
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testAverage()
     {
         $col = new Collection([
@@ -19,9 +18,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals((6+9+1+4+32+8)/6, $col->average());
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testAverageCanUseKey()
     {
         $col = new Collection([
@@ -35,9 +32,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals((45+3+2+56+8)/5, $col->average('key'));
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testMin()
     {
         $col = new Collection([
@@ -47,9 +42,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(1, $col->min());
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testMinCanUseKey()
     {
         $col = new Collection([
@@ -63,9 +56,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(2, $col->min('key'));
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testMinCanWorkWithSimpleArrays()
     {
         $col = new Collection([
@@ -79,9 +70,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(['key' => 2], $col->min());
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testMax()
     {
         $col = new Collection([
@@ -91,9 +80,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(32, $col->max());
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testMaxCanUseKey()
     {
         $col = new Collection([
@@ -107,9 +94,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(56, $col->max('key'));
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testMaxCanWorkWithSimpleArrays()
     {
         $col = new Collection([
@@ -123,9 +108,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(['key' => 56], $col->max());
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testModalCanWorkWithSimpleArrays()
     {
         $col = new Collection([
@@ -135,9 +118,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(3, $col->modal());
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testModalReturnsFalseIfNoModal()
     {
         $col = new Collection([
@@ -151,9 +132,7 @@ class AggregateValuesTest extends TestCase
         $this->assertFalse($col->modal('key'));
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testModalCanReturnMultipleModals()
     {
         $col = new Collection([
@@ -167,9 +146,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals([45, 2], $col->modal('key'));
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testSum()
     {
         $col = new Collection([1, 2, 3, 4, 5]);
@@ -177,9 +154,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(15, $col->sum());
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testSumByKey()
     {
         $col = new Collection([['val' => 1], ['bar' => 2], ['bar' => 3], ['bar' => 4], ['val' => 5]]);
@@ -187,9 +162,7 @@ class AggregateValuesTest extends TestCase
         $this->assertEquals(6, $col->sum('val'));
     }
 
-    /**
-     * @group aggregate
-     */
+    #[Group("aggregate")]
     public function testSumByCallable()
     {
         $col = new Collection([['val' => 1], ['bar' => 2], ['bar' => 3], ['bar' => 4], ['val' => 5]]);

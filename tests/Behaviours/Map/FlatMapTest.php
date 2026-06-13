@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Map;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class FlatMapTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group map
-     */
+    #[Group("collection")]
+    #[Group("map")]
     public function testFlatMap()
     {
         $data = new Collection([

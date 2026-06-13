@@ -2,17 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class FillTest extends TestCase
 {
-
-
-    /**
-     * @group collection
-     * @group fill
-     */
+    #[Group("collection")]
+    #[Group("fill")]
     public function testFill()
     {
         $col = Collection::collect([])->fill(0, 10, 'var');
@@ -21,10 +18,8 @@ class FillTest extends TestCase
         $this->assertContains('var', $col);
     }
 
-    /**
-     * @group collection
-     * @group fill
-     */
+    #[Group("collection")]
+    #[Group("fill")]
     public function testFillKeysWith()
     {
         $col = Collection::collect(['foo', 'bar', 'baz'])->fillKeysWith('test');

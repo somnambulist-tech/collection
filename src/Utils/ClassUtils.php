@@ -6,7 +6,7 @@ use Closure;
 use InvalidArgumentException;
 use RuntimeException;
 use Somnambulist\Components\Collection\Contracts\Collection;
-use function get_class;
+use function get_debug_type;
 use function is_object;
 use function lcfirst;
 use function method_exists;
@@ -173,7 +173,7 @@ final class ClassUtils
         throw new RuntimeException(
             sprintf(
                 'Unable to set property "%s" (from %s) on object of type "%s"',
-                $prop, $property, get_class($subject)
+                $prop, $property, get_debug_type($subject)
             )
         );
     }

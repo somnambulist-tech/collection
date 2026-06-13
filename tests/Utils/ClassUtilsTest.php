@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Utils;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\Tests\Fixtures\ObjectWithMagicProperties;
 use Somnambulist\Components\Collection\Utils\ClassUtils;
@@ -9,10 +10,8 @@ use Somnambulist\Components\Collection\Utils\ClassUtils;
 class ClassUtilsTest extends TestCase
 {
 
-    /**
-     * @group virtual-properties
-     * @group has-property
-     */
+    #[Group("virtual-properties")]
+    #[Group("has-property")]
     public function testCanGetPropertyNameFromMagicProps()
     {
         $obj = new ObjectWithMagicProperties(['foo' => 'bar', 'baz' => null]);
@@ -22,10 +21,8 @@ class ClassUtilsTest extends TestCase
         $this->assertNull(ClassUtils::getPropertyNameIn($obj, 'test_bar'));
     }
 
-    /**
-     * @group virtual-properties
-     * @group has-property
-     */
+    #[Group("virtual-properties")]
+    #[Group("has-property")]
     public function testCanCheckForMagicProperties()
     {
         $obj = new ObjectWithMagicProperties(['foo' => 'bar', 'baz' => null]);

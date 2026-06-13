@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class HasTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testHas()
     {
         $col = new Collection([
@@ -24,9 +23,7 @@ class HasTest extends TestCase
         $this->assertFalse($col->has('abe'));
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testHasByInt()
     {
         $col = new Collection([
@@ -40,9 +37,7 @@ class HasTest extends TestCase
         $this->assertFalse($col->has(678));
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testHasValueFor()
     {
         $col = new Collection([

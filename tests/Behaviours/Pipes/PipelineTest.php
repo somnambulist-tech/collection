@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Pipes;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class PipelineTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group pipeline
-     */
+    #[Group("collection")]
+    #[Group("pipeline")]
     public function testPipelineWithMethod()
     {
         $ud = new class {
@@ -51,10 +50,8 @@ class PipelineTest extends TestCase
         }
     }
 
-    /**
-     * @group collection
-     * @group pipeline
-     */
+    #[Group("collection")]
+    #[Group("pipeline")]
     public function testPipelineWithClosure()
     {
         $ud = new class {
@@ -96,10 +93,8 @@ class PipelineTest extends TestCase
         }
     }
 
-    /**
-     * @group collection
-     * @group pipeline
-     */
+    #[Group("collection")]
+    #[Group("pipeline")]
     public function testPipelinePreservesKeys()
     {
         $ud = new class {

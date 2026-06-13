@@ -2,6 +2,7 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Collection\Tests\Fixtures\FilterableObject;
@@ -9,9 +10,7 @@ use Somnambulist\Components\Collection\Tests\Fixtures\FilterableObject;
 class FilterValuesTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testFilter()
     {
         $col = new Collection([
@@ -26,9 +25,7 @@ class FilterValuesTest extends TestCase
         $this->assertEquals('bob', $ret->keys()[0]);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testFilterUsingPropertyOrMethod()
     {
         $col = new Collection([
@@ -46,9 +43,7 @@ class FilterValuesTest extends TestCase
         $this->assertEquals('foo', $ret->first()->getName());
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testMatching()
     {
         $col = new Collection([
@@ -63,9 +58,7 @@ class FilterValuesTest extends TestCase
         $this->assertEquals('bob', $ret->keys()[0]);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testMatchingRule()
     {
         $col = new Collection([
@@ -80,9 +73,7 @@ class FilterValuesTest extends TestCase
         $this->assertArrayNotHasKey('bob', $ret->keys()->toArray());
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testNotMatching()
     {
         $col = new Collection([

@@ -2,16 +2,15 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class KeysTest extends TestCase
 {
 
-    /**
-     * @group collection
-     * @group keys
-     */
+    #[Group("collection")]
+    #[Group("keys")]
     public function testKeys()
     {
         $col = new Collection([
@@ -23,10 +22,8 @@ class KeysTest extends TestCase
         $this->assertEquals(['bar', 'baz', 'foobar'], $col->keys()->toArray());
     }
 
-    /**
-     * @group collection
-     * @group keys
-     */
+    #[Group("collection")]
+    #[Group("keys")]
     public function testKeysIsAlwaysStrictSearch()
     {
         $col = new Collection([
@@ -37,10 +34,8 @@ class KeysTest extends TestCase
         $this->assertEmpty($col->keys(123)->toArray());
     }
 
-    /**
-     * @group collection
-     * @group keys
-     */
+    #[Group("collection")]
+    #[Group("keys")]
     public function testKeysSearch()
     {
         $col = new Collection([

@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Mutate;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class AddTest extends TestCase
 {
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testAdd()
     {
         $col = new Collection();
@@ -19,9 +18,7 @@ class AddTest extends TestCase
         $this->assertCount(2, $col);
     }
 
-    /**
-     * @group collection
-     */
+    #[Group("collection")]
     public function testAddDoesAllowDuplicateValues()
     {
         $col = new Collection();

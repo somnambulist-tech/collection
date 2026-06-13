@@ -2,15 +2,14 @@
 
 namespace Somnambulist\Components\Collection\Tests\Behaviours\Query;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Somnambulist\Components\Collection\MutableCollection as Collection;
 
 class RandomValueTest extends TestCase
 {
 
-    /**
-     * @group random
-     */
+    #[Group("random")]
     public function testAll()
     {
         $col = new Collection([
